@@ -32,16 +32,15 @@ flutter:
   uses-material-design: true
   assets:
     - assets/langs/
-  #   - images/a_dot_ham.jpeg
+    - assets/movies/
 
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+    - family: Muli
+      fonts:
+        - asset: fonts/Muli/Muli-Light.ttf
+          weight: 300
+        - asset: fonts/Muli/Muli-Regular.ttf
+          weight: 400
+        - asset: fonts/Muli/Muli-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Muli/Muli-Bold.ttf
+          weight: 700

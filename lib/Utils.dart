@@ -21,8 +21,19 @@ class Utils {
   }
 
   static double rangeMap(
-      double number, double inMin, double inMax, double outMin, double outMax) {
-    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    double number,
+    double inMin,
+    double inMax,
+    double outMin,
+    double outMax, {
+    bool safe = false,
+  }) {
+    final range =
+        (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    if (safe) {
+      return range.clamp(outMin, outMax);
+    }
+    return range;
   }
 
   static double rangeL2LMap(
@@ -32,12 +43,18 @@ class Utils {
     double inMax,
     double outMin,
     double outMid,
-    double outMax,
-  ) {
+    double outMax, {
+    bool safe = false,
+  }) {
     double parsed = Utils.rangeMap(number, inMin, inMid, outMin, outMid);
 
     if (parsed > outMid) {
       parsed = Utils.rangeMap(number, inMid, inMax, outMid, outMax);
+    }
+
+    if (safe) {
+      if (parsed <= outMin) return outMin;
+      if (parsed >= outMax) return outMax;
     }
 
     return parsed;
