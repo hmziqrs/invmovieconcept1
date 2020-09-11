@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 
 class HomeProvider extends ChangeNotifier {
-  int _activeIndex = 0;
   double _offset = 0.0;
+
   static double viewportFraction = 0.60;
+
+  int _activeTabIndex = 0;
+  static List<String> tabs = [
+    "In Theater",
+    "Box Office",
+    "Top 10",
+    "Trending",
+  ];
 
   PageController controller = PageController(
     viewportFraction: viewportFraction,
   );
 
-  HomeProvider() {
-    // this.controller = ;
-  }
+  int get activeTabIndex => this._activeTabIndex;
 
-  int get activeIndex => this._activeIndex;
-
-  set activeIndex(int index) {
-    this._activeIndex = index;
+  set activeTabIndex(int index) {
+    this._activeTabIndex = index;
     notifyListeners();
   }
 

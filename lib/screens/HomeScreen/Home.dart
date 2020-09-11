@@ -1,19 +1,17 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
-
-import 'package:invmovieconcept1/Utils.dart';
-import 'package:invmovieconcept1/UI.dart';
-
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
-import 'package:invmovieconcept1/static/movies.dart' as movies;
-
-import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 import 'package:provider/provider.dart';
 
-import 'provider.dart';
+import 'package:invmovieconcept1/static/movies.dart' as movies;
+import 'package:invmovieconcept1/Utils.dart';
+
+import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
+
 import 'widgets/HomeBackgroundImage.dart';
+import 'widgets/HomeHeader.dart';
+import 'widgets/HomeTabBar.dart';
 
 import 'Dimensions.dart';
+import 'provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -21,7 +19,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // PageController controller;
   @override
   void initState() {
     super.initState();
@@ -42,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
           return NotificationListener<LayoutChangedNotification>(
             onNotification: (notification) {
-              print("CALL");
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 state.offset = state.controller.offset;
               });
@@ -67,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                           ),
                         itemCount: movies.list.length,
-                        onPageChanged: (index) => state.activeIndex = index,
+                        // onPageChanged: (index) => state.activeIndex = index,
                         itemBuilder: (ctx, index) {
                           final movie = movies.list[index];
 
@@ -139,7 +135,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
-                      )
+                      ),
+                      HomeHeader(),
+                      HomeTabBar(),
                     ],
                   ),
                 ),

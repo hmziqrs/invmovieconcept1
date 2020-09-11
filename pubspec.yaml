@@ -34,6 +34,7 @@ flutter:
     - assets/langs/
     - assets/movies/
 
+  fonts:
     - family: Muli
       fonts:
         - asset: fonts/Muli/Muli-Light.ttf

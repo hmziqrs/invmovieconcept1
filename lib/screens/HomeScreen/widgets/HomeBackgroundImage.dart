@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/static/movies.dart' as movies;
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/Utils.dart';
-import 'package:invmovieconcept1/UI.dart';
-
-import 'package:invmovieconcept1/screens/HomeScreen/provider.dart';
 
 import 'CircularRevealClipper.dart';
 
 import '../Dimensions.dart';
+import '../provider.dart';
 
 class HomeBackgroundImage extends StatelessWidget {
   HomeBackgroundImage({this.scrollable});
@@ -55,9 +54,6 @@ class HomeBackgroundImage extends StatelessWidget {
                   );
 
                   double cScale = (scale * -1) + 1.2;
-                  if (index == 0)
-                    print(
-                        "$index $scale|$cScale ${state.offset} ${this.scrollable}");
 
                   return ClipPath(
                     clipper: CircularRevealClipper(
@@ -67,7 +63,8 @@ class HomeBackgroundImage extends StatelessWidget {
                         Dimensions.bgHeight,
                       ),
                       minRadius: 0,
-                      maxRadius: Dimensions.bgHeight * 1.25,
+                      maxRadius:
+                          Dimensions.bgHeight * (AppDimensions.ratio * 0.65),
                     ),
                     child: Transform(
                       origin: Offset(
