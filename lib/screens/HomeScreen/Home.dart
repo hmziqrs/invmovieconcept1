@@ -8,6 +8,7 @@ import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
 import 'widgets/HomeBackgroundImage.dart';
 import 'widgets/HomeHeader.dart';
+import 'widgets/HomeMovieName.dart';
 import 'widgets/HomeTabBar.dart';
 
 import 'Dimensions.dart';
@@ -63,7 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                           ),
                         itemCount: movies.list.length,
-                        // onPageChanged: (index) => state.activeIndex = index,
                         itemBuilder: (ctx, index) {
                           final movie = movies.list[index];
 
@@ -138,6 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       HomeHeader(),
                       HomeTabBar(),
+                      HomeMovieName(scrollable: scrollable),
                     ],
                   ),
                 ),
