@@ -24,15 +24,18 @@ class HomeMovieCards extends StatelessWidget {
       bottom: 0,
       top: UI.mediaQuery().padding.top + AppDimensions.padding * 20,
       child: PageView.builder(
-        physics: BouncingScrollPhysics(),
         clipBehavior: Clip.none,
+        physics: BouncingScrollPhysics(),
+        itemCount: movies.list.length,
+        onPageChanged: (index) => state.activeMovieIndex != index
+            ? state.activeMovieIndex = index
+            : null,
         controller: state.controller
           ..addListener(
             () {
               state.offset = state.controller.offset;
             },
           ),
-        itemCount: movies.list.length,
         itemBuilder: (ctx, index) {
           final movie = movies.list[index];
 

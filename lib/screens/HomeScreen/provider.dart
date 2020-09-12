@@ -5,6 +5,8 @@ class HomeProvider extends ChangeNotifier {
 
   static double viewportFraction = 0.57;
 
+  int _activeMovieIndex = 0;
+
   int _activeTabIndex = 0;
   static List<String> tabs = [
     "In Theater",
@@ -21,6 +23,12 @@ class HomeProvider extends ChangeNotifier {
 
   set activeTabIndex(int index) {
     this._activeTabIndex = index;
+    notifyListeners();
+  }
+
+  int get activeMovieIndex => this._activeMovieIndex;
+  set activeMovieIndex(int index) {
+    this._activeMovieIndex = index;
     notifyListeners();
   }
 

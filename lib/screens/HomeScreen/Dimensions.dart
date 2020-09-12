@@ -18,12 +18,13 @@ class Dimensions {
 
     bgHeight = UI.safeHeight * 0.90;
     bgHeightMax = AppDimensions.ratio * 240 + 120;
+    bgHeightMax = AppDimensions.ratio * 240 + 120;
     if (bgHeight > bgHeightMax) {
       bgHeight = bgHeightMax;
     }
 
-    cardWidth = cardHeight * 0.75;
     cardHeight = AppDimensions.ratio * 100 + 80;
+    cardWidth = cardHeight * 0.75;
 
     containerWidth = UI.width;
     if (UI.width > 480) {
