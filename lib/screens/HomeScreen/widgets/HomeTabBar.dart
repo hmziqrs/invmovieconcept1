@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/configs/App.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 import 'package:invmovieconcept1/UI.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import '../provider.dart';
 
