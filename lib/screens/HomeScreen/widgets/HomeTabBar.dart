@@ -32,7 +32,7 @@ class _HomeTabBarState extends State<HomeTabBar>
     return Positioned(
       left: AppDimensions.padding * 1.5,
       right: AppDimensions.padding * 1.5,
-      top: UI.mediaQuery().padding.top + AppDimensions.padding * 10,
+      top: UI.mediaQuery().padding.top + AppDimensions.padding * 8,
       child: TabBar(
         indicator: null,
         isScrollable: true,
@@ -73,7 +73,7 @@ class _HomeTabBarState extends State<HomeTabBar>
                       child: CustomAnimation<double>(
                         curve: Curves.easeIn,
                         tween: Tween(begin: 0.0, end: 1.0),
-                        duration: Duration(milliseconds: 400),
+                        duration: Duration(milliseconds: 220),
                         control: entry.key == state.activeTabIndex
                             ? CustomAnimationControl.PLAY
                             : CustomAnimationControl.PLAY_REVERSE,

@@ -122,7 +122,6 @@ class ScreenSettingsModalBody extends StatelessWidget {
                             return ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: Container(
-                                // color: Colors.blue,
                                 width: double.infinity,
                                 margin: EdgeInsets.symmetric(
                                   vertical: AppDimensions.padding * 1,

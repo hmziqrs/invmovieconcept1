@@ -20,7 +20,7 @@ class HomeMovieName extends StatelessWidget {
     return Positioned(
       left: 0,
       right: 0,
-      top: Dimensions.bgHeight - AppDimensions.padding * 10,
+      top: Dimensions.bgHeight - AppDimensions.padding * 12,
       child: Container(
         child: Stack(
           children: movies.list.asMap().entries.map(
@@ -36,6 +36,14 @@ class HomeMovieName extends StatelessWidget {
                 1.0,
                 0,
               ).clamp(0.0, 1.0);
+
+              // Bounce scroll Patch
+              if ((index == 0 && state.offset < 0.0) ||
+                  (index == movies.list.length - 1 &&
+                      state.offset >
+                          state.controller.position.maxScrollExtent)) {
+                opacity = 1.0;
+              }
 
               return Container(
                 alignment: Alignment.center,

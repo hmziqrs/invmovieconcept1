@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class HomeProvider extends ChangeNotifier {
   double _offset = 0.0;
 
-  static double viewportFraction = 0.60;
+  static double viewportFraction = 0.57;
 
   int _activeTabIndex = 0;
   static List<String> tabs = [

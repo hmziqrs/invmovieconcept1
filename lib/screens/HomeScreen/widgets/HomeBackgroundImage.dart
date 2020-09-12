@@ -25,7 +25,6 @@ class HomeBackgroundImage extends StatelessWidget {
           bottom: Radius.circular(48.0),
         ),
         child: Container(
-          color: Colors.green,
           width: double.infinity,
           height: Dimensions.bgHeight,
           child: Stack(
@@ -34,6 +33,7 @@ class HomeBackgroundImage extends StatelessWidget {
               ...movies.list.asMap().entries.map(
                 (movie) {
                   final index = movie.key;
+
                   final parallax = Utils.rangeMap(
                     state.offset,
                     (index - 1) * this.scrollable,
@@ -53,25 +53,30 @@ class HomeBackgroundImage extends StatelessWidget {
                     1,
                   );
 
-                  double cScale = (scale * -1) + 1.2;
+                  double cScale = (scale * -0.6) + 1.125;
+                  double radiusFraction = parallax;
+
+                  if (index == 0 && state.offset < 0.0) {
+                    radiusFraction = 1.0;
+                  }
 
                   return ClipPath(
                     clipper: CircularRevealClipper(
-                      fraction: parallax,
+                      fraction: radiusFraction,
                       centerOffset: Offset(
                         Dimensions.containerWidth,
                         Dimensions.bgHeight,
                       ),
                       minRadius: 0,
                       maxRadius:
-                          Dimensions.bgHeight * (AppDimensions.ratio * 0.65),
+                          Dimensions.bgHeight * (AppDimensions.ratio * 0.70),
                     ),
                     child: Transform(
                       origin: Offset(
                         Dimensions.containerWidth / 2,
                         Dimensions.bgHeight / 2,
                       ),
-                      transform: Matrix4.rotationZ(scale * 0.33)
+                      transform: Matrix4.rotationZ(scale * 0.66)
                         ..scale(
                           cScale,
                           cScale,
@@ -83,7 +88,7 @@ class HomeBackgroundImage extends StatelessWidget {
                         ),
                         foregroundDecoration: BoxDecoration(
                           color: Colors.white.withOpacity(
-                            (parallax * 0.60),
+                            (parallax * 0.70),
                           ),
                         ),
                       ),
