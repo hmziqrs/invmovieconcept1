@@ -36,8 +36,9 @@ class _HomeTabBarState extends State<HomeTabBar>
       child: TabBar(
         indicator: null,
         isScrollable: true,
-        labelPadding: EdgeInsets.all(0.0),
         controller: this.tabController,
+        physics: BouncingScrollPhysics(),
+        labelPadding: EdgeInsets.all(0.0),
         indicatorColor: Colors.transparent,
         onTap: (index) => state.activeTabIndex = index,
         tabs: HomeProvider.tabs.asMap().entries.map(

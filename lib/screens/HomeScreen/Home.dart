@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
 import 'widgets/HomeBackgroundImage.dart';
+import 'widgets/HomeMovieRatings.dart';
 import 'widgets/HomeMovieCards.dart';
 import 'widgets/HomeMovieName.dart';
 import 'widgets/HomeMovieTags.dart';
@@ -57,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       HomeHeader(),
                       HomeTabBar(),
                       HomeMovieName(scrollable: scrollable),
+                      HomeMovieRatings(scrollable: scrollable),
                       HomeMovieTags(),
                     ],
                   ),
