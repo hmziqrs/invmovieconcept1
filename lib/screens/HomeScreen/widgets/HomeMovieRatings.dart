@@ -47,6 +47,8 @@ class HomeMovieRatings extends StatelessWidget {
                 1.0,
               );
 
+              double scale = parallax;
+
               // Bounce scroll Patch
               if ((index == 0 && state.offset < 0.0) ||
                   (index == movies.list.length - 1 &&
@@ -54,51 +56,65 @@ class HomeMovieRatings extends StatelessWidget {
                       state.offset >
                           state.controller.position.maxScrollExtent)) {
                 opacity = 1.0;
+                scale = 0.0;
               }
 
-              return Transform(
-                transform: Matrix4.rotationZ(parallax * 3.3)
-                  ..scale(
-                    parallax + 1,
-                    parallax + 1,
-                  ),
-                origin: Offset(
-                  Dimensions.ratingRadius / 2,
-                  Dimensions.ratingRadius / 2,
-                ),
-                child: Opacity(
-                  opacity: opacity,
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: Dimensions.ratingRadius,
-                    height: Dimensions.ratingRadius,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius:
-                          BorderRadius.circular(Dimensions.ratingRadius),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 6,
-                          spreadRadius: 0,
-                          offset: Offset(0.0, 2.0),
-                          color: Colors.black.withOpacity(0.12),
-                        ),
-                      ],
+              return Opacity(
+                opacity: opacity,
+                child: Container(
+                  transform: Matrix4.identity()
+                    ..translate(
+                      (scale * (-Dimensions.ratingRadius / 2)),
+                      (scale * (-Dimensions.ratingRadius / 2)),
+                    )
+                    ..scale(
+                      scale + 1,
+                      scale + 1,
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.orange,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      Dimensions.ratingRadius,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 6,
+                        spreadRadius: 0,
+                        offset: Offset(0.0, 2.0),
+                        color: Colors.black.withOpacity(0.12),
+                      ),
+                    ],
+                  ),
+                  child: Transform(
+                    transform: Matrix4.rotationZ(parallax * 3.3),
+                    origin: Offset(
+                      Dimensions.ratingRadius / 2,
+                      Dimensions.ratingRadius / 2,
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: Dimensions.ratingRadius,
+                      height: Dimensions.ratingRadius,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(
+                          Dimensions.ratingRadius,
                         ),
-                        Text(
-                          entry.value.ratings.toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.orange,
                           ),
-                        ),
-                      ],
+                          Text(
+                            entry.value.ratings.toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
