@@ -32,7 +32,7 @@ class _HomeTabBarState extends State<HomeTabBar>
     return Positioned(
       left: AppDimensions.padding * 1.5,
       right: AppDimensions.padding * 1.5,
-      top: UI.mediaQuery().padding.top + AppDimensions.padding * 8,
+      top: UI.mediaQuery().padding.top + 16 + (AppDimensions.padding * 4),
       child: TabBar(
         indicator: null,
         isScrollable: true,

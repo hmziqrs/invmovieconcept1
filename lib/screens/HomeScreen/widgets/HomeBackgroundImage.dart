@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/UI.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/static/movies.dart' as movies;
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/Utils.dart';
 
 import 'CircularRevealClipper.dart';
@@ -69,7 +67,7 @@ class HomeBackgroundImage extends StatelessWidget {
                         Dimensions.bgHeight,
                       ),
                       minRadius: 0,
-                      maxRadius: Dimensions.bgHeight * ((UI.height / UI.width)),
+                      maxRadius: Dimensions.bgClipRadius,
                     ),
                     child: Transform(
                       origin: Offset(

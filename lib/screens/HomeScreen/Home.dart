@@ -3,13 +3,13 @@ import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
-import 'widgets/HomeBackgroundImage.dart';
-import 'widgets/HomeMovieRatings.dart';
-import 'widgets/HomeMovieCards.dart';
-import 'widgets/HomeMovieName.dart';
-import 'widgets/HomeMovieTags.dart';
 import 'widgets/HomeTabBar.dart';
 import 'widgets/HomeHeader.dart';
+import 'widgets/HomeMovieTags.dart';
+import 'widgets/HomeMovieName.dart';
+import 'widgets/HomeMovieCards.dart';
+import 'widgets/HomeMovieRatings.dart';
+import 'widgets/HomeBackgroundImage.dart';
 
 import 'Dimensions.dart';
 import 'provider.dart';

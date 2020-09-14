@@ -5,9 +5,9 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: UI.mediaQuery().padding.top,
       left: 0,
       right: 0,
+      top: UI.mediaQuery().padding.top,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

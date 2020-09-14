@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
@@ -12,6 +13,7 @@ class Dimensions {
 
   static double bgHeight;
   static double bgHeightMax;
+  static double bgClipRadius;
 
   static double cardHeight;
   static double cardWidth;
@@ -46,5 +48,11 @@ class Dimensions {
     if (ratingsSpace > containerHeight) {
       containerHeight = ratingsSpace;
     }
+
+    // I use pythagorean theorem in order to calculate
+    // pixel perfect radius fir circular clipping
+    final a = math.pow(bgHeight, 2);
+    final b = math.pow(containerWidth, 2);
+    bgClipRadius = math.sqrt(a + b);
   }
 }
