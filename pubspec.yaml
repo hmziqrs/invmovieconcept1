@@ -25,9 +25,13 @@ dependencies:
   universal_io: 1.0.1
 
 dev_dependencies:
-  flutter_test:
+  glob: 1.2.0
+  path: 1.8.0-nullsafety
+  translator: 0.1.4
+  intl_translation: 0.17.10
+  flutter_driver:
     sdk: flutter
-
+  test: any
 flutter:
   uses-material-design: true
   assets:
