@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "952791941209",
+    "firebase_url": "https://invmovieconcept1.firebaseio.com",
+    "project_id": "invmovieconcept1",
+    "storage_bucket": "invmovieconcept1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952791941209:android:f775bcd53b6db601613148",
+        "android_client_info": {
+          "package_name": "com.onemdev.invmovieconcept1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952791941209-fnvlolvt0ife0t9i6rv8q1gutufphal0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.onemdev.invmovieconcept1",
+            "certificate_hash": "e1e28cf2b92dce302a5667f1d9909282082ac9f5"
+          }
+        },
+        {
+          "client_id": "952791941209-c29qno44jggo9qp0k0o2di66669kvq3m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkrtCEg_lerLm8Y80381ATXlZ5S3mQ2Qk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952791941209-c29qno44jggo9qp0k0o2di66669kvq3m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
