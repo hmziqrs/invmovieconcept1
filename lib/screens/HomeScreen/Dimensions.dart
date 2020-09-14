@@ -6,6 +6,9 @@ import 'package:invmovieconcept1/UI.dart';
 
 class Dimensions {
   static double containerWidth;
+  static double containerHeight;
+  static double containerHeightMin;
+  static double containerHeightMax;
 
   static double bgHeight;
   static double bgHeightMax;
@@ -18,7 +21,7 @@ class Dimensions {
   static init(BuildContext context) {
     App.init(context);
 
-    bgHeight = UI.safeHeight * 0.86;
+    bgHeight = UI.height * 0.86;
     bgHeightMax = AppDimensions.ratio * 240 + 120;
     bgHeightMax = AppDimensions.ratio * 240 + 120;
     if (bgHeight > bgHeightMax) {
@@ -28,11 +31,20 @@ class Dimensions {
     cardHeight = AppDimensions.ratio * 100 + 80;
     cardWidth = cardHeight * 0.75;
 
-    ratingRadius = (AppDimensions.ratio * 25) + 10;
+    ratingRadius = (AppDimensions.ratio * 24) + 24;
 
     containerWidth = UI.width;
     if (UI.width > 540) {
       containerWidth = 540;
+    }
+
+    containerHeight = UI.height;
+
+    final ratingsSpace = bgHeight +
+        (Dimensions.ratingRadius / 2 + AppDimensions.padding * (4 + 9));
+
+    if (ratingsSpace > containerHeight) {
+      containerHeight = ratingsSpace;
     }
   }
 }

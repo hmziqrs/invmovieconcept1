@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/UI.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/static/movies.dart' as movies;
@@ -68,8 +69,7 @@ class HomeBackgroundImage extends StatelessWidget {
                         Dimensions.bgHeight,
                       ),
                       minRadius: 0,
-                      maxRadius:
-                          Dimensions.bgHeight * (AppDimensions.ratio * 0.70),
+                      maxRadius: Dimensions.bgHeight * ((UI.height / UI.width)),
                     ),
                     child: Transform(
                       origin: Offset(

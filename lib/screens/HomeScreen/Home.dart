@@ -47,20 +47,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 return false;
               },
               child: SizeChangedLayoutNotifier(
-                child: Align(
+                child: SingleChildScrollView(
                   child: Container(
-                    width: Dimensions.containerWidth,
-                    alignment: Alignment.bottomCenter,
-                    child: Stack(
-                      children: [
-                        HomeBackgroundImage(scrollable: scrollable),
-                        HomeMovieCards(scrollable: scrollable),
-                        HomeHeader(),
-                        HomeTabBar(),
-                        HomeMovieName(scrollable: scrollable),
-                        HomeMovieRatings(scrollable: scrollable),
-                        HomeMovieTags(),
-                      ],
+                    height: Dimensions.containerHeight,
+                    child: Align(
+                      child: Container(
+                        width: Dimensions.containerWidth,
+                        alignment: Alignment.bottomCenter,
+                        child: Stack(
+                          children: [
+                            HomeBackgroundImage(scrollable: scrollable),
+                            HomeMovieCards(scrollable: scrollable),
+                            HomeHeader(),
+                            HomeTabBar(),
+                            HomeMovieName(scrollable: scrollable),
+                            HomeMovieRatings(scrollable: scrollable),
+                            HomeMovieTags(),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),

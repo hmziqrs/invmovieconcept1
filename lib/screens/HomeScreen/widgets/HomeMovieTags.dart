@@ -18,11 +18,12 @@ class HomeMovieTags extends StatelessWidget {
     return Positioned(
       left: 0,
       right: 0,
-      top: Dimensions.bgHeight +
-          Dimensions.ratingRadius * 0.5 +
-          AppDimensions.padding * 2,
+      top: Dimensions.bgHeight + Dimensions.ratingRadius / 2,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: AppDimensions.padding),
+        padding: EdgeInsets.symmetric(
+          horizontal: AppDimensions.padding,
+          vertical: AppDimensions.padding * 2,
+        ),
         child: Wrap(
           key: Key(state.activeMovieIndex.toString()),
           children: [
