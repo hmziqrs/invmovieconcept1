@@ -31,8 +31,8 @@ class Dimensions {
     ratingRadius = (AppDimensions.ratio * 25) + 10;
 
     containerWidth = UI.width;
-    if (UI.width > 480) {
-      containerWidth = 480;
+    if (UI.width > 540) {
+      containerWidth = 540;
     }
   }
 }
