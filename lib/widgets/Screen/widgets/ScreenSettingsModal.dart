@@ -103,9 +103,11 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
         ).clamp(0.0, 1.0);
 
         return Positioned(
-          top: state.offset,
+          // Disable
+          // top: state.offset,
           left: 0,
           right: 0,
+          top: UI.height,
           child: GestureDetector(
             onDoubleTap: () => this.onDoubleTap(
               state,
