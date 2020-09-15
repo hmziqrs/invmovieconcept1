@@ -34,8 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
         create: (_) => HomeProvider(),
         child: Consumer<HomeProvider>(
           builder: (context, state, _) {
-            // final scrollable = state.controller.viewportFraction * UI.width;
-            // final scrollable = Dimensions.containerWidth;
             final scrollable =
                 Dimensions.containerWidth * HomeProvider.viewportFraction;
 

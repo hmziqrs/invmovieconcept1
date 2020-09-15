@@ -8,11 +8,10 @@ import 'package:invmovieconcept1/UI.dart';
 class Dimensions {
   static double containerWidth;
   static double containerHeight;
-  static double containerHeightMin;
-  static double containerHeightMax;
 
   static double bgHeight;
   static double bgHeightMax;
+  static double bgHeightMin;
   static double bgClipRadius;
 
   static double cardHeight;
@@ -25,9 +24,12 @@ class Dimensions {
 
     bgHeight = UI.height * 0.86;
     bgHeightMax = AppDimensions.ratio * 240 + 120;
-    bgHeightMax = AppDimensions.ratio * 240 + 120;
+    bgHeightMin = AppDimensions.ratio * 200 + 150;
     if (bgHeight > bgHeightMax) {
       bgHeight = bgHeightMax;
+    }
+    if (bgHeight < bgHeightMin) {
+      bgHeight = bgHeightMin;
     }
 
     cardHeight = AppDimensions.ratio * 100 + 80;
