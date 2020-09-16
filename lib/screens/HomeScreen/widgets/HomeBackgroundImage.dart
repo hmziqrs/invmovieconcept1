@@ -16,7 +16,7 @@ class HomeBackgroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<HomeProvider>(context, listen: false);
+    final state = Provider.of<HomeProvider>(context, listen: true);
     return Align(
       alignment: Alignment.topCenter,
       child: ClipRRect(

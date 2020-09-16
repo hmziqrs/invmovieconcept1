@@ -13,12 +13,14 @@ import '../provider.dart';
 class HomeMovieTags extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<HomeProvider>(context, listen: false);
+    final state = Provider.of<HomeProvider>(context, listen: true);
 
     return Positioned(
       left: 0,
       right: 0,
-      top: Dimensions.bgHeight + Dimensions.ratingRadius / 2,
+      top: Dimensions.bgHeight +
+          Dimensions.ratingRadius / 2 +
+          Dimensions.bannerAdHeight,
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: AppDimensions.padding,

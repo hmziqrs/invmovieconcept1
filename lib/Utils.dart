@@ -151,4 +151,8 @@ class Utils {
   static bool isDesktop() {
     return Platform.isMacOS || Platform.isWindows || Platform.isLinux;
   }
+
+  static bool isMobile() {
+    return Platform.isAndroid || Platform.isIOS;
+  }
 }

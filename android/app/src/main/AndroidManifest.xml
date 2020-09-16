@@ -9,6 +9,9 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="Flutter Movie Concept UI"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9217632370383904~2821189635"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

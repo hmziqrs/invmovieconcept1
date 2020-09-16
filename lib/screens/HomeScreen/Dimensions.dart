@@ -1,9 +1,12 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/Utils.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 import 'package:invmovieconcept1/UI.dart';
+
+import 'provider.dart';
 
 class Dimensions {
   static double containerWidth;
@@ -18,6 +21,10 @@ class Dimensions {
   static double cardWidth;
 
   static double ratingRadius;
+
+  static double scrollable;
+
+  static double bannerAdHeight = 0.0;
 
   static init(BuildContext context) {
     App.init(context);
@@ -37,18 +44,22 @@ class Dimensions {
 
     ratingRadius = (AppDimensions.ratio * 24) + 24;
 
+    if (Utils.isMobile()) {
+      bannerAdHeight = 60 + AppDimensions.padding * 4;
+    }
+
     containerWidth = UI.width;
     if (UI.width > 540) {
       containerWidth = 540;
     }
 
     containerHeight = UI.height;
+    final approxTagsHeight = AppDimensions.padding * (4 + 9);
+    final safeContainerHeight =
+        bgHeight + (ratingRadius / 2) + approxTagsHeight + bannerAdHeight;
 
-    final ratingsSpace = bgHeight +
-        (Dimensions.ratingRadius / 2 + AppDimensions.padding * (4 + 9));
-
-    if (ratingsSpace > containerHeight) {
-      containerHeight = ratingsSpace;
+    if (safeContainerHeight > containerHeight) {
+      containerHeight = safeContainerHeight;
     }
 
     // I use pythagorean theorem in order to calculate
@@ -56,5 +67,7 @@ class Dimensions {
     final a = math.pow(bgHeight, 2);
     final b = math.pow(containerWidth, 2);
     bgClipRadius = math.sqrt(a + b);
+
+    scrollable = containerWidth * HomeProvider.viewportFraction;
   }
 }
