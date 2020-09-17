@@ -18,12 +18,13 @@ jobs:
         with:
           path: 'app'
       - name: Install required build tools for linux
-        run: sudo apt-get update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev
+        run: sudo apt-get update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev
       - run: |
           cd app
           flutter config --enable-linux-desktop
           flutter config --no-enable-android
           flutter pub get
+          flutter clean
           flutter build linux --release
           cd build/linux/release
           zip -r linux-release.zip bundle
