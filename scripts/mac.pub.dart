@@ -1,4 +1,4 @@
-import 'package:universal_io/io.dart';
+import 'dart:io';
 
 void main(args) {
   final file = File("pubspec.yaml");
