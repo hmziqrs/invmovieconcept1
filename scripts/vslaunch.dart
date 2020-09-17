@@ -4,6 +4,7 @@ import 'dart:io';
 import 'utils.dart' as utils;
 
 const List<String> desktopFilters = ['mac', 'linux', 'windows'];
+final webtype = 'web-javascript';
 
 void main(List<String> args) async {
   final result = await Process.run(
@@ -24,6 +25,7 @@ void main(List<String> args) async {
   final devices = filteredDevices.map((array) {
     final String name = array[0].trim();
     final String deviceId = array[1].trim();
+    final String deviceType = array[2].trim();
     final Map<String, dynamic> obj = {
       "name": name,
       "deviceId": deviceId,
@@ -31,14 +33,17 @@ void main(List<String> args) async {
       "request": 'launch',
     };
 
-    final check = desktopFilters.indexWhere(
+    final desktopCheck = desktopFilters.indexWhere(
       (str) => str.toLowerCase().contains(
             deviceId.toLowerCase(),
           ),
     );
 
-    if (check == -1) {
+    if (desktopCheck == -1) {
       obj["args"] = ['-t', 'lib/main.mobile.dart'];
+      if (deviceType == webtype) {
+        obj["args"] = ['-t', 'lib/main.web.dart'];
+      }
     }
     return obj;
   });
