@@ -44,7 +44,7 @@ class Dimensions {
 
     ratingRadius = (AppDimensions.ratio * 24) + 24;
 
-    if (Utils.isMobile()) {
+    if (App.showAds) {
       bannerAdHeight = 60 + AppDimensions.padding * 4;
     }
 

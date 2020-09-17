@@ -7,6 +7,7 @@ import 'TextStyles.dart';
 class App {
   static BuildContext ctx;
   static bool isLtr;
+  static bool showAds = false;
 
   static init(BuildContext context) {
     AppDimensions.init(context);

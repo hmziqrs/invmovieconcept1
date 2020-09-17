@@ -6,12 +6,17 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_performance/firebase_performance.dart';
 
 import 'configs/Ads.dart';
+import 'configs/App.dart';
 
 import 'Navigator.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  Admob.initialize(Ads.getAppId());
+  App.showAds = true;
+
+  if (App.showAds) {
+    WidgetsFlutterBinding.ensureInitialized();
+    Admob.initialize(Ads.getAppId());
+  }
 
   final analyticsObeserver = FirebaseAnalyticsObserver(
     analytics: FirebaseAnalytics(),
@@ -22,6 +27,5 @@ void main() {
   FlutterError.onError = (FlutterErrorDetails err) {
     Crashlytics.instance.recordFlutterError(err);
   };
-
   runApp(AppNavigator([analyticsObeserver]));
 }

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 
 import 'package:invmovieconcept1/configs/Ads.dart';
-import 'package:invmovieconcept1/Utils.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
 import '../Dimensions.dart';
 
 class HomeBannerAd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (!Utils.isMobile()) {
+    if (!App.showAds) {
       return Container();
     }
 
