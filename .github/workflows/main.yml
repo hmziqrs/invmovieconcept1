@@ -102,14 +102,12 @@ jobs:
           path: 'app'
       - run: |
           cd app
-          mv ./pubspec.yaml ./pubspec.yaml.mac1
-          mv ./pubspec.yaml.mac ./pubspec.yaml
           flutter config --enable-macos-desktop
           flutter config --no-enable-android
           flutter pub get
           flutter build macos -v --release 
           cd build/macos/Build/Products/Release
-          ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
+          ditto -c -k --sequesterRsrc --keepParent invmovieconcept1.app macos-release.zip
       - uses: ncipollo/release-action@v1
         with:
           artifacts: 'app/build/macOS/Build/Products/Release/macos-release.zip'
