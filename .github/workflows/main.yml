@@ -104,6 +104,7 @@ jobs:
           cd app
           flutter config --enable-macos-desktop
           flutter config --no-enable-android
+          dart scripts/mac.pub.dart
           flutter pub get
           flutter build macos -v --release 
           cd build/macos/Build/Products/Release
