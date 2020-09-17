@@ -50,14 +50,17 @@ class HomeMovieRatings extends StatelessWidget {
               double scale = parallax;
 
               // Bounce scroll Patch
-              if ((index == 0 && state.offset < 0.0) ||
-                  (index == movies.list.length - 1 &&
-                      state.controller?.position?.maxScrollExtent != null &&
-                      state.offset >
-                          state.controller.position.maxScrollExtent)) {
+              final checkMin = (index == 0 && state.offset < 0.0);
+              final checkMax = (index == movies.list.length - 1 &&
+                  state.controller?.position?.hasPixels &&
+                  state.offset > state.controller.position?.maxScrollExtent);
+              if (checkMin || checkMax) {
                 opacity = 1.0;
                 scale = 0.0;
               }
+
+              print("UUUUU");
+              print(state.controller.position?.hasPixels);
 
               return Opacity(
                 opacity: opacity,

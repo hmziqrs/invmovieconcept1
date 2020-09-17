@@ -38,11 +38,11 @@ class HomeMovieName extends StatelessWidget {
               ).clamp(0.0, 1.0);
 
               // Bounce scroll Patch
-              if ((index == 0 && state.offset < 0.0) ||
-                  (index == movies.list.length - 1 &&
-                      state.controller?.position?.maxScrollExtent != null &&
-                      state.offset >
-                          state.controller.position.maxScrollExtent)) {
+              final checkMin = (index == 0 && state.offset < 0.0);
+              final checkMax = (index == movies.list.length - 1 &&
+                  state.controller?.position?.hasPixels &&
+                  state.offset > state.controller.position?.maxScrollExtent);
+              if (checkMin || checkMax) {
                 opacity = 1.0;
               }
 
