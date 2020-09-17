@@ -102,6 +102,8 @@ jobs:
           path: 'app'
       - run: |
           cd app
+          mv ./pubspec.yaml ./pubspec.yaml.mac1
+          mv ./pubspec.yaml.mac ./pubspec.yaml
           flutter config --enable-macos-desktop
           flutter config --no-enable-android
           flutter pub get
