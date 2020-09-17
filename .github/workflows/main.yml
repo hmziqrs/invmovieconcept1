@@ -19,7 +19,8 @@ jobs:
           path: 'app'
       - name: Install required build tools for linux
         run: sudo apt-get update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev
-      - run: |
+      - name: Build linux release
+        run: |
           cd app
           flutter config --enable-linux-desktop
           flutter config --no-enable-android
@@ -104,7 +105,7 @@ jobs:
           flutter config --enable-macos-desktop
           flutter config --no-enable-android
           flutter pub get
-          flutter build macos --release
+          flutter build macos -v --release 
           cd build/macos/Build/Products/Release
           ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
       - uses: ncipollo/release-action@v1
