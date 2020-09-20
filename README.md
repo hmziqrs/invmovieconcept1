@@ -29,9 +29,9 @@
 > Just in case if you ran into errors make sure you're using correct flutter & dart version. In order to support desktop build master branch is a requirement But Master branch is not stable so breaking changes happen on daily updates.
 
 - Flutter master channel & Framework • revision `e3c6979d1b`
+
   - Run `flutter --version` to check it
-- Dart VM version: 2.7.1
-  - Run `dart --version` to check it
+
 - Follow these step to use correct revision version
   - Run `cd $FLUTTER_HOME` (where your flutter is installed)
   - Run `git checkout master`
