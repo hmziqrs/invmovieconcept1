@@ -59,9 +59,6 @@ class HomeMovieRatings extends StatelessWidget {
                 scale = 0.0;
               }
 
-              print("UUUUU");
-              print(state.controller.position?.hasPixels);
-
               return Opacity(
                 opacity: opacity,
                 child: Container(
