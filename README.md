@@ -1,10 +1,13 @@
 # Flutter Movie Concept UI
 
-## Demo and screenshots
+## Android Demo
 
 <div id="demo">
   <img src="screenshots/android/demo.gif" width="200" />
 </div>
+
+## Android Screenshots
+
 <div id="screenshots">
   <img src="screenshots/android/index-0.jpg" width="200" />
   <img src="screenshots/android/index-1.jpg" width="200" />

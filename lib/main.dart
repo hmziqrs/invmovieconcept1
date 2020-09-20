@@ -17,7 +17,6 @@ void _main(NavigatorObserver observer) {
   if (Platform.isWindows || Platform.isLinux) {
     debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
   }
-  FlutterError.onError = (FlutterErrorDetails err) {};
   final List<NavigatorObserver> observers = [];
 
   if (observer != null) {
