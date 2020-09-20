@@ -14,6 +14,16 @@
   <img src="screenshots/android/index-2.jpg" width="200" />
 </div>
 
+## Designer
+
+**This concept is originally designed by aneesh**.
+
+- <a href="https://dribbble.com/aneeshravi">Aneesh Dribble</a>
+- <a href="https://lottiefiles.com/aneeshravi">Aneesh LottieFiles</a>
+- <a href="https://www.instagram.com/me_aneeshravi">Aneesh Instagram</a>
+- <a href="https://www.linkedin.com/in/aneesh-r">Aneesh Linkedin</a>
+- <a href="https://dribbble.com/shots/10843034-Movie-App-Interaction">UI design file</a>
+
 ## Requirements to run locally
 
 > Just in case if you ran into errors make sure you're using correct flutter & dart version. In order to support desktop build master branch is a requirement But Master branch is not stable so breaking changes happen on daily updates.
