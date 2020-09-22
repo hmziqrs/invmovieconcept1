@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/Utils.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/App.dart';
@@ -26,8 +25,11 @@ class Dimensions {
 
   static double bannerAdHeight = 0.0;
 
+  static double drawerAvatarWidth;
+
   static init(BuildContext context) {
     App.init(context);
+    initDrawer();
 
     bgHeight = UI.height * 0.86;
     bgHeightMax = AppDimensions.ratio * 240 + 120;
@@ -69,5 +71,9 @@ class Dimensions {
     bgClipRadius = math.sqrt(a + b);
 
     scrollable = containerWidth * HomeProvider.viewportFraction;
+  }
+
+  static void initDrawer() {
+    drawerAvatarWidth = (AppDimensions.ratio * 10) + 10;
   }
 }

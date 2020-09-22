@@ -11,21 +11,12 @@ import 'widgets/HomeMovieTags.dart';
 import 'widgets/HomeBannerAd.dart';
 import 'widgets/HomeHeader.dart';
 import 'widgets/HomeTabBar.dart';
+import 'widgets/HomeDrawer.dart';
 
 import 'Dimensions.dart';
 import 'provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Screen(
@@ -33,28 +24,33 @@ class _HomeScreenState extends State<HomeScreen> {
       scaffoldBackgroundColor: Colors.white,
       builder: (_) => ChangeNotifierProvider<HomeProvider>(
         create: (_) => HomeProvider(),
-        child: SingleChildScrollView(
-          child: Container(
-            height: Dimensions.containerHeight,
-            child: Align(
+        child: Stack(
+          children: [
+            SingleChildScrollView(
               child: Container(
-                width: Dimensions.containerWidth,
-                alignment: Alignment.bottomCenter,
-                child: Stack(
-                  children: [
-                    HomeBackgroundImage(scrollable: Dimensions.scrollable),
-                    HomeMovieCards(scrollable: Dimensions.scrollable),
-                    HomeHeader(),
-                    HomeTabBar(),
-                    HomeMovieName(scrollable: Dimensions.scrollable),
-                    HomeMovieRatings(scrollable: Dimensions.scrollable),
-                    HomeBannerAd(),
-                    HomeMovieTags(),
-                  ],
+                height: Dimensions.containerHeight,
+                child: Align(
+                  child: Container(
+                    width: Dimensions.containerWidth,
+                    alignment: Alignment.bottomCenter,
+                    child: Stack(
+                      children: [
+                        HomeBackgroundImage(scrollable: Dimensions.scrollable),
+                        HomeMovieCards(scrollable: Dimensions.scrollable),
+                        HomeHeader(),
+                        HomeTabBar(),
+                        HomeMovieName(scrollable: Dimensions.scrollable),
+                        HomeMovieRatings(scrollable: Dimensions.scrollable),
+                        HomeBannerAd(),
+                        HomeMovieTags(),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+            HomeDrawer(),
+          ],
         ),
       ),
     );
