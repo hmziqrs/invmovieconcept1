@@ -55,6 +55,7 @@ class AppNavigator extends StatelessWidget {
                 fontFamily: "Muli",
                 primaryColor: theme.primary,
                 accentColor: theme.primary,
+                splashColor: Colors.transparent,
               ),
               navigatorObservers: observers,
               home: HomeScreen(),

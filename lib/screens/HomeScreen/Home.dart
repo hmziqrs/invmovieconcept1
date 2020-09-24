@@ -11,7 +11,7 @@ import 'widgets/HomeMovieTags.dart';
 import 'widgets/HomeBannerAd.dart';
 import 'widgets/HomeHeader.dart';
 import 'widgets/HomeTabBar.dart';
-import 'widgets/HomeDrawer.dart';
+import 'widgets/Drawer/HomeDrawer.dart';
 
 import 'Dimensions.dart';
 import 'provider.dart';
