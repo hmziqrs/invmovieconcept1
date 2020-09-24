@@ -24,7 +24,7 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
   void initState() {
     this.controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 180),
+      duration: Duration(milliseconds: 400),
     );
     Future.delayed(Duration.zero, () {
       this.controller.addListener(() {
@@ -44,6 +44,7 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
   void runAnimation({double begin, double end}) {
     this.animation = this.controller.drive(Tween(begin: begin, end: end));
     this.controller.reset();
+    this.controller.duration = Duration(milliseconds: 400);
     this.controller.forward();
   }
 
@@ -57,7 +58,6 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
     ScreenStateProvider state,
   ) {
     state.startOffset = state.offset;
-    // print(event);
   }
 
   void onVerticalDragUpdate(
@@ -129,17 +129,29 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
             state.onLayoutChange();
             return true;
           },
-          child: SizeChangedLayoutNotifier(
-            child: Opacity(
-              opacity: opacity,
-              child: Container(
-                alignment: Alignment.topCenter,
-                color: Theme.of(context).scaffoldBackgroundColor,
+          child: WillPopScope(
+            onWillPop: () async {
+              final isClosed = state.startOffset == state.baseOffset;
+              if (!isClosed) {
+                this.runAnimation(
+                  begin: state.offset,
+                  end: state.baseOffset,
+                );
+              }
+              return isClosed;
+            },
+            child: SizeChangedLayoutNotifier(
+              child: Opacity(
+                opacity: opacity,
                 child: Container(
-                  height: UI.height,
-                  width: AppDimensions.containerWidth,
-                  child: ScreenSettingsModalBody(
-                    runAnimation: this.runAnimation,
+                  alignment: Alignment.topCenter,
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  child: Container(
+                    height: UI.height,
+                    width: AppDimensions.containerWidth,
+                    child: ScreenSettingsModalBody(
+                      runAnimation: this.runAnimation,
+                    ),
                   ),
                 ),
               ),

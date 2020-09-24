@@ -50,8 +50,6 @@ class ScreenSettingsModalBody extends StatelessWidget {
     final appState = Provider.of<AppProvider>(context, listen: false);
     final state = Provider.of<ScreenStateProvider>(context, listen: false);
 
-    print("RENDER ${appState.themeMode}");
-
     return SafeArea(
       child: Material(
         textStyle: Theme.of(context).textTheme.bodyText1,

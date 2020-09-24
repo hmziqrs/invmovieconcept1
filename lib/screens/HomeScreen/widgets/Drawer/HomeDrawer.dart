@@ -80,7 +80,9 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
         }
         return WillPopScope(
           onWillPop: () async {
+            print("Hello");
             if (isDrawerOpen) {
+              this.controller.reverse(from: this.gestureOffset);
               state.isDrawerOpen = false;
             }
             return !isDrawerOpen;
@@ -111,8 +113,9 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
                               children: [
                                 // Avatar Started
                                 HomeDrawerAvatar(
-                                    baseAnimation: this.animation.value,
-                                    onClose: () => this.controller.reverse()),
+                                  baseAnimation: this.animation.value,
+                                  onClose: () => this.controller.reverse(),
+                                ),
                                 // Avatar Finished
                                 Container(
                                   height: 1,
