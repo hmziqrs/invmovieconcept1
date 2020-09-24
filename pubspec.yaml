@@ -30,6 +30,8 @@ dependencies:
   firebase_performance: 0.4.0
   firebase_crashlytics: 0.1.4+1
 
+  shared_preferences: 0.5.12
+
 dev_dependencies:
   flutter_driver:
     sdk: flutter
@@ -43,6 +45,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/langs/
+    - assets/icons/
     - assets/movies/
     - assets/avatars/
 

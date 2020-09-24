@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/Utils.dart';
@@ -92,60 +93,60 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ScreenStateProvider>(
-      builder: (context, state, _) {
-        final opacity = Utils.rangeMap(
-          state.offset,
-          0.0,
-          state.baseOffset,
-          1.4,
-          0.0,
-        ).clamp(0.0, 1.0);
+    final state = Provider.of<ScreenStateProvider>(context, listen: true);
+    final opacity = Utils.rangeMap(
+      state.offset,
+      0.0,
+      state.baseOffset,
+      1.4,
+      0.0,
+    ).clamp(0.0, 1.0);
 
-        return Positioned(
-          // Disable
-          // top: state.offset,
-          left: 0,
-          right: 0,
-          top: UI.height,
-          child: GestureDetector(
-            onDoubleTap: () => this.onDoubleTap(
-              state,
-            ),
-            onVerticalDragEnd: (obj) => this.onVerticalDragEnd(
-              obj,
-              state,
-            ),
-            onVerticalDragStart: (obj) => this.onVerticalDragStart(
-              obj,
-              state,
-            ),
-            onVerticalDragUpdate: (obj) => this.onVerticalDragUpdate(
-              obj,
-              state,
-            ),
-            child: NotificationListener<SizeChangedLayoutNotification>(
-              onNotification: (SizeChangedLayoutNotification notification) {
-                state.onLayoutChange();
-                return true;
-              },
-              child: SizeChangedLayoutNotifier(
-                child: Opacity(
-                  opacity: opacity,
-                  child: Container(
-                    color: Colors.white,
-                    height: UI.height,
-                    width: double.infinity,
-                    child: ScreenSettingsModalBody(
-                      runAnimation: this.runAnimation,
-                    ),
+    return Positioned(
+      // Disable
+      top: state.offset,
+      left: 0,
+      right: 0,
+      // top: UI.height,
+      child: GestureDetector(
+        onDoubleTap: () => this.onDoubleTap(
+          state,
+        ),
+        onVerticalDragEnd: (obj) => this.onVerticalDragEnd(
+          obj,
+          state,
+        ),
+        onVerticalDragStart: (obj) => this.onVerticalDragStart(
+          obj,
+          state,
+        ),
+        onVerticalDragUpdate: (obj) => this.onVerticalDragUpdate(
+          obj,
+          state,
+        ),
+        child: NotificationListener<SizeChangedLayoutNotification>(
+          onNotification: (SizeChangedLayoutNotification notification) {
+            state.onLayoutChange();
+            return true;
+          },
+          child: SizeChangedLayoutNotifier(
+            child: Opacity(
+              opacity: opacity,
+              child: Container(
+                alignment: Alignment.topCenter,
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: Container(
+                  height: UI.height,
+                  width: AppDimensions.containerWidth,
+                  child: ScreenSettingsModalBody(
+                    runAnimation: this.runAnimation,
                   ),
                 ),
               ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

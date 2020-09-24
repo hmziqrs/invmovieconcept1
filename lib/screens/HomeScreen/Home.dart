@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
+
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
 import 'widgets/HomeBackgroundImage.dart';
+import 'widgets/Drawer/HomeDrawer.dart';
 import 'widgets/HomeMovieRatings.dart';
 import 'widgets/HomeMovieCards.dart';
 import 'widgets/HomeMovieName.dart';
@@ -11,7 +14,6 @@ import 'widgets/HomeMovieTags.dart';
 import 'widgets/HomeBannerAd.dart';
 import 'widgets/HomeHeader.dart';
 import 'widgets/HomeTabBar.dart';
-import 'widgets/Drawer/HomeDrawer.dart';
 
 import 'Dimensions.dart';
 import 'provider.dart';
@@ -31,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                 height: Dimensions.containerHeight,
                 child: Align(
                   child: Container(
-                    width: Dimensions.containerWidth,
+                    width: AppDimensions.containerWidth,
                     alignment: Alignment.bottomCenter,
                     child: Stack(
                       children: [

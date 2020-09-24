@@ -3,6 +3,8 @@ import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
+import '../../Theme.dart';
+
 class HomeDrawerVersion extends StatelessWidget {
   HomeDrawerVersion({
     @required this.baseAnimation,
@@ -30,7 +32,7 @@ class HomeDrawerVersion extends StatelessWidget {
               "VERSION 2.0.0",
               style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: Colors.black.withOpacity(0.3),
+                color: HomeTheme.text.withOpacity(0.3),
                 fontSize: (AppDimensions.ratio * 5) + 5,
               ),
             ),

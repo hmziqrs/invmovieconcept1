@@ -20,4 +20,6 @@ class App {
   static translate(String key) {
     return AppLocalizations.of(App.ctx).translate(key) ?? key;
   }
+
+  static bool isDark() => Theme.of(App.ctx).brightness == Brightness.dark;
 }

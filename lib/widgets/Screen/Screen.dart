@@ -119,8 +119,6 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
       builder: (orientationContext, _) {
         widget.init(orientationContext);
         return Scaffold(
-          bottomNavigationBar: this.widget.bottomNavigationBar,
-          backgroundColor: this.widget.scaffoldBackgroundColor,
           body: DefaultTextStyle(
             style: textStyle,
             child: Theme(

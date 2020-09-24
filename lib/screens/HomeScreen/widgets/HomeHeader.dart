@@ -3,6 +3,7 @@ import 'package:invmovieconcept1/UI.dart';
 import 'package:provider/provider.dart';
 
 import '../provider.dart';
+import '../Theme.dart';
 
 class HomeHeader extends StatelessWidget {
   @override
@@ -22,7 +23,6 @@ class HomeHeader extends StatelessWidget {
             hoverColor: Colors.transparent,
             icon: Icon(
               Icons.menu,
-              color: Colors.black,
             ),
             onPressed: () => (state.isDrawerOpen = true),
           ),
@@ -32,7 +32,6 @@ class HomeHeader extends StatelessWidget {
             hoverColor: Colors.transparent,
             icon: Icon(
               Icons.search_outlined,
-              color: Colors.black,
             ),
             onPressed: () => null,
           )

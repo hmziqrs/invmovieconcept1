@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/static/movies.dart' as movies;
+
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/Utils.dart';
 
 import 'CircularRevealClipper.dart';
 
 import '../Dimensions.dart';
 import '../provider.dart';
+import '../Theme.dart';
 
 class HomeBackgroundImage extends StatelessWidget {
   HomeBackgroundImage({this.scrollable});
@@ -63,7 +66,7 @@ class HomeBackgroundImage extends StatelessWidget {
                     clipper: CircularRevealClipper(
                       fraction: radiusFraction,
                       centerOffset: Offset(
-                        Dimensions.containerWidth,
+                        AppDimensions.containerWidth,
                         Dimensions.bgHeight,
                       ),
                       minRadius: 0,
@@ -71,7 +74,7 @@ class HomeBackgroundImage extends StatelessWidget {
                     ),
                     child: Transform(
                       origin: Offset(
-                        Dimensions.containerWidth / 2,
+                        AppDimensions.containerWidth / 2,
                         Dimensions.bgHeight / 2,
                       ),
                       transform: Matrix4.rotationZ(scale * 0.66)
@@ -85,8 +88,8 @@ class HomeBackgroundImage extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                         foregroundDecoration: BoxDecoration(
-                          color: Colors.white.withOpacity(
-                            (parallax * 0.70),
+                          color: HomeTheme.homeImageBg.withOpacity(
+                            (parallax * HomeTheme.homeImageBgOpacity),
                           ),
                         ),
                       ),

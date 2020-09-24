@@ -3,12 +3,11 @@ import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/static/movies.dart' as movies;
 
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/Utils.dart';
-import 'package:tinycolor/tinycolor.dart';
 
 import '../Dimensions.dart';
 import '../provider.dart';
+import '../Theme.dart';
 
 class HomeMovieRatings extends StatelessWidget {
   HomeMovieRatings({@required this.scrollable});
@@ -80,7 +79,7 @@ class HomeMovieRatings extends StatelessWidget {
                         blurRadius: 6,
                         spreadRadius: 0,
                         offset: Offset(0.0, 2.0),
-                        color: Colors.black.withOpacity(0.12),
+                        color: HomeTheme.shadowWithBg,
                       ),
                     ],
                   ),
@@ -95,7 +94,7 @@ class HomeMovieRatings extends StatelessWidget {
                       width: Dimensions.ratingRadius,
                       height: Dimensions.ratingRadius,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: HomeTheme.background,
                         borderRadius: BorderRadius.circular(
                           Dimensions.ratingRadius,
                         ),

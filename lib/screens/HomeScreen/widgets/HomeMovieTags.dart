@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:tinycolor/tinycolor.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/static/movies.dart' as movies;
@@ -9,6 +8,7 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
 import '../Dimensions.dart';
 import '../provider.dart';
+import '../Theme.dart';
 
 class HomeMovieTags extends StatelessWidget {
   @override
@@ -50,14 +50,14 @@ class HomeMovieTags extends StatelessWidget {
                             horizontal: AppDimensions.padding * 4,
                           ),
                           decoration: BoxDecoration(
-                            color: TinyColor(Colors.black).lighten(96).color,
+                            color: HomeTheme.tagsBackground,
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 5,
                                 spreadRadius: 0,
                                 offset: Offset(2.0, 2.0),
-                                color: Colors.black.withOpacity(0.12),
+                                color: HomeTheme.tagsShadow,
                               ),
                             ],
                           ),

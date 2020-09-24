@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/UI.dart';
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-import '../../Dimensions.dart';
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/UI.dart';
+
 import '../../provider.dart';
+import '../../Theme.dart';
 
 import 'HomeDrawerVersion.dart';
 import 'HomeDrawerAvatar.dart';
@@ -97,11 +98,11 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
                     child: Container(
                       width: UI.width,
                       height: UI.height,
-                      color: Colors.white,
+                      color: HomeTheme.background,
                       alignment: Alignment.topCenter,
                       child: SafeArea(
                         child: Container(
-                          width: Dimensions.containerWidth,
+                          width: AppDimensions.containerWidth,
                           height: UI.height,
                           child: Material(
                             color: Colors.transparent,
@@ -115,7 +116,7 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
                                 // Avatar Finished
                                 Container(
                                   height: 1,
-                                  color: Colors.black.withOpacity(0.1),
+                                  color: HomeTheme.text.withOpacity(0.4),
                                 ),
                                 Container(height: AppDimensions.padding * 1.5),
                                 ...data.list

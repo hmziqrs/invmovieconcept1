@@ -6,6 +6,7 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
 import '../../Dimensions.dart';
 import '../../provider.dart';
+import '../../Theme.dart';
 
 class HomeDrawerAvatar extends StatelessWidget {
   HomeDrawerAvatar({
@@ -41,7 +42,7 @@ class HomeDrawerAvatar extends StatelessWidget {
                     shape: BoxShape.circle,
                     border: Border.all(
                       width: 3,
-                      color: Colors.black,
+                      color: HomeTheme.text,
                     ),
                   ),
                   child: CircleAvatar(
@@ -62,6 +63,7 @@ class HomeDrawerAvatar extends StatelessWidget {
                     Text(
                       "Hamza Iqbal",
                       style: TextStyle(
+                        color: HomeTheme.text,
                         fontWeight: FontWeight.w700,
                         fontSize: AppDimensions.ratio * 6 + 8,
                       ),
@@ -69,6 +71,7 @@ class HomeDrawerAvatar extends StatelessWidget {
                     Text(
                       "hamza.iqdev@gmail.com",
                       style: TextStyle(
+                        color: HomeTheme.text,
                         fontWeight: FontWeight.w600,
                         fontSize: AppDimensions.ratio * 5 + 5,
                       ),
@@ -80,6 +83,7 @@ class HomeDrawerAvatar extends StatelessWidget {
                   iconSize: AppDimensions.ratio * 10,
                   icon: Icon(
                     Icons.close,
+                    color: HomeTheme.text,
                   ),
                   onPressed: () {
                     state.isDrawerOpen = false;
