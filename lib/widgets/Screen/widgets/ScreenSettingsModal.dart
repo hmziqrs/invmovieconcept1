@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:provider/provider.dart';
@@ -141,16 +143,30 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
               return isClosed;
             },
             child: SizeChangedLayoutNotifier(
-              child: Opacity(
-                opacity: opacity,
+              child: ClipRect(
                 child: Container(
-                  alignment: Alignment.topCenter,
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  child: Container(
-                    height: UI.height,
-                    width: AppDimensions.containerWidth,
-                    child: ScreenSettingsModalBody(
-                      runAnimation: this.runAnimation,
+                  child: BackdropFilter(
+                    filter: ui.ImageFilter.blur(
+                      sigmaX: 15,
+                      sigmaY: 15,
+                    ),
+                    child: Opacity(
+                      opacity: opacity,
+                      child: Container(
+                        alignment: Alignment.topCenter,
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            .color
+                            .withOpacity(0.10),
+                        child: Container(
+                          height: UI.height,
+                          width: AppDimensions.containerWidth,
+                          child: ScreenSettingsModalBody(
+                            runAnimation: this.runAnimation,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
