@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: ${GITHUB_REF##*/}
+          ref: ${{ github.event.release.tag_name }}
           path: 'app'
       - name: Install required build tools for linux
         run: sudo apt-get update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev
@@ -50,7 +50,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: ${GITHUB_REF##*/}
+          ref: ${{ github.event.release.tag_name }}
           path: 'app'
       - run: |
           cd app
@@ -81,7 +81,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: ${GITHUB_REF##*/}
+          ref: ${{ github.event.release.tag_name }}
           path: 'app'
       - run: |
           cd app
@@ -106,7 +106,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: ${GITHUB_REF##*/}
+          ref: ${{ github.event.release.tag_name }}
           path: 'app'
       - run: |
           cd app
@@ -135,7 +135,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: ${GITHUB_REF##*/}
+          ref: ${{ github.event.release.tag_name }}
           path: 'app'
       - run: |
           cd app
