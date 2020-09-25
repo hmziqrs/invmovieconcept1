@@ -41,9 +41,8 @@ final Map themeModeMap = {
 };
 
 class ScreenSettingsModalBody extends StatelessWidget {
-  ScreenSettingsModalBody({this.runAnimation});
-
-  final Function({double begin, double end}) runAnimation;
+  ScreenSettingsModalBody({@required VoidCallback this.onClose});
+  final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
@@ -79,10 +78,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
                   child: IconButton(
                     key: Key(ScreenWidgetTestKeys.close),
                     icon: Icon(Icons.close),
-                    onPressed: () => this.runAnimation(
-                      begin: state.offset,
-                      end: state.baseOffset,
-                    ),
+                    onPressed: this.onClose,
                   ),
                 )
               ],
