@@ -66,8 +66,10 @@ class HomeBackgroundImage extends StatelessWidget {
                     clipper: CircularRevealClipper(
                       fraction: radiusFraction,
                       centerOffset: Offset(
-                        AppDimensions.containerWidth,
-                        Dimensions.bgHeight,
+                        AppDimensions.containerWidth -
+                            (AppDimensions.containerWidth * parallax * 0.65),
+                        Dimensions.bgHeight -
+                            (Dimensions.bgHeight * parallax * 1.0),
                       ),
                       minRadius: 0,
                       maxRadius: Dimensions.bgClipRadius,
