@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/widgets/Screen/ScreenStateProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -78,66 +79,74 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
         if (isDrawerOpen && this.animation.value == 0.0) {
           this.controller.play();
         }
-        return WillPopScope(
-          onWillPop: () async {
-            print("Hello");
-            if (isDrawerOpen) {
-              this.controller.reverse(from: this.gestureOffset);
-              state.isDrawerOpen = false;
-            }
-            return !isDrawerOpen;
-          },
-          child: Positioned(
-            left: 0,
-            top: ((this.gestureOffset - 1) * UI.height).abs(),
-            child: Opacity(
-              opacity: (this.animation.value * 1.2).clamp(0.0, 1.0),
-              child: GestureDetector(
-                onVerticalDragUpdate: this.onVerticalDragUpdate,
-                onVerticalDragEnd: this.onVerticalDragEnd,
-                child: Container(
-                  child: SingleChildScrollView(
+        return Selector<ScreenStateProvider, bool>(
+          selector: (_, state) => state.isSettingsOpen,
+          builder: (_, isSettingsOpen, __) {
+            return WillPopScope(
+              onWillPop: () async {
+                if (isSettingsOpen) {
+                  return true;
+                }
+                if (isDrawerOpen) {
+                  this.controller.reverse(from: this.gestureOffset);
+                  state.isDrawerOpen = false;
+                }
+                return !isDrawerOpen;
+              },
+              child: Positioned(
+                left: 0,
+                top: ((this.gestureOffset - 1) * UI.height).abs(),
+                child: Opacity(
+                  opacity: (this.animation.value * 1.2).clamp(0.0, 1.0),
+                  child: GestureDetector(
+                    onVerticalDragUpdate: this.onVerticalDragUpdate,
+                    onVerticalDragEnd: this.onVerticalDragEnd,
                     child: Container(
-                      width: UI.width,
-                      height: UI.height,
-                      color: HomeTheme.background,
-                      alignment: Alignment.topCenter,
-                      child: SafeArea(
+                      child: SingleChildScrollView(
                         child: Container(
-                          width: AppDimensions.containerWidth,
+                          width: UI.width,
                           height: UI.height,
-                          child: Material(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Avatar Started
-                                HomeDrawerAvatar(
-                                  baseAnimation: this.animation.value,
-                                  onClose: () => this.controller.reverse(),
+                          color: HomeTheme.background,
+                          alignment: Alignment.topCenter,
+                          child: SafeArea(
+                            child: Container(
+                              width: AppDimensions.containerWidth,
+                              height: UI.height,
+                              child: Material(
+                                color: Colors.transparent,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Avatar Started
+                                    HomeDrawerAvatar(
+                                      baseAnimation: this.animation.value,
+                                      onClose: () => this.controller.reverse(),
+                                    ),
+                                    // Avatar Finished
+                                    Container(
+                                      height: 1,
+                                      color: HomeTheme.text.withOpacity(0.4),
+                                    ),
+                                    Container(
+                                        height: AppDimensions.padding * 1.5),
+                                    ...data.list
+                                        .asMap()
+                                        .entries
+                                        .map(
+                                          (entry) => HomeDrawerButton(
+                                            baseAnimation: this.animation.value,
+                                            entry: entry,
+                                          ),
+                                        )
+                                        .toList(),
+                                    // Navigavtion List End
+                                    // Version
+                                    HomeDrawerVersion(
+                                      baseAnimation: this.animation.value,
+                                    ),
+                                  ],
                                 ),
-                                // Avatar Finished
-                                Container(
-                                  height: 1,
-                                  color: HomeTheme.text.withOpacity(0.4),
-                                ),
-                                Container(height: AppDimensions.padding * 1.5),
-                                ...data.list
-                                    .asMap()
-                                    .entries
-                                    .map(
-                                      (entry) => HomeDrawerButton(
-                                        baseAnimation: this.animation.value,
-                                        entry: entry,
-                                      ),
-                                    )
-                                    .toList(),
-                                // Navigavtion List End
-                                // Version
-                                HomeDrawerVersion(
-                                  baseAnimation: this.animation.value,
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
@@ -146,8 +155,8 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
                   ),
                 ),
               ),
-            ),
-          ),
+            );
+          },
         );
       },
     );
