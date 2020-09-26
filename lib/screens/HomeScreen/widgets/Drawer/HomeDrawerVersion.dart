@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
+import '../../messages/keys.dart';
 import '../../Theme.dart';
 
 class HomeDrawerVersion extends StatelessWidget {
@@ -29,7 +31,7 @@ class HomeDrawerVersion extends StatelessWidget {
             ),
             alignment: Alignment.center,
             child: Text(
-              "VERSION 2.0.0",
+              "${App.translate(HomeScreenMessages.version, context)} 2.0.0",
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 color: HomeTheme.text.withOpacity(0.3),

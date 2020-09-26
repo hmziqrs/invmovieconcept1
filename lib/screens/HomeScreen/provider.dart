@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'messages/keys.dart';
+
 class HomeProvider extends ChangeNotifier {
   static double viewportFraction = 0.57;
   static List<String> tabs = [
-    "In Theater",
-    "Box Office",
-    "Top 10",
-    "Trending",
+    HomeScreenMessages.tabInTheater,
+    HomeScreenMessages.tabBoxOffice,
+    HomeScreenMessages.tabTop10,
+    HomeScreenMessages.tabTrending,
   ];
 
   double _offset = 0.0;

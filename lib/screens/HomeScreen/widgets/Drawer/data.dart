@@ -1,26 +1,28 @@
+import '../../messages/keys.dart';
+
 final list = [
   {
-    "label": "Explore movies",
+    "label": HomeScreenMessages.drawerHome,
     "key": "home",
   },
   {
-    "label": "My Movies",
+    "label": HomeScreenMessages.drawerMovies,
     "key": "moies",
   },
   {
-    "label": "About Developer",
+    "label": HomeScreenMessages.drawerDeveloper,
     "key": "developer",
   },
   {
-    "label": "About Designer",
+    "label": HomeScreenMessages.drawerDesigner,
     "key": "developer",
   },
   {
-    "label": "Download",
+    "label": HomeScreenMessages.drawerDownload,
     "key": "download",
   },
   {
-    "label": "App Settings",
+    "label": HomeScreenMessages.drawerSettings,
     "key": "settings",
   },
 ];

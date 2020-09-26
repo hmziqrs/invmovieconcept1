@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:invmovieconcept1/static/movies.dart' as movies;
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 import 'package:invmovieconcept1/Utils.dart';
 
 import 'CircularRevealClipper.dart';
@@ -16,6 +17,15 @@ class HomeBackgroundImage extends StatelessWidget {
   HomeBackgroundImage({this.scrollable});
 
   final double scrollable;
+
+  double getOffsetX(double parallax) {
+    if (!App.isLtr) {
+      return 0.0 + (AppDimensions.containerWidth * parallax * 0.65);
+    }
+
+    return AppDimensions.containerWidth -
+        (AppDimensions.containerWidth * parallax * 0.65);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +76,7 @@ class HomeBackgroundImage extends StatelessWidget {
                     clipper: CircularRevealClipper(
                       fraction: radiusFraction,
                       centerOffset: Offset(
-                        AppDimensions.containerWidth -
-                            (AppDimensions.containerWidth * parallax * 0.65),
+                        this.getOffsetX(parallax),
                         Dimensions.bgHeight -
                             (Dimensions.bgHeight * parallax * 1.0),
                       ),

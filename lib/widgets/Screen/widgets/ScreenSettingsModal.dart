@@ -79,7 +79,6 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
       this.offset =
           (this.offset - (event.delta.dy / this.getState().baseOffset))
               .clamp(0.0, 1.0);
-      print(this.offset);
     });
   }
 
@@ -106,7 +105,6 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
   @override
   Widget build(BuildContext context) {
     final state = this.getState();
-    print(state.baseOffset);
 
     final topPosition = Utils.rangeMap(
       this.offset,

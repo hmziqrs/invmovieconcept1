@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:invmovieconcept1/static/movies.dart' as movies;
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
 import '../Dimensions.dart';
 import '../provider.dart';
@@ -62,7 +63,7 @@ class HomeMovieTags extends StatelessWidget {
                             ],
                           ),
                           child: Text(
-                            entry.value,
+                            App.translate(entry.value, context),
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                             ),

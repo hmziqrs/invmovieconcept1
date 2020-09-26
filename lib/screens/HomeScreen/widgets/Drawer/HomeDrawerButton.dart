@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
 enum AnimProp { opacity }
 
@@ -52,7 +53,7 @@ class HomeDrawerButton extends StatelessWidget {
               ),
               color: Theme.of(context).primaryColor,
               child: Text(
-                entry.value["label"],
+                App.translate(entry.value["label"], context),
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
