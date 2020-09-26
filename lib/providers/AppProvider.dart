@@ -46,7 +46,7 @@ class AppProvider extends ChangeNotifier {
     final theme = this._prefs.getString("theme");
     this._themeMode = themeMap[theme];
     this._loading = false;
-    await Future.delayed(Duration(milliseconds: 4000));
+    await Future.delayed(Duration(milliseconds: 1000));
     notifyListeners();
   }
 

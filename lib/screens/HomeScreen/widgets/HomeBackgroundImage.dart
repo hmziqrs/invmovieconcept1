@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,17 +15,44 @@ import '../provider.dart';
 import '../Theme.dart';
 
 class HomeBackgroundImage extends StatelessWidget {
+  static const double SHIFT = 0.50;
+
   HomeBackgroundImage({this.scrollable});
 
   final double scrollable;
 
-  double getOffsetX(double parallax) {
-    if (!App.isLtr) {
-      return 0.0 + (AppDimensions.containerWidth * parallax * 0.65);
+  double getOffsetX(double parallax, [rtl = true]) {
+    double x;
+    if (!App.isLtr && rtl) {
+      x = 0.0 + (AppDimensions.containerWidth * parallax * SHIFT);
+    } else {
+      x = AppDimensions.containerWidth -
+          (AppDimensions.containerWidth * parallax * SHIFT);
     }
 
-    return AppDimensions.containerWidth -
-        (AppDimensions.containerWidth * parallax * 0.65);
+    return x;
+  }
+
+  double getOffsetY(double parallax) {
+    final y = Dimensions.bgHeight - (Dimensions.bgHeight * parallax * SHIFT);
+    return y;
+  }
+
+  double safeParallax(int index, double parallax) {
+    if (index == 0 && parallax < 1.0) {
+      return 1.0;
+    }
+    return parallax;
+  }
+
+  double maxRadius(int index, double parallax) {
+    final x = this.getOffsetY(parallax);
+    final y = this.getOffsetX(parallax, false);
+    final a = math.pow(Dimensions.bgHeight - x, 2);
+    final b = math.pow(AppDimensions.containerWidth - y, 2);
+    final bgClipRadius = math.sqrt(a + b);
+
+    return bgClipRadius;
   }
 
   @override
@@ -72,16 +100,20 @@ class HomeBackgroundImage extends StatelessWidget {
                     radiusFraction = 1.0;
                   }
 
+                  final safeParallax = this.safeParallax(index, parallax);
+
+                  double offsetX = this.getOffsetX(safeParallax);
+                  double offsetY = this.getOffsetY(safeParallax);
+
                   return ClipPath(
                     clipper: CircularRevealClipper(
                       fraction: radiusFraction,
                       centerOffset: Offset(
-                        this.getOffsetX(parallax),
-                        Dimensions.bgHeight -
-                            (Dimensions.bgHeight * parallax * 1.0),
+                        offsetX,
+                        offsetY,
                       ),
                       minRadius: 0,
-                      maxRadius: Dimensions.bgClipRadius,
+                      maxRadius: this.maxRadius(index, safeParallax),
                     ),
                     child: Transform(
                       origin: Offset(

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/UI.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/ScreenSettingsModal.dart';
 
 import 'ScreenStateProvider.dart';
-import 'messages/keys.dart';
 
-class Screen extends StatelessWidget {
+class Screen extends StatefulWidget {
   Screen(
     this.init, {
     Key key,
     this.theme,
+    this.child,
     this.builder,
     this.textStyle,
     this.belowBuilder,
@@ -19,7 +20,8 @@ class Screen extends StatelessWidget {
   });
 
   final void Function(BuildContext) init;
-  final Widget Function(VoidCallback showPopUp) builder;
+  final Widget child;
+  final Widget Function() builder;
   final Widget Function(BuildContext context) belowBuilder;
   final Color scaffoldBackgroundColor;
   final ThemeData theme;
@@ -27,19 +29,48 @@ class Screen extends StatelessWidget {
   final BottomNavigationBar bottomNavigationBar;
 
   @override
+  _ScreenState createState() => _ScreenState();
+}
+
+class _ScreenState extends State<Screen> {
+  Size size;
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      setState(() {
+        this.size = UI.getSize();
+      });
+    });
+    super.initState();
+  }
+
+  bool onNotification(SizeChangedLayoutNotification notification) {
+    if (this.size != UI.getSize()) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        setState(() {
+          this.size = UI.getSize();
+        });
+      });
+    }
+    return true;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final ThemeData rootTheme = this.theme ??
+    final ThemeData rootTheme = this.widget.theme ??
         Theme.of(context).copyWith(
           primaryColor: Theme.of(context).primaryColor,
           accentColor: Theme.of(context).primaryColor,
         );
 
-    final textStyle = this.textStyle ?? Theme.of(context).textTheme.bodyText1;
+    final textStyle =
+        this.widget.textStyle ?? Theme.of(context).textTheme.bodyText1;
 
-    return OrientationBuilder(
-      builder: (orientationContext, _) {
-        this.init(orientationContext);
-        return Scaffold(
+    this.widget.init(context);
+    return NotificationListener<SizeChangedLayoutNotification>(
+      onNotification: this.onNotification,
+      child: SizeChangedLayoutNotifier(
+        child: Scaffold(
           body: DefaultTextStyle(
             style: textStyle,
             child: Theme(
@@ -63,13 +94,11 @@ class Screen extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
-                    this.belowBuilder != null
-                        ? this.belowBuilder(orientationContext)
+                    this.widget.belowBuilder != null
+                        ? this.widget.belowBuilder(context)
                         : Container(),
                     Positioned.fill(
-                      child: this.builder(
-                        null,
-                      ),
+                      child: widget.child ?? widget.builder(),
                     ),
                     Consumer<ScreenStateProvider>(
                       builder: (ctx, state, child) {
@@ -83,8 +112,8 @@ class Screen extends StatelessWidget {
               ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

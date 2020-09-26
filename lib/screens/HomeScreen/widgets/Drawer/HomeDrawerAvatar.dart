@@ -11,7 +11,7 @@ import '../../Theme.dart';
 class HomeDrawerAvatar extends StatelessWidget {
   HomeDrawerAvatar({
     @required this.baseAnimation,
-    @required VoidCallback this.onClose,
+    @required this.onClose,
   });
 
   final double baseAnimation;

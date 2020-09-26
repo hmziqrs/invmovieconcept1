@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'App.dart';
 import 'AppDimensions.dart';
 
 abstract class TextStyles {

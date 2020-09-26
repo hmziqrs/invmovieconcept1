@@ -41,7 +41,7 @@ final Map themeModeMap = {
 };
 
 class ScreenSettingsModalBody extends StatelessWidget {
-  ScreenSettingsModalBody({@required VoidCallback this.onClose});
+  ScreenSettingsModalBody({@required this.onClose});
   final VoidCallback onClose;
 
   @override

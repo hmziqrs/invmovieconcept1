@@ -24,37 +24,41 @@ class HomeScreen extends StatelessWidget {
     return Screen(
       Dimensions.init,
       scaffoldBackgroundColor: Colors.white,
-      builder: (_) => ChangeNotifierProvider<HomeProvider>(
-        create: (_) => HomeProvider(),
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Container(
-                height: Dimensions.containerHeight,
-                child: Align(
-                  child: Container(
-                    width: AppDimensions.containerWidth,
-                    alignment: Alignment.bottomCenter,
-                    child: Stack(
-                      children: [
-                        HomeBackgroundImage(scrollable: Dimensions.scrollable),
-                        HomeMovieCards(scrollable: Dimensions.scrollable),
-                        HomeHeader(),
-                        HomeTabBar(),
-                        HomeMovieName(scrollable: Dimensions.scrollable),
-                        HomeMovieRatings(scrollable: Dimensions.scrollable),
-                        HomeBannerAd(),
-                        HomeMovieTags(),
-                      ],
+      builder: () {
+        return ChangeNotifierProvider<HomeProvider>(
+          create: (_) => HomeProvider(),
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Container(
+                  height: Dimensions.containerHeight,
+                  child: Align(
+                    child: Container(
+                      width: AppDimensions.containerWidth,
+                      alignment: Alignment.bottomCenter,
+                      child: Stack(
+                        children: [
+                          HomeBackgroundImage(
+                            scrollable: Dimensions.scrollable,
+                          ),
+                          HomeMovieCards(scrollable: Dimensions.scrollable),
+                          HomeHeader(),
+                          HomeTabBar(),
+                          HomeMovieName(scrollable: Dimensions.scrollable),
+                          HomeMovieRatings(scrollable: Dimensions.scrollable),
+                          HomeBannerAd(),
+                          HomeMovieTags(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            HomeDrawer(),
-          ],
-        ),
-      ),
+              HomeDrawer(),
+            ],
+          ),
+        );
+      },
     );
   }
 }

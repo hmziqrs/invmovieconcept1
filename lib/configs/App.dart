@@ -18,7 +18,11 @@ class App {
   }
 
   static translate(String key, [BuildContext ctx]) {
-    return AppLocalizations.of(ctx ?? App.ctx).translate(key) ?? key;
+    final base = AppLocalizations.of(ctx ?? App.ctx);
+    if (base == null) {
+      return key;
+    }
+    return base.translate(key) ?? key;
   }
 
   static bool isDark() => Theme.of(App.ctx).brightness == Brightness.dark;

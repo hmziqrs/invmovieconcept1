@@ -40,36 +40,36 @@ class _SplashScreenState extends State<SplashScreen> with AnimationMixin {
 
   @override
   Widget build(BuildContext context) {
-    final imageSize = 200.0;
+    final imageSize = 300.0;
     if (remove) {
       return Container();
     }
-    return Transform.scale(
-      scale: 1 + (this.animation.value * 4),
-      child: Opacity(
-        opacity: 1.0 - this.animation.value,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Screen(
-            Dimensions.init,
-            builder: (_) => Container(
-              color: Colors.white,
-              alignment: Alignment.center,
-              child: MirrorAnimation<double>(
-                tween: Tween(begin: 0.8, end: 1.2),
-                duration: Duration(milliseconds: 800),
-                curve: Curves.easeInOut,
-                builder: (context, _, scale) {
-                  return Transform.scale(
-                    scale: scale,
-                    child: Image.asset(
-                      "assets/icons/app-icon.png",
-                      width: imageSize,
-                      height: imageSize,
-                    ),
-                  );
-                },
-              ),
+    return Opacity(
+      opacity: 1.0 - this.animation.value,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Screen(
+          Dimensions.init,
+          child: Container(
+            color: Colors.white,
+            alignment: Alignment.center,
+            child: CustomAnimation<double>(
+              control: this.widget.loading
+                  ? CustomAnimationControl.MIRROR
+                  : CustomAnimationControl.STOP,
+              tween: Tween(begin: 0.8, end: 1.2),
+              duration: Duration(milliseconds: 800),
+              curve: Curves.easeInOut,
+              builder: (context, _, scale) {
+                return Transform.scale(
+                  scale: scale + (this.animation.value * 3),
+                  child: Image.asset(
+                    "assets/icons/app-icon.png",
+                    width: imageSize,
+                    height: imageSize,
+                  ),
+                );
+              },
             ),
           ),
         ),

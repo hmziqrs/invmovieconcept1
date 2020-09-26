@@ -17,7 +17,6 @@
   "DataRoot/tagSciFi": "Sci-Fi",
   "DataRoot/tagAnimation": "Animation",
   "DataRoot/tagComedy": "Comedy",
-  "DataRoot/tagCrime": "Crime",
   "ScreenWidget/smTitle": "Settings",
   "ScreenWidget/smSelectLanguage": "Select Language",
   "ScreenWidget/smEnglish": "english",
@@ -27,5 +26,6 @@
   "ScreenWidget/smSelectTheme": "Select Theme",
   "ScreenWidget/smSytemTheme": "Sytem Theme",
   "ScreenWidget/smLightTheme": "Light Theme",
-  "ScreenWidget/smDarkTheme": "Dark Theme"
+  "ScreenWidget/smDarkTheme": "Dark Theme",
+  "DataRoot/tagCrime": "Crime"
 }

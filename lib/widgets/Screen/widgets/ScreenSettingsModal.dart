@@ -14,7 +14,7 @@ import '../ScreenStateProvider.dart';
 class ScreenSettingsModal extends StatefulWidget {
   ScreenSettingsModal({
     Key key,
-    @required bool this.isSettingsOpen,
+    @required this.isSettingsOpen,
   }) : super(key: key);
 
   final bool isSettingsOpen;
