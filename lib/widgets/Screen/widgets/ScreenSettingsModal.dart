@@ -31,7 +31,7 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
   @override
   void initState() {
     this.animation = Tween(begin: 0.0, end: 1.0).animate(this.controller);
-    this.controller.duration = Duration(milliseconds: 600);
+    this.controller.duration = Duration(milliseconds: 320);
     this.controller.addListener(() {
       setState(() {
         this.offset = this.animation.value;
@@ -70,19 +70,18 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
     this.getState().isSettingsOpen = false;
   }
 
-  void onVerticalDragUpdate(DragUpdateDetails event) {
+  void onVerticalDragUpdate(double offset) {
     if (this.animation.value != 1.0 && this.animation.value != 0.0) {
       return;
     }
 
     setState(() {
       this.offset =
-          (this.offset - (event.delta.dy / this.getState().baseOffset))
-              .clamp(0.0, 1.0);
+          (this.offset - (offset / this.getState().baseOffset)).clamp(0.0, 1.0);
     });
   }
 
-  void onVerticalDragEnd(DragEndDetails event) {
+  void onVerticalDragEnd() {
     if (!widget.isSettingsOpen) {
       if (this.offset > 0.20) {
         this.controller.forward(from: this.offset);
@@ -100,7 +99,29 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
     }
   }
 
-  void onDoubleTap() {}
+  Future<bool> onWillPop() async {
+    if (widget.isSettingsOpen) {
+      this.closeModal();
+    }
+    return !widget.isSettingsOpen;
+  }
+
+  bool onSizeChangeNotification(notification) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Future.delayed(Duration.zero, () {
+        this.getState().onLayoutChange();
+        setState(() {});
+      });
+    });
+    return true;
+  }
+
+  Color getBackgroundColor(BuildContext context) {
+    if (Theme.of(context).brightness == Brightness.light) {
+      return Colors.white.withOpacity(0.40);
+    }
+    return Colors.black.withOpacity(0.10);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,49 +140,51 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
       right: 0,
       top: topPosition,
       child: GestureDetector(
-        onDoubleTap: widget.isSettingsOpen ? this.closeModal : this.openModal,
-        onVerticalDragEnd: this.onVerticalDragEnd,
-        onVerticalDragUpdate: this.onVerticalDragUpdate,
+        onDoubleTap: () => !widget.isSettingsOpen ? this.openModal() : null,
+        onVerticalDragEnd: (event) => this.onVerticalDragEnd(),
+        onVerticalDragUpdate: (event) => this.onVerticalDragUpdate(
+          event.delta.dy,
+        ),
         child: NotificationListener<SizeChangedLayoutNotification>(
-          onNotification: (notification) {
-            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-              Future.delayed(Duration.zero, () {
-                state.onLayoutChange();
-                setState(() {});
-              });
-            });
-            return true;
-          },
-          child: WillPopScope(
-            onWillPop: () async {
-              if (widget.isSettingsOpen) {
-                this.closeModal();
+          onNotification: this.onSizeChangeNotification,
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (notification) {
+              if (notification.runtimeType == OverscrollNotification) {
+                final OverscrollNotification parsed = notification;
+                if (parsed.dragDetails == null) {
+                  return true;
+                }
+                final delta = parsed.dragDetails.delta;
+                this.onVerticalDragUpdate(delta.dy);
               }
-              return !widget.isSettingsOpen;
+              if (notification.runtimeType == ScrollEndNotification) {
+                this.onVerticalDragEnd();
+              }
+              return false;
             },
-            child: SizeChangedLayoutNotifier(
-              child: ClipRect(
-                child: Container(
-                  child: BackdropFilter(
-                    filter: ui.ImageFilter.blur(
-                      sigmaX: 15,
-                      sigmaY: 15,
-                    ),
-                    child: Opacity(
-                      // opacity: 1.0,
-                      opacity: (this.offset * 1.8).clamp(0.0, 1.0),
-                      child: Container(
-                        alignment: Alignment.topCenter,
-                        color: Theme.of(context)
-                            .textTheme
-                            .bodyText1
-                            .color
-                            .withOpacity(0.10),
+            child: WillPopScope(
+              onWillPop: this.onWillPop,
+              child: SizeChangedLayoutNotifier(
+                child: ClipRect(
+                  child: Container(
+                    child: BackdropFilter(
+                      filter: ui.ImageFilter.blur(
+                        sigmaX: 15,
+                        sigmaY: 15,
+                      ),
+                      child: Opacity(
+                        // opacity: 1.0,
+                        opacity: (this.offset * 1.8).clamp(0.0, 1.0),
                         child: Container(
-                          height: UI.height,
-                          width: AppDimensions.containerWidth,
-                          child: ScreenSettingsModalBody(
-                            onClose: this.closeModal,
+                          alignment: Alignment.topCenter,
+                          color: this.getBackgroundColor(context),
+                          child: Container(
+                            height: UI.height,
+                            width: AppDimensions.containerWidth,
+                            child: ScreenSettingsModalBody(
+                              onClose: this.closeModal,
+                              isModalOpen: state.isSettingsOpen,
+                            ),
                           ),
                         ),
                       ),
