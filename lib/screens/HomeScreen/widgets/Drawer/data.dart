@@ -1,28 +1,37 @@
 import '../../messages/keys.dart';
 
+enum NavigationKey {
+  home,
+  moies,
+  developer,
+  designer,
+  download,
+  settings,
+}
+
 final list = [
   {
     "label": HomeScreenMessages.drawerHome,
-    "key": "home",
+    "key": NavigationKey.home,
   },
   {
     "label": HomeScreenMessages.drawerMovies,
-    "key": "moies",
+    "key": NavigationKey.moies,
   },
   {
     "label": HomeScreenMessages.drawerDeveloper,
-    "key": "developer",
+    "key": NavigationKey.developer,
   },
   {
     "label": HomeScreenMessages.drawerDesigner,
-    "key": "developer",
+    "key": NavigationKey.designer,
   },
   {
     "label": HomeScreenMessages.drawerDownload,
-    "key": "download",
+    "key": NavigationKey.download,
   },
   {
     "label": HomeScreenMessages.drawerSettings,
-    "key": "settings",
+    "key": NavigationKey.settings,
   },
 ];

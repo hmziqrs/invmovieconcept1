@@ -69,6 +69,16 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
     }
   }
 
+  void buttonHandler(data.NavigationKey key) {
+    switch (key) {
+      case data.NavigationKey.settings:
+        Provider.of<ScreenStateProvider>(context, listen: false)
+            .isSettingsOpen = true;
+        break;
+      default:
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<HomeProvider>(context, listen: false);
@@ -135,6 +145,8 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
                                         .map(
                                           (entry) => HomeDrawerButton(
                                             entry: entry,
+                                            onPressed: () => this.buttonHandler(
+                                                entry.value["key"]),
                                             baseAnimation: this.animation.value,
                                           ),
                                         )

@@ -8,12 +8,14 @@ enum AnimProp { opacity }
 
 class HomeDrawerButton extends StatelessWidget {
   HomeDrawerButton({
+    @required this.entry,
+    @required this.onPressed,
     @required this.baseAnimation,
-    @required MapEntry<int, Map<String, String>> this.entry,
   });
 
   final double baseAnimation;
-  final MapEntry<int, Map<String, String>> entry;
+  final VoidCallback onPressed;
+  final MapEntry<int, Map<String, Object>> entry;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class HomeDrawerButton extends StatelessWidget {
               horizontal: AppDimensions.padding * 2,
             ),
             child: RaisedButton(
-              onPressed: () {},
+              onPressed: this.onPressed,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4.0),
               ),
