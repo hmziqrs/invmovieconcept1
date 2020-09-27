@@ -3,27 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/UI.dart';
 
 class ScreenStateProvider extends ChangeNotifier {
-  double baseOffset = UI.height - 20;
-  double _offset = UI.height - 20;
-  double startOffset = 0.0;
+  bool _isSettingsOpen = false;
 
-  double get offset => this._offset;
+  double _baseOffset = UI.height - 20;
 
-  set offset(double newOffset) {
-    this._offset = newOffset;
-    notifyListeners();
-  }
-
-  void reset() {
-    this._offset = this.baseOffset;
-    notifyListeners();
-  }
+  bool get isSettingsOpen => this._isSettingsOpen;
+  double get baseOffset => this._baseOffset;
 
   void onLayoutChange() {
-    this.baseOffset = UI.height - 20;
-    if (this._offset != 0.0) {
-      this._offset = UI.height - 20;
-      this.startOffset = 0.0;
-    }
+    this._baseOffset = UI.height - 20;
+  }
+
+  set isSettingsOpen(bool flag) {
+    this._isSettingsOpen = flag;
+    notifyListeners();
   }
 }

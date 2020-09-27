@@ -60,7 +60,7 @@ class _HomeTabBarState extends State<HomeTabBar>
                         right: right,
                       ),
                       child: Text(
-                        entry.value,
+                        App.translate(entry.value, context),
                         style: DefaultTextStyle.of(context).style.copyWith(
                               fontWeight: FontWeight.w700,
                               fontSize: 10 + AppDimensions.ratio * 5,

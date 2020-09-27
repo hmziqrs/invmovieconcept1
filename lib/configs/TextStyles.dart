@@ -8,6 +8,7 @@ abstract class TextStyles {
   static TextStyle heading3;
 
   static init() {
+    // final base = Theme.of(App.ctx).cop;
     // INIT HEADINGS
     heading1 = TextStyle(
       fontSize: 20 + AppDimensions.ratio * 10,

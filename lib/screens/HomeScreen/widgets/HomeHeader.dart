@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/UI.dart';
+import 'package:provider/provider.dart';
+
+import '../provider.dart';
 
 class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final state = Provider.of<HomeProvider>(context, listen: false);
+
     return Positioned(
       left: 0,
       right: 0,
@@ -17,9 +22,8 @@ class HomeHeader extends StatelessWidget {
             hoverColor: Colors.transparent,
             icon: Icon(
               Icons.menu,
-              color: Colors.black,
             ),
-            onPressed: () => null,
+            onPressed: () => (state.isDrawerOpen = true),
           ),
           IconButton(
             splashColor: Colors.transparent,
@@ -27,7 +31,6 @@ class HomeHeader extends StatelessWidget {
             hoverColor: Colors.transparent,
             icon: Icon(
               Icons.search_outlined,
-              color: Colors.black,
             ),
             onPressed: () => null,
           )

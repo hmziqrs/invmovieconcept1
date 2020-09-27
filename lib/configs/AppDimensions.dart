@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/UI.dart';
 
 class AppDimensions {
+  static double containerWidth;
   static double maxContainerWidth;
   static double miniContainerWidth;
 
@@ -36,6 +37,11 @@ class AppDimensions {
     if (maxContainerWidth > UI.getSize().width) {
       maxContainerWidth = UI.getSize().width;
       miniContainerWidth = UI.getSize().width - (AppDimensions.padding * 4);
+    }
+
+    containerWidth = UI.width;
+    if (UI.width > 540) {
+      containerWidth = 540;
     }
   }
 

@@ -1,15 +1,14 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/Utils.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 import 'package:invmovieconcept1/UI.dart';
 
 import 'provider.dart';
+import 'Theme.dart';
 
 class Dimensions {
-  static double containerWidth;
   static double containerHeight;
 
   static double bgHeight;
@@ -26,8 +25,12 @@ class Dimensions {
 
   static double bannerAdHeight = 0.0;
 
+  static double drawerAvatarWidth;
+
   static init(BuildContext context) {
     App.init(context);
+    HomeTheme.init();
+    initDrawer();
 
     bgHeight = UI.height * 0.86;
     bgHeightMax = AppDimensions.ratio * 240 + 120;
@@ -48,11 +51,6 @@ class Dimensions {
       bannerAdHeight = 60 + AppDimensions.padding * 4;
     }
 
-    containerWidth = UI.width;
-    if (UI.width > 540) {
-      containerWidth = 540;
-    }
-
     containerHeight = UI.height;
     final approxTagsHeight = AppDimensions.padding * (4 + 9);
     final safeContainerHeight =
@@ -65,9 +63,13 @@ class Dimensions {
     // I use pythagorean theorem in order to calculate
     // pixel perfect radius fir circular clipping
     final a = math.pow(bgHeight, 2);
-    final b = math.pow(containerWidth, 2);
+    final b = math.pow(AppDimensions.containerWidth, 2);
     bgClipRadius = math.sqrt(a + b);
 
-    scrollable = containerWidth * HomeProvider.viewportFraction;
+    scrollable = AppDimensions.containerWidth * HomeProvider.viewportFraction;
+  }
+
+  static void initDrawer() {
+    drawerAvatarWidth = (AppDimensions.ratio * 10) + 10;
   }
 }

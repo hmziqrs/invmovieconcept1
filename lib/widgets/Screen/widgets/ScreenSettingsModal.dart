@@ -1,6 +1,9 @@
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_animations/simple_animations.dart';
 
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/Utils.dart';
 import 'package:invmovieconcept1/UI.dart';
 
@@ -8,144 +11,193 @@ import 'ScreenSettingsModalBody.dart';
 import '../ScreenStateProvider.dart';
 
 class ScreenSettingsModal extends StatefulWidget {
-  ScreenSettingsModal(Key key) : super(key: key);
+  ScreenSettingsModal({
+    Key key,
+    @required this.isSettingsOpen,
+  }) : super(key: key);
+
+  final bool isSettingsOpen;
 
   @override
   ScreenSettingsModalState createState() => ScreenSettingsModalState();
 }
 
 class ScreenSettingsModalState extends State<ScreenSettingsModal>
-    with SingleTickerProviderStateMixin {
-  AnimationController controller;
+    with AnimationMixin {
   Animation<double> animation;
+  double offset = 0.0;
+  ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
-    this.controller = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 180),
-    );
-    Future.delayed(Duration.zero, () {
-      this.controller.addListener(() {
-        final state = Provider.of<ScreenStateProvider>(context, listen: false);
-        state.offset = this.animation.value;
+    this.animation = Tween(begin: 0.0, end: 1.0).animate(this.controller);
+    this.controller.duration = Duration(milliseconds: 320);
+    this.controller.addListener(() {
+      setState(() {
+        this.offset = this.animation.value;
       });
     });
+
     super.initState();
   }
 
   @override
-  void dispose() {
-    this.controller.dispose();
-    super.dispose();
+  void didUpdateWidget(covariant ScreenSettingsModal oldWidget) {
+    if (!oldWidget.isSettingsOpen && widget.isSettingsOpen) {
+      this.controller.play();
+    }
+    if (oldWidget.isSettingsOpen && !widget.isSettingsOpen) {
+      this.controller.reverse();
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
-  void runAnimation({double begin, double end}) {
-    this.animation = this.controller.drive(Tween(begin: begin, end: end));
-    this.controller.reset();
-    this.controller.forward();
-  }
+  ScreenStateProvider getState([listen = false]) =>
+      Provider.of<ScreenStateProvider>(context, listen: listen);
 
   void openModal() {
-    final state = Provider.of<ScreenStateProvider>(context, listen: false);
-    this.runAnimation(begin: state.offset, end: 0.0);
+    if (this.animation.value != 0.0) {
+      return;
+    }
+    this.scrollController.jumpTo(0.0);
+    this.getState().isSettingsOpen = true;
   }
 
-  void onVerticalDragStart(
-    DragStartDetails event,
-    ScreenStateProvider state,
-  ) {
-    state.startOffset = state.offset;
-    // print(event);
+  void closeModal() {
+    if (this.animation.value != 1.0) {
+      return;
+    }
+
+    this.getState().isSettingsOpen = false;
   }
 
-  void onVerticalDragUpdate(
-    DragUpdateDetails event,
-    ScreenStateProvider state,
-  ) {
-    state.offset = (state.offset + event.delta.dy).clamp(0.0, state.baseOffset);
+  void onVerticalDragUpdate(double offset) {
+    if (this.animation.value != 1.0 && this.animation.value != 0.0) {
+      return;
+    }
+
+    setState(() {
+      this.offset =
+          (this.offset - (offset / this.getState().baseOffset)).clamp(0.0, 1.0);
+    });
   }
 
-  void onVerticalDragEnd(
-    DragEndDetails event,
-    ScreenStateProvider state,
-  ) {
-    final threshold = (UI.height * 0.15).clamp(60.0, 260.0);
-    final thresholdCheck = state.baseOffset - threshold;
-    double newOffset;
-
-    if (state.startOffset == state.baseOffset) {
-      newOffset = thresholdCheck > state.offset ? 0 : state.baseOffset;
+  void onVerticalDragEnd() {
+    if (!widget.isSettingsOpen) {
+      if (this.offset > 0.20) {
+        this.controller.forward(from: this.offset);
+        this.getState().isSettingsOpen = true;
+      } else {
+        this.controller.reverse(from: this.offset);
+      }
     } else {
-      newOffset = state.offset < threshold ? 0 : state.baseOffset;
+      if (this.offset < 0.80) {
+        this.controller.reverse(from: this.offset);
+        this.getState().isSettingsOpen = false;
+      } else {
+        this.controller.forward(from: this.offset);
+      }
     }
-    this.runAnimation(begin: state.offset, end: newOffset);
   }
 
-  onDoubleTap(ScreenStateProvider state) {
-    if (state.offset == 0.0) {
-      this.runAnimation(begin: 0.0, end: state.baseOffset);
-    } else if (state.offset == state.baseOffset) {
-      this.runAnimation(begin: state.baseOffset, end: 0.0);
+  Future<bool> onWillPop() async {
+    if (widget.isSettingsOpen) {
+      this.closeModal();
     }
+    return !widget.isSettingsOpen;
+  }
+
+  bool onSizeChangeNotification(notification) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Future.delayed(Duration.zero, () {
+        this.getState().onLayoutChange();
+        setState(() {});
+      });
+    });
+    return true;
+  }
+
+  Color getBackgroundColor(BuildContext context) {
+    if (Theme.of(context).brightness == Brightness.light) {
+      return Colors.white.withOpacity(0.40);
+    }
+    return Colors.black.withOpacity(0.10);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ScreenStateProvider>(
-      builder: (context, state, _) {
-        final opacity = Utils.rangeMap(
-          state.offset,
-          0.0,
-          state.baseOffset,
-          1.4,
-          0.0,
-        ).clamp(0.0, 1.0);
+    final state = this.getState();
 
-        return Positioned(
-          // Disable
-          // top: state.offset,
-          left: 0,
-          right: 0,
-          top: UI.height,
-          child: GestureDetector(
-            onDoubleTap: () => this.onDoubleTap(
-              state,
-            ),
-            onVerticalDragEnd: (obj) => this.onVerticalDragEnd(
-              obj,
-              state,
-            ),
-            onVerticalDragStart: (obj) => this.onVerticalDragStart(
-              obj,
-              state,
-            ),
-            onVerticalDragUpdate: (obj) => this.onVerticalDragUpdate(
-              obj,
-              state,
-            ),
-            child: NotificationListener<SizeChangedLayoutNotification>(
-              onNotification: (SizeChangedLayoutNotification notification) {
-                state.onLayoutChange();
-                return true;
-              },
+    final topPosition = Utils.rangeMap(
+      this.offset,
+      0.0,
+      1.0,
+      state.baseOffset,
+      0.0,
+    );
+
+    return Positioned(
+      left: 0,
+      right: 0,
+      top: topPosition,
+      child: GestureDetector(
+        onDoubleTap: () => !widget.isSettingsOpen ? this.openModal() : null,
+        onVerticalDragEnd: (event) => this.onVerticalDragEnd(),
+        onVerticalDragUpdate: (event) => this.onVerticalDragUpdate(
+          event.delta.dy,
+        ),
+        child: NotificationListener<SizeChangedLayoutNotification>(
+          onNotification: this.onSizeChangeNotification,
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (notification) {
+              if (notification.runtimeType == OverscrollNotification) {
+                final OverscrollNotification parsed = notification;
+                if (parsed.dragDetails == null) {
+                  return true;
+                }
+                final dy = parsed.dragDetails.delta.dy;
+                this.onVerticalDragUpdate(dy);
+              }
+              if (notification.runtimeType == ScrollEndNotification) {
+                this.onVerticalDragEnd();
+              }
+              return false;
+            },
+            child: WillPopScope(
+              onWillPop: this.onWillPop,
               child: SizeChangedLayoutNotifier(
-                child: Opacity(
-                  opacity: opacity,
+                child: ClipRect(
                   child: Container(
-                    color: Colors.white,
-                    height: UI.height,
-                    width: double.infinity,
-                    child: ScreenSettingsModalBody(
-                      runAnimation: this.runAnimation,
+                    child: BackdropFilter(
+                      filter: ui.ImageFilter.blur(
+                        sigmaX: 15,
+                        sigmaY: 15,
+                      ),
+                      child: Opacity(
+                        // opacity: 1.0,
+                        opacity: (this.offset * 1.8).clamp(0.0, 1.0),
+                        child: Container(
+                          alignment: Alignment.topCenter,
+                          color: this.getBackgroundColor(context),
+                          child: Container(
+                            height: UI.height,
+                            width: AppDimensions.containerWidth,
+                            child: ScreenSettingsModalBody(
+                              onClose: this.closeModal,
+                              isModalOpen: state.isSettingsOpen,
+                              scrollController: this.scrollController,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

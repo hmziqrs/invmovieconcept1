@@ -16,6 +16,8 @@ jobs:
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
+          ref: ${{ github.event.release.tag_name }}
           path: 'app'
       - name: Install required build tools for linux
         run: sudo apt-get update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev
@@ -47,6 +49,8 @@ jobs:
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
+          ref: ${{ github.event.release.tag_name }}
           path: 'app'
       - run: |
           cd app
@@ -76,6 +80,8 @@ jobs:
           java-version: '12.x'
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
+          ref: ${{ github.event.release.tag_name }}
           path: 'app'
       - run: |
           cd app
@@ -99,6 +105,8 @@ jobs:
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
+          ref: ${{ github.event.release.tag_name }}
           path: 'app'
       - run: |
           cd app
@@ -126,6 +134,8 @@ jobs:
       - run: echo ::add-path::"$(pwd)\flutter\bin"
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
+          ref: ${{ github.event.release.tag_name }}
           path: 'app'
       - run: |
           cd app

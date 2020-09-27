@@ -17,7 +17,13 @@ class App {
     isLtr = Directionality.of(context) == TextDirection.ltr;
   }
 
-  static translate(String key) {
-    return AppLocalizations.of(App.ctx).translate(key) ?? key;
+  static translate(String key, [BuildContext ctx]) {
+    final base = AppLocalizations.of(ctx ?? App.ctx);
+    if (base == null) {
+      return key;
+    }
+    return base.translate(key) ?? key;
   }
+
+  static bool isDark() => Theme.of(App.ctx).brightness == Brightness.dark;
 }
