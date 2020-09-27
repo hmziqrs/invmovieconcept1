@@ -71,6 +71,10 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
 
   void buttonHandler(data.NavigationKey key) {
     switch (key) {
+      case data.NavigationKey.home:
+        Provider.of<HomeProvider>(context, listen: false).isDrawerOpen = false;
+        this.controller.reverse();
+        break;
       case data.NavigationKey.settings:
         Provider.of<ScreenStateProvider>(context, listen: false)
             .isSettingsOpen = true;
