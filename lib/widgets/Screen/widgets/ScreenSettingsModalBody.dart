@@ -46,9 +46,12 @@ class ScreenSettingsModalBody extends StatelessWidget {
   ScreenSettingsModalBody({
     @required this.onClose,
     @required this.isModalOpen,
+    @required this.scrollController,
   });
+
   final VoidCallback onClose;
   final bool isModalOpen;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -67,8 +70,9 @@ class ScreenSettingsModalBody extends StatelessWidget {
                 return true;
               },
               child: ListView(
+                controller: this.scrollController,
                 physics: isModalOpen
-                    ? ScrollPhysics()
+                    ? AlwaysScrollableScrollPhysics()
                     : NeverScrollableScrollPhysics(),
                 children: [
                   Container(height: AppDimensions.padding * 2),
@@ -129,19 +133,24 @@ class ScreenSettingsModalBody extends StatelessWidget {
                       return ScreenSettingsSelect(
                         onPress: () => appState.activeLocale = locale,
                         isActive: locale == appState.activeLocale,
-                        textChild: Row(
-                          children: [
-                            Text(map[key]["emoji"]),
-                            Container(width: AppDimensions.padding),
-                            Text(map[key]["label"]),
-                            Text(" - "),
-                            Text(
-                              App.translate(
-                                map[key]["trans"],
-                                context,
+                        textChild: DefaultTextStyle(
+                          style: DefaultTextStyle.of(context).style.copyWith(
+                                fontWeight: FontWeight.w600,
                               ),
-                            ),
-                          ],
+                          child: Row(
+                            children: [
+                              Text(map[key]["emoji"]),
+                              Container(width: AppDimensions.padding),
+                              Text(map[key]["label"]),
+                              Text(" - "),
+                              Text(
+                                App.translate(
+                                  map[key]["trans"],
+                                  context,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },

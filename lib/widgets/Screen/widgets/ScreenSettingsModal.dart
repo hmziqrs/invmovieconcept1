@@ -1,12 +1,11 @@
 import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_animations/simple_animations.dart';
 
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/Utils.dart';
 import 'package:invmovieconcept1/UI.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import 'ScreenSettingsModalBody.dart';
 import '../ScreenStateProvider.dart';
@@ -27,6 +26,7 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
     with AnimationMixin {
   Animation<double> animation;
   double offset = 0.0;
+  ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
@@ -59,6 +59,7 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
     if (this.animation.value != 0.0) {
       return;
     }
+    this.scrollController.jumpTo(0.0);
     this.getState().isSettingsOpen = true;
   }
 
@@ -154,8 +155,8 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
                 if (parsed.dragDetails == null) {
                   return true;
                 }
-                final delta = parsed.dragDetails.delta;
-                this.onVerticalDragUpdate(delta.dy);
+                final dy = parsed.dragDetails.delta.dy;
+                this.onVerticalDragUpdate(dy);
               }
               if (notification.runtimeType == ScrollEndNotification) {
                 this.onVerticalDragEnd();
@@ -184,6 +185,7 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
                             child: ScreenSettingsModalBody(
                               onClose: this.closeModal,
                               isModalOpen: state.isSettingsOpen,
+                              scrollController: this.scrollController,
                             ),
                           ),
                         ),
