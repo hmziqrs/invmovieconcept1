@@ -7,6 +7,11 @@ final themeMap = {
   "light": ThemeMode.light,
 };
 
+enum CacheKeys {
+  theme,
+  locale,
+}
+
 class AppProvider extends ChangeNotifier {
   static List<Locale> locales = [
     Locale('en', 'US'),
@@ -29,6 +34,11 @@ class AppProvider extends ChangeNotifier {
   set activeLocale(Locale newLocale) {
     this._activeLocale = newLocale;
     notifyListeners();
+
+    this._prefs.setStringList(
+          CacheKeys.locale.toString(),
+          newLocale == null ? [] : newLocale.toString().split("_"),
+        );
   }
 
   void initApp() {
@@ -37,22 +47,33 @@ class AppProvider extends ChangeNotifier {
     }
     this._init = true;
     notifyListeners();
-    this._initTheme();
+    this._initAsync();
   }
 
-  void _initTheme() async {
+  void _initAsync() async {
     await Future.delayed(Duration(milliseconds: 100));
-    this._prefs = await SharedPreferences.getInstance();
-    final theme = this._prefs.getString("theme");
-    this._themeMode = themeMap[theme];
-    this._loading = false;
+    if (this._prefs == null) {
+      this._prefs = await SharedPreferences.getInstance();
+    }
+    final cachedTheme = this._prefs.getString(CacheKeys.theme.toString());
+    this._themeMode =
+        cachedTheme == null ? themeMap["system"] : themeMap[cachedTheme];
+    final cachedLocale = this._prefs.getStringList(CacheKeys.locale.toString());
+    if (cachedLocale != null && cachedLocale.isNotEmpty) {
+      this._activeLocale = Locale(cachedLocale.first, cachedLocale.last);
+    }
+
     await Future.delayed(Duration(milliseconds: 1000));
+    this._loading = false;
     notifyListeners();
   }
 
   void setTheme(ThemeMode newTheme) {
     this._themeMode = newTheme;
     notifyListeners();
-    this._prefs.setString("theme", newTheme.toString().split(".").last);
+    this._prefs.setString(
+          CacheKeys.theme.toString(),
+          newTheme.toString().split(".").last,
+        );
   }
 }
