@@ -12,11 +12,13 @@ class Screen extends StatelessWidget {
     this.builder,
     this.debugLabel,
     this.belowBuilder,
+    this.renderSettings = true,
     this.scaffoldBackgroundColor,
   });
 
   final Widget child;
   final String debugLabel;
+  final bool renderSettings;
   final Color scaffoldBackgroundColor;
   final void Function(BuildContext) init;
   final Widget Function(BuildContext) builder;
@@ -41,14 +43,16 @@ class Screen extends StatelessWidget {
             Positioned.fill(
               child: child ?? builder(context),
             ),
-            Consumer<ScreenStateProvider>(
-              builder: (ctx, state, child) {
-                return ScreenSettingsModal(
-                  isSettingsOpen: state.isSettingsOpen,
-                  isSettingsMounted: state.isSettingsMounted,
-                );
-              },
-            ),
+            this.renderSettings
+                ? Consumer<ScreenStateProvider>(
+                    builder: (ctx, state, child) {
+                      return ScreenSettingsModal(
+                        isSettingsOpen: state.isSettingsOpen,
+                        isSettingsMounted: state.isSettingsMounted,
+                      );
+                    },
+                  )
+                : Container(),
           ],
         ),
       ),

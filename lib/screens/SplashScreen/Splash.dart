@@ -56,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Screen(
         scaffoldBackgroundColor: Colors.transparent,
         init: App.init,
+        renderSettings: false,
         child: Align(
           child: AnimatedOpacity(
             duration: 400.milliseconds,
