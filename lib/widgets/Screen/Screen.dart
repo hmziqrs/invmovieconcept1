@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/UI.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/ScreenSettingsModal.dart';
