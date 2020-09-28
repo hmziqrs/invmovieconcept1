@@ -45,7 +45,6 @@ class Screen extends StatelessWidget {
               builder: (ctx, state, child) {
                 return ScreenSettingsModal(
                   isSettingsOpen: state.isSettingsOpen,
-                  isSettingsMounted: state.isSettingsMounted,
                 );
               },
             ),
