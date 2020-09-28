@@ -21,44 +21,41 @@ import 'provider.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
     return Screen(
-      Dimensions.init,
-      scaffoldBackgroundColor: Colors.white,
-      builder: () {
-        return ChangeNotifierProvider<HomeProvider>(
-          create: (_) => HomeProvider(),
-          child: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Container(
-                  height: Dimensions.containerHeight,
-                  child: Align(
-                    child: Container(
-                      width: AppDimensions.containerWidth,
-                      alignment: Alignment.bottomCenter,
-                      child: Stack(
-                        children: [
-                          HomeBackgroundImage(
-                            scrollable: Dimensions.scrollable,
-                          ),
-                          HomeMovieCards(scrollable: Dimensions.scrollable),
-                          HomeHeader(),
-                          HomeTabBar(),
-                          HomeMovieName(scrollable: Dimensions.scrollable),
-                          HomeMovieRatings(scrollable: Dimensions.scrollable),
-                          HomeBannerAd(),
-                          HomeMovieTags(),
-                        ],
-                      ),
+      child: ChangeNotifierProvider<HomeProvider>(
+        create: (_) => HomeProvider(),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Container(
+                height: Dimensions.containerHeight,
+                child: Align(
+                  child: Container(
+                    width: AppDimensions.containerWidth,
+                    alignment: Alignment.bottomCenter,
+                    child: Stack(
+                      children: [
+                        HomeBackgroundImage(
+                          scrollable: Dimensions.scrollable,
+                        ),
+                        HomeMovieCards(scrollable: Dimensions.scrollable),
+                        HomeHeader(),
+                        HomeTabBar(),
+                        HomeMovieName(scrollable: Dimensions.scrollable),
+                        HomeMovieRatings(scrollable: Dimensions.scrollable),
+                        HomeBannerAd(),
+                        HomeMovieTags(),
+                      ],
                     ),
                   ),
                 ),
               ),
-              HomeDrawer(),
-            ],
-          ),
-        );
-      },
+            ),
+            HomeDrawer(),
+          ],
+        ),
+      ),
     );
   }
 }

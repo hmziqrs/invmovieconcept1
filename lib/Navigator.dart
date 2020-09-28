@@ -58,10 +58,6 @@ class MaterialChlid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      this.state.initApp();
-    });
-
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Stack(
@@ -89,20 +85,9 @@ class MaterialChlid extends StatelessWidget {
               return supportedLocales.first;
             },
             // Theme
-            themeMode: this.state.themeMode,
-            darkTheme: theme.base.copyWith(
-              brightness: Brightness.dark,
-              scaffoldBackgroundColor: theme.darkBackground,
-              textTheme: theme.base.textTheme.copyWith(
-                bodyText1: theme.base.textTheme.bodyText1.copyWith(
-                  color: Colors.white,
-                ),
-              ),
-              iconTheme: theme.base.iconTheme.copyWith(
-                color: Colors.white,
-              ),
-            ),
             theme: theme.base,
+            darkTheme: theme.baseDark,
+            themeMode: this.state.themeMode,
             // Routes
             home: HomeScreen(),
             routes: <String, WidgetBuilder>{

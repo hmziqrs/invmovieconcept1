@@ -6,112 +6,50 @@ import 'widgets/ScreenSettingsModal.dart';
 
 import 'ScreenStateProvider.dart';
 
-class Screen extends StatefulWidget {
-  Screen(
-    this.init, {
-    Key key,
-    this.theme,
+class Screen extends StatelessWidget {
+  Screen({
+    this.init,
     this.child,
     this.builder,
-    this.textStyle,
+    this.debugLabel,
     this.belowBuilder,
-    this.bottomNavigationBar,
     this.scaffoldBackgroundColor,
   });
 
-  final void Function(BuildContext) init;
   final Widget child;
-  final Widget Function() builder;
-  final Widget Function(BuildContext context) belowBuilder;
+  final String debugLabel;
   final Color scaffoldBackgroundColor;
-  final ThemeData theme;
-  final TextStyle textStyle;
-  final BottomNavigationBar bottomNavigationBar;
-
-  @override
-  _ScreenState createState() => _ScreenState();
-}
-
-class _ScreenState extends State<Screen> {
-  Size size;
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      setState(() {
-        this.size = UI.getSize();
-      });
-    });
-    super.initState();
-  }
-
-  bool onNotification(SizeChangedLayoutNotification notification) {
-    if (this.size != UI.getSize()) {
-      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        setState(() {
-          this.size = UI.getSize();
-        });
-      });
-    }
-    return true;
-  }
+  final void Function(BuildContext) init;
+  final Widget Function(BuildContext) builder;
+  final Widget Function(BuildContext context) belowBuilder;
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData rootTheme = this.widget.theme ??
-        Theme.of(context).copyWith(
-          primaryColor: Theme.of(context).primaryColor,
-          accentColor: Theme.of(context).primaryColor,
-        );
-
-    final textStyle =
-        this.widget.textStyle ?? Theme.of(context).textTheme.bodyText1;
-
-    this.widget.init(context);
-    return NotificationListener<SizeChangedLayoutNotification>(
-      onNotification: this.onNotification,
-      child: SizeChangedLayoutNotifier(
-        child: Scaffold(
-          body: DefaultTextStyle(
-            style: textStyle,
-            child: Theme(
-              data: rootTheme.copyWith(
-                tabBarTheme: TabBarTheme(
-                  labelColor: Colors.red,
-                  labelStyle: textStyle,
-                  unselectedLabelStyle: textStyle,
-                ),
-                textTheme: rootTheme.textTheme.copyWith(
-                  bodyText1: textStyle,
-                  button: textStyle,
-                ),
-                inputDecorationTheme: InputDecorationTheme(
-                  hintStyle: textStyle,
-                  labelStyle: textStyle,
-                ),
-              ),
-              child: ChangeNotifierProvider<ScreenStateProvider>(
-                create: (_) => ScreenStateProvider(),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    this.widget.belowBuilder != null
-                        ? this.widget.belowBuilder(context)
-                        : Container(),
-                    Positioned.fill(
-                      child: widget.child ?? widget.builder(),
-                    ),
-                    Consumer<ScreenStateProvider>(
-                      builder: (ctx, state, child) {
-                        return ScreenSettingsModal(
-                          isSettingsOpen: state.isSettingsOpen,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
+    if (this.init != null) {
+      this.init(context);
+    }
+    return Scaffold(
+      backgroundColor: this.scaffoldBackgroundColor ??
+          Theme.of(context).scaffoldBackgroundColor,
+      body: ChangeNotifierProvider<ScreenStateProvider>(
+        create: (_) => ScreenStateProvider(),
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            this.belowBuilder != null
+                ? this.belowBuilder(context)
+                : Container(),
+            Positioned.fill(
+              child: child ?? builder(context),
             ),
-          ),
+            Consumer<ScreenStateProvider>(
+              builder: (ctx, state, child) {
+                return ScreenSettingsModal(
+                  isSettingsOpen: state.isSettingsOpen,
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

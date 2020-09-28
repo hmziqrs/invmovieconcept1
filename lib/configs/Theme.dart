@@ -11,11 +11,21 @@ final subText = Pigment.fromString('#1c1d24').withOpacity(0.6);
 final indicator = Pigment.fromString('#1c1d24').withOpacity(0.4);
 
 final base = ThemeData(
-  brightness: Brightness.light,
-  fontFamily: "Muli",
-  backgroundColor: Colors.white,
-  scaffoldBackgroundColor: Colors.white,
-  primaryColor: primary,
+  fontFamily: 'Muli',
   accentColor: primary,
+  primaryColor: primary,
+  brightness: Brightness.light,
+  backgroundColor: Colors.white,
   splashColor: Colors.transparent,
+  scaffoldBackgroundColor: Colors.white,
+);
+
+final baseDark = ThemeData(
+  fontFamily: 'Muli',
+  accentColor: primary,
+  primaryColor: primary,
+  brightness: Brightness.dark,
+  backgroundColor: darkBackground,
+  splashColor: Colors.transparent,
+  scaffoldBackgroundColor: darkBackground,
 );

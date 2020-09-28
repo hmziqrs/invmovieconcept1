@@ -13,6 +13,10 @@ enum CacheKeys {
 }
 
 class AppProvider extends ChangeNotifier {
+  AppProvider() {
+    this._initAsync();
+  }
+
   static List<Locale> locales = [
     Locale('en', 'US'),
     Locale('zh', 'CN'),
@@ -23,12 +27,10 @@ class AppProvider extends ChangeNotifier {
   Locale _activeLocale;
 
   bool _loading = true;
-  bool _init = false;
   ThemeMode _themeMode = ThemeMode.system;
 
   Locale get activeLocale => this._activeLocale;
   bool get loading => this._loading;
-  bool get init => this._init;
   ThemeMode get themeMode => this._themeMode;
 
   set activeLocale(Locale newLocale) {
@@ -41,23 +43,17 @@ class AppProvider extends ChangeNotifier {
         );
   }
 
-  void initApp() {
-    if (this._init) {
-      return;
-    }
-    this._init = true;
-    notifyListeners();
-    this._initAsync();
-  }
-
   void _initAsync() async {
     await Future.delayed(Duration(milliseconds: 100));
+
     if (this._prefs == null) {
       this._prefs = await SharedPreferences.getInstance();
     }
+
     final cachedTheme = this._prefs.getString(CacheKeys.theme.toString());
     this._themeMode =
         cachedTheme == null ? themeMap["system"] : themeMap[cachedTheme];
+
     final cachedLocale = this._prefs.getStringList(CacheKeys.locale.toString());
     if (cachedLocale != null && cachedLocale.isNotEmpty) {
       this._activeLocale = Locale(cachedLocale.first, cachedLocale.last);
@@ -69,6 +65,9 @@ class AppProvider extends ChangeNotifier {
   }
 
   void setTheme(ThemeMode newTheme) {
+    if (this._themeMode == newTheme) {
+      return;
+    }
     this._themeMode = newTheme;
     notifyListeners();
     this._prefs.setString(

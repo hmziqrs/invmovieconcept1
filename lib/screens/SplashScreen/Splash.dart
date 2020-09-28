@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 import 'package:simple_animations/simple_animations.dart';
-
-import 'Dimensions.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({@required this.loading});
@@ -41,6 +40,7 @@ class _SplashScreenState extends State<SplashScreen> with AnimationMixin {
   @override
   Widget build(BuildContext context) {
     final imageSize = 300.0;
+
     if (remove) {
       return Container();
     }
@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> with AnimationMixin {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Screen(
-          Dimensions.init,
+          init: App.init,
           child: Container(
             color: Colors.white,
             alignment: Alignment.center,
