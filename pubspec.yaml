@@ -43,6 +43,11 @@ dev_dependencies:
   path: 1.8.0-nullsafety
   translator: 0.1.4
   intl_translation: 0.17.10
+  yaml: 2.2.1
+
+flutter_icons:
+  includes:
+    - mco
 
 flutter:
   uses-material-design: true
