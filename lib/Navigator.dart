@@ -1,13 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:invmovieconcept1/screens/SplashScreen/Splash.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 import 'configs/Theme.dart' as theme;
 
 import 'providers/AppProvider.dart';
 
+import 'screens/SplashScreen/Splash.dart';
+import 'screens/Download/Download.dart';
 import 'screens/HomeScreen/Home.dart';
 
 import 'AppLocalizations.dart';
@@ -92,6 +93,7 @@ class MaterialChlid extends StatelessWidget {
             home: HomeScreen(),
             routes: <String, WidgetBuilder>{
               "home": (ctx) => HomeScreen(),
+              "download": (ctx) => DownloadScreen(),
             },
           ),
           SplashScreen(loading: this.state.loading),
