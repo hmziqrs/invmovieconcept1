@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/UI.dart';
-import 'package:provider/provider.dart';
-
-import '../provider.dart';
 
 class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<HomeProvider>(context, listen: false);
-
     return Positioned(
       left: 0,
       right: 0,
@@ -23,7 +18,7 @@ class HomeHeader extends StatelessWidget {
             icon: Icon(
               Icons.menu,
             ),
-            onPressed: () => (state.isDrawerOpen = true),
+            onPressed: () => Scaffold.of(context).openDrawer(),
           ),
           IconButton(
             splashColor: Colors.transparent,

@@ -17,7 +17,6 @@ class HomeProvider extends ChangeNotifier {
   PageController controller = PageController(
     viewportFraction: viewportFraction,
   );
-  bool _isDrawerOpen = false;
 
   int get activeTabIndex => this._activeTabIndex;
 
@@ -36,13 +35,6 @@ class HomeProvider extends ChangeNotifier {
 
   set offset(double newOffset) {
     this._offset = newOffset;
-    notifyListeners();
-  }
-
-  bool get isDrawerOpen => this._isDrawerOpen;
-
-  set isDrawerOpen(bool flag) {
-    this._isDrawerOpen = flag;
     notifyListeners();
   }
 }

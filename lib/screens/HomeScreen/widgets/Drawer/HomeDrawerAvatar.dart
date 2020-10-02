@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
 import '../../Dimensions.dart';
-import '../../provider.dart';
 import '../../Theme.dart';
 
 class HomeDrawerAvatar extends StatelessWidget {
   HomeDrawerAvatar({
     @required this.baseAnimation,
-    @required this.onClose,
   });
 
   final double baseAnimation;
-  final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<HomeProvider>(context, listen: false);
-
     return CustomAnimation<double>(
       control: baseAnimation > 0.8
           ? CustomAnimationControl.PLAY
@@ -85,10 +79,7 @@ class HomeDrawerAvatar extends StatelessWidget {
                     Icons.close,
                     color: HomeTheme.text,
                   ),
-                  onPressed: () {
-                    state.isDrawerOpen = false;
-                    this.onClose();
-                  },
+                  onPressed: () => Navigator.pop(context),
                 ),
               ],
             ),

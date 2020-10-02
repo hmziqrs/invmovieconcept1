@@ -9,6 +9,7 @@ class Screen extends StatelessWidget {
   Screen({
     this.init,
     this.child,
+    this.drawer,
     this.builder,
     this.debugLabel,
     this.belowBuilder,
@@ -17,6 +18,7 @@ class Screen extends StatelessWidget {
   });
 
   final Widget child;
+  final Widget drawer;
   final String debugLabel;
   final bool renderSettings;
   final Color scaffoldBackgroundColor;
@@ -29,12 +31,13 @@ class Screen extends StatelessWidget {
     if (this.init != null) {
       this.init(context);
     }
-    return Scaffold(
-      backgroundColor: this.scaffoldBackgroundColor ??
-          Theme.of(context).scaffoldBackgroundColor,
-      body: ChangeNotifierProvider<ScreenStateProvider>(
-        create: (_) => ScreenStateProvider(),
-        child: Stack(
+    return ChangeNotifierProvider<ScreenStateProvider>(
+      create: (_) => ScreenStateProvider(),
+      child: Scaffold(
+        drawer: this.drawer,
+        backgroundColor: this.scaffoldBackgroundColor ??
+            Theme.of(context).scaffoldBackgroundColor,
+        body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
             this.belowBuilder != null
