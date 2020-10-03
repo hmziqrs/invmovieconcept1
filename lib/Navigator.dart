@@ -7,6 +7,7 @@ import 'configs/Theme.dart' as theme;
 
 import 'providers/AppProvider.dart';
 
+import 'screens/AboutDeveloper/AboutDeveloper.dart';
 import 'screens/SplashScreen/Splash.dart';
 import 'screens/Download/Download.dart';
 import 'screens/HomeScreen/Home.dart';
@@ -90,10 +91,11 @@ class MaterialChlid extends StatelessWidget {
             darkTheme: theme.baseDark,
             themeMode: this.state.themeMode,
             // Routes
-            home: DownloadScreen(),
+            home: AboutDeveloperScreen(),
             routes: <String, WidgetBuilder>{
               "home": (ctx) => HomeScreen(),
               "download": (ctx) => DownloadScreen(),
+              "aboutDeveloper": (ctx) => AboutDeveloperScreen(),
             },
           ),
           SplashScreen(loading: this.state.loading),
