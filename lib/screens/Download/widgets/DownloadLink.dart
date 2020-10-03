@@ -4,9 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:share/share.dart';
 
-import 'package:invmovieconcept1/configs/Theme.dart' as theme;
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 import 'package:invmovieconcept1/Utils.dart';
+
+import '../messages/keys.dart';
 
 class DownloadLink extends StatelessWidget {
   DownloadLink({
@@ -28,16 +30,20 @@ class DownloadLink extends StatelessWidget {
     showDialog(
       context: context,
       child: AlertDialog(
-        title: Text("Choose Action"),
-        content: Container(
-          child: Text("Do you wanna donwload or share it"),
+        title: Text(
+          App.translate(
+            Utils.isMobile()
+                ? DownloadScreenMessages.alertTitleMobile
+                : DownloadScreenMessages.alertTitleOthers,
+            context,
+          ),
         ),
         actions: [
           TextButton(
             style: style,
             onPressed: () => Navigator.pop(context),
             child: Text(
-              "Close",
+              App.translate(DownloadScreenMessages.close),
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
               ),
@@ -47,7 +53,7 @@ class DownloadLink extends StatelessWidget {
             style: style,
             onPressed: () => Utils.launchUrl(this.link),
             child: Text(
-              "Download",
+              App.translate(DownloadScreenMessages.download),
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
               ),
@@ -66,7 +72,8 @@ class DownloadLink extends StatelessWidget {
                 await Clipboard.setData(ClipboardData(text: this.link));
                 Scaffold.of(context).showSnackBar(
                   SnackBar(
-                    content: Text("${this.label} link copied"),
+                    content: Text(
+                        "${this.label} ${App.translate(DownloadScreenMessages.linkCopied)}"),
                   ),
                 );
                 Navigator.pop(context);
@@ -75,7 +82,11 @@ class DownloadLink extends StatelessWidget {
               }
             },
             child: Text(
-              Utils.isMobile() ? "Share" : "Copy",
+              App.translate(
+                Utils.isMobile()
+                    ? DownloadScreenMessages.share
+                    : DownloadScreenMessages.copy,
+              ),
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
               ),

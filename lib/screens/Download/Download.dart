@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
@@ -10,6 +11,7 @@ import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
 import 'widgets/DownloadLink.dart';
 
+import 'messages/keys.dart';
 import 'data.dart' as data;
 import 'Dimensions.dart';
 
@@ -52,13 +54,17 @@ class DownloadScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.pop(context),
-                      icon: Icon(MaterialCommunityIcons.chevron_left),
+                      icon: Icon(
+                        App.isLtr
+                            ? MaterialCommunityIcons.chevron_left
+                            : MaterialCommunityIcons.chevron_right,
+                      ),
                     ),
                     Container(
                       // color: Colors.red,
                       padding: EdgeInsets.all(AppDimensions.padding * 2),
                       child: Text(
-                        "Download",
+                        App.translate(DownloadScreenMessages.title),
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 14 + AppDimensions.ratio * 4,
@@ -78,7 +84,7 @@ class DownloadScreen extends StatelessWidget {
                   bottom: AppDimensions.padding * 1.5,
                 ),
                 child: Text(
-                  "Explore app on a different platform or share the link directly with anyone who may be interested in exploring the app",
+                  App.translate(DownloadScreenMessages.desc),
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 10 + AppDimensions.ratio * 3,
@@ -93,7 +99,7 @@ class DownloadScreen extends StatelessWidget {
                   horizontal: AppDimensions.padding * 2,
                 ),
                 child: Text(
-                  "Mobile",
+                  App.translate(DownloadScreenMessages.mobile),
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 14 + AppDimensions.ratio * 4,
@@ -116,7 +122,7 @@ class DownloadScreen extends StatelessWidget {
                   horizontal: AppDimensions.padding * 2,
                 ),
                 child: Text(
-                  "Desktop",
+                  App.translate(DownloadScreenMessages.desktop),
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 14 + AppDimensions.ratio * 4,
@@ -139,7 +145,7 @@ class DownloadScreen extends StatelessWidget {
                   horizontal: AppDimensions.padding * 2,
                 ),
                 child: Text(
-                  "Web",
+                  App.translate(DownloadScreenMessages.web),
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 14 + AppDimensions.ratio * 4,

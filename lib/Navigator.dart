@@ -90,7 +90,7 @@ class MaterialChlid extends StatelessWidget {
             darkTheme: theme.baseDark,
             themeMode: this.state.themeMode,
             // Routes
-            home: HomeScreen(),
+            home: DownloadScreen(),
             routes: <String, WidgetBuilder>{
               "home": (ctx) => HomeScreen(),
               "download": (ctx) => DownloadScreen(),

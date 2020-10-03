@@ -27,5 +27,17 @@
   "ScreenWidget/smSytemTheme": "Sytem Theme",
   "ScreenWidget/smLightTheme": "Light Theme",
   "ScreenWidget/smDarkTheme": "Dark Theme",
-  "DataRoot/tagCrime": "Crime"
+  "DataRoot/tagCrime": "Crime",
+  "DownloadScreen/title": "Download",
+  "DownloadScreen/desc": "Explore app on a different platform or share the link directly with anyone who may be interested in exploring the app",
+  "DownloadScreen/mobile": "Mobile",
+  "DownloadScreen/desktop": "Desktop",
+  "DownloadScreen/web": "Web",
+  "DownloadScreen/alertTitleMobile": "Share or Download",
+  "DownloadScreen/alertTitleOthers": "Share or Copy Link",
+  "DownloadScreen/copy": "COPY",
+  "DownloadScreen/share": "SHARE",
+  "DownloadScreen/download": "DOWNLOAD",
+  "DownloadScreen/close": "CLOSE",
+  "DownloadScreen/linkCopied": "link copied"
 }
