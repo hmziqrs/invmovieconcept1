@@ -26,7 +26,7 @@ jobs:
           cd app
           flutter config --enable-linux-desktop
           flutter config --no-enable-android
-          dart ./scripts/splitIcon.dart
+          dart ./scripts/splitVectorIcons.dart
           flutter pub get
           flutter clean
           flutter build linux --release
@@ -57,7 +57,7 @@ jobs:
           cd app
           flutter config --enable-web
           flutter config --no-enable-android
-          dart ./scripts/splitIcon.dart
+          dart ./scripts/splitVectorIcons.dart
           flutter pub get
           flutter build web -t lib/main.web.dart --release
       - name: Deploy to Firebase
@@ -87,7 +87,7 @@ jobs:
           path: 'app'
       - run: |
           cd app
-          dart ./scripts/splitIcon.dart
+          dart ./scripts/splitVectorIcons.dart
           flutter pub get
           flutter build apk -t lib/main.mobile.dart --release
       - name: Create Android Release
@@ -116,7 +116,7 @@ jobs:
           flutter config --enable-macos-desktop
           flutter config --no-enable-android
           dart scripts/mac.pub.dart
-          dart ./scripts/splitIcon.dart
+          dart ./scripts/splitVectorIcons.dart
           flutter pub get
           flutter build macos -v --release 
           cd build/macos/Build/Products/Release
@@ -145,7 +145,7 @@ jobs:
           cd app
           flutter config --enable-windows-desktop
           flutter config --no-enable-android
-          dart .\scripts\splitIcon.dart
+          dart .\scripts\splitVectorIcons.dart
           flutter pub get
           flutter build windows --release
           cd build\windows\runner
