@@ -26,7 +26,7 @@ final desktopLinks = [
     "url":
         "https://github.com/hackerhgl/invmovieconcept1/releases/latest/download/linux-release.zip",
     "name": "Linux",
-    "icon": FontAwesome.linux,
+    "icon": MaterialCommunityIcons.penguin,
   },
   {
     "url":

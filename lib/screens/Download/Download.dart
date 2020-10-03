@@ -6,7 +6,7 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/Theme.dart' as theme;
 import 'package:invmovieconcept1/Utils.dart';
 
-import 'package:invmovieconcept1/Widgets/Screen/Screen.dart';
+import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
 import 'widgets/DownloadLink.dart';
 

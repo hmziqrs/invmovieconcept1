@@ -42,4 +42,5 @@ app.*.map.json
 
 # 
 .firebase
+.vscode/launch.json
 pubspec.tmp
