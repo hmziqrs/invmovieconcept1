@@ -26,8 +26,8 @@ jobs:
           cd app
           flutter config --enable-linux-desktop
           flutter config --no-enable-android
-          dart ./scripts/splitVectorIcons.dart
           flutter pub get
+          dart ./scripts/splitVectorIcons.dart
           flutter clean
           flutter build linux --release
           cd build/linux/release
@@ -57,8 +57,8 @@ jobs:
           cd app
           flutter config --enable-web
           flutter config --no-enable-android
-          dart ./scripts/splitVectorIcons.dart
           flutter pub get
+          dart ./scripts/splitVectorIcons.dart
           flutter build web -t lib/main.web.dart --release
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v1.3.0
@@ -87,8 +87,8 @@ jobs:
           path: 'app'
       - run: |
           cd app
-          dart ./scripts/splitVectorIcons.dart
           flutter pub get
+          dart ./scripts/splitVectorIcons.dart
           flutter build apk -t lib/main.mobile.dart --release
       - name: Create Android Release
         uses: ncipollo/release-action@v1
@@ -116,8 +116,8 @@ jobs:
           flutter config --enable-macos-desktop
           flutter config --no-enable-android
           dart scripts/mac.pub.dart
-          dart ./scripts/splitVectorIcons.dart
           flutter pub get
+          dart ./scripts/splitVectorIcons.dart
           flutter build macos -v --release 
           cd build/macos/Build/Products/Release
           ditto -c -k --sequesterRsrc --keepParent invmovieconcept1.app macos-release.zip
@@ -145,8 +145,8 @@ jobs:
           cd app
           flutter config --enable-windows-desktop
           flutter config --no-enable-android
-          dart .\scripts\splitVectorIcons.dart
           flutter pub get
+          dart .\scripts\splitVectorIcons.dart
           flutter build windows --release
           cd build\windows\runner
           Compress-Archive -Path Release -DestinationPath windows-release.zip
@@ -156,3 +156,4 @@ jobs:
           artifacts: 'app\build\windows\runner\windows-release.zip'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
+
