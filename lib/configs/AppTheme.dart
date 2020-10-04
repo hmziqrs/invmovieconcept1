@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:tinycolor/tinycolor.dart';
 
+import 'Theme.dart' as theme;
+
 class AppTheme {
   static BuildContext ctx;
 
   static Color cardBg;
+  static Color background;
 
+  static Color shadow;
+  static Color shadow2;
   static Color lightShadow;
   static Color lightShadow2;
 
@@ -18,12 +23,19 @@ class AppTheme {
   static final TinyColor dark = TinyColor.fromString('#333');
   static final TinyColor light = TinyColor.fromString('#fdfdfd');
 
+  static final TinyColor primary = TinyColor(theme.primary);
+
   // Init
   static init(BuildContext context) {
     AppTheme.ctx = context;
 
+    background = Colors.white;
+
+    shadow = Colors.black.withOpacity(0.25);
+    shadow2 = Colors.black.withOpacity(0.15);
     lightShadow = Colors.black.withOpacity(0.09);
     lightShadow2 = Colors.black.withOpacity(0.05);
+
     cardBg = TinyColor.fromString("#f3f3f3").color;
 
     text = Colors.black;
@@ -32,6 +44,10 @@ class AppTheme {
     subText3 = Colors.black.withOpacity(0.40);
 
     if (isDark()) {
+      background = theme.darkBackground;
+
+      shadow = Colors.black.withOpacity(0.50);
+      shadow2 = Colors.black.withOpacity(0.40);
       lightShadow = Colors.black.withOpacity(0.30);
       lightShadow2 = Colors.black.withOpacity(0.25);
 

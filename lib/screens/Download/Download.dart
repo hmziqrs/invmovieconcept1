@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:invmovieconcept1/UI.dart';
+import 'package:invmovieconcept1/configs/AppTheme.dart';
+import 'package:invmovieconcept1/widgets/BottomSheets/Base.dart';
+import 'package:invmovieconcept1/widgets/Buttons/Boxed.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/Theme.dart' as theme;
@@ -46,12 +50,39 @@ class DownloadScreen extends StatelessWidget {
       right: AppDimensions.padding * 2,
     );
 
-    return AlphaButton(
-      onTap: () {},
-      icon: obj["icon"],
-      margin: buttonMargin,
-      label: obj["name"].toString().toUpperCase(),
-    );
+    return Builder(builder: (context) {
+      return AlphaButton(
+        onTap: () {
+          Scaffold.of(context).showBottomSheet(
+            (context) {
+              Dimensions.init(context);
+              return BottomSheetBase(
+                children: [
+                  Row(
+                    children: [
+                      BoxedButton(
+                        label: "Share",
+                        onPressed: () {},
+                        icon: MaterialCommunityIcons.share_variant,
+                      ),
+                      BoxedButton(
+                        label: "Share",
+                        onPressed: () {},
+                        icon: MaterialCommunityIcons.share_variant,
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            },
+            backgroundColor: Colors.transparent,
+          );
+        },
+        icon: obj["icon"],
+        margin: buttonMargin,
+        label: obj["name"].toString().toUpperCase(),
+      );
+    });
   }
 
   @override
