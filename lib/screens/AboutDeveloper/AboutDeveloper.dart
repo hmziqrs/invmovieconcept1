@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/configs/TextStyles.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/Utils.dart';
+
 import 'package:invmovieconcept1/screens/Download/widgets/DownloadLink.dart';
 
 import 'package:invmovieconcept1/widgets/Buttons/BackIcon.dart';
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
+import 'widgets/AboutDeveloperHeader.dart';
+import 'widgets/AboutDeveloperMoreProjects.dart';
+
 import 'data.dart' as data;
 import 'Dimensions.dart';
-import 'widgets/AboutDeveloperMoreProjects.dart';
+import 'widgets/AboutDeveloperMySkills.dart';
 
 class AboutDeveloperScreen extends StatelessWidget {
   @override
@@ -27,35 +31,7 @@ class AboutDeveloperScreen extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              Container(
-                padding: Utils.safePaddingUnit(context, "top"),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 8,
-                      color: AppTheme.lightShadow,
-                    )
-                  ],
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: Row(
-                    children: [
-                      BackIconButton(onPressed: () {}),
-                      Container(
-                        // color: Colors.red,
-                        padding: EdgeInsets.all(AppDimensions.padding * 2),
-                        child: Text(
-                          "About Developer",
-                          style: TextStyles.heading46,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              AboutDeveloperHeader(),
               SizedBox(height: AppDimensions.padding * 1),
               Container(
                 margin: EdgeInsets.symmetric(
@@ -77,7 +53,6 @@ class AboutDeveloperScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: AppDimensions.padding * 1),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: data.descs
@@ -111,47 +86,7 @@ class AboutDeveloperScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: AppDimensions.padding * 1),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: AppDimensions.padding * 1,
-                ),
-                child: Wrap(
-                  children: data.skills
-                      .map(
-                        (text) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.0),
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                            border: Border.all(
-                              width: 1.6,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                offset: Offset(0.0, 1.0),
-                                blurRadius: 3,
-                                color: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.30),
-                              ),
-                            ],
-                          ),
-                          margin: EdgeInsets.all(
-                            AppDimensions.padding * 1,
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            vertical: AppDimensions.padding * 1.2,
-                            horizontal: AppDimensions.padding * 2,
-                          ),
-                          child: Text(
-                            text.toUpperCase(),
-                            style: TextStyles.body27,
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
-              ),
+              AboutDeveloperMySkills(),
               SizedBox(height: AppDimensions.padding * 2),
               Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
               SizedBox(height: AppDimensions.padding * 2),
