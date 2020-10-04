@@ -8,11 +8,21 @@ import 'package:invmovieconcept1/Utils.dart';
 
 import 'package:invmovieconcept1/widgets/Buttons/BackIcon.dart';
 
-class AboutDeveloperHeader extends StatelessWidget {
+class Header extends StatelessWidget {
+  Header({
+    this.label,
+    this.enableSafePadding = true,
+  });
+
+  final String label;
+  final bool enableSafePadding;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Utils.safePaddingUnit(context, "top"),
+      padding: this.enableSafePadding
+          ? Utils.safePaddingUnit(context, "top")
+          : EdgeInsets.zero,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
@@ -29,10 +39,9 @@ class AboutDeveloperHeader extends StatelessWidget {
           children: [
             BackIconButton(onPressed: () {}),
             Container(
-              // color: Colors.red,
               padding: EdgeInsets.all(AppDimensions.padding * 2),
               child: Text(
-                "About Developer",
+                this.label,
                 style: TextStyles.heading46,
               ),
             ),

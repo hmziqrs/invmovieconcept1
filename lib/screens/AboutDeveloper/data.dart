@@ -84,45 +84,45 @@ final skills = [
 final contacts = [
   {
     "platform": "facebook",
-    "username": "hackerhgl",
+    "label": "hackerhgl",
     "icon": MaterialCommunityIcons.facebook,
   },
   {
     "platform": "linkedin",
-    "username": "hackerhgl",
+    "label": "hackerhgl",
     "icon": MaterialCommunityIcons.linkedin,
   },
   {
     "platform": "skype",
-    "username": "hamza.iqbal.jawaid.iqbal",
+    "label": "hamza.iqbal.jawaid.iqbal",
     "icon": MaterialCommunityIcons.skype_business
   },
   {
     "platform": "whatsapp",
-    "username": "+923148155304",
+    "label": "+923148155304",
     "icon": MaterialCommunityIcons.whatsapp
   },
 ];
 
 final showSupport = [
   {
-    "text": "Star this repository",
+    "label": "Star this repository",
     "icon": MaterialCommunityIcons.star_outline,
     "link": "https://github.com/hackerhgl/flutter-ui-designs",
   },
   {
-    "text": "Review app on play store",
+    "label": "Review app on play store",
     "icon": MaterialCommunityIcons.google_play,
     "link":
         "https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges",
   },
   {
-    "text": "Endorse my skills linkedin",
+    "label": "Endorse my skills linkedin",
     "icon": MaterialCommunityIcons.linkedin,
     "link": "https://www.linkedin.com/in/hackerhgl/",
   },
   {
-    "text": "Favorite my gigs on fiverr",
+    "label": "Favorite my gigs on fiverr",
     "icon": MaterialCommunityIcons.heart_outline,
     "link": "https://www.fiverr.com/hackerhgl",
   },

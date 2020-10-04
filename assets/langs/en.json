@@ -39,5 +39,8 @@
   "DownloadScreen/share": "SHARE",
   "DownloadScreen/download": "DOWNLOAD",
   "DownloadScreen/close": "CLOSE",
-  "DownloadScreen/linkCopied": "link copied"
+  "DownloadScreen/linkCopied": "link copied",
+  "AlertWidget/close": "Close",
+  "AlertWidget/copy": "Copy",
+  "AlertWidget/share": "Share"
 }

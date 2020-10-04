@@ -9,6 +9,7 @@ class AppTheme {
   static Color lightShadow;
   static Color lightShadow2;
 
+  static Color text;
   static Color subText;
   static Color subText2;
   static Color subText3;
@@ -25,6 +26,7 @@ class AppTheme {
     lightShadow2 = Colors.black.withOpacity(0.05);
     cardBg = TinyColor.fromString("#f3f3f3").color;
 
+    text = Colors.black;
     subText = Colors.black.withOpacity(0.70);
     subText2 = Colors.black.withOpacity(0.60);
     subText3 = Colors.black.withOpacity(0.40);
@@ -33,6 +35,7 @@ class AppTheme {
       lightShadow = Colors.black.withOpacity(0.30);
       lightShadow2 = Colors.black.withOpacity(0.25);
 
+      text = Colors.white;
       subText = Colors.white.withOpacity(0.70);
       subText2 = Colors.white.withOpacity(0.60);
       subText3 = Colors.white.withOpacity(0.40);
