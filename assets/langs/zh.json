@@ -4,12 +4,10 @@
   "DownloadScreen/mobile": "移动",
   "DownloadScreen/desktop": "桌面",
   "DownloadScreen/web": "卷筒纸",
-  "DownloadScreen/alertTitleMobile": "分享或下载",
-  "DownloadScreen/alertTitleOthers": "分享或复制链接",
   "DownloadScreen/copy": "复制",
   "DownloadScreen/share": "分享",
   "DownloadScreen/download": "下载",
-  "DownloadScreen/close": "关",
+  "DownloadScreen/open": "打开",
   "DownloadScreen/linkCopied": "复制链接",
   "HomeScreen/tabInTheater": "在剧院",
   "HomeScreen/tabBoxOffice": "票房",
@@ -42,5 +40,8 @@
   "ScreenWidget/smSelectTheme": "选择主题",
   "ScreenWidget/smSytemTheme": "系统正主题",
   "ScreenWidget/smLightTheme": "光主题",
-  "ScreenWidget/smDarkTheme": "黑暗主题"
+  "ScreenWidget/smDarkTheme": "黑暗主题",
+  "DownloadScreen/alertTitleMobile": "分享或下载",
+  "DownloadScreen/alertTitleOthers": "分享或复制链接",
+  "DownloadScreen/close": "关"
 }

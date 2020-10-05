@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
@@ -25,6 +24,9 @@ class BoxedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: this.margin,
+      constraints: BoxConstraints(
+        minWidth: AppDimensions.ratio * 25 + 40,
+      ),
       decoration: BoxDecoration(
         color: AppTheme.background,
         borderRadius: BorderRadius.circular(8.0),
@@ -52,7 +54,7 @@ class BoxedButton extends StatelessWidget {
                 SizedBox(height: AppDimensions.padding),
                 Text(
                   this.label,
-                  style: TextStyles.body27,
+                  style: TextStyles.body37,
                 ),
               ],
             ),

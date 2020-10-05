@@ -8,11 +8,9 @@ abstract class DownloadScreenMessages {
 	static String mobile = '$scope/mobile';
 	static String desktop = '$scope/desktop';
 	static String web = '$scope/web';
-	static String alertTitleMobile = '$scope/alertTitleMobile';
-	static String alertTitleOthers = '$scope/alertTitleOthers';
 	static String copy = '$scope/copy';
 	static String share = '$scope/share';
 	static String download = '$scope/download';
-	static String close = '$scope/close';
+	static String open = '$scope/open';
 	static String linkCopied = '$scope/linkCopied';
 }

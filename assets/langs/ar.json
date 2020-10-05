@@ -4,12 +4,10 @@
   "DownloadScreen/mobile": "التليفون المحمول",
   "DownloadScreen/desktop": "سطح المكتب",
   "DownloadScreen/web": "شبكة",
-  "DownloadScreen/alertTitleMobile": "حصة أو تحميل",
-  "DownloadScreen/alertTitleOthers": "حصة أو نسخ رابط",
   "DownloadScreen/copy": "نسخ",
   "DownloadScreen/share": "شارك",
   "DownloadScreen/download": "تحميل",
-  "DownloadScreen/close": "أغلق",
+  "DownloadScreen/open": "افتح",
   "DownloadScreen/linkCopied": "تم نسخ الرابط",
   "HomeScreen/tabInTheater": "في المسرح",
   "HomeScreen/tabBoxOffice": "شباك التذاكر",
@@ -42,5 +40,8 @@
   "ScreenWidget/smSelectTheme": "اختر نمطا",
   "ScreenWidget/smSytemTheme": "Sytem الموضوع",
   "ScreenWidget/smLightTheme": "موضوع خفيف",
-  "ScreenWidget/smDarkTheme": "موضوع الظلام"
+  "ScreenWidget/smDarkTheme": "موضوع الظلام",
+  "DownloadScreen/alertTitleMobile": "حصة أو تحميل",
+  "DownloadScreen/alertTitleOthers": "حصة أو نسخ رابط",
+  "DownloadScreen/close": "أغلق"
 }

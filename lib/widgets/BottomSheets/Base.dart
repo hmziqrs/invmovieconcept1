@@ -36,9 +36,9 @@ class BottomSheetBase extends StatelessWidget {
               children: [
                 Align(
                   child: Container(
-                    width: AppDimensions.padding * 16,
                     height: 7.0,
-                    margin: EdgeInsets.symmetric(),
+                    width: AppDimensions.padding * 16,
+                    margin: EdgeInsets.only(top: AppDimensions.padding),
                     decoration: BoxDecoration(
                       color: AppTheme.shadow,
                       borderRadius: BorderRadius.circular(10.0),
