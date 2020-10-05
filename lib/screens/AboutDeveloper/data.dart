@@ -95,7 +95,8 @@ final contacts = [
   {
     "platform": "skype",
     "label": "hamza.iqbal.jawaid.iqbal",
-    "icon": MaterialCommunityIcons.skype_business
+    "icon": MaterialCommunityIcons.skype_business,
+    "url": "https://join.skype.com/invite/XGRknTea0kKf",
   },
   {
     "platform": "whatsapp",

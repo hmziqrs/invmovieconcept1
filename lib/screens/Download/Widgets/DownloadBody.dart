@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:invmovieconcept1/widgets/Snackbars/Base.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:share/share.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
-import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/Utils.dart';
 
 import 'package:invmovieconcept1/widgets/Snackbars/snackbars.dart' as snackbars;
-import 'package:invmovieconcept1/widgets/BottomSheets/Base.dart';
+import 'package:invmovieconcept1/widgets/BottomSheets/WithBoxButtons.dart';
 import 'package:invmovieconcept1/widgets/Banners/Alpha.dart';
 import 'package:invmovieconcept1/widgets/Buttons/Alpha.dart';
-import 'package:invmovieconcept1/widgets/Buttons/Boxed.dart';
 import 'package:invmovieconcept1/widgets/Header/Header.dart';
 
 import 'DownloadHeading.dart';
@@ -41,64 +38,42 @@ class DownloadBody extends StatelessWidget {
       context,
     );
 
-    Scaffold.of(context).showBottomSheet(
-      (bottomSheetContext) {
-        Dimensions.init(bottomSheetContext);
-        return BottomSheetBase(
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(
-                vertical: AppDimensions.padding * 1,
-                horizontal: AppDimensions.padding * 2,
-              ),
-              child: Text(
-                "$label2 or $label1 ${map["name"]} url",
-                style: TextStyles.heading56,
-              ),
+    final icon1 = isMobile
+        ? MaterialCommunityIcons.share_variant
+        : MaterialCommunityIcons.content_copy;
+    final icon2 =
+        makeOpen ? MaterialCommunityIcons.web : MaterialCommunityIcons.download;
+
+    showBottomSheetWithBoxButtons(
+      context: context,
+      appinit: Dimensions.init,
+      button1: (bottomSheetContext) async {
+        if (isMobile) {
+          Share.share(map["url"], subject: map["name"]);
+        } else {
+          Clipboard.setData(
+            ClipboardData(
+              text: map["url"].toString(),
             ),
-            Row(
-              children: [
-                BoxedButton(
-                  label: label1.toUpperCase(),
-                  onPressed: () async {
-                    if (isMobile) {
-                      Share.share(map["url"], subject: map["name"]);
-                    } else {
-                      print("LMAO");
-                      Clipboard.setData(
-                        ClipboardData(
-                          text: map["url"].toString(),
-                        ),
-                      );
-                      Navigator.pop(bottomSheetContext);
-                      await 200.milliseconds.delay;
-                      Scaffold.of(context).hideCurrentSnackBar(
-                        reason: SnackBarClosedReason.dismiss,
-                      );
-                      snackbars.showSnackBarBase(
-                        context: context,
-                        text:
-                            "${map["name"]} ${App.translate(DownloadScreenMessages.linkCopied, context)}",
-                      );
-                    }
-                  },
-                  icon: isMobile
-                      ? MaterialCommunityIcons.share_variant
-                      : MaterialCommunityIcons.content_copy,
-                ),
-                BoxedButton(
-                  label: (label2).toUpperCase(),
-                  onPressed: () => Utils.launchUrl(map["url"]),
-                  icon: makeOpen
-                      ? MaterialCommunityIcons.web
-                      : MaterialCommunityIcons.download,
-                ),
-              ],
-            ),
-          ],
-        );
+          );
+          Navigator.pop(bottomSheetContext);
+          await 200.milliseconds.delay;
+          Scaffold.of(context).hideCurrentSnackBar(
+            reason: SnackBarClosedReason.dismiss,
+          );
+          snackbars.showSnackBarBase(
+            context: context,
+            text:
+                "${map["name"]} ${App.translate(DownloadScreenMessages.linkCopied, context)}",
+          );
+        }
       },
-      backgroundColor: Colors.transparent,
+      button2: (_) => Utils.launchUrl(map["url"]),
+      title: "$label2 or $label1 ${map["name"]} url",
+      label1: label1,
+      label2: label2,
+      icon1: icon1,
+      icon2: icon2,
     );
   }
 
