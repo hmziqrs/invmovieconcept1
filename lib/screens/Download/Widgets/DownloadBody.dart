@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:invmovieconcept1/widgets/Snackbars/Base.dart';
+import 'package:supercharged/supercharged.dart';
 import 'package:share/share.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
@@ -9,6 +11,7 @@ import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/Utils.dart';
 
+import 'package:invmovieconcept1/widgets/Snackbars/snackbars.dart' as snackbars;
 import 'package:invmovieconcept1/widgets/BottomSheets/Base.dart';
 import 'package:invmovieconcept1/widgets/Banners/Alpha.dart';
 import 'package:invmovieconcept1/widgets/Buttons/Alpha.dart';
@@ -39,8 +42,8 @@ class DownloadBody extends StatelessWidget {
     );
 
     Scaffold.of(context).showBottomSheet(
-      (context) {
-        Dimensions.init(context);
+      (bottomSheetContext) {
+        Dimensions.init(bottomSheetContext);
         return BottomSheetBase(
           children: [
             Container(
@@ -57,14 +60,25 @@ class DownloadBody extends StatelessWidget {
               children: [
                 BoxedButton(
                   label: label1.toUpperCase(),
-                  onPressed: () {
+                  onPressed: () async {
                     if (isMobile) {
                       Share.share(map["url"], subject: map["name"]);
                     } else {
+                      print("LMAO");
                       Clipboard.setData(
                         ClipboardData(
                           text: map["url"].toString(),
                         ),
+                      );
+                      Navigator.pop(bottomSheetContext);
+                      await 200.milliseconds.delay;
+                      Scaffold.of(context).hideCurrentSnackBar(
+                        reason: SnackBarClosedReason.dismiss,
+                      );
+                      snackbars.showSnackBarBase(
+                        context: context,
+                        text:
+                            "${map["name"]} ${App.translate(DownloadScreenMessages.linkCopied, context)}",
                       );
                     }
                   },
