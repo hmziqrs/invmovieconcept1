@@ -20,17 +20,16 @@ class HomeDrawer extends StatefulWidget {
 
 class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
   void buttonHandler(data.NavigationKey key) {
+    Navigator.pop(context);
     switch (key) {
-      case data.NavigationKey.home:
-        Navigator.pop(context);
+      case data.NavigationKey.developer:
+        Navigator.pushNamed(context, "aboutDeveloper");
         break;
       case data.NavigationKey.download:
-        Navigator.pop(context);
         Navigator.pushNamed(context, "download");
 
         break;
       case data.NavigationKey.settings:
-        Navigator.pop(context);
         Provider.of<ScreenStateProvider>(context, listen: false)
             .isSettingsOpen = true;
         break;

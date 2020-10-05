@@ -37,7 +37,7 @@ class Header extends StatelessWidget {
         color: Colors.transparent,
         child: Row(
           children: [
-            BackIconButton(onPressed: () {}),
+            BackIconButton(),
             Container(
               padding: EdgeInsets.all(AppDimensions.padding * 2),
               child: Text(
