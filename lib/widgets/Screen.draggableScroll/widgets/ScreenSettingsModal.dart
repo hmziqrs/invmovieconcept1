@@ -1,10 +1,8 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
-import 'package:invmovieconcept1/Utils.dart';
 import 'package:invmovieconcept1/UI.dart';
 
 import 'ScreenSettingsModalBody.dart';
@@ -30,9 +28,7 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal> {
 
   @override
   void initState() {
-    this.scrollController.addListener(() {
-      print("LMAO");
-    });
+    this.scrollController.addListener(() {});
     super.initState();
   }
 

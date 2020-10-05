@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/Utils.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
@@ -10,6 +11,8 @@ import '../Dimensions.dart';
 class AboutDeveloperMoreProjects extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final borderRadius = BorderRadius.circular(4.0);
+
     return Container(
       height: Dimensions.projectCardHeight,
       width: Dimensions.projectCardWidth,
@@ -52,7 +55,7 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  project["desc"],
+                  App.translate(project["desc"], context),
                   style: TextStyles.body2.copyWith(
                     color: Colors.white.withOpacity(0.85),
                   ),
@@ -66,33 +69,42 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
                             right: App.isLtr ? AppDimensions.padding * 2 : 0.0,
                             left: !App.isLtr ? AppDimensions.padding * 2 : 0.0,
                           ),
-                          padding: EdgeInsets.symmetric(
-                            vertical: AppDimensions.padding,
-                            horizontal: AppDimensions.padding * 2,
-                          ),
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.08),
                             border: Border.all(
                               width: 1,
                               color: Colors.white,
                             ),
-                            borderRadius: BorderRadius.circular(4.0),
+                            borderRadius: borderRadius,
                           ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                link["icon"],
-                                color: Colors.white,
-                                size: TextStyles.body2.fontSize,
-                              ),
-                              SizedBox(width: AppDimensions.padding),
-                              Text(
-                                link["label"].toString(),
-                                style: TextStyles.body2.copyWith(
-                                  color: Colors.white,
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: borderRadius,
+                              onTap: () => Utils.launchUrl(link["url"]),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: AppDimensions.padding,
+                                  horizontal: AppDimensions.padding * 2,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      link["icon"],
+                                      color: Colors.white,
+                                      size: TextStyles.body2.fontSize,
+                                    ),
+                                    SizedBox(width: AppDimensions.padding),
+                                    Text(
+                                      link["label"].toString(),
+                                      style: TextStyles.body2.copyWith(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       )

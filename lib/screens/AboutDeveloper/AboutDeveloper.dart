@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:invmovieconcept1/widgets/Snackbars/Base.dart';
 import 'package:supercharged/supercharged.dart';
+import 'package:share/share.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/Utils.dart';
-import 'package:invmovieconcept1/widgets/BottomSheets/WithBoxButtons.dart';
 
+import 'package:invmovieconcept1/widgets/BottomSheets/WithBoxButtons.dart';
+import 'package:invmovieconcept1/widgets/Snackbars/Base.dart';
 import 'package:invmovieconcept1/widgets/Buttons/Alpha.dart';
 import 'package:invmovieconcept1/widgets/Header/Header.dart';
 import 'package:invmovieconcept1/widgets/Banners/Alpha.dart';
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
-import 'package:share/share.dart';
 
 import 'widgets/AboutDeveloperMoreProjects.dart';
 import 'widgets/AboutDeveloperMySkills.dart';
+import 'widgets/AboutDeveloperHeading.dart';
 
+import 'messages/keys.dart';
 import 'data.dart' as data;
 import 'Dimensions.dart';
 
@@ -41,8 +44,10 @@ class AboutDeveloperChild extends StatelessWidget {
     print(map);
 
     final isMobile = Utils.isMobile();
-    final label1 = isMobile ? "Share" : "Copy";
-    final label2 = "Open";
+    final label1 = App.translate(isMobile
+        ? AboutDeveloperScreenMessages.share
+        : AboutDeveloperScreenMessages.copy);
+    final label2 = App.translate(AboutDeveloperScreenMessages.open);
 
     final icon1 = isMobile
         ? MaterialCommunityIcons.share_variant
@@ -68,12 +73,14 @@ class AboutDeveloperChild extends StatelessWidget {
           );
           showSnackBarBase(
             context: context,
-            text: "${map["platform"]} link copied",
+            text:
+                "${map["platform"]} ${App.translate(AboutDeveloperScreenMessages.linkCopied)}",
           );
         }
       },
       button2: (_) => Utils.launchUrl(url),
-      title: "$label2 or $label1 developer's ${map["platform"]} profile",
+      title:
+          "$label2 ${App.translate(AboutDeveloperScreenMessages.or)} $label1 ${App.translate(AboutDeveloperScreenMessages.developers)} ${map["platform"]} ${App.translate(AboutDeveloperScreenMessages.profile)}",
       label1: label1,
       label2: label2,
       icon1: icon1,
@@ -81,30 +88,48 @@ class AboutDeveloperChild extends StatelessWidget {
     );
   }
 
-  Widget mapButton(Map obj, VoidCallback onTap) {
+  Widget mapButton(
+    Map obj,
+    VoidCallback onTap, {
+    String prefix,
+    BuildContext context,
+  }) {
     final buttonMargin = EdgeInsets.only(
       top: AppDimensions.padding * 2,
       left: AppDimensions.padding * 2,
       right: AppDimensions.padding * 2,
     );
 
+    String label = obj["label"].toString();
+
+    if (prefix != null) {
+      label = App.translate(label) + " " + prefix;
+    }
+
     return AlphaButton(
       onTap: onTap,
+      label: label.toUpperCase(),
       icon: obj["icon"],
       margin: buttonMargin,
-      label: obj["label"].toString().toUpperCase(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
+
     return Align(
       child: Container(
         width: AppDimensions.containerWidth,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            Header(label: "About Developer"),
+            Header(
+              label: App.translate(
+                AboutDeveloperScreenMessages.title,
+                context,
+              ),
+            ),
             SizedBox(height: AppDimensions.padding * 1),
             Container(
               margin: EdgeInsets.symmetric(
@@ -121,14 +146,14 @@ class AboutDeveloperChild extends StatelessWidget {
               ),
               child: Text(
                 "Full Stack, React Native & Flutter Developer",
-                style: TextStyles.body16.copyWith(
+                style: TextStyles.body17.copyWith(
                   color: Theme.of(context).primaryColor,
                 ),
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: data.descs
+              children: data.devDescription
                   .map(
                     (text) => Padding(
                       padding: EdgeInsets.only(
@@ -137,7 +162,7 @@ class AboutDeveloperChild extends StatelessWidget {
                         top: AppDimensions.padding * 0.8,
                       ),
                       child: Text(
-                        text,
+                        App.translate(text, context),
                         style: TextStyles.body16.copyWith(
                           color: AppTheme.subText,
                         ),
@@ -149,33 +174,23 @@ class AboutDeveloperChild extends StatelessWidget {
             SizedBox(height: AppDimensions.padding * 3),
             Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
             SizedBox(height: AppDimensions.padding * 2),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: AppDimensions.padding * 2,
-              ),
-              child: Text(
-                "My Skill Set",
-                style: TextStyles.heading4,
-              ),
+            AboutDeveloperHeading(
+              label: AboutDeveloperScreenMessages.skillSet,
             ),
             SizedBox(height: AppDimensions.padding * 1),
             AboutDeveloperMySkills(),
             SizedBox(height: AppDimensions.padding * 2),
             Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
             SizedBox(height: AppDimensions.padding * 2),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: AppDimensions.padding * 2,
-              ),
-              child: Text(
-                "My Contacts",
-                style: TextStyles.heading4,
-              ),
+            AboutDeveloperHeading(
+              label: AboutDeveloperScreenMessages.contacts,
             ),
             SizedBox(height: AppDimensions.padding * 2),
             AlphaBanner(
-              text:
-                  "I've shared my contacts strictly for buissness related queries ONLY.\nFor any Flutter related help post your query on Flutter Github, Flutter sub reddit & Flutter facebook groups",
+              text: App.translate(
+                AboutDeveloperScreenMessages.contactsDesc,
+                context,
+              ),
             ),
             SizedBox(height: AppDimensions.padding * 1),
             ...data.contacts
@@ -189,18 +204,15 @@ class AboutDeveloperChild extends StatelessWidget {
             SizedBox(height: AppDimensions.padding * 3),
             Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
             SizedBox(height: AppDimensions.padding * 2),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: AppDimensions.padding * 2,
-              ),
-              child: Text(
-                "Like the project ?",
-                style: TextStyles.heading4,
-              ),
+            AboutDeveloperHeading(
+              label: AboutDeveloperScreenMessages.likeProject,
             ),
             SizedBox(height: AppDimensions.padding * 2),
             AlphaBanner(
-              text: "Show support by performing any action listed below.",
+              text: App.translate(
+                AboutDeveloperScreenMessages.likeProjectDesc,
+                context,
+              ),
             ),
             SizedBox(height: AppDimensions.padding * 1),
             ...data.showSupport
@@ -208,24 +220,18 @@ class AboutDeveloperChild extends StatelessWidget {
                   (obj) => this.mapButton(
                     obj,
                     () => Utils.launchUrl(obj["link"]),
+                    prefix: obj["platform"] ?? "",
                   ),
                 )
                 .toList(),
             SizedBox(height: AppDimensions.padding * 3),
             Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
             SizedBox(height: AppDimensions.padding * 2),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: AppDimensions.padding * 2,
-              ),
-              child: Text(
-                "More Amazing Projects",
-                style: TextStyles.heading4,
-              ),
+            AboutDeveloperHeading(
+              label: AboutDeveloperScreenMessages.moreProjects,
             ),
             SizedBox(height: AppDimensions.padding * 1),
             AboutDeveloperMoreProjects(),
-            SizedBox(height: AppDimensions.padding * 3),
           ],
         ),
       ),

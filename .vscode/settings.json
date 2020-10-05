@@ -7,5 +7,8 @@
         "cmd": "go run scripts/mega-sync.go ${relativeFile} ../invmovieconcept1-mega change"
       }
     ]
-  }
+  },
+  "cSpell.words": [
+    "invmovieconcept"
+  ]
 }

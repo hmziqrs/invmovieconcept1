@@ -1,5 +1,7 @@
 import 'package:flutter_icons/flutter_icons.dart';
 
+import 'messages/keys.dart';
+
 final mobileLinks = [
   {
     "name": "Play Store",
@@ -49,11 +51,11 @@ final webLinks = [
   },
 ];
 
-final descs = [
-  "Hi, I am full stack developer who has been developing end to end smart solutions for more than three years.",
-  "I am a committed individual who is highly efficient and has excellent organisational skills to develop applications.",
-  "I help throughout the life cycle of an assigned project with my experience and ensure quality solutions that meet objectives.",
-  "With all that being said, I am very proud of the work I do, and will stop at nothing to make sure the job is done to 100% satisfaction.",
+final devDescription = [
+  AboutDeveloperScreenMessages.desc1,
+  AboutDeveloperScreenMessages.desc2,
+  AboutDeveloperScreenMessages.desc3,
+  AboutDeveloperScreenMessages.desc4,
 ];
 
 final skills = [
@@ -79,6 +81,7 @@ final skills = [
   "Socket.IO",
   "Go lang",
   "Dart Server",
+  "Automation Scripting",
 ];
 
 final contacts = [
@@ -107,23 +110,26 @@ final contacts = [
 
 final showSupport = [
   {
-    "label": "Star this repository",
-    "icon": MaterialCommunityIcons.star_outline,
+    "label": AboutDeveloperScreenMessages.likeProject1,
+    "icon": MaterialCommunityIcons.github_face,
     "link": "https://github.com/hackerhgl/flutter-ui-designs",
   },
   {
-    "label": "Review app on play store",
+    "platform": "Play Store",
+    "label": AboutDeveloperScreenMessages.likeProject2,
     "icon": MaterialCommunityIcons.google_play,
     "link":
         "https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges",
   },
   {
-    "label": "Endorse my skills linkedin",
+    "platform": "Linkedin",
+    "label": AboutDeveloperScreenMessages.likeProject3,
     "icon": MaterialCommunityIcons.linkedin,
     "link": "https://www.linkedin.com/in/hackerhgl/",
   },
   {
-    "label": "Favorite my gigs on fiverr",
+    "platform": "Fiverr",
+    "label": AboutDeveloperScreenMessages.likeProject4,
     "icon": MaterialCommunityIcons.heart_outline,
     "link": "https://www.fiverr.com/hackerhgl",
   },
@@ -132,29 +138,52 @@ final showSupport = [
 final moreProjects = [
   {
     "label": "Flutter UI Designs",
-    "desc":
-        "Simple implementation of complex UI designs and animations. In this project you will experience my journey of experiminting to find ideal fluttter architecture.",
+    "desc": AboutDeveloperScreenMessages.projectFUD,
     "links": [
-      {"label": "Google Play", "icon": MaterialCommunityIcons.google_play},
-      {"label": "Github", "icon": MaterialCommunityIcons.github_face},
+      {
+        "label": "Google Play",
+        "icon": MaterialCommunityIcons.google_play,
+        "url":
+            "https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges",
+      },
+      {
+        "label": "Github",
+        "icon": MaterialCommunityIcons.github_face,
+        "url": "https://github.com/hackerhgl/flutter-ui-designs"
+      },
     ],
   },
   {
     "label": "React Native Loop",
-    "desc":
-        "Simple and elegant clone \"Loop game\" in react native with just simple setState & contexts for shared state.",
+    "desc": AboutDeveloperScreenMessages.projectRNL,
     "links": [
-      {"label": "Google Play", "icon": MaterialCommunityIcons.google_play},
-      {"label": "Github", "icon": MaterialCommunityIcons.github_face},
+      {
+        "label": "Google Play",
+        "icon": MaterialCommunityIcons.google_play,
+        "url":
+            "https://play.google.com/store/apps/details?id=com.onemdev.rnloop",
+      },
+      {
+        "label": "Github",
+        "icon": MaterialCommunityIcons.github_face,
+        "url": "https://github.com/hackerhgl/react-native-loop-game"
+      },
     ],
   },
   {
     "label": "Hackerhgl CV",
-    "desc":
-        "Simple crafting of my creativity and imagination into web version of CV/Resume with the help of Pug/Sass/JS. Which highlights my career journey",
+    "desc": AboutDeveloperScreenMessages.projectHCV,
     "links": [
-      {"label": "Website", "icon": MaterialCommunityIcons.web},
-      {"label": "Github", "icon": MaterialCommunityIcons.github_face},
+      {
+        "label": "Website",
+        "icon": MaterialCommunityIcons.web,
+        "url": "http://hackerhgl-cv.web.app",
+      },
+      {
+        "label": "Github",
+        "icon": MaterialCommunityIcons.github_face,
+        "url": "https://github.com/hackerhgl/CV"
+      },
     ],
   },
 ];

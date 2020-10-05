@@ -18,7 +18,7 @@ void main() {
     Admob.initialize(Ads.getAppId());
   }
 
-  final analyticsObeserver = FirebaseAnalyticsObserver(
+  final analyticsObserver = FirebaseAnalyticsObserver(
     analytics: FirebaseAnalytics(),
   );
 
@@ -27,5 +27,5 @@ void main() {
   FlutterError.onError = (FlutterErrorDetails err) {
     Crashlytics.instance.recordFlutterError(err);
   };
-  runApp(AppNavigator([analyticsObeserver]));
+  runApp(AppNavigator([analyticsObserver]));
 }
