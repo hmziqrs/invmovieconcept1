@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AboutDeveloperClipper extends CustomClipper<Path> {
-  AboutDeveloperClipper({
+class AvatarWithPunchHoleClipper extends CustomClipper<Path> {
+  AvatarWithPunchHoleClipper({
     @required this.holeRadius,
     @required this.position,
   });
@@ -44,5 +44,5 @@ class AboutDeveloperClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(AboutDeveloperClipper oldClipper) => true;
+  bool shouldReclip(AvatarWithPunchHoleClipper oldClipper) => true;
 }
