@@ -8,9 +8,9 @@ import 'configs/Theme.dart' as theme;
 import 'providers/AppProvider.dart';
 
 import 'screens/AboutDeveloper/AboutDeveloper.dart';
-import 'screens/SplashScreen/Splash.dart';
 import 'screens/Download/Download.dart';
-import 'screens/HomeScreen/Home.dart';
+import 'screens/Splash/Splash.dart';
+import 'screens/Home/Home.dart';
 
 import 'AppLocalizations.dart';
 

@@ -7,7 +7,7 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
-import 'Widgets/DownloadBody.dart';
+import 'widgets/DownloadBody.dart';
 import 'Dimensions.dart';
 
 class DownloadScreen extends StatelessWidget {
