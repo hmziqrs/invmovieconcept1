@@ -20,10 +20,10 @@ class AppTheme {
   static Color subText3;
 
   // Consts
-  static final TinyColor dark = TinyColor.fromString('#333');
-  static final TinyColor light = TinyColor.fromString('#fdfdfd');
+  static final Color dark = TinyColor.fromString('#333').color;
+  static final Color light = TinyColor.fromString('#fdfdfd').color;
 
-  static final TinyColor primary = TinyColor(theme.primary);
+  static final Color primary = TinyColor(theme.primary).color;
 
   // Init
   static init(BuildContext context) {

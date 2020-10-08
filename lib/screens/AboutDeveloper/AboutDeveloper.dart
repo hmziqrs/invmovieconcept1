@@ -18,6 +18,7 @@ import 'package:invmovieconcept1/widgets/Header/Header.dart';
 import 'package:invmovieconcept1/widgets/Banners/Alpha.dart';
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
+import 'widgets/AboutDeveloperRevealAnimation.dart';
 import 'widgets/AboutDeveloperMoreProjects.dart';
 import 'widgets/AboutDeveloperMySkills.dart';
 import 'widgets/AboutDeveloperHeading.dart';
@@ -32,7 +33,17 @@ class AboutDeveloperScreen extends StatelessWidget {
     Dimensions.init(context);
 
     return Screen(
-      child: AboutDeveloperChild(),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Positioned.fill(
+            child: AboutDeveloperChild(),
+          ),
+          Positioned.fill(
+            child: AboutDeveloperRevealAnimation(),
+          ),
+        ],
+      ),
     );
   }
 }

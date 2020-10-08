@@ -36,7 +36,7 @@ class AppNavigator extends StatelessWidget {
         create: (_) => AppProvider(),
         child: Consumer<AppProvider>(
           builder: (context, value, _) {
-            return MaterialChlid(
+            return MaterialChild(
               state: value,
               observers: this.observers,
               navigatorKey: this.navigator,
@@ -48,8 +48,8 @@ class AppNavigator extends StatelessWidget {
   }
 }
 
-class MaterialChlid extends StatelessWidget {
-  MaterialChlid({
+class MaterialChild extends StatelessWidget {
+  MaterialChild({
     @required this.navigatorKey,
     @required this.observers,
     @required this.state,
