@@ -54,9 +54,8 @@ class _SplashScreenState extends State<SplashScreen> {
     return MediaQuery(
       data: mediaQuery,
       child: Screen(
-        scaffoldBackgroundColor: Colors.transparent,
-        init: App.init,
         renderSettings: false,
+        scaffoldBackgroundColor: Colors.transparent,
         child: Align(
           child: AnimatedOpacity(
             duration: 400.milliseconds,

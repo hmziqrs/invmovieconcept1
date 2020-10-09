@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/AppTheme.dart';
 
 class AlphaButton extends StatelessWidget {
   AlphaButton({
@@ -24,8 +25,9 @@ class AlphaButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasIcon = this.icon != null;
-    final textColor =
-        Theme.of(context).textTheme.bodyText1.color.withOpacity(0.1);
+    final textColor = AppTheme.text.withOpacity(0.1);
+    // final textColor =
+    //     Theme.of(context).textTheme.bodyText1.color.withOpacity(0.1);
 
     return Padding(
       padding: this.margin,

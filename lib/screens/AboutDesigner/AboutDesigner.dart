@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/configs/AppTheme.dart';
 
 import 'package:invmovieconcept1/widgets/ScreenReveals/AvatarWithPunchHole.dart';
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
-import 'widgets/AboutDeveloperBody.dart';
+import 'widgets/AboutDesignerBody.dart';
 
 import 'Dimensions.dart';
 
-class AboutDeveloperScreen extends StatelessWidget {
+class AboutDesignerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print("SCREEN MOUNT ${AppTheme.background}");
     Dimensions.init(context);
 
     return Screen(
@@ -19,7 +17,7 @@ class AboutDeveloperScreen extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Positioned.fill(
-            child: AboutDeveloperBody(),
+            child: AboutDesignerBody(),
           ),
           Positioned.fill(
             child: ScreenRevealAvatarWithPunchHole(

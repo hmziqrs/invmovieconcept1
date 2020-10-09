@@ -25,6 +25,9 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
       case data.NavigationKey.developer:
         Navigator.pushNamed(context, "aboutDeveloper");
         break;
+      case data.NavigationKey.designer:
+        Navigator.pushNamed(context, "aboutDesigner");
+        break;
       case data.NavigationKey.download:
         Navigator.pushNamed(context, "download");
 

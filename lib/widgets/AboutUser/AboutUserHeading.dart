@@ -4,12 +4,23 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
-class AboutDeveloperHeading extends StatelessWidget {
-  AboutDeveloperHeading({
+import 'messages/keys.dart';
+
+final map = {
+  "skills": AboutUserWidgetMessages.skillSet,
+  "contacts": AboutUserWidgetMessages.contacts,
+  "likeProject": AboutUserWidgetMessages.likeProject,
+  "moreProjects": AboutUserWidgetMessages.moreProjects,
+};
+
+class AboutUserHeading extends StatelessWidget {
+  AboutUserHeading({
     @required this.label,
+    this.isMapped = true,
   });
 
   final String label;
+  final bool isMapped;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +30,7 @@ class AboutDeveloperHeading extends StatelessWidget {
         horizontal: AppDimensions.padding * 2,
       ),
       child: Text(
-        App.translate(this.label, context),
+        this.isMapped ? App.translate(map[this.label], context) : this.label,
         style: TextStyles.heading4,
       ),
     );

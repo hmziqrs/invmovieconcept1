@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
+import 'package:invmovieconcept1/configs/AppTheme.dart';
 
-import '../data.dart' as data;
+class AboutUserSkills extends StatelessWidget {
+  AboutUserSkills({
+    @required this.skills,
+  });
 
-class AboutDeveloperMySkills extends StatelessWidget {
+  final List<String> skills;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,21 +18,22 @@ class AboutDeveloperMySkills extends StatelessWidget {
         horizontal: AppDimensions.padding * 1,
       ),
       child: Wrap(
-        children: data.skills
+        children: this
+            .skills
             .map(
               (text) => Container(
                 decoration: BoxDecoration(
+                  color: AppTheme.background,
                   borderRadius: BorderRadius.circular(6.0),
-                  color: Theme.of(context).scaffoldBackgroundColor,
                   border: Border.all(
                     width: 1.6,
-                    color: Theme.of(context).primaryColor,
+                    color: AppTheme.primary,
                   ),
                   boxShadow: [
                     BoxShadow(
                       offset: Offset(0.0, 1.0),
                       blurRadius: 3,
-                      color: Theme.of(context).primaryColor.withOpacity(0.30),
+                      color: AppTheme.primary.withOpacity(0.30),
                     ),
                   ],
                 ),

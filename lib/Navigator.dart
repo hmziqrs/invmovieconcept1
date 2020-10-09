@@ -8,6 +8,7 @@ import 'configs/Theme.dart' as theme;
 import 'providers/AppProvider.dart';
 
 import 'screens/AboutDeveloper/AboutDeveloper.dart';
+import 'screens/AboutDesigner/AboutDesigner.dart';
 import 'screens/Download/Download.dart';
 import 'screens/Splash/Splash.dart';
 import 'screens/Home/Home.dart';
@@ -95,6 +96,7 @@ class MaterialChild extends StatelessWidget {
             routes: <String, WidgetBuilder>{
               "home": (ctx) => HomeScreen(),
               "download": (ctx) => DownloadScreen(),
+              "aboutDesigner": (ctx) => AboutDesignerScreen(),
               "aboutDeveloper": (ctx) => AboutDeveloperScreen(),
             },
           ),

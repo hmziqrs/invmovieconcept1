@@ -43,7 +43,7 @@ class AppTheme {
     subText2 = Colors.black.withOpacity(0.60);
     subText3 = Colors.black.withOpacity(0.40);
 
-    if (isDark()) {
+    if (isDark(context)) {
       background = theme.darkBackground;
 
       shadow = Colors.black.withOpacity(0.50);

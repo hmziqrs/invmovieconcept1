@@ -129,7 +129,7 @@ class _ScreenRevealAvatarWithPunchHoleState
                 builder: (context, child, value) {
                   double scale = 1 + value * .2;
                   if (hide) {
-                    scale = 1 - animation;
+                    scale = (1 - (animation * 1.5)).clamp(0.0, 3.0);
                   }
                   return Transform(
                     transform: Matrix4.identity()..scale(scale, scale),
@@ -138,7 +138,7 @@ class _ScreenRevealAvatarWithPunchHoleState
                       this.widget.avatarRadius / 2,
                     ),
                     child: Opacity(
-                      opacity: (1 - animation).clamp(0.0, 1.0),
+                      opacity: (1 - (animation * 1.5)).clamp(0.0, 1.0),
                       child: Stack(
                         children: [
                           child,

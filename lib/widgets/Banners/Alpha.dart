@@ -29,7 +29,8 @@ class AlphaBanner extends StatelessWidget {
       child: Text(
         this.text,
         style: TextStyles.body17.copyWith(
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: AppTheme.background,
+          // color: Theme.of(context).scaffoldBackgroundColor,
         ),
       ),
     );

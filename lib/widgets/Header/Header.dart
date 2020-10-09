@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
-import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
+import 'package:invmovieconcept1/configs/AppTheme.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/Utils.dart';
 
@@ -25,7 +26,7 @@ class Header extends StatelessWidget {
           : EdgeInsets.zero,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
+        color: AppTheme.background,
         boxShadow: [
           BoxShadow(
             blurRadius: 8,
@@ -41,7 +42,7 @@ class Header extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(AppDimensions.padding * 2),
               child: Text(
-                this.label,
+                App.translate(this.label, context),
                 style: TextStyles.heading46,
               ),
             ),
