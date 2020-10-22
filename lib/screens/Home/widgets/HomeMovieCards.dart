@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/configs/App.dart';
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:simple_animations/simple_animations.dart';
+import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/static/movies.dart' as movies;
+
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/Utils.dart';
 import 'package:invmovieconcept1/UI.dart';
@@ -110,58 +113,98 @@ class HomeMovieCards extends StatelessWidget {
               ),
             itemBuilder: (ctx, index) {
               final movie = movies.list[index];
-
               final animations = this.getAnimations(state, index);
+
+              final isPrev = state.activeMovieIndex > 0 &&
+                  index == state.activeMovieIndex - 1;
+              final isNext = state.activeMovieIndex < movies.list.length - 1 &&
+                  index == state.activeMovieIndex + 1;
 
               return Container(
                 alignment: Alignment.topCenter,
-                child: Transform(
-                  origin: Offset(
-                    animations[AnimationMap.offsetX],
-                    Dimensions.cardHeight,
-                  ),
-                  transform: Matrix4.rotationZ(
-                    animations[AnimationMap.min2max] *
-                        0.33 *
-                        (App.isLtr ? -1 : 1),
-                  )..scale(
-                      animations[AnimationMap.scaleBase],
-                      animations[AnimationMap.scaleBase],
-                    ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24.0),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 10,
-                          spreadRadius: animations[AnimationMap.min2min] * 1,
-                          offset: Offset(0, 8),
-                          color: Colors.black.withOpacity(0.3),
+                child: CustomAnimation<double>(
+                  duration: HomeProvider.microDuration,
+                  tween: Tween(begin: 0.0, end: 1.0),
+                  control: state.fadeOff && (isPrev || isNext)
+                      ? CustomAnimationControl.PLAY
+                      : CustomAnimationControl.PLAY_REVERSE,
+                  builder: (ctx, child, animation) {
+                    double translateX = 0.0;
+                    if (isPrev) {
+                      translateX = Dimensions.cardWidth * 0.69 * -animation;
+                    }
+                    if (isNext) {
+                      translateX = Dimensions.cardWidth * 0.69 * animation;
+                    }
+
+                    return Transform(
+                      origin: Offset(
+                        animations[AnimationMap.offsetX],
+                        Dimensions.cardHeight,
+                      ),
+                      transform: Matrix4.rotationZ(
+                        animations[AnimationMap.min2max] *
+                            0.33 *
+                            (App.isLtr ? -1 : 1),
+                      )
+                        ..scale(
+                          animations[AnimationMap.scaleBase],
+                          animations[AnimationMap.scaleBase],
                         )
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(24.0),
-                      child: Container(
-                        height: Dimensions.cardHeight,
-                        width: Dimensions.cardWidth,
-                        child: Transform(
-                          origin: Offset(
-                            Dimensions.cardWidth / 2,
-                            Dimensions.cardHeight / 2,
-                          ),
-                          transform: Matrix4.identity()
-                            ..scale(
-                              animations[AnimationMap.scaleImage],
+                        ..translate(translateX),
+                      child: GestureDetector(
+                        onTap: () async {
+                          if (index == state.activeMovieIndex) {
+                            state.setFade(true);
+                            await 200.milliseconds.delay;
+                            await Navigator.of(context).pushNamed(
+                              "movieDetail",
+                              arguments: movie,
+                            );
+                            state.setFade(false);
+                          }
+                        },
+                        child: Hero(
+                          tag: movie.name,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(24.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 10,
+                                  offset: Offset(0, 8),
+                                  color: Colors.black.withOpacity(0.3),
+                                  spreadRadius:
+                                      animations[AnimationMap.min2min] * 1,
+                                )
+                              ],
                             ),
-                          child: Image.asset(
-                            movie.image,
-                            fit: BoxFit.cover,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(24.0),
+                              child: Container(
+                                height: Dimensions.cardHeight,
+                                width: Dimensions.cardWidth,
+                                child: Transform(
+                                  origin: Offset(
+                                    Dimensions.cardWidth / 2,
+                                    Dimensions.cardHeight / 2,
+                                  ),
+                                  transform: Matrix4.identity()
+                                    ..scale(
+                                      animations[AnimationMap.scaleImage],
+                                    ),
+                                  child: Image.asset(
+                                    movie.image,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               );
             },

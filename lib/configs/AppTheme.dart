@@ -8,6 +8,7 @@ class AppTheme {
 
   static Color cardBg;
   static Color background;
+  static Color background2;
 
   static Color shadow;
   static Color shadow2;
@@ -30,6 +31,7 @@ class AppTheme {
     AppTheme.ctx = context;
 
     background = Colors.white;
+    background2 = light.toTinyColor().darken(5).color;
 
     shadow = Colors.black.withOpacity(0.25);
     shadow2 = Colors.black.withOpacity(0.15);
@@ -45,6 +47,7 @@ class AppTheme {
 
     if (isDark(context)) {
       background = theme.darkBackground;
+      background2 = TinyColor(theme.darkBackground).lighten(7).color;
 
       shadow = Colors.black.withOpacity(0.50);
       shadow2 = Colors.black.withOpacity(0.40);

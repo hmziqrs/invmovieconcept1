@@ -50,11 +50,15 @@ class HomeMovieName extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Opacity(
                   opacity: opacity,
-                  child: Text(
-                    entry.value.name,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: AppDimensions.ratio * 10 + 6,
+                  child: AnimatedOpacity(
+                    duration: HomeProvider.microDuration,
+                    opacity: !state.fadeOff ? 1.0 : 0.0,
+                    child: Text(
+                      entry.value.name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: AppDimensions.ratio * 10 + 6,
+                      ),
                     ),
                   ),
                 ),

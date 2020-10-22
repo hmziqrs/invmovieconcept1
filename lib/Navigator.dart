@@ -10,6 +10,7 @@ import 'providers/AppProvider.dart';
 
 import 'screens/AboutDeveloper/AboutDeveloper.dart';
 import 'screens/AboutDesigner/AboutDesigner.dart';
+import 'screens/MovieDetail/MovieDetail.dart';
 import 'screens/Download/Download.dart';
 import 'screens/Search/Search.dart';
 import 'screens/Splash/Splash.dart';
@@ -103,6 +104,14 @@ class MaterialChild extends StatelessWidget {
                     settings: settings,
                     child: SearchScreen(),
                     type: PageTransitionType.fade,
+                  );
+                  break;
+                case 'movieDetail':
+                  return PageTransition(
+                    settings: settings,
+                    child: MovieDetailScreen(),
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 700),
                   );
                   break;
                 default:

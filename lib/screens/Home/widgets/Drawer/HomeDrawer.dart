@@ -74,7 +74,7 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
                       ),
                     )
                     .toList(),
-                // Navigavtion List End
+                // Navigation List End
                 // Version
                 HomeDrawerVersion(
                   baseAnimation: 1.0,
