@@ -27,7 +27,7 @@ class HomeHeader extends StatelessWidget {
             icon: Icon(
               Icons.search_outlined,
             ),
-            onPressed: () => null,
+            onPressed: () => Navigator.of(context).pushNamed("search"),
           )
         ],
       ),

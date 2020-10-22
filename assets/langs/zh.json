@@ -49,6 +49,7 @@
   "HomeScreen/drawerDownload": "下载",
   "HomeScreen/drawerSettings": "应用程序设置",
   "HomeScreen/version": "版",
+  "SettingsScreen/message": "这只是一个静态的画面",
   "DataRoot/tagAction": "行动",
   "DataRoot/tagAdventure": "冒险",
   "DataRoot/tagFantasy": "幻想",

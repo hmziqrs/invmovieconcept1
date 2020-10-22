@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import 'configs/Theme.dart' as theme;
@@ -10,6 +11,7 @@ import 'providers/AppProvider.dart';
 import 'screens/AboutDeveloper/AboutDeveloper.dart';
 import 'screens/AboutDesigner/AboutDesigner.dart';
 import 'screens/Download/Download.dart';
+import 'screens/Search/Search.dart';
 import 'screens/Splash/Splash.dart';
 import 'screens/Home/Home.dart';
 
@@ -93,6 +95,20 @@ class MaterialChild extends StatelessWidget {
             themeMode: this.state.themeMode,
             // Routes
             home: HomeScreen(),
+            onGenerateRoute: (settings) {
+              print(settings.name);
+              switch (settings.name) {
+                case 'search':
+                  return PageTransition(
+                    settings: settings,
+                    child: SearchScreen(),
+                    type: PageTransitionType.fade,
+                  );
+                  break;
+                default:
+                  return null;
+              }
+            },
             routes: <String, WidgetBuilder>{
               "home": (ctx) => HomeScreen(),
               "download": (ctx) => DownloadScreen(),

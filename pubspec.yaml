@@ -20,6 +20,7 @@ dependencies:
   tinycolor: 1.0.3
   flutter_icons: 1.1.0
   dotted_border: 1.0.6
+  page_transition: 1.1.7+2
   simple_animations: 2.2.2
 
   share: 0.6.5+2

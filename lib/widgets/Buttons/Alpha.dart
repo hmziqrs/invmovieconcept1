@@ -12,7 +12,7 @@ class AlphaButton extends StatelessWidget {
     this.icon,
     this.margin = EdgeInsets.zero,
 
-    // Assingable
+    // Assignable
     borderRadius,
   }) : this.borderRadius = borderRadius ?? BorderRadius.circular(8.0);
 
@@ -26,8 +26,6 @@ class AlphaButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasIcon = this.icon != null;
     final textColor = AppTheme.text.withOpacity(0.1);
-    // final textColor =
-    //     Theme.of(context).textTheme.bodyText1.color.withOpacity(0.1);
 
     return Padding(
       padding: this.margin,
