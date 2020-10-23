@@ -9,7 +9,7 @@ import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/Utils.dart';
 
-import 'package:invmovieconcept1/widgets/Snackbars/snackbars.dart' as snackbars;
+import 'package:invmovieconcept1/widgets/SnackBars/snackbars.dart' as snackBars;
 import 'package:invmovieconcept1/widgets/BottomSheets/WithBoxButtons.dart';
 import 'package:invmovieconcept1/widgets/Banners/Alpha.dart';
 import 'package:invmovieconcept1/widgets/Buttons/Alpha.dart';
@@ -61,7 +61,7 @@ class DownloadBody extends StatelessWidget {
           Scaffold.of(context).hideCurrentSnackBar(
             reason: SnackBarClosedReason.dismiss,
           );
-          snackbars.showSnackBarBase(
+          snackBars.showSnackBarBase(
             context: context,
             text:
                 "${map["name"]} ${App.translate(DownloadScreenMessages.linkCopied, context)}",

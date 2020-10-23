@@ -84,11 +84,8 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal> {
     final min = 1 - (base / UI.height);
     final initial = min + 0.01;
 
-    // print("min $min $initial");
-
     return NotificationListener<DraggableScrollableNotification>(
       onNotification: (notification) {
-        print(notification.extent);
         state.opacity = notification.extent;
         return true;
       },

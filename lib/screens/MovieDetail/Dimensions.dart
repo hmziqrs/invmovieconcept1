@@ -21,7 +21,6 @@ class Dimensions {
     cardHeight = cardWidth * 1.4;
     if (cardHeight > 550) {
       cardHeight = 550;
-      print(cardHeight);
     }
 
     infoHeight = cardHeight * 0.33;

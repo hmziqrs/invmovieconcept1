@@ -18,7 +18,6 @@ class MovieDetailBg extends StatelessWidget {
 
     if (state.offset > reduceBreakPoint) {
       final pad = (state.offset - reduceBreakPoint);
-      // print("$pad ${state.offset}");
       height = height + pad;
     }
     if (height > Dimensions.cardHeight) {

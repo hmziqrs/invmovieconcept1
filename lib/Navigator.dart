@@ -97,7 +97,6 @@ class MaterialChild extends StatelessWidget {
             // Routes
             home: HomeScreen(),
             onGenerateRoute: (settings) {
-              print(settings.name);
               switch (settings.name) {
                 case 'search':
                   return PageTransition(
