@@ -1,34 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 
 import '../Dimensions.dart';
+import 'MDReveal.dart';
 
 class MovieDetailCast extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CustomAnimation<double>(
-      tween: 0.0.tweenTo(1.0),
-      delay: 1000.milliseconds,
-      duration: 400.milliseconds,
-      builder: (context, child, animation) {
-        return Transform(
-          transform: Matrix4.identity()
-            ..translate(
-              0.0,
-              (Dimensions.infoHeight * 0.3) -
-                  (animation * (Dimensions.infoHeight * 0.3)),
-            ),
-          child: Opacity(
-            opacity: animation,
-            child: child,
-          ),
-        );
-      },
+    return MDReveal(
+      delay: 1000,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

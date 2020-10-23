@@ -6,10 +6,16 @@ class MovieDetailProvider extends ChangeNotifier {
       Provider.of<MovieDetailProvider>(context, listen: listen);
 
   double _offset = 0.0;
-  double get offset => this._offset;
+  bool fadeOff = false;
 
+  double get offset => this._offset;
   set offset(double newOffset) {
     this._offset = newOffset;
+    notifyListeners();
+  }
+
+  void setFade(bool flag) {
+    this.fadeOff = flag;
     notifyListeners();
   }
 }
