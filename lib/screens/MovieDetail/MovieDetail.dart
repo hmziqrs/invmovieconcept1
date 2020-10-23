@@ -7,6 +7,7 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
+import 'widgets/MovieDetailHeader.dart';
 import 'widgets/MovieDetailSelectSeats.dart';
 import 'widgets/MovieDetailBody.dart';
 import 'widgets/MovieDetailBg.dart';
@@ -44,6 +45,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     ),
                   ),
                 ),
+                MovieDetailHeader(),
                 MovieDetailSelectSeats(),
               ],
             ),

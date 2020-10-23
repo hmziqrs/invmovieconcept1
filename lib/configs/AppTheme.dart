@@ -20,7 +20,7 @@ class AppTheme {
   static Color subText2;
   static Color subText3;
 
-  // Consts
+  // Const
   static final Color dark = TinyColor.fromString('#333').color;
   static final Color light = TinyColor.fromString('#fdfdfd').color;
 
