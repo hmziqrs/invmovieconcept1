@@ -86,5 +86,9 @@
   "AboutUserWidget/or": "or",
   "AboutUserWidget/developers": "developer's",
   "AboutUserWidget/profile": "profile",
-  "SettingsScreen/message": "This is just a static screen"
+  "SettingsScreen/message": "This is just a static screen",
+  "MovieDetailScreen/select": "Select Seats",
+  "MovieDetailScreen/description": "Description",
+  "MovieDetailScreen/cast": "Cast",
+  "MovieDetailScreen/castName": "Cast Name"
 }

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
+import '../messages/keys.dart';
 import 'MDReveal.dart';
 
 class MovieDetailSelectSeats extends StatelessWidget {
@@ -39,7 +41,7 @@ class MovieDetailSelectSeats extends StatelessWidget {
               borderRadius: BorderRadius.circular(18.0),
             ),
             child: Text(
-              "Select Seats",
+              App.translate(MovieDetailScreenMessages.select, context),
               style: TextStyles.body17.copyWith(
                 color: Colors.white,
               ),

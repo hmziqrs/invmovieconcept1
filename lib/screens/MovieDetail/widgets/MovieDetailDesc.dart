@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
+import '../messages/keys.dart';
 import 'MDReveal.dart';
 
 class MovieDetailDesc extends StatelessWidget {
@@ -19,7 +21,7 @@ class MovieDetailDesc extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Description",
+              App.translate(MovieDetailScreenMessages.description, context),
               style: TextStyles.heading3,
             ),
             SizedBox(height: AppDimensions.padding * 1),

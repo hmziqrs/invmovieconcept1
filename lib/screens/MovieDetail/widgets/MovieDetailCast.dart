@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
+import '../messages/keys.dart';
 import '../Dimensions.dart';
 import 'MDReveal.dart';
 
@@ -20,7 +22,7 @@ class MovieDetailCast extends StatelessWidget {
               horizontal: AppDimensions.padding * 3,
             ),
             child: Text(
-              "Cast",
+              App.translate(MovieDetailScreenMessages.cast, context),
               style: TextStyles.heading3,
             ),
           ),
@@ -53,7 +55,10 @@ class MovieDetailCast extends StatelessWidget {
                       ),
                       SizedBox(height: AppDimensions.padding),
                       Text(
-                        "Cast Name",
+                        App.translate(
+                          MovieDetailScreenMessages.castName,
+                          context,
+                        ),
                         style: TextStyles.body36.copyWith(
                           color: AppTheme.subText2,
                         ),
