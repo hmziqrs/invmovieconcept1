@@ -38,10 +38,13 @@ dependencies:
   firebase_crashlytics: 0.1.4+1
 
   shared_preferences: 0.5.12
+  json_annotation: 3.0.0
 
 dev_dependencies:
   flutter_driver:
     sdk: flutter
+  build_runner: ^1.0.0
+  json_serializable: ^3.2.0
   test: any
   glob: 1.2.0
   path: 1.8.0-nullsafety
