@@ -1,9 +1,7 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 import 'package:simple_animations/simple_animations.dart';
-
-import 'package:invmovieconcept1/configs/App.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 

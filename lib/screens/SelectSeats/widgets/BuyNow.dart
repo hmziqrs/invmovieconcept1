@@ -20,8 +20,8 @@ class SelectSeatsBuyNow extends StatelessWidget {
         return AnimatedPositioned(
           left: 0,
           right: 0,
-          bottom: AppDimensions.padding * (seats.length > 0 ? 2 : -12),
           duration: 300.milliseconds,
+          bottom: AppDimensions.padding * (seats.length > 0 ? 2 : -12),
           child: Container(
             decoration: BoxDecoration(
               color: AppTheme.background,

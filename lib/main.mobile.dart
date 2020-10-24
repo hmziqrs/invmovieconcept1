@@ -3,7 +3,6 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_performance/firebase_performance.dart';
 
 import 'configs/Ads.dart';
 import 'configs/App.dart';

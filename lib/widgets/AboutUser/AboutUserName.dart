@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
-import 'package:invmovieconcept1/configs/App.dart';
 
 class AboutUserName extends StatelessWidget {
   AboutUserName({
