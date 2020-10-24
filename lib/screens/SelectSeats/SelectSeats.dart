@@ -7,15 +7,14 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
-import 'widgets/MovieDetailBack.dart';
-import 'widgets/MovieDetailSelectSeats.dart';
-import 'widgets/MovieDetailBody.dart';
-import 'widgets/MovieDetailBg.dart';
+import 'widgets/SelectSeatsBack.dart';
+import 'widgets/SelectSeatsBody.dart';
+import 'widgets/BuyNow.dart';
 
 import 'Dimensions.dart';
 import 'provider.dart';
 
-class MovieDetailScreen extends StatelessWidget {
+class SelectSeatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
@@ -24,24 +23,20 @@ class MovieDetailScreen extends StatelessWidget {
     return Screen(
       child: Align(
         alignment: Alignment.topCenter,
-        child: ChangeNotifierProvider<MovieDetailProvider>(
-          create: (_) => MovieDetailProvider(),
+        child: ChangeNotifierProvider<SelectSeatsProvider>(
+          create: (_) => SelectSeatsProvider(),
           child: Container(
             width: AppDimensions.containerWidth,
             child: Stack(
               fit: StackFit.expand,
               children: [
-                MovieDetailBg(movie: movie),
                 Positioned.fill(
-                  child: Material(
-                    color: Colors.transparent,
-                    child: MovieDetailBody(
-                      movie: movie,
-                    ),
+                  child: SelectSeatsBody(
+                    movie: movie,
                   ),
                 ),
-                MovieDetailBack(),
-                MovieDetailSelectSeats(),
+                SelectSeatsBack(),
+                SelectSeatsBuyNow(),
               ],
             ),
           ),

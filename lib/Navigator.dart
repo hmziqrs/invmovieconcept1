@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:invmovieconcept1/screens/SelectSeats/SelectSeats.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -109,6 +110,14 @@ class MaterialChild extends StatelessWidget {
                   return PageTransition(
                     settings: settings,
                     child: MovieDetailScreen(),
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 700),
+                  );
+                  break;
+                case 'selectSeats':
+                  return PageTransition(
+                    settings: settings,
+                    child: SelectSeatsScreen(),
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 700),
                   );

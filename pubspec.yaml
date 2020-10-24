@@ -14,6 +14,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  tuple: 1.0.3
+  animate_do: 1.7.3
   supercharged: 1.10.0
 
   emojis: 0.9.3

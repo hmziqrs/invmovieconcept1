@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/configs/App.dart';
-
-import 'package:invmovieconcept1/widgets/AboutUser/AboutUserBio.dart';
-import 'package:invmovieconcept1/widgets/AboutUser/AboutUserContactButton.dart';
-import 'package:invmovieconcept1/widgets/AboutUser/AboutUserHeading.dart';
-import 'package:invmovieconcept1/widgets/AboutUser/AboutUserJobTitle.dart';
-import 'package:invmovieconcept1/widgets/AboutUser/AboutUserName.dart';
-import 'package:invmovieconcept1/widgets/AboutUser/AboutUserSkills.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
-import 'package:invmovieconcept1/widgets/Banners/Alpha.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
+import 'package:invmovieconcept1/widgets/AboutUser/AboutUserContactButton.dart';
+import 'package:invmovieconcept1/widgets/AboutUser/AboutUserHeading.dart';
+import 'package:invmovieconcept1/widgets/AboutUser/AboutUserJobTitle.dart';
+import 'package:invmovieconcept1/widgets/AboutUser/AboutUserSkills.dart';
+import 'package:invmovieconcept1/widgets/AboutUser/AboutUserName.dart';
+import 'package:invmovieconcept1/widgets/AboutUser/AboutUserBio.dart';
+
+import 'package:invmovieconcept1/widgets/Banners/Alpha.dart';
 import 'package:invmovieconcept1/widgets/Header/Header.dart';
 
 import '../messages/keys.dart';

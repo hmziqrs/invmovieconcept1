@@ -90,5 +90,6 @@
   "MovieDetailScreen/select": "Select Seats",
   "MovieDetailScreen/description": "Description",
   "MovieDetailScreen/cast": "Cast",
-  "MovieDetailScreen/castName": "Cast Name"
+  "MovieDetailScreen/castName": "Cast Name",
+  "SelectSeatsScreen/buyNow": "Buy Now"
 }

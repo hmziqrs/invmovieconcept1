@@ -161,6 +161,7 @@ class HomeMovieCards extends StatelessWidget {
                               "movieDetail",
                               arguments: movie,
                             );
+                            await 300.milliseconds.delay;
                             state.setFade(false);
                           }
                         },

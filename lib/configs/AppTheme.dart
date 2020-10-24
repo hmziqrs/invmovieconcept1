@@ -24,8 +24,13 @@ class AppTheme {
   static final Color dark = TinyColor.fromString('#333').color;
   static final Color light = TinyColor.fromString('#fdfdfd').color;
 
-  static final Color primary = TinyColor(theme.primary).color;
+  static final Color primary = theme.primary;
+  static final Color primary1 = theme.primary1;
+  static final Color primary2 = theme.primary2;
 
+  static final Color accent = theme.accent;
+  static final Color accent1 = theme.accent1;
+  static final Color accent2 = theme.accent2;
   // Init
   static init(BuildContext context) {
     AppTheme.ctx = context;

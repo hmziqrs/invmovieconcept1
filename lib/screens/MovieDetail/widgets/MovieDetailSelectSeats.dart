@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/models/MovieObject.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
@@ -6,11 +8,14 @@ import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
 import '../messages/keys.dart';
+import '../provider.dart';
 import 'MDReveal.dart';
 
 class MovieDetailSelectSeats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final MovieObject movie = ModalRoute.of(context).settings.arguments;
+
     return Positioned(
       left: 0,
       right: 0,
@@ -35,7 +40,16 @@ class MovieDetailSelectSeats extends StatelessWidget {
             bottom: AppDimensions.padding * 3,
           ),
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () async {
+              MovieDetailProvider.state(context).setFade(true);
+              await 360.milliseconds.delay;
+              await Navigator.pushNamed(
+                context,
+                "selectSeats",
+                arguments: movie,
+              );
+              MovieDetailProvider.state(context).setFade(false);
+            },
             color: AppTheme.primary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(18.0),
