@@ -28,6 +28,11 @@ abstract class TextStyles {
   static TextStyle heading54;
   static TextStyle heading53;
 
+  static TextStyle heading6;
+  static TextStyle heading66;
+  static TextStyle heading64;
+  static TextStyle heading63;
+
   static TextStyle body17;
   static TextStyle body16;
   static TextStyle body1;
@@ -50,7 +55,7 @@ abstract class TextStyles {
 
   static void initHeadings() {
     heading1 = TextStyle(
-      fontSize: 16 + AppDimensions.ratio * 7,
+      fontSize: 16 + AppDimensions.ratio * 6.5,
       fontWeight: FontWeight.w700,
     );
     heading16 = heading1.copyWith(
@@ -64,7 +69,7 @@ abstract class TextStyles {
     );
 
     heading2 = TextStyle(
-      fontSize: 15 + AppDimensions.ratio * 6.5,
+      fontSize: 15 + AppDimensions.ratio * 6.0,
       fontWeight: FontWeight.w700,
     );
     heading26 = heading2.copyWith(
@@ -78,7 +83,7 @@ abstract class TextStyles {
     );
 
     heading3 = TextStyle(
-      fontSize: 13 + AppDimensions.ratio * 6,
+      fontSize: 13 + AppDimensions.ratio * 5.5,
       fontWeight: FontWeight.w700,
     );
     heading36 = heading3.copyWith(
@@ -118,11 +123,25 @@ abstract class TextStyles {
     heading53 = heading5.copyWith(
       fontWeight: FontWeight.w300,
     );
+
+    heading6 = TextStyle(
+      fontSize: 9 + AppDimensions.ratio * 3.5,
+      fontWeight: FontWeight.w700,
+    );
+    heading66 = heading6.copyWith(
+      fontWeight: FontWeight.w600,
+    );
+    heading64 = heading6.copyWith(
+      fontWeight: FontWeight.w400,
+    );
+    heading63 = heading6.copyWith(
+      fontWeight: FontWeight.w300,
+    );
   }
 
   static void initBody() {
     body1 = TextStyle(
-      fontSize: 8 + AppDimensions.ratio * 4,
+      fontSize: 8 + AppDimensions.ratio * 3.5,
       fontWeight: FontWeight.w400,
     );
     body17 = body1.copyWith(
@@ -136,7 +155,7 @@ abstract class TextStyles {
     );
 
     body2 = TextStyle(
-      fontSize: 7 + AppDimensions.ratio * 3.5,
+      fontSize: 7 + AppDimensions.ratio * 3.2,
       fontWeight: FontWeight.w400,
     );
     body27 = body2.copyWith(
@@ -150,7 +169,7 @@ abstract class TextStyles {
     );
 
     body3 = TextStyle(
-      fontSize: 6 + AppDimensions.ratio * 3.5,
+      fontSize: 6 + AppDimensions.ratio * 3.0,
       fontWeight: FontWeight.w400,
     );
     body37 = body3.copyWith(

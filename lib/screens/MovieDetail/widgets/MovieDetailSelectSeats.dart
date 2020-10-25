@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/models/MovieObject.dart';
 import 'package:supercharged/supercharged.dart';
 
+import 'package:invmovieconcept1/models/MovieObject.dart';
+
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/CommonProps.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/App.dart';
@@ -24,20 +26,13 @@ class MovieDetailSelectSeats extends StatelessWidget {
         delay: 200,
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                AppTheme.background.withOpacity(0.001),
-                AppTheme.background,
-              ],
-            ),
+            gradient: CommonProps.bottomBgGradient,
           ),
           padding: EdgeInsets.only(
             top: AppDimensions.padding * 3,
             left: AppDimensions.padding * 3,
             right: AppDimensions.padding * 3,
-            bottom: AppDimensions.padding * 3,
+            bottom: AppDimensions.padding * 2,
           ),
           child: RaisedButton(
             onPressed: () async {

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/models/MovieObject.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
+import 'package:invmovieconcept1/widgets/Header/StackFade.dart';
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
-import 'widgets/MovieDetailBack.dart';
+import 'widgets/Header.dart';
 import 'widgets/MovieDetailSelectSeats.dart';
 import 'widgets/MovieDetailBody.dart';
 import 'widgets/MovieDetailBg.dart';
@@ -40,7 +42,7 @@ class MovieDetailScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                MovieDetailBack(),
+                MovieDetailHeader(),
                 MovieDetailSelectSeats(),
               ],
             ),

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'package:invmovieconcept1/models/MovieObject.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
+import 'package:invmovieconcept1/widgets/Header/StackFade.dart';
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
-import 'widgets/SelectSeatsBack.dart';
 import 'widgets/SelectSeatsBody.dart';
 import 'widgets/BuyNow.dart';
 
@@ -35,7 +36,13 @@ class SelectSeatsScreen extends StatelessWidget {
                     movie: movie,
                   ),
                 ),
-                SelectSeatsBack(),
+                StackFadeHeader(
+                  onTap: (context) async {
+                    SelectSeatsProvider.state(context).setFade(true);
+                    await 360.milliseconds.delay;
+                    Navigator.pop(context);
+                  },
+                ),
                 SelectSeatsBuyNow(),
               ],
             ),

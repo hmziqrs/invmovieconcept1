@@ -12,6 +12,7 @@ import 'providers/AppProvider.dart';
 import 'screens/AboutDeveloper/AboutDeveloper.dart';
 import 'screens/AboutDesigner/AboutDesigner.dart';
 import 'screens/MovieDetail/MovieDetail.dart';
+import 'screens/Reservation/Reservation.dart';
 import 'screens/Download/Download.dart';
 import 'screens/Search/Search.dart';
 import 'screens/Splash/Splash.dart';
@@ -118,6 +119,14 @@ class MaterialChild extends StatelessWidget {
                   return PageTransition(
                     settings: settings,
                     child: SelectSeatsScreen(),
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 700),
+                  );
+                  break;
+                case 'reservation':
+                  return PageTransition(
+                    settings: settings,
+                    child: ReservationScreen(),
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 700),
                   );

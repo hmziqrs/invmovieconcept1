@@ -91,5 +91,16 @@
   "MovieDetailScreen/description": "Description",
   "MovieDetailScreen/cast": "Cast",
   "MovieDetailScreen/castName": "Cast Name",
-  "SelectSeatsScreen/buyNow": "Buy Now"
+  "SelectSeatsScreen/buyNow": "Buy Now",
+  "SelectSeatsScreen/yourTicket": "Your Ticket",
+  "SelectSeatsScreen/bookNow": "Book Now",
+  "SelectSeatsScreen/film": "Film",
+  "SelectSeatsScreen/date": "Date",
+  "SelectSeatsScreen/seat": "Seat",
+  "ReservationScreen/yourTicket": "Your Ticket",
+  "ReservationScreen/bookNow": "Book Now",
+  "ReservationScreen/film": "Film",
+  "ReservationScreen/date": "Date",
+  "ReservationScreen/seat": "Seat",
+  "ReservationScreen/seats": "Seats"
 }
