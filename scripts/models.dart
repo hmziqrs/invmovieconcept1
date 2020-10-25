@@ -1,8 +1,4 @@
-import 'dart:convert';
 import 'dart:io';
-import 'dart:isolate';
-import 'package:glob/glob.dart';
-import 'package:translator/translator.dart';
 
 import './utils.dart';
 

@@ -4,7 +4,7 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:intl/intl.dart';
 
-import 'package:invmovieconcept1/models/MovieObject.dart';
+import 'package:invmovieconcept1/models/MovieTicket.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
@@ -17,7 +17,7 @@ import '../Dimensions.dart';
 class ReservationBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final MovieObject movie = ModalRoute.of(context).settings.arguments;
+    final MovieTicket reservation = ModalRoute.of(context).settings.arguments;
 
     return WillPopScope(
       onWillPop: () async {
@@ -86,7 +86,7 @@ class ReservationBody extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        movie.name,
+                                        reservation.movie.name,
                                         style: TextStyles.heading56.copyWith(
                                           color: Colors.white,
                                         ),
@@ -108,8 +108,8 @@ class ReservationBody extends StatelessWidget {
                                           ),
                                           Text(
                                             App.translate(
-                                                ReservationScreenMessages
-                                                    .seats),
+                                              ReservationScreenMessages.seats,
+                                            ),
                                             style: TextStyles.body17.copyWith(
                                               color: Colors.white
                                                   .withOpacity(0.84),
@@ -122,15 +122,30 @@ class ReservationBody extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            DateFormat("d/m/y")
-                                                .format(DateTime.now()),
+                                            DateFormat("d-MMM").format(
+                                              reservation.time,
+                                            ),
                                             style:
                                                 TextStyles.heading56.copyWith(
                                               color: Colors.white,
                                             ),
                                           ),
                                           Text(
-                                            "G1, G2",
+                                            reservation.seats
+                                                    .asMap()
+                                                    .entries
+                                                    .map((e) =>
+                                                        "${String.fromCharCode(e.value.item1 + 65)}${e.value.item2}")
+                                                    .toList()
+                                                    .sublist(
+                                                        0,
+                                                        reservation.seats.length
+                                                            .toInt()
+                                                            .clamp(0, 3))
+                                                    .join(", ") +
+                                                (reservation.seats.length > 3
+                                                    ? " & ${reservation.seats.length - 3}+"
+                                                    : ""),
                                             style:
                                                 TextStyles.heading56.copyWith(
                                               color: Colors.white,
@@ -154,7 +169,7 @@ class ReservationBody extends StatelessWidget {
                                   child: BarcodeWidget(
                                     drawText: false,
                                     barcode: Barcode.gs128(),
-                                    data: "Mv-${movie.name}",
+                                    data: reservation.toString(),
                                     height: AppDimensions.padding * 9,
                                   ),
                                 ),
@@ -198,7 +213,7 @@ class ReservationBody extends StatelessWidget {
                             child: Transform.scale(
                               scale: 1 + (animation * 0.8),
                               child: Image.asset(
-                                movie.image,
+                                reservation.movie.image,
                                 fit: BoxFit.cover,
                               ),
                             ),

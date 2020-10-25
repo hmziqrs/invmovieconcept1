@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:invmovieconcept1/providers/Reservation.dart';
 import 'package:invmovieconcept1/screens/SelectSeats/SelectSeats.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -38,8 +39,11 @@ class AppNavigator extends StatelessWidget {
           this.navigator.currentState.pop();
         }
       },
-      child: ChangeNotifierProvider<AppProvider>(
-        create: (_) => AppProvider(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => AppProvider()),
+          ChangeNotifierProvider(create: (_) => ReservationProvider()),
+        ],
         child: Consumer<AppProvider>(
           builder: (context, value, _) {
             return MaterialChild(
@@ -97,7 +101,7 @@ class MaterialChild extends StatelessWidget {
             darkTheme: theme.baseDark,
             themeMode: this.state.themeMode,
             // Routes
-            home: HomeScreen(),
+            initialRoute: "home",
             onGenerateRoute: (settings) {
               switch (settings.name) {
                 case 'search':

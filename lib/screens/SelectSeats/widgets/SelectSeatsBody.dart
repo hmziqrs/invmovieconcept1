@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:supercharged/supercharged.dart';
+import 'package:provider/provider.dart';
+import 'package:tuple/tuple.dart';
 
 import 'package:invmovieconcept1/models/MovieObject.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
-import 'package:tuple/tuple.dart';
 
 import 'SelectSeatsHeader.dart';
 import 'SelectSeatsGrid.dart';
@@ -45,7 +45,7 @@ class SelectSeatsBody extends StatelessWidget {
           SizedBox(height: AppDimensions.padding * 7),
           SelectSeatsGrid(),
           Selector<SelectSeatsProvider, List<Tuple2<int, int>>>(
-            selector: (_, state) => state.seats,
+            selector: (_, state) => state.selectedSeats,
             builder: (context, seats, child) {
               return AnimatedContainer(
                 duration: 200.milliseconds,

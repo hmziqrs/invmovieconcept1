@@ -14,13 +14,11 @@ import 'SSReveal.dart';
 class SelectSeatsDay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final currentTime = DateTime.now();
-
     return SSReveal(
       delay: 150,
       child: SizedBox(
         height: Dimensions.daySelectBox,
-        child: Selector<SelectSeatsProvider, int>(
+        child: Selector<SelectSeatsProvider, DateTime>(
           selector: (_, state) => state.selectedDay,
           builder: (context, selectedDay, child) {
             return ListView.builder(
@@ -30,14 +28,15 @@ class SelectSeatsDay extends StatelessWidget {
               itemCount: 7,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                final time = currentTime.add(Duration(days: index));
-                final isSelected = selectedDay != null && selectedDay == index;
+                final date = SelectSeatsProvider.dates[index];
+
+                final isSelected = selectedDay != null && selectedDay == date;
                 final textColor = isSelected ? Colors.white : Colors.black;
                 return GestureDetector(
                   onTap: () => SelectSeatsProvider.state(
                     context,
                   ).selectDay(
-                    index,
+                    date,
                   ),
                   child: AnimatedContainer(
                     duration: 300.milliseconds,
@@ -61,11 +60,11 @@ class SelectSeatsDay extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            time.day.toString(),
+                            date.day.toString(),
                             style: TextStyles.heading5,
                           ),
                           Text(
-                            DateFormat('EEE').format(time),
+                            DateFormat('EEE').format(date),
                             style: TextStyles.body26,
                           ),
                         ],

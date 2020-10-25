@@ -1,18 +1,111 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/configs/CommonProps.dart';
+import 'package:touchable_opacity/touchable_opacity.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:provider/provider.dart';
-import 'package:tuple/tuple.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/CommonProps.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
+import '../Dimensions.dart';
 import '../messages/keys.dart';
-import '../provider.dart';
 
 class ReservationBookNow extends StatelessWidget {
+  onTap(BuildContext context) async {
+    final controller = await showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      context: context,
+      builder: (context) {
+        return BackdropFilter(
+          filter: ui.ImageFilter.blur(
+            sigmaX: 5,
+            sigmaY: 5,
+          ),
+          child: Align(
+            alignment: Alignment.center,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Container(
+                width: Dimensions.modalWidth,
+                decoration: BoxDecoration(
+                  color: AppTheme.background,
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(AppDimensions.padding * 2),
+                      child: Text("Thank You", style: TextStyles.heading56),
+                    ),
+                    Container(
+                      height: 1,
+                      color: AppTheme.text.withOpacity(0.1),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppDimensions.padding * 2,
+                        vertical: AppDimensions.padding * 3,
+                      ),
+                      child: Text(
+                        "You can check your reservations in My Movies screen",
+                        style: TextStyles.body2.copyWith(
+                          color: AppTheme.subText2,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 1,
+                      color: AppTheme.text.withOpacity(0.1),
+                    ),
+                    Row(
+                      children: ["My Movies", "Ok"]
+                          .map(
+                            (button) => Flexible(
+                              child: TouchableOpacity(
+                                onTap: () async {
+                                  Navigator.popUntil(
+                                    context,
+                                    (route) {
+                                      return route.settings.name == "home";
+                                    },
+                                  );
+                                  if (button != "Ok") {
+                                    Navigator.pushNamed(context, "download");
+                                  }
+                                },
+                                behavior: HitTestBehavior.translucent,
+                                child: Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.all(
+                                    AppDimensions.padding * 2,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      button.toUpperCase(),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
+    await controller;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedPositioned(
@@ -27,16 +120,16 @@ class ReservationBookNow extends StatelessWidget {
         padding: EdgeInsets.all(AppDimensions.padding * 2),
         child: Hero(
           tag: "btn",
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppTheme.primary,
-              borderRadius: BorderRadius.circular(40.0),
-            ),
-            padding: EdgeInsets.symmetric(
-              vertical: AppDimensions.padding * 2,
-            ),
-            child: GestureDetector(
-              onTap: () {},
+          child: GestureDetector(
+            onTap: () => this.onTap(context),
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppTheme.primary,
+                borderRadius: BorderRadius.circular(40.0),
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: AppDimensions.padding * 2,
+              ),
               child: Center(
                 child: Material(
                   color: Colors.transparent,

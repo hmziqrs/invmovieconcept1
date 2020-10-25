@@ -20,10 +20,11 @@ dependencies:
 
   emojis: 0.9.3
   barcode: 1.17.1
-  barcode_widget: 1.5.0
   tinycolor: 1.0.3
   flutter_icons: 1.1.0
   dotted_border: 1.0.6
+  barcode_widget: 1.5.0
+  touchable_opacity: 1.1.2
   page_transition: 1.1.7+2
   simple_animations: 2.2.2
 
@@ -40,13 +41,10 @@ dependencies:
   firebase_crashlytics: 0.1.4+1
 
   shared_preferences: 0.5.12
-  json_annotation: 3.0.0
 
 dev_dependencies:
   flutter_driver:
     sdk: flutter
-  build_runner: ^1.0.0
-  json_serializable: ^3.2.0
   test: any
   glob: 1.2.0
   path: 1.8.0-nullsafety

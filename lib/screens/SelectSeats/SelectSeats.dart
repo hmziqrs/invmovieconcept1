@@ -22,10 +22,10 @@ class SelectSeatsScreen extends StatelessWidget {
     final MovieObject movie = ModalRoute.of(context).settings.arguments;
 
     return Screen(
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: ChangeNotifierProvider<SelectSeatsProvider>(
-          create: (_) => SelectSeatsProvider(),
+      child: ChangeNotifierProvider<SelectSeatsProvider>(
+        create: (_) => SelectSeatsProvider(),
+        child: Align(
+          alignment: Alignment.topCenter,
           child: Container(
             width: AppDimensions.containerWidth,
             child: Stack(

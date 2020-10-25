@@ -13,7 +13,6 @@ import 'SSReveal.dart';
 class SelectSeatsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final reserved = SelectSeatsProvider.state(context).reserved;
     return SSReveal(
       delay: 600,
       child: Container(
@@ -21,29 +20,26 @@ class SelectSeatsGrid extends StatelessWidget {
           horizontal: AppDimensions.padding * 2,
         ),
         child: Selector<SelectSeatsProvider, List<Tuple2<int, int>>>(
-          selector: (_, state) => state.seats,
-          builder: (context, seats, child) {
+          selector: (context, state) => state.selectedSeats,
+          builder: (context, selectedSeats, child) {
             return Column(
-              children: List.generate(
-                6,
-                (yIndex) {
-                  final limit = yIndex == 0 ? 5 : 9;
+              children: SelectSeatsProvider.seats.asMap().entries.map(
+                (yEntry) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      limit,
-                      (xIndex) {
-                        final centerIndex = (limit / 2).floor();
-                        if (yIndex > 0 && centerIndex == xIndex) {
+                    children: yEntry.value.asMap().entries.map(
+                      (xEntry) {
+                        final centerIndex = (yEntry.value.length / 2).floor();
+                        if (yEntry.key > 0 && centerIndex == xEntry.key) {
                           return Flexible(
                             child: SizedBox(
                               width: double.infinity,
                             ),
                           );
                         }
-                        final seat = Tuple2<int, int>(yIndex, xIndex);
-                        final isActive = seats.contains(seat);
-                        final isReserved = reserved.contains(seat);
+                        final isActive = selectedSeats.contains(xEntry.value);
+                        final isReserved =
+                            SelectSeatsProvider.reserved.contains(xEntry.value);
 
                         Color seatColor = isActive
                             ? AppTheme.accent
@@ -59,7 +55,7 @@ class SelectSeatsGrid extends StatelessWidget {
                               return;
                             }
                             SelectSeatsProvider.state(context).toggleSeat(
-                              seat,
+                              xEntry.value,
                             );
                           },
                           child: AnimatedContainer(

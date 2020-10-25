@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/configs/CommonProps.dart';
 import 'package:invmovieconcept1/models/MovieObject.dart';
+import 'package:invmovieconcept1/models/MovieTicket.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
@@ -20,7 +21,7 @@ class SelectSeatsBuyNow extends StatelessWidget {
     final MovieObject movie = ModalRoute.of(context).settings.arguments;
 
     return Selector<SelectSeatsProvider, List<Tuple2<int, int>>>(
-      selector: (_, state) => state.seats,
+      selector: (context, state) => state.selectedSeats,
       builder: (context, seats, child) {
         return AnimatedPositioned(
           left: 0,
@@ -39,9 +40,6 @@ class SelectSeatsBuyNow extends StatelessWidget {
                   color: AppTheme.background,
                   borderRadius: BorderRadius.circular(40.0),
                 ),
-                // margin: EdgeInsets.symmetric(
-                //   horizontal: AppDimensions.padding * 2,
-                // ),
                 child: Container(
                   decoration: BoxDecoration(
                     color: AppTheme.text.withOpacity(0.12),
@@ -72,11 +70,22 @@ class SelectSeatsBuyNow extends StatelessWidget {
                                 if (seats.isEmpty) {
                                   return;
                                 }
-                                // final state = SelectSeatsProvider.state(context);
+                                final state =
+                                    SelectSeatsProvider.state(context);
+                                final ticket = MovieTicket(
+                                  movie: movie,
+                                  seats: state.selectedSeats,
+                                  time: state.selectedDay.add(
+                                    Duration(
+                                      hours: state.selectedTime.hour,
+                                      minutes: state.selectedTime.minute,
+                                    ),
+                                  ),
+                                );
                                 Navigator.pushNamed(
                                   context,
                                   "reservation",
-                                  arguments: movie,
+                                  arguments: ticket,
                                 );
                               },
                               child: Container(
@@ -92,6 +101,7 @@ class SelectSeatsBuyNow extends StatelessWidget {
                                   child: Text(
                                     App.translate(
                                       SelectSeatsScreenMessages.buyNow,
+                                      context,
                                     ),
                                     style: TextStyles.heading56.copyWith(
                                       color: Colors.white,

@@ -8,29 +8,63 @@ class SelectSeatsProvider extends ChangeNotifier {
   static SelectSeatsProvider state(BuildContext context, [listen = false]) =>
       Provider.of<SelectSeatsProvider>(context, listen: listen);
 
-  int selectedDay;
-  int selectedTime;
+  static bool init = false;
+  static List<DateTime> times = [];
+  static List<DateTime> dates = [];
+  static List<Tuple2<int, int>> reserved = [];
+  static List<List<Tuple2<int, int>>> seats = [];
+
+  DateTime selectedDay;
+  DateTime selectedTime;
   bool fadeOff = false;
-  List<Tuple2<int, int>> seats = [];
-  List<Tuple2<int, int>> reserved = [];
+  List<Tuple2<int, int>> selectedSeats = [];
+
   final controller = ScrollController();
 
   SelectSeatsProvider() {
-    final r = Random();
+    if (init) {
+      return;
+    }
+    init = true;
+    final currentTime = DateTime.now();
 
+    times = List.generate(
+      5,
+      (index) => DateTime(
+        currentTime.year,
+        currentTime.month,
+        currentTime.day,
+        9 + (index * 3),
+      ),
+    );
+
+    dates = List.generate(
+      7,
+      (index) => DateTime(
+        currentTime.year,
+        currentTime.month,
+        currentTime.day + index,
+      ),
+    );
+
+    final r = Random();
     for (int y = 0; y < 6; y++) {
       final limit = y == 0 ? 5 : 9;
       final centerIndex = (limit / 2).floor();
+      final List<Tuple2<int, int>> yList = [];
 
       for (int x = 0; x < limit; x++) {
+        final seat = Tuple2(y, x);
+        yList.add(seat);
         if (r.nextInt(7) == 5 && x != centerIndex) {
-          this.reserved.add(Tuple2(y, x));
+          reserved.add(seat);
         }
       }
+      seats.add(yList);
     }
   }
 
-  selectDay(int day) {
+  selectDay(DateTime day) {
     if (day == this.selectedDay) {
       this.selectedDay = null;
     } else {
@@ -39,7 +73,7 @@ class SelectSeatsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  selectTime(int time) {
+  selectTime(DateTime time) {
     if (time == this.selectedTime) {
       this.selectedTime = null;
     } else {
@@ -54,17 +88,17 @@ class SelectSeatsProvider extends ChangeNotifier {
   }
 
   void toggleSeat(Tuple2<int, int> seat) {
-    final newList = [...seats];
-    final contains = this.seats.contains(seat);
+    final newList = [...this.selectedSeats];
+    final contains = this.selectedSeats.contains(seat);
     if (contains) {
       newList.remove(seat);
     } else {
       newList.add(seat);
     }
-    if (this.seats.isEmpty && newList.isNotEmpty) {
+    if (this.selectedSeats.isEmpty && newList.isNotEmpty) {
       this.doScroll();
     }
-    this.seats = newList;
+    this.selectedSeats = newList;
     notifyListeners();
   }
 
