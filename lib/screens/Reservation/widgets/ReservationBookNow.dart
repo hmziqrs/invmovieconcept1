@@ -16,9 +16,9 @@ import '../messages/keys.dart';
 class ReservationBookNow extends StatelessWidget {
   onTap(BuildContext context) async {
     final controller = await showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
       context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
       builder: (context) {
         return BackdropFilter(
           filter: ui.ImageFilter.blur(
@@ -39,7 +39,13 @@ class ReservationBookNow extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(AppDimensions.padding * 2),
-                      child: Text("Thank You", style: TextStyles.heading56),
+                      child: Text(
+                        App.translate(
+                          ReservationScreenMessages.thankYou,
+                          context,
+                        ),
+                        style: TextStyles.heading56,
+                      ),
                     ),
                     Container(
                       height: 1,
@@ -51,7 +57,10 @@ class ReservationBookNow extends StatelessWidget {
                         vertical: AppDimensions.padding * 3,
                       ),
                       child: Text(
-                        "You can check your reservations in My Movies screen",
+                        App.translate(
+                          ReservationScreenMessages.modalDesc,
+                          context,
+                        ),
                         style: TextStyles.body2.copyWith(
                           color: AppTheme.subText2,
                         ),
@@ -73,7 +82,7 @@ class ReservationBookNow extends StatelessWidget {
                                       return route.settings.name == "home";
                                     },
                                   );
-                                  if (button != "Ok") {
+                                  if (button != ReservationScreenMessages.ok) {
                                     Navigator.pushNamed(context, "download");
                                   }
                                 },
@@ -85,7 +94,10 @@ class ReservationBookNow extends StatelessWidget {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      button.toUpperCase(),
+                                      App.translate(
+                                        button.toUpperCase(),
+                                        context,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -102,8 +114,10 @@ class ReservationBookNow extends StatelessWidget {
         );
       },
     );
-
-    await controller;
+    Navigator.popUntil(
+      context,
+      (route) => route.settings.name == "home",
+    );
   }
 
   @override
