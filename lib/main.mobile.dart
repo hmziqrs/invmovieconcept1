@@ -16,7 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Cache.init();
 
-  App.showAds = true;
+  App.showAds = false;
 
   if (App.showAds) {
     Admob.initialize(Ads.getAppId());
