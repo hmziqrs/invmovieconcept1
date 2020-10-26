@@ -89,7 +89,9 @@ jobs:
           cd app
           flutter pub get
           dart ./scripts/splitVectorIcons.dart
-          flutter build apk -t lib/main.mobile.dart --release
+          flutter clean
+          flutter pub get
+          flutter build apk -t lib/main.mobile.dart
       - name: Create Android Release
         uses: ncipollo/release-action@v1
         with:
@@ -156,4 +158,3 @@ jobs:
           artifacts: 'app\build\windows\runner\windows-release.zip'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
-
