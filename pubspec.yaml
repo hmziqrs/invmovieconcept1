@@ -47,10 +47,12 @@ dev_dependencies:
     sdk: flutter
   test: any
   glob: 1.2.0
-  path: 1.8.0-nullsafety
+  # path: 1.8.0-nullsafety.2
   translator: 0.1.4
   intl_translation: 0.17.10
   yaml: 2.2.1
+dependency_overrides:
+  path: 1.8.0-nullsafety.2
 
 flutter_icons:
   includes:
