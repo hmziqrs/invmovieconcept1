@@ -6,6 +6,7 @@ import 'package:invmovieconcept1/static/movies.dart' as movies;
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/Utils.dart';
 
+import '../FadeProvider.dart';
 import '../Dimensions.dart';
 import '../provider.dart';
 
@@ -16,6 +17,7 @@ class HomeMovieName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<HomeProvider>(context, listen: true);
+    final fadeState = Provider.of<HomeFadeProvider>(context, listen: true);
 
     return Positioned(
       left: 0,
@@ -51,8 +53,8 @@ class HomeMovieName extends StatelessWidget {
                 child: Opacity(
                   opacity: opacity,
                   child: AnimatedOpacity(
-                    duration: HomeProvider.microDuration,
-                    opacity: !state.fadeOff ? 1.0 : 0.0,
+                    duration: HomeFadeProvider.microDuration,
+                    opacity: !fadeState.fadeOff ? 1.0 : 0.0,
                     child: Text(
                       entry.value.name,
                       style: TextStyle(

@@ -11,6 +11,7 @@ import 'package:invmovieconcept1/configs/App.dart';
 import 'package:invmovieconcept1/Utils.dart';
 import 'package:invmovieconcept1/UI.dart';
 
+import '../FadeProvider.dart';
 import '../Dimensions.dart';
 import '../provider.dart';
 
@@ -122,88 +123,93 @@ class HomeMovieCards extends StatelessWidget {
 
               return Container(
                 alignment: Alignment.topCenter,
-                child: CustomAnimation<double>(
-                  duration: HomeProvider.microDuration,
-                  tween: Tween(begin: 0.0, end: 1.0),
-                  control: state.fadeOff && (isPrev || isNext)
-                      ? CustomAnimationControl.PLAY
-                      : CustomAnimationControl.PLAY_REVERSE,
-                  builder: (ctx, child, animation) {
-                    double translateX = 0.0;
-                    if (isPrev) {
-                      translateX = Dimensions.cardWidth * 0.69 * -animation;
-                    }
-                    if (isNext) {
-                      translateX = Dimensions.cardWidth * 0.69 * animation;
-                    }
+                child: Consumer<HomeFadeProvider>(
+                  // selector: (_, state) => state.fadeOff,
+                  builder: (context, fadeState, child) {
+                    return CustomAnimation<double>(
+                      duration: HomeFadeProvider.microDuration,
+                      tween: Tween(begin: 0.0, end: 1.0),
+                      control: fadeState.fadeOff && (isPrev || isNext)
+                          ? CustomAnimationControl.PLAY
+                          : CustomAnimationControl.PLAY_REVERSE,
+                      builder: (ctx, child, animation) {
+                        double translateX = 0.0;
+                        if (isPrev) {
+                          translateX = Dimensions.cardWidth * 0.69 * -animation;
+                        }
+                        if (isNext) {
+                          translateX = Dimensions.cardWidth * 0.69 * animation;
+                        }
 
-                    return Transform(
-                      origin: Offset(
-                        animations[AnimationMap.offsetX],
-                        Dimensions.cardHeight,
-                      ),
-                      transform: Matrix4.rotationZ(
-                        animations[AnimationMap.min2max] *
-                            0.33 *
-                            (App.isLtr ? -1 : 1),
-                      )
-                        ..scale(
-                          animations[AnimationMap.scaleBase],
-                          animations[AnimationMap.scaleBase],
-                        )
-                        ..translate(translateX),
-                      child: GestureDetector(
-                        onTap: () async {
-                          if (index == state.activeMovieIndex) {
-                            state.setFade(true);
-                            await 200.milliseconds.delay;
-                            await Navigator.of(context).pushNamed(
-                              "movieDetail",
-                              arguments: movie,
-                            );
-                            await 300.milliseconds.delay;
-                            state.setFade(false);
-                          }
-                        },
-                        child: Hero(
-                          tag: movie.name,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(24.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 10,
-                                  offset: Offset(0, 8),
-                                  color: Colors.black.withOpacity(0.3),
-                                  spreadRadius:
-                                      animations[AnimationMap.min2min] * 1,
-                                )
-                              ],
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(24.0),
+                        return Transform(
+                          origin: Offset(
+                            animations[AnimationMap.offsetX],
+                            Dimensions.cardHeight,
+                          ),
+                          transform: Matrix4.rotationZ(
+                            animations[AnimationMap.min2max] *
+                                0.33 *
+                                (App.isLtr ? -1 : 1),
+                          )
+                            ..scale(
+                              animations[AnimationMap.scaleBase],
+                              animations[AnimationMap.scaleBase],
+                            )
+                            ..translate(translateX),
+                          child: GestureDetector(
+                            onTap: () async {
+                              if (index == state.activeMovieIndex) {
+                                fadeState.setFade(true);
+                                await 200.milliseconds.delay;
+                                await Navigator.of(context).pushNamed(
+                                  "movieDetail",
+                                  arguments: movie,
+                                );
+                                await 300.milliseconds.delay;
+                                fadeState.setFade(false);
+                              }
+                            },
+                            child: Hero(
+                              tag: movie.name,
                               child: Container(
-                                height: Dimensions.cardHeight,
-                                width: Dimensions.cardWidth,
-                                child: Transform(
-                                  origin: Offset(
-                                    Dimensions.cardWidth / 2,
-                                    Dimensions.cardHeight / 2,
-                                  ),
-                                  transform: Matrix4.identity()
-                                    ..scale(
-                                      animations[AnimationMap.scaleImage],
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(24.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 10,
+                                      offset: Offset(0, 8),
+                                      color: Colors.black.withOpacity(0.3),
+                                      spreadRadius:
+                                          animations[AnimationMap.min2min] * 1,
+                                    )
+                                  ],
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(24.0),
+                                  child: Container(
+                                    height: Dimensions.cardHeight,
+                                    width: Dimensions.cardWidth,
+                                    child: Transform(
+                                      origin: Offset(
+                                        Dimensions.cardWidth / 2,
+                                        Dimensions.cardHeight / 2,
+                                      ),
+                                      transform: Matrix4.identity()
+                                        ..scale(
+                                          animations[AnimationMap.scaleImage],
+                                        ),
+                                      child: Image.asset(
+                                        movie.image,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                                  child: Image.asset(
-                                    movie.image,
-                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     );
                   },
                 ),

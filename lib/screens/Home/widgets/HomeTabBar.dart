@@ -6,6 +6,7 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 import 'package:invmovieconcept1/UI.dart';
 
+import '../FadeProvider.dart';
 import '../provider.dart';
 
 class HomeTabBar extends StatefulWidget {
@@ -29,6 +30,7 @@ class _HomeTabBarState extends State<HomeTabBar>
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<HomeProvider>(context);
+    final fadeState = Provider.of<HomeFadeProvider>(context, listen: true);
 
     return Positioned(
       left: AppDimensions.padding * 1.5,
@@ -36,7 +38,7 @@ class _HomeTabBarState extends State<HomeTabBar>
       top: UI.mediaQuery().padding.top + 16 + (AppDimensions.padding * 4),
       child: AnimatedOpacity(
         duration: Duration(milliseconds: 280),
-        opacity: !state.fadeOff ? 1.0 : 0.0,
+        opacity: !fadeState.fadeOff ? 1.0 : 0.0,
         child: TabBar(
           indicator: null,
           isScrollable: true,

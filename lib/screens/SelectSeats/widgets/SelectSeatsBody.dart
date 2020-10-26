@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/models/MovieTicket.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
-import 'package:tuple/tuple.dart';
 
 import 'package:invmovieconcept1/models/MovieObject.dart';
 

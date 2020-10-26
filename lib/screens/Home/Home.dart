@@ -16,6 +16,7 @@ import 'widgets/HomeBannerAd.dart';
 import 'widgets/HomeHeader.dart';
 import 'widgets/HomeTabBar.dart';
 
+import 'FadeProvider.dart';
 import 'Dimensions.dart';
 import 'provider.dart';
 
@@ -29,8 +30,11 @@ class HomeScreen extends StatelessWidget {
 
     return Screen(
       drawer: HomeDrawer(),
-      child: ChangeNotifierProvider<HomeProvider>(
-        create: (_) => HomeProvider(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => HomeProvider()),
+          ChangeNotifierProvider(create: (_) => HomeFadeProvider()),
+        ],
         child: SingleChildScrollView(
           child: Container(
             height: Dimensions.containerHeight,

@@ -33,7 +33,11 @@ class _ScreenRevealAvatarWithPunchHoleState
   }
 
   Future<void> initAsync() async {
-    await 2.seconds.delay;
+    await 1400.milliseconds.delay;
+
+    if (!this.mounted) {
+      return;
+    }
     this.setState(() {
       this.hide = true;
     });

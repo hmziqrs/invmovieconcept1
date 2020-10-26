@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/UI.dart';
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
-import 'package:invmovieconcept1/screens/Home/provider.dart';
 import 'package:provider/provider.dart';
+
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/UI.dart';
+
+import '../FadeProvider.dart';
 
 class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final y = UI.mediaQuery().padding.top;
-    return Selector<HomeProvider, bool>(
+    return Selector<HomeFadeProvider, bool>(
         selector: (ctx, state) => state.fadeOff,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,12 +39,12 @@ class HomeHeader extends StatelessWidget {
           return AnimatedPositioned(
             left: 0,
             right: 0,
-            duration: HomeProvider.microDuration,
+            duration: HomeFadeProvider.microDuration,
             top: !fadeOff ? y : -(y + AppDimensions.padding * 3),
             child: AnimatedOpacity(
               child: child,
               opacity: !fadeOff ? 1.0 : 0.0,
-              duration: HomeProvider.microDuration,
+              duration: HomeFadeProvider.microDuration,
             ),
           );
         });

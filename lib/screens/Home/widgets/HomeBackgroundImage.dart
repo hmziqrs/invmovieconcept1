@@ -69,78 +69,85 @@ class HomeBackgroundImage extends StatelessWidget {
           height: Dimensions.bgHeight,
           child: Stack(
             fit: StackFit.expand,
-            children: [
-              ...movies.list.asMap().entries.map(
-                (movie) {
-                  final index = movie.key;
+            children: movies.list.asMap().entries.map(
+              (movie) {
+                final index = movie.key;
+                // Optimization
+                final prevCheck = state.activeMovieIndex > 1 &&
+                    index < state.activeMovieIndex - 1;
+                final nextCheck =
+                    state.activeMovieIndex < movies.list.length - 1 &&
+                        index > state.activeMovieIndex + 1;
+                if (prevCheck || nextCheck) {
+                  return SizedBox();
+                }
 
-                  final parallax = Utils.rangeMap(
-                    state.offset,
-                    (index - 1) * this.scrollable,
-                    (index) * this.scrollable,
-                    0.0,
-                    1.0,
-                    safe: true,
-                  );
+                final parallax = Utils.rangeMap(
+                  state.offset,
+                  (index - 1) * this.scrollable,
+                  (index) * this.scrollable,
+                  0.0,
+                  1.0,
+                  safe: true,
+                );
 
-                  double scale = Utils.rangeL2LMap(
-                    state.offset,
-                    (index - 1) * this.scrollable,
-                    (index) * this.scrollable,
-                    (index + 1) * this.scrollable,
-                    1,
-                    0.0,
-                    1,
-                  );
+                double scale = Utils.rangeL2LMap(
+                  state.offset,
+                  (index - 1) * this.scrollable,
+                  (index) * this.scrollable,
+                  (index + 1) * this.scrollable,
+                  1,
+                  0.0,
+                  1,
+                );
 
-                  double cScale = (scale * -0.6) + 1.125;
-                  double radiusFraction = parallax;
+                double cScale = (scale * -0.6) + 1.125;
+                double radiusFraction = parallax;
 
-                  if (index == 0 && state.offset < 0.0) {
-                    radiusFraction = 1.0;
-                  }
+                if (index == 0 && state.offset < 0.0) {
+                  radiusFraction = 1.0;
+                }
 
-                  final safeParallax = this.safeParallax(index, parallax);
+                final safeParallax = this.safeParallax(index, parallax);
 
-                  double offsetX = this.getOffsetX(safeParallax);
-                  double offsetY = this.getOffsetY(safeParallax);
+                double offsetX = this.getOffsetX(safeParallax);
+                double offsetY = this.getOffsetY(safeParallax);
 
-                  return ClipPath(
-                    clipper: CircularRevealClipper(
-                      fraction: radiusFraction,
-                      centerOffset: Offset(
-                        offsetX,
-                        offsetY,
-                      ),
-                      minRadius: 0,
-                      maxRadius: this.maxRadius(index, safeParallax),
+                return ClipPath(
+                  clipper: CircularRevealClipper(
+                    fraction: radiusFraction,
+                    centerOffset: Offset(
+                      offsetX,
+                      offsetY,
                     ),
-                    child: Transform(
-                      origin: Offset(
-                        AppDimensions.containerWidth / 2,
-                        Dimensions.bgHeight / 2,
+                    minRadius: 0,
+                    maxRadius: this.maxRadius(index, safeParallax),
+                  ),
+                  child: Transform(
+                    origin: Offset(
+                      AppDimensions.containerWidth / 2,
+                      Dimensions.bgHeight / 2,
+                    ),
+                    transform: Matrix4.rotationZ(scale * 0.66)
+                      ..scale(
+                        cScale,
+                        cScale,
                       ),
-                      transform: Matrix4.rotationZ(scale * 0.66)
-                        ..scale(
-                          cScale,
-                          cScale,
-                        ),
-                      child: Container(
-                        child: Image.asset(
-                          movie.value.image,
-                          fit: BoxFit.cover,
-                        ),
-                        foregroundDecoration: BoxDecoration(
-                          color: HomeTheme.homeImageBg.withOpacity(
-                            (parallax * HomeTheme.homeImageBgOpacity),
-                          ),
+                    child: Container(
+                      child: Image.asset(
+                        movie.value.image,
+                        fit: BoxFit.cover,
+                      ),
+                      foregroundDecoration: BoxDecoration(
+                        color: HomeTheme.homeImageBg.withOpacity(
+                          (parallax * HomeTheme.homeImageBgOpacity),
                         ),
                       ),
                     ),
-                  );
-                },
-              ).toList(),
-            ],
+                  ),
+                );
+              },
+            ).toList(),
           ),
         ),
       ),
