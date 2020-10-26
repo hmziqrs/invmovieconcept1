@@ -27,6 +27,7 @@ jobs:
           flutter config --enable-linux-desktop
           flutter config --no-enable-android
           flutter pub get
+          dart ./scripts/splitVectorIcons.dart
           flutter clean
           flutter build linux --release
           cd build/linux/release
@@ -57,6 +58,7 @@ jobs:
           flutter config --enable-web
           flutter config --no-enable-android
           flutter pub get
+          dart ./scripts/splitVectorIcons.dart
           flutter build web -t lib/main.web.dart --release
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v1.3.0
@@ -86,7 +88,10 @@ jobs:
       - run: |
           cd app
           flutter pub get
-          flutter build apk -t lib/main.mobile.dart --release
+          dart ./scripts/splitVectorIcons.dart
+          flutter clean
+          flutter pub get
+          flutter build apk -t lib/main.mobile.dart
       - name: Create Android Release
         uses: ncipollo/release-action@v1
         with:
@@ -114,6 +119,7 @@ jobs:
           flutter config --no-enable-android
           dart scripts/mac.pub.dart
           flutter pub get
+          dart ./scripts/splitVectorIcons.dart
           flutter build macos -v --release 
           cd build/macos/Build/Products/Release
           ditto -c -k --sequesterRsrc --keepParent invmovieconcept1.app macos-release.zip
@@ -142,6 +148,7 @@ jobs:
           flutter config --enable-windows-desktop
           flutter config --no-enable-android
           flutter pub get
+          dart .\scripts\splitVectorIcons.dart
           flutter build windows --release
           cd build\windows\runner
           Compress-Archive -Path Release -DestinationPath windows-release.zip

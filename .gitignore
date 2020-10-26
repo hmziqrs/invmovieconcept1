@@ -41,6 +41,6 @@ app.*.symbols
 app.*.map.json
 
 # 
-.vscode
 .firebase
+.vscode/launch.json
 pubspec.tmp

@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.39.17"
+  animate_do:
+    dependency: "direct main"
+    description:
+      name: animate_do
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.7.3"
   archive:
     dependency: transitive
     description:
@@ -43,6 +50,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0-nullsafety"
+  barcode:
+    dependency: "direct main"
+    description:
+      name: barcode
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.17.1"
+  barcode_widget:
+    dependency: "direct main"
+    description:
+      name: barcode_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -113,13 +134,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.2"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.3"
   dart_style:
     dependency: transitive
     description:
@@ -127,6 +141,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.6"
+  dotted_border:
+    dependency: "direct main"
+    description:
+      name: dotted_border
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   emojis:
     dependency: "direct main"
     description:
@@ -228,6 +249,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_icons:
+    dependency: "direct main"
+    description:
+      name: flutter_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -388,6 +416,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.3"
+  page_transition:
+    dependency: "direct main"
+    description:
+      name: page_transition
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.7+2"
   path:
     dependency: "direct dev"
     description:
@@ -395,6 +430,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1+1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   path_provider_linux:
     dependency: transitive
     description:
@@ -486,6 +535,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.4"
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.0"
   quiver:
     dependency: transitive
     description:
@@ -521,6 +577,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.2"
+  share:
+    dependency: "direct main"
+    description:
+      name: share
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.5+2"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -646,7 +709,7 @@ packages:
     source: hosted
     version: "1.1.0-nullsafety"
   supercharged:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: supercharged
       url: "https://pub.dartlang.org"
@@ -701,6 +764,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  touchable_opacity:
+    dependency: "direct main"
+    description:
+      name: touchable_opacity
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2"
   translator:
     dependency: "direct dev"
     description:
@@ -708,6 +778,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.4"
+  tuple:
+    dependency: "direct main"
+    description:
+      name: tuple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   typed_data:
     dependency: transitive
     description:
@@ -814,7 +891,7 @@ packages:
     source: hosted
     version: "0.1.2"
   yaml:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: yaml
       url: "https://pub.dartlang.org"

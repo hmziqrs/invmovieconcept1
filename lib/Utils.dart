@@ -62,7 +62,7 @@ class Utils {
 
   static launchUrl(link) async {
     try {
-      if (Platform.isWindows) {
+      if (Platform.isWindows || Platform.isLinux) {
         final result = await openUrl(link);
         return result.exitCode != 0;
       } else {
@@ -73,6 +73,7 @@ class Utils {
         return safeCheck;
       }
     } catch (e) {
+      print(e);
       return false;
     }
   }

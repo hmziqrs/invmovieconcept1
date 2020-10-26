@@ -46,12 +46,10 @@ class ScreenSettingsModalBody extends StatelessWidget {
   ScreenSettingsModalBody({
     @required this.onClose,
     @required this.isModalOpen,
-    @required this.scrollController,
   });
 
   final VoidCallback onClose;
   final bool isModalOpen;
-  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +68,6 @@ class ScreenSettingsModalBody extends StatelessWidget {
                 return true;
               },
               child: ListView(
-                controller: this.scrollController,
-                physics: isModalOpen
-                    ? AlwaysScrollableScrollPhysics()
-                    : NeverScrollableScrollPhysics(),
                 children: [
                   Container(height: AppDimensions.padding * 2),
                   Row(

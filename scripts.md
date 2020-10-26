@@ -1,3 +1,7 @@
+# Generate localizations
+
+dart scripts/genIntlJson.dart && dart scripts/genIntlKeys.dart && flutter pub get
+
 # Android bundle scripts
 
 flutter build appbundle -t lib/main.mobile.dart

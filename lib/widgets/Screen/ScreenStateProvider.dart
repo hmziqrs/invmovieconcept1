@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 
-import 'package:invmovieconcept1/UI.dart';
-
 class ScreenStateProvider extends ChangeNotifier {
   bool _isSettingsOpen = false;
-
-  double _baseOffset = UI.height - 20;
+  bool _isSettingsMounted = false;
 
   bool get isSettingsOpen => this._isSettingsOpen;
-  double get baseOffset => this._baseOffset;
-
-  void onLayoutChange() {
-    this._baseOffset = UI.height - 20;
-  }
+  bool get isSettingsMounted => this._isSettingsMounted;
 
   set isSettingsOpen(bool flag) {
+    if (flag == this._isSettingsOpen) {
+      return;
+    }
     this._isSettingsOpen = flag;
+    if (flag) {
+      this._isSettingsMounted = flag;
+    }
+    notifyListeners();
+  }
+
+  set isSettingsMounted(bool flag) {
+    if (flag == this._isSettingsMounted) {
+      return;
+    }
+    this._isSettingsMounted = flag;
     notifyListeners();
   }
 }

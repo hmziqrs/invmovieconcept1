@@ -1,10 +1,9 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_animations/simple_animations.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
-import 'package:invmovieconcept1/Utils.dart';
 import 'package:invmovieconcept1/UI.dart';
 
 import 'ScreenSettingsModalBody.dart';
@@ -14,90 +13,26 @@ class ScreenSettingsModal extends StatefulWidget {
   ScreenSettingsModal({
     Key key,
     @required this.isSettingsOpen,
+    @required this.isSettingsMounted,
   }) : super(key: key);
 
   final bool isSettingsOpen;
+  final bool isSettingsMounted;
 
   @override
   ScreenSettingsModalState createState() => ScreenSettingsModalState();
 }
 
-class ScreenSettingsModalState extends State<ScreenSettingsModal>
-    with AnimationMixin {
-  Animation<double> animation;
-  double offset = 0.0;
-  ScrollController scrollController = ScrollController();
-
-  @override
-  void initState() {
-    this.animation = Tween(begin: 0.0, end: 1.0).animate(this.controller);
-    this.controller.duration = Duration(milliseconds: 320);
-    this.controller.addListener(() {
-      setState(() {
-        this.offset = this.animation.value;
-      });
-    });
-
-    super.initState();
-  }
-
-  @override
-  void didUpdateWidget(covariant ScreenSettingsModal oldWidget) {
-    if (!oldWidget.isSettingsOpen && widget.isSettingsOpen) {
-      this.controller.play();
-    }
-    if (oldWidget.isSettingsOpen && !widget.isSettingsOpen) {
-      this.controller.reverse();
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
+class ScreenSettingsModalState extends State<ScreenSettingsModal> {
   ScreenStateProvider getState([listen = false]) =>
       Provider.of<ScreenStateProvider>(context, listen: listen);
 
   void openModal() {
-    if (this.animation.value != 0.0) {
-      return;
-    }
-    this.scrollController.jumpTo(0.0);
     this.getState().isSettingsOpen = true;
   }
 
   void closeModal() {
-    if (this.animation.value != 1.0) {
-      return;
-    }
-
     this.getState().isSettingsOpen = false;
-  }
-
-  void onVerticalDragUpdate(double offset) {
-    if (this.animation.value != 1.0 && this.animation.value != 0.0) {
-      return;
-    }
-
-    setState(() {
-      this.offset =
-          (this.offset - (offset / this.getState().baseOffset)).clamp(0.0, 1.0);
-    });
-  }
-
-  void onVerticalDragEnd() {
-    if (!widget.isSettingsOpen) {
-      if (this.offset > 0.20) {
-        this.controller.forward(from: this.offset);
-        this.getState().isSettingsOpen = true;
-      } else {
-        this.controller.reverse(from: this.offset);
-      }
-    } else {
-      if (this.offset < 0.80) {
-        this.controller.reverse(from: this.offset);
-        this.getState().isSettingsOpen = false;
-      } else {
-        this.controller.forward(from: this.offset);
-      }
-    }
   }
 
   Future<bool> onWillPop() async {
@@ -105,16 +40,6 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
       this.closeModal();
     }
     return !widget.isSettingsOpen;
-  }
-
-  bool onSizeChangeNotification(notification) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Future.delayed(Duration.zero, () {
-        this.getState().onLayoutChange();
-        setState(() {});
-      });
-    });
-    return true;
   }
 
   Color getBackgroundColor(BuildContext context) {
@@ -126,69 +51,37 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal>
 
   @override
   Widget build(BuildContext context) {
-    final state = this.getState();
-
-    final topPosition = Utils.rangeMap(
-      this.offset,
-      0.0,
-      1.0,
-      state.baseOffset,
-      0.0,
-    );
-
-    return Positioned(
-      left: 0,
-      right: 0,
-      top: topPosition,
+    return Positioned.fill(
+      top: !widget.isSettingsMounted ? UI.height - 20 : 0.0,
       child: GestureDetector(
-        onDoubleTap: () => !widget.isSettingsOpen ? this.openModal() : null,
-        onVerticalDragEnd: (event) => this.onVerticalDragEnd(),
-        onVerticalDragUpdate: (event) => this.onVerticalDragUpdate(
-          event.delta.dy,
-        ),
-        child: NotificationListener<SizeChangedLayoutNotification>(
-          onNotification: this.onSizeChangeNotification,
-          child: NotificationListener<ScrollNotification>(
-            onNotification: (notification) {
-              if (notification.runtimeType == OverscrollNotification) {
-                final OverscrollNotification parsed = notification;
-                if (parsed.dragDetails == null) {
-                  return true;
-                }
-                final dy = parsed.dragDetails.delta.dy;
-                this.onVerticalDragUpdate(dy);
-              }
-              if (notification.runtimeType == ScrollEndNotification) {
-                this.onVerticalDragEnd();
-              }
-              return false;
-            },
-            child: WillPopScope(
-              onWillPop: this.onWillPop,
-              child: SizeChangedLayoutNotifier(
-                child: ClipRect(
+        onDoubleTap: this.openModal,
+        child: WillPopScope(
+          onWillPop: this.onWillPop,
+          child: ClipRect(
+            child: Container(
+              child: BackdropFilter(
+                filter: ui.ImageFilter.blur(
+                  sigmaX: 15,
+                  sigmaY: 15,
+                ),
+                child: AnimatedOpacity(
+                  onEnd: () async {
+                    await 200.milliseconds.delay;
+                    if (!widget.isSettingsOpen) {
+                      this.getState().isSettingsMounted = false;
+                    }
+                  },
+                  duration: 400.milliseconds,
+                  opacity: widget.isSettingsOpen ? 1.0 : 0.0,
                   child: Container(
-                    child: BackdropFilter(
-                      filter: ui.ImageFilter.blur(
-                        sigmaX: 15,
-                        sigmaY: 15,
-                      ),
-                      child: Opacity(
-                        // opacity: 1.0,
-                        opacity: (this.offset * 1.8).clamp(0.0, 1.0),
-                        child: Container(
-                          alignment: Alignment.topCenter,
-                          color: this.getBackgroundColor(context),
-                          child: Container(
-                            height: UI.height,
-                            width: AppDimensions.containerWidth,
-                            child: ScreenSettingsModalBody(
-                              onClose: this.closeModal,
-                              isModalOpen: state.isSettingsOpen,
-                              scrollController: this.scrollController,
-                            ),
-                          ),
-                        ),
+                    alignment: Alignment.topCenter,
+                    color: this.getBackgroundColor(context),
+                    child: Container(
+                      height: UI.height,
+                      width: AppDimensions.containerWidth,
+                      child: ScreenSettingsModalBody(
+                        onClose: this.closeModal,
+                        isModalOpen: widget.isSettingsOpen,
                       ),
                     ),
                   ),

@@ -3,6 +3,8 @@ import 'package:invmovieconcept1/AppLocalizations.dart';
 
 import 'AppDimensions.dart';
 import 'TextStyles.dart';
+import 'CommonProps.dart';
+import 'AppTheme.dart';
 
 class App {
   static BuildContext ctx;
@@ -11,7 +13,9 @@ class App {
 
   static init(BuildContext context) {
     AppDimensions.init(context);
+    AppTheme.init(context);
     TextStyles.init();
+    CommonProps.init();
     App.ctx = context;
 
     isLtr = Directionality.of(context) == TextDirection.ltr;

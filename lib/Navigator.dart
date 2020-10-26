@@ -1,14 +1,24 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:invmovieconcept1/screens/SplashScreen/Splash.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:invmovieconcept1/providers/Reservation.dart';
+import 'package:invmovieconcept1/screens/SelectSeats/SelectSeats.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 import 'configs/Theme.dart' as theme;
 
 import 'providers/AppProvider.dart';
 
-import 'screens/HomeScreen/Home.dart';
+import 'screens/AboutDeveloper/AboutDeveloper.dart';
+import 'screens/AboutDesigner/AboutDesigner.dart';
+import 'screens/MovieDetail/MovieDetail.dart';
+import 'screens/Reservation/Reservation.dart';
+import 'screens/MyMovies/MyMovies.dart';
+import 'screens/Download/Download.dart';
+import 'screens/Search/Search.dart';
+import 'screens/Splash/Splash.dart';
+import 'screens/Home/Home.dart';
 
 import 'AppLocalizations.dart';
 
@@ -30,11 +40,14 @@ class AppNavigator extends StatelessWidget {
           this.navigator.currentState.pop();
         }
       },
-      child: ChangeNotifierProvider<AppProvider>(
-        create: (_) => AppProvider(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => AppProvider()),
+          ChangeNotifierProvider(create: (_) => ReservationProvider()),
+        ],
         child: Consumer<AppProvider>(
           builder: (context, value, _) {
-            return MaterialChlid(
+            return MaterialChild(
               state: value,
               observers: this.observers,
               navigatorKey: this.navigator,
@@ -46,8 +59,8 @@ class AppNavigator extends StatelessWidget {
   }
 }
 
-class MaterialChlid extends StatelessWidget {
-  MaterialChlid({
+class MaterialChild extends StatelessWidget {
+  MaterialChild({
     @required this.navigatorKey,
     @required this.observers,
     @required this.state,
@@ -58,10 +71,6 @@ class MaterialChlid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      this.state.initApp();
-    });
-
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Stack(
@@ -89,24 +98,54 @@ class MaterialChlid extends StatelessWidget {
               return supportedLocales.first;
             },
             // Theme
-            themeMode: this.state.themeMode,
-            darkTheme: theme.base.copyWith(
-              brightness: Brightness.dark,
-              scaffoldBackgroundColor: theme.darkBackground,
-              textTheme: theme.base.textTheme.copyWith(
-                bodyText1: theme.base.textTheme.bodyText1.copyWith(
-                  color: Colors.white,
-                ),
-              ),
-              iconTheme: theme.base.iconTheme.copyWith(
-                color: Colors.white,
-              ),
-            ),
             theme: theme.base,
+            darkTheme: theme.baseDark,
+            themeMode: this.state.themeMode,
             // Routes
-            home: HomeScreen(),
+            initialRoute: "home",
+            onGenerateRoute: (settings) {
+              switch (settings.name) {
+                case 'search':
+                  return PageTransition(
+                    settings: settings,
+                    child: SearchScreen(),
+                    type: PageTransitionType.fade,
+                  );
+                  break;
+                case 'movieDetail':
+                  return PageTransition(
+                    settings: settings,
+                    child: MovieDetailScreen(),
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 700),
+                  );
+                  break;
+                case 'selectSeats':
+                  return PageTransition(
+                    settings: settings,
+                    child: SelectSeatsScreen(),
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 700),
+                  );
+                  break;
+                case 'reservation':
+                  return PageTransition(
+                    settings: settings,
+                    child: ReservationScreen(),
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 700),
+                  );
+                  break;
+                default:
+                  return null;
+              }
+            },
             routes: <String, WidgetBuilder>{
               "home": (ctx) => HomeScreen(),
+              "download": (ctx) => DownloadScreen(),
+              "myMovies": (ctx) => MyMoviesScreen(),
+              "aboutDesigner": (ctx) => AboutDesignerScreen(),
+              "aboutDeveloper": (ctx) => AboutDeveloperScreen(),
             },
           ),
           SplashScreen(loading: this.state.loading),

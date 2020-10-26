@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:invmovieconcept1/native/Cache.dart';
 
 final themeMap = {
   "system": ThemeMode.system,
@@ -7,52 +7,71 @@ final themeMap = {
   "light": ThemeMode.light,
 };
 
+enum CacheKeys {
+  theme,
+  locale,
+}
+
 class AppProvider extends ChangeNotifier {
+  AppProvider() {
+    this._initAsync();
+  }
+
   static List<Locale> locales = [
     Locale('en', 'US'),
     Locale('zh', 'CN'),
     Locale('ar', 'SA'),
   ];
-  SharedPreferences _prefs;
 
   Locale _activeLocale;
 
   bool _loading = true;
-  bool _init = false;
   ThemeMode _themeMode = ThemeMode.system;
 
   Locale get activeLocale => this._activeLocale;
   bool get loading => this._loading;
-  bool get init => this._init;
   ThemeMode get themeMode => this._themeMode;
 
   set activeLocale(Locale newLocale) {
     this._activeLocale = newLocale;
     notifyListeners();
+
+    Cache.ins.setStringList(
+      CacheKeys.locale.toString(),
+      newLocale == null ? [] : newLocale.toString().split("_"),
+    );
   }
 
-  void initApp() {
-    if (this._init) {
-      return;
-    }
-    this._init = true;
-    notifyListeners();
-    this._initTheme();
-  }
-
-  void _initTheme() async {
+  void _initAsync() async {
     await Future.delayed(Duration(milliseconds: 100));
-    this._prefs = await SharedPreferences.getInstance();
-    final theme = this._prefs.getString("theme");
-    this._themeMode = themeMap[theme];
-    this._loading = false;
+
+    // if (Cache.ins == null) {
+    //   Cache.ins = await SharedPreferences.getInstance();
+    // }
+
+    final cachedTheme = Cache.ins.getString(CacheKeys.theme.toString());
+    this._themeMode =
+        cachedTheme == null ? themeMap["system"] : themeMap[cachedTheme];
+
+    final cachedLocale = Cache.ins.getStringList(CacheKeys.locale.toString());
+    if (cachedLocale != null && cachedLocale.isNotEmpty) {
+      this._activeLocale = Locale(cachedLocale.first, cachedLocale.last);
+    }
+
     await Future.delayed(Duration(milliseconds: 1000));
+    this._loading = false;
     notifyListeners();
   }
 
   void setTheme(ThemeMode newTheme) {
+    if (this._themeMode == newTheme) {
+      return;
+    }
     this._themeMode = newTheme;
     notifyListeners();
-    this._prefs.setString("theme", newTheme.toString().split(".").last);
+    Cache.ins.setString(
+      CacheKeys.theme.toString(),
+      newTheme.toString().split(".").last,
+    );
   }
 }

@@ -62,7 +62,8 @@ class UI {
     xxlg = size.width > 1700;
   }
 
-  static MediaQueryData mediaQuery() => _mediaQueryData;
+  static MediaQueryData mediaQuery([BuildContext ctx]) =>
+      (ctx != null ? MediaQuery.of(ctx) : _mediaQueryData);
 
-  static Size getSize() => _mediaQueryData.size;
+  static Size getSize([BuildContext ctx]) => mediaQuery(ctx).size;
 }
