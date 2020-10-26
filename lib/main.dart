@@ -16,6 +16,7 @@ void mainTest(NavigatorObserver observer) {
 }
 
 void _main(NavigatorObserver observer) async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Cache.init();
 
   if (Platform.isWindows || Platform.isLinux) {

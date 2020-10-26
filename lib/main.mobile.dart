@@ -13,12 +13,12 @@ import 'configs/App.dart';
 import 'Navigator.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Cache.init();
 
   App.showAds = false;
 
   if (App.showAds) {
-    WidgetsFlutterBinding.ensureInitialized();
     Admob.initialize(Ads.getAppId());
   }
 
