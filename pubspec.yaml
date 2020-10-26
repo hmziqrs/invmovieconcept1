@@ -28,7 +28,7 @@ dependencies:
   page_transition: 1.1.7+2
   simple_animations: 2.2.2
 
-  share: 0.6.5+2
+  share: 0.6.5
   open_url: 1.0.1
   provider: 4.3.2+2
   url_launcher: 5.4.1
