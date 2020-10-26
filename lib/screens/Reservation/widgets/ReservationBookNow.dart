@@ -1,6 +1,8 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/models/MovieTicket.dart';
+import 'package:invmovieconcept1/providers/Reservation.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -10,12 +12,16 @@ import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
-import '../Dimensions.dart';
 import '../messages/keys.dart';
+import '../Dimensions.dart';
 
 class ReservationBookNow extends StatelessWidget {
   onTap(BuildContext context) async {
-    final controller = await showModalBottomSheet(
+    final MovieTicket ticket = ModalRoute.of(context).settings.arguments;
+
+    ReservationProvider.state(context).add(ticket);
+
+    await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
@@ -83,7 +89,8 @@ class ReservationBookNow extends StatelessWidget {
                                     },
                                   );
                                   if (button != ReservationScreenMessages.ok) {
-                                    Navigator.pushNamed(context, "download");
+                                    await 50.milliseconds.delay;
+                                    Navigator.pushNamed(context, "myMovies");
                                   }
                                 },
                                 behavior: HitTestBehavior.translucent,

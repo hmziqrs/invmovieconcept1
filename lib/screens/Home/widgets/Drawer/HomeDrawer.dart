@@ -30,7 +30,9 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
         break;
       case data.NavigationKey.download:
         Navigator.pushNamed(context, "download");
-
+        break;
+      case data.NavigationKey.movies:
+        Navigator.pushNamed(context, "myMovies");
         break;
       case data.NavigationKey.settings:
         Provider.of<ScreenStateProvider>(context, listen: false)

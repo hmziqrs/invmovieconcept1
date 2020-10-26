@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:invmovieconcept1/native/Cache.dart';
 
 final themeMap = {
   "system": ThemeMode.system,
@@ -22,7 +22,6 @@ class AppProvider extends ChangeNotifier {
     Locale('zh', 'CN'),
     Locale('ar', 'SA'),
   ];
-  SharedPreferences _prefs;
 
   Locale _activeLocale;
 
@@ -37,24 +36,24 @@ class AppProvider extends ChangeNotifier {
     this._activeLocale = newLocale;
     notifyListeners();
 
-    this._prefs.setStringList(
-          CacheKeys.locale.toString(),
-          newLocale == null ? [] : newLocale.toString().split("_"),
-        );
+    Cache.ins.setStringList(
+      CacheKeys.locale.toString(),
+      newLocale == null ? [] : newLocale.toString().split("_"),
+    );
   }
 
   void _initAsync() async {
     await Future.delayed(Duration(milliseconds: 100));
 
-    if (this._prefs == null) {
-      this._prefs = await SharedPreferences.getInstance();
-    }
+    // if (Cache.ins == null) {
+    //   Cache.ins = await SharedPreferences.getInstance();
+    // }
 
-    final cachedTheme = this._prefs.getString(CacheKeys.theme.toString());
+    final cachedTheme = Cache.ins.getString(CacheKeys.theme.toString());
     this._themeMode =
         cachedTheme == null ? themeMap["system"] : themeMap[cachedTheme];
 
-    final cachedLocale = this._prefs.getStringList(CacheKeys.locale.toString());
+    final cachedLocale = Cache.ins.getStringList(CacheKeys.locale.toString());
     if (cachedLocale != null && cachedLocale.isNotEmpty) {
       this._activeLocale = Locale(cachedLocale.first, cachedLocale.last);
     }
@@ -70,9 +69,9 @@ class AppProvider extends ChangeNotifier {
     }
     this._themeMode = newTheme;
     notifyListeners();
-    this._prefs.setString(
-          CacheKeys.theme.toString(),
-          newTheme.toString().split(".").last,
-        );
+    Cache.ins.setString(
+      CacheKeys.theme.toString(),
+      newTheme.toString().split(".").last,
+    );
   }
 }

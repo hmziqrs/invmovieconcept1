@@ -14,6 +14,7 @@ import 'screens/AboutDeveloper/AboutDeveloper.dart';
 import 'screens/AboutDesigner/AboutDesigner.dart';
 import 'screens/MovieDetail/MovieDetail.dart';
 import 'screens/Reservation/Reservation.dart';
+import 'screens/MyMovies/MyMovies.dart';
 import 'screens/Download/Download.dart';
 import 'screens/Search/Search.dart';
 import 'screens/Splash/Splash.dart';
@@ -142,6 +143,7 @@ class MaterialChild extends StatelessWidget {
             routes: <String, WidgetBuilder>{
               "home": (ctx) => HomeScreen(),
               "download": (ctx) => DownloadScreen(),
+              "myMovies": (ctx) => MyMoviesScreen(),
               "aboutDesigner": (ctx) => AboutDesignerScreen(),
               "aboutDeveloper": (ctx) => AboutDeveloperScreen(),
             },

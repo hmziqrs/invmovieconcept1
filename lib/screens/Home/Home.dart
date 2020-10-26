@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/providers/Reservation.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
@@ -22,6 +23,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
+
+    // This is to initialize reservations
+    ReservationProvider.state(context);
+
     return Screen(
       drawer: HomeDrawer(),
       child: ChangeNotifierProvider<HomeProvider>(

@@ -11,7 +11,7 @@ const Map strings = {
   '$scope/ok': 'Ok',
   '$scope/myMovies': 'My Movies',
   '$scope/thankYou': 'Thank You',
-  '$scope/modalDesc': '"You can check your reservations in My Movies screen""',
+  '$scope/modalDesc': 'You can check your reservations in My Movies screen',
 };
 
 main(List<String> args, SendPort port) {

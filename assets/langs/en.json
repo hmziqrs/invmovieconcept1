@@ -106,5 +106,7 @@
   "ReservationScreen/ok": "Ok",
   "ReservationScreen/myMovies": "My Movies",
   "ReservationScreen/thankYou": "Thank You",
-  "ReservationScreen/modalDesc": "\"You can check your reservations in My Movies screen\"\""
+  "ReservationScreen/modalDesc": "You can check your reservations in My Movies screen",
+  "MyMoviesScreen/myMovies": "My Movies",
+  "MyMoviesScreen/seats": "SEATS"
 }

@@ -12,18 +12,29 @@ class ReservationProvider extends ChangeNotifier {
   ]) =>
       Provider.of<ReservationProvider>(context, listen: listen);
 
-  List<MovieTicket> list;
+  List<MovieTicket> list = [];
+  bool init = false;
+  bool loading = true;
 
   ReservationProvider() {
-    this.init();
+    print("ReservationProvider");
+    this.initAsync();
   }
 
-  init() async {
+  initAsync() async {
+    if (this.init) {
+      return;
+    }
+    this.init = true;
     final rawReservations = Cache.ins.getStringList("reservations");
+    // print(rawReservations);
     if (rawReservations != null && rawReservations.isNotEmpty) {
-      final newList = rawReservations.map(
-        (e) => MovieTicket.fromJson(e),
-      );
+      final newList = rawReservations
+          .map(
+            (e) => MovieTicket.fromJson(e),
+          )
+          .toList();
+      this.loading = false;
       this.list = newList;
       this.notifyListeners();
     }
@@ -31,7 +42,7 @@ class ReservationProvider extends ChangeNotifier {
 
   add(MovieTicket ticket) async {
     final newList = [...list, ticket];
-    final listJson = newList.map((t) => t.toJson());
+    final listJson = newList.map((t) => t.toJson()).toList();
 
     await Cache.ins.setStringList("reservations", listJson);
     this.list = newList;

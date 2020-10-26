@@ -2,7 +2,7 @@ import '../../messages/keys.dart';
 
 enum NavigationKey {
   home,
-  moies,
+  movies,
   developer,
   designer,
   download,
@@ -16,7 +16,7 @@ final list = [
   },
   {
     "label": HomeScreenMessages.drawerMovies,
-    "key": NavigationKey.moies,
+    "key": NavigationKey.movies,
   },
   {
     "label": HomeScreenMessages.drawerDeveloper,
