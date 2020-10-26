@@ -55,6 +55,8 @@
   "MovieDetailScreen/castName": "اسم الزهر",
   "MyMoviesScreen/myMovies": "أفلامي",
   "MyMoviesScreen/seats": "مقاعد",
+  "MyMoviesScreen/notFound": "يوجد أفلام تم العثور عليها",
+  "MyMoviesScreen/clear": "مسح جميع الأفلام",
   "ReservationScreen/yourTicket": "تذكرتك",
   "ReservationScreen/bookNow": "احجز الآن",
   "ReservationScreen/film": "فيلم",

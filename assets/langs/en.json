@@ -108,5 +108,7 @@
   "ReservationScreen/thankYou": "Thank You",
   "ReservationScreen/modalDesc": "You can check your reservations in My Movies screen",
   "MyMoviesScreen/myMovies": "My Movies",
-  "MyMoviesScreen/seats": "SEATS"
+  "MyMoviesScreen/seats": "SEATS",
+  "MyMoviesScreen/notFound": "No Movies Found",
+  "MyMoviesScreen/clear": "Clear All movies"
 }

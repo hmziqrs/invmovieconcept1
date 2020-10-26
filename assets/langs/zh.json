@@ -55,6 +55,8 @@
   "MovieDetailScreen/castName": "饰演角色",
   "MyMoviesScreen/myMovies": "我的电影",
   "MyMoviesScreen/seats": "席位",
+  "MyMoviesScreen/notFound": "没有找到电影",
+  "MyMoviesScreen/clear": "清除所有电影",
   "ReservationScreen/yourTicket": "您的机票",
   "ReservationScreen/bookNow": "现在预订",
   "ReservationScreen/film": "电影",

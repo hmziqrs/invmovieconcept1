@@ -5,6 +5,7 @@ import 'package:invmovieconcept1/models/MovieObject.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
+import 'MovieDetailBannerAd.dart';
 import 'MDScrollPhysics.dart';
 import 'MovieDetailCast.dart';
 import 'MovieDetailDesc.dart';
@@ -55,6 +56,8 @@ class _MovieDetailBodyState extends State<MovieDetailBody> {
         physics: MDScrollPhysics(parent: BouncingScrollPhysics()),
         children: [
           MovieInfoCard(movie: widget.movie),
+          SizedBox(height: AppDimensions.padding * 1),
+          MovieDetailBannerAd(),
           SizedBox(height: AppDimensions.padding * 3),
           MovieDetailDesc(),
           SizedBox(height: AppDimensions.padding * 3),

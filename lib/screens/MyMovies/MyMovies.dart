@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
@@ -7,6 +8,7 @@ import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 import 'widgets/MyMoviesBody.dart';
 
 import 'Dimensions.dart';
+import 'provider.dart';
 
 class MyMoviesScreen extends StatelessWidget {
   @override
@@ -15,9 +17,12 @@ class MyMoviesScreen extends StatelessWidget {
 
     return Screen(
       child: Align(
-        child: Container(
-          width: AppDimensions.containerWidth,
-          child: MyMoviesBody(),
+        child: ChangeNotifierProvider<MyMoviesProvider>(
+          create: (_) => MyMoviesProvider(),
+          child: Container(
+            width: AppDimensions.containerWidth,
+            child: MyMoviesBody(),
+          ),
         ),
       ),
     );

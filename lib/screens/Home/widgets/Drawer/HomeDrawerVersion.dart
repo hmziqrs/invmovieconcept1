@@ -31,7 +31,7 @@ class HomeDrawerVersion extends StatelessWidget {
             ),
             alignment: Alignment.center,
             child: Text(
-              "${App.translate(HomeScreenMessages.version, context)} 2.0.0",
+              "${App.translate(HomeScreenMessages.version, context)} 3.0.0",
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 color: HomeTheme.text.withOpacity(0.3),

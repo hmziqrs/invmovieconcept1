@@ -77,7 +77,10 @@ class ReservationBookNow extends StatelessWidget {
                       color: AppTheme.text.withOpacity(0.1),
                     ),
                     Row(
-                      children: ["My Movies", "Ok"]
+                      children: [
+                        ReservationScreenMessages.myMovies,
+                        ReservationScreenMessages.ok,
+                      ]
                           .map(
                             (button) => Flexible(
                               child: TouchableOpacity(
@@ -102,7 +105,7 @@ class ReservationBookNow extends StatelessWidget {
                                   child: Center(
                                     child: Text(
                                       App.translate(
-                                        button.toUpperCase(),
+                                        button,
                                         context,
                                       ),
                                     ),

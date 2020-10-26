@@ -13,6 +13,8 @@ class Dimensions {
 
   static double castRadius;
 
+  static double bannerAdHeight;
+
   static init(BuildContext context) {
     App.init(context);
 
@@ -27,5 +29,9 @@ class Dimensions {
     infoIconRadius = AppDimensions.ratio * 10 + 20;
 
     castRadius = AppDimensions.ratio * 15 + 25;
+
+    if (App.showAds) {
+      bannerAdHeight = 60 + AppDimensions.padding * 4;
+    }
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
-import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
+import 'package:invmovieconcept1/configs/AppTheme.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/providers/Reservation.dart';
 
@@ -38,7 +38,13 @@ class MyMoviesBody extends StatelessWidget {
           child: RaisedButton(
             onPressed: () => state.clear(),
             color: AppTheme.primary,
-            child: Text("Clear All movies"),
+            textColor: Colors.white,
+            child: Text(
+              App.translate(
+                MyMoviesScreenMessages.clear,
+                context,
+              ),
+            ),
           ),
         ),
       );
@@ -56,7 +62,7 @@ class MyMoviesBody extends StatelessWidget {
           padding: EdgeInsets.only(top: AppDimensions.padding * 6),
           child: Center(
             child: Text(
-              "No movies found",
+              App.translate(MyMoviesScreenMessages.notFound, context),
               style: TextStyles.heading6,
             ),
           ),

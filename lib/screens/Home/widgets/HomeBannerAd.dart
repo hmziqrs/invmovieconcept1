@@ -10,7 +10,7 @@ class HomeBannerAd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!App.showAds) {
-      return Container();
+      return SizedBox();
     }
 
     return Positioned(
@@ -22,7 +22,7 @@ class HomeBannerAd extends StatelessWidget {
         height: Dimensions.bannerAdHeight,
         child: AdmobBanner(
           adSize: AdmobBannerSize.BANNER,
-          adUnitId: Ads.getHomeBannderId(),
+          adUnitId: Ads.getHomeBannerId(),
         ),
       ),
     );
