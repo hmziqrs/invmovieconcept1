@@ -11,6 +11,11 @@ import '../provider.dart';
 import 'SSReveal.dart';
 
 class SelectSeatsGrid extends StatelessWidget {
+  SelectSeatsGrid({
+    this.isReserved = false,
+  });
+  final bool isReserved;
+
   @override
   Widget build(BuildContext context) {
     return SSReveal(
@@ -51,7 +56,7 @@ class SelectSeatsGrid extends StatelessWidget {
 
                         return GestureDetector(
                           onTap: () {
-                            if (isReserved) {
+                            if (isReserved || this.isReserved) {
                               return;
                             }
                             SelectSeatsProvider.state(context).toggleSeat(

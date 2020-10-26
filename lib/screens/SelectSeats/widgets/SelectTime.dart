@@ -12,6 +12,11 @@ import '../provider.dart';
 import 'SSReveal.dart';
 
 class SelectSeatsTime extends StatelessWidget {
+  SelectSeatsTime({
+    this.isReserved = false,
+  });
+  final bool isReserved;
+
   @override
   Widget build(BuildContext context) {
     return SSReveal(
@@ -33,9 +38,14 @@ class SelectSeatsTime extends StatelessWidget {
                 final textColor = isSelected ? Colors.white : Colors.black;
 
                 return GestureDetector(
-                  onTap: () => SelectSeatsProvider.state(context).selectTime(
-                    time,
-                  ),
+                  onTap: () {
+                    if (this.isReserved) {
+                      return;
+                    }
+                    SelectSeatsProvider.state(context).selectTime(
+                      time,
+                    );
+                  },
                   child: AnimatedContainer(
                     duration: 300.milliseconds,
                     decoration: BoxDecoration(
@@ -59,7 +69,7 @@ class SelectSeatsTime extends StatelessWidget {
                               color: textColor,
                             ),
                         child: Text(
-                          DateFormat('hh:M a').format(time),
+                          DateFormat('hh:mm a').format(time),
                           style: TextStyles.heading5,
                         ),
                       ),

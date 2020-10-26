@@ -16,10 +16,15 @@ import '../provider.dart';
 import 'SSReveal.dart';
 
 class SelectSeatsBuyNow extends StatelessWidget {
+  SelectSeatsBuyNow({
+    @required this.movie,
+    this.isReserved = false,
+  });
+  final MovieObject movie;
+  final bool isReserved;
+
   @override
   Widget build(BuildContext context) {
-    final MovieObject movie = ModalRoute.of(context).settings.arguments;
-
     return Selector<SelectSeatsProvider, List<Tuple2<int, int>>>(
       selector: (context, state) => state.selectedSeats,
       builder: (context, seats, child) {
@@ -27,7 +32,8 @@ class SelectSeatsBuyNow extends StatelessWidget {
           left: 0,
           right: 0,
           duration: 300.milliseconds,
-          bottom: AppDimensions.padding * (seats.length > 0 ? 0 : -12),
+          bottom: AppDimensions.padding *
+              (seats.length > 0 && !this.isReserved ? 0 : -12),
           child: SSReveal(
             delay: 1,
             child: Container(
@@ -72,15 +78,16 @@ class SelectSeatsBuyNow extends StatelessWidget {
                                 }
                                 final state =
                                     SelectSeatsProvider.state(context);
-                                final ticket = MovieTicket(
-                                  movie: movie,
-                                  seats: state.selectedSeats,
-                                  time: state.selectedDay.add(
-                                    Duration(
-                                      hours: state.selectedTime.hour,
-                                      minutes: state.selectedTime.minute,
-                                    ),
+                                final time = state.selectedDay.add(
+                                  Duration(
+                                    hours: state.selectedTime.hour,
                                   ),
+                                );
+                                print(time);
+                                final ticket = MovieTicket(
+                                  movie: this.movie,
+                                  seats: state.selectedSeats,
+                                  time: time,
                                 );
                                 Navigator.pushNamed(
                                   context,

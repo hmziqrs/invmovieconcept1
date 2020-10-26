@@ -10,9 +10,14 @@ import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'SSReveal.dart';
 
 class SelectSeatsHeader extends StatelessWidget {
+  SelectSeatsHeader({
+    @required this.movie,
+  });
+
+  final MovieObject movie;
+
   @override
   Widget build(BuildContext context) {
-    final MovieObject movie = ModalRoute.of(context).settings.arguments;
     final r = Random();
     final H = 1 + r.nextInt(1);
     final M = r.nextInt(45);
@@ -22,7 +27,7 @@ class SelectSeatsHeader extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(width: AppDimensions.padding * 3),
-          Text(movie.name, style: TextStyles.heading3),
+          Text(this.movie.name, style: TextStyles.heading3),
           Flexible(child: SizedBox(width: double.infinity)),
           Container(
             decoration: BoxDecoration(

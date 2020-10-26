@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/models/MovieTicket.dart';
 import 'package:provider/provider.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -19,11 +20,16 @@ class SelectSeatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-    final MovieObject movie = ModalRoute.of(context).settings.arguments;
+    final Map arguments = ModalRoute.of(context).settings.arguments;
+
+    MovieTicket reservation = arguments["reservation"];
+    MovieObject movie = arguments["movie"];
+
+    final isReserved = reservation != null;
 
     return Screen(
       child: ChangeNotifierProvider<SelectSeatsProvider>(
-        create: (_) => SelectSeatsProvider(),
+        create: (_) => SelectSeatsProvider(reservation),
         child: Align(
           alignment: Alignment.topCenter,
           child: Container(
@@ -34,6 +40,7 @@ class SelectSeatsScreen extends StatelessWidget {
                 Positioned.fill(
                   child: SelectSeatsBody(
                     movie: movie,
+                    isReserved: isReserved,
                   ),
                 ),
                 StackFadeHeader(
@@ -43,7 +50,10 @@ class SelectSeatsScreen extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 ),
-                SelectSeatsBuyNow(),
+                SelectSeatsBuyNow(
+                  movie: movie,
+                  isReserved: isReserved,
+                ),
               ],
             ),
           ),

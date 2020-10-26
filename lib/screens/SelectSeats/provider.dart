@@ -4,6 +4,8 @@ import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
+import 'package:invmovieconcept1/models/MovieTicket.dart';
+
 class SelectSeatsProvider extends ChangeNotifier {
   static SelectSeatsProvider state(BuildContext context, [listen = false]) =>
       Provider.of<SelectSeatsProvider>(context, listen: listen);
@@ -21,12 +23,29 @@ class SelectSeatsProvider extends ChangeNotifier {
 
   final controller = ScrollController();
 
-  SelectSeatsProvider() {
+  SelectSeatsProvider([MovieTicket reservation]) {
+    final currentTime = DateTime.now();
+
+    if (reservation != null) {
+      final rTime = reservation.time;
+      this.selectedDay = DateTime(
+        rTime.year,
+        rTime.month,
+        rTime.day,
+      );
+      this.selectedTime = DateTime(
+        currentTime.year,
+        currentTime.month,
+        currentTime.day,
+        rTime.hour,
+      );
+      this.selectedSeats = reservation.seats;
+    }
+
     if (init) {
       return;
     }
     init = true;
-    final currentTime = DateTime.now();
 
     times = List.generate(
       5,

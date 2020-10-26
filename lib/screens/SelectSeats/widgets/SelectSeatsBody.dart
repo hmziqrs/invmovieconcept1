@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/models/MovieTicket.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
@@ -18,7 +19,10 @@ import '../provider.dart';
 class SelectSeatsBody extends StatelessWidget {
   SelectSeatsBody({
     @required this.movie,
+    this.isReserved = false,
   });
+
+  final bool isReserved;
   final MovieObject movie;
 
   @override
@@ -35,21 +39,22 @@ class SelectSeatsBody extends StatelessWidget {
         controller: state.controller,
         children: [
           SizedBox(height: AppDimensions.padding * 9),
-          SelectSeatsHeader(),
+          SelectSeatsHeader(movie: movie),
           SizedBox(height: AppDimensions.padding * 3),
-          SelectSeatsDay(),
+          SelectSeatsDay(isReserved: isReserved),
           SizedBox(height: AppDimensions.padding * 5),
-          SelectSeatsTime(),
+          SelectSeatsTime(isReserved: isReserved),
           SizedBox(height: AppDimensions.padding * 5),
           ScreenArt(),
           SizedBox(height: AppDimensions.padding * 7),
-          SelectSeatsGrid(),
+          SelectSeatsGrid(isReserved: isReserved),
           Selector<SelectSeatsProvider, List<Tuple2<int, int>>>(
             selector: (_, state) => state.selectedSeats,
             builder: (context, seats, child) {
               return AnimatedContainer(
                 duration: 200.milliseconds,
-                height: AppDimensions.padding * (seats.length > 0 ? 12 : 2),
+                height: AppDimensions.padding *
+                    (seats.length > 0 && !isReserved ? 12 : 2),
               );
             },
           ),

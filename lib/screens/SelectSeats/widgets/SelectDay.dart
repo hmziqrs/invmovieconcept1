@@ -12,6 +12,12 @@ import '../provider.dart';
 import 'SSReveal.dart';
 
 class SelectSeatsDay extends StatelessWidget {
+  SelectSeatsDay({
+    this.isReserved = false,
+  });
+  final bool isReserved;
+  final controller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return SSReveal(
@@ -22,22 +28,26 @@ class SelectSeatsDay extends StatelessWidget {
           selector: (_, state) => state.selectedDay,
           builder: (context, selectedDay, child) {
             return ListView.builder(
+              itemCount: 7,
+              scrollDirection: Axis.horizontal,
               padding: EdgeInsets.symmetric(
                 horizontal: AppDimensions.padding * 1.5,
               ),
-              itemCount: 7,
-              scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final date = SelectSeatsProvider.dates[index];
-
                 final isSelected = selectedDay != null && selectedDay == date;
                 final textColor = isSelected ? Colors.white : Colors.black;
                 return GestureDetector(
-                  onTap: () => SelectSeatsProvider.state(
-                    context,
-                  ).selectDay(
-                    date,
-                  ),
+                  onTap: () {
+                    if (isReserved) {
+                      return;
+                    }
+                    SelectSeatsProvider.state(
+                      context,
+                    ).selectDay(
+                      date,
+                    );
+                  },
                   child: AnimatedContainer(
                     duration: 300.milliseconds,
                     decoration: BoxDecoration(

@@ -17,7 +17,6 @@ class ReservationProvider extends ChangeNotifier {
   bool loading = true;
 
   ReservationProvider() {
-    print("ReservationProvider");
     this.initAsync();
   }
 
@@ -27,17 +26,16 @@ class ReservationProvider extends ChangeNotifier {
     }
     this.init = true;
     final rawReservations = Cache.ins.getStringList("reservations");
-    // print(rawReservations);
     if (rawReservations != null && rawReservations.isNotEmpty) {
       final newList = rawReservations
           .map(
             (e) => MovieTicket.fromJson(e),
           )
           .toList();
-      this.loading = false;
       this.list = newList;
-      this.notifyListeners();
     }
+    this.loading = false;
+    this.notifyListeners();
   }
 
   add(MovieTicket ticket) async {
@@ -47,5 +45,11 @@ class ReservationProvider extends ChangeNotifier {
     await Cache.ins.setStringList("reservations", listJson);
     this.list = newList;
     this.notifyListeners();
+  }
+
+  clear() async {
+    await Cache.ins.remove("reservations");
+    this.list = [];
+    notifyListeners();
   }
 }

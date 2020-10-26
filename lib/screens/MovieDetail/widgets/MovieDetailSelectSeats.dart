@@ -41,7 +41,7 @@ class MovieDetailSelectSeats extends StatelessWidget {
               await Navigator.pushNamed(
                 context,
                 "selectSeats",
-                arguments: movie,
+                arguments: {"movie": movie},
               );
               MovieDetailProvider.state(context).setFade(false);
             },

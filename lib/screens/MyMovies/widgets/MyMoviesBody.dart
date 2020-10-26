@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/AppTheme.dart';
+import 'package:invmovieconcept1/configs/TextStyles.dart';
 
 import 'package:invmovieconcept1/providers/Reservation.dart';
 
@@ -13,7 +15,7 @@ import 'MyMovieCard.dart';
 class MyMoviesBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final state = ReservationProvider.state(context);
+    final state = ReservationProvider.state(context, true);
 
     final List<Widget> children = [
       Header(
@@ -21,7 +23,7 @@ class MyMoviesBody extends StatelessWidget {
       ),
     ];
 
-    if (state.list != null && state.list.isNotEmpty) {
+    if (state.list.isNotEmpty) {
       children.addAll(
         state.list.map(
           (reservation) {
@@ -29,11 +31,34 @@ class MyMoviesBody extends StatelessWidget {
           },
         ).toList(),
       );
-    } else if (state.loading) {
+      children.add(
+        Padding(
+          padding: EdgeInsets.all(AppDimensions.padding * 3),
+          child: RaisedButton(
+            onPressed: () => state.clear(),
+            color: AppTheme.primary,
+            child: Text("Clear All movies"),
+          ),
+        ),
+      );
+    }
+    if (state.loading) {
       children.add(
         Padding(
           padding: EdgeInsets.only(top: AppDimensions.padding * 20),
           child: LinearProgressIndicator(),
+        ),
+      );
+    } else if (state.list.isEmpty) {
+      children.add(
+        Padding(
+          padding: EdgeInsets.only(top: AppDimensions.padding * 6),
+          child: Center(
+            child: Text(
+              "No movies found",
+              style: TextStyles.heading6,
+            ),
+          ),
         ),
       );
     }

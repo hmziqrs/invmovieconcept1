@@ -110,7 +110,14 @@ class _MyMovieCardState extends State<MyMovieCard> {
           },
         ),
         InkWell(
-          onTap: () {},
+          onTap: () => Navigator.pushNamed(
+            context,
+            "selectSeats",
+            arguments: {
+              "reservation": widget.reservation,
+              "movie": widget.reservation.movie,
+            },
+          ),
           onHover: (hover) {
             setState(() {
               this.isHover = hover;
