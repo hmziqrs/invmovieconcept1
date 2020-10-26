@@ -19,6 +19,7 @@ class MyMoviesBody extends StatelessWidget {
 
     final List<Widget> children = [
       Header(
+        enableSafePadding: false,
         label: App.translate(MyMoviesScreenMessages.myMovies, context),
       ),
     ];

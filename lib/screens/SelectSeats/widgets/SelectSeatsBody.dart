@@ -48,13 +48,17 @@ class SelectSeatsBody extends StatelessWidget {
           ScreenArt(),
           SizedBox(height: AppDimensions.padding * 7),
           SelectSeatsGrid(isReserved: isReserved),
-          Selector<SelectSeatsProvider, List<Tuple2<int, int>>>(
-            selector: (_, state) => state.selectedSeats,
-            builder: (context, seats, child) {
+          Consumer<SelectSeatsProvider>(
+            builder: (context, state, child) {
+              final isVerified = state.selectedSeats.length > 0 &&
+                  state.selectedSeats != null &&
+                  state.selectedTime != null &&
+                  state.selectedDay != null &&
+                  !this.isReserved;
+
               return AnimatedContainer(
                 duration: 200.milliseconds,
-                height: AppDimensions.padding *
-                    (seats.length > 0 && !isReserved ? 12 : 2),
+                height: AppDimensions.padding * (isVerified ? 12 : 2),
               );
             },
           ),

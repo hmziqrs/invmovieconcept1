@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/configs/CommonProps.dart';
-import 'package:invmovieconcept1/models/MovieObject.dart';
-import 'package:invmovieconcept1/models/MovieTicket.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
-import 'package:tuple/tuple.dart';
+
+import 'package:invmovieconcept1/models/MovieObject.dart';
+import 'package:invmovieconcept1/models/MovieTicket.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/configs/CommonProps.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/App.dart';
@@ -25,15 +25,20 @@ class SelectSeatsBuyNow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<SelectSeatsProvider, List<Tuple2<int, int>>>(
-      selector: (context, state) => state.selectedSeats,
-      builder: (context, seats, child) {
+    return Consumer<SelectSeatsProvider>(
+      builder: (context, state, child) {
         return AnimatedPositioned(
           left: 0,
           right: 0,
           duration: 300.milliseconds,
           bottom: AppDimensions.padding *
-              (seats.length > 0 && !this.isReserved ? 0 : -12),
+              (state.selectedSeats.length > 0 &&
+                      state.selectedSeats != null &&
+                      state.selectedDay != null &&
+                      state.selectedTime != null &&
+                      !this.isReserved
+                  ? 0
+                  : -12),
           child: SSReveal(
             delay: 1,
             child: Container(
@@ -59,7 +64,7 @@ class SelectSeatsBuyNow extends StatelessWidget {
                           width: double.infinity,
                           child: Center(
                             child: Text(
-                              "\$${seats.length * 40}",
+                              "\$${state.selectedSeats.length * 40}",
                               style: TextStyles.heading4,
                             ),
                           ),
@@ -73,11 +78,10 @@ class SelectSeatsBuyNow extends StatelessWidget {
                             color: Colors.transparent,
                             child: GestureDetector(
                               onTap: () {
-                                if (seats.isEmpty) {
+                                if (state.selectedSeats.isEmpty) {
                                   return;
                                 }
-                                final state =
-                                    SelectSeatsProvider.state(context);
+
                                 final time = state.selectedDay.add(
                                   Duration(
                                     hours: state.selectedTime.hour,
@@ -85,9 +89,9 @@ class SelectSeatsBuyNow extends StatelessWidget {
                                 );
                                 print(time);
                                 final ticket = MovieTicket(
+                                  time: time,
                                   movie: this.movie,
                                   seats: state.selectedSeats,
-                                  time: time,
                                 );
                                 Navigator.pushNamed(
                                   context,
