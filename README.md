@@ -2,16 +2,28 @@
 
 ## Android Demo
 
-<div id="demo">
-  <img src="screenshots/android/demo.gif" width="200" />
-</div>
+> Since app has lot of screen adding demo in GIF format was very large and data consuming for readme
 
-## Android Screenshots
+[![Flutter Movie Concept UI [Demo]](https://img.youtube.com/vi/kdmr9IWAFro/0.jpg)](https://www.youtube.com/watch?v=kdmr9IWAFro)
+
+## Android Screenshots (Dark)
 
 <div id="screenshots">
-  <img src="screenshots/android/index-0.jpg" width="200" />
-  <img src="screenshots/android/index-1.jpg" width="200" />
-  <img src="screenshots/android/index-2.jpg" width="200" />
+  <img src="screenshots/android/mobile/HomeScreen-2-dark.png" width="140" />
+  <img src="screenshots/android/mobile/HomeScreen-4-dark.png" width="140" />
+  <img src="screenshots/android/mobile/MovieDetail-2-dark.png" width="140" />
+  <img src="screenshots/android/mobile/SelectSeats-2-dark.png" width="140" />
+  <img src="screenshots/android/mobile/Reservation-1-dark.png" width="140" />
+</div>
+
+## Android Screenshots (Light)
+
+<div id="screenshots">
+  <img src="screenshots/android/mobile/HomeScreen-2-light.png" width="140" />
+  <img src="screenshots/android/mobile/HomeScreen-4-light.png" width="140" />
+  <img src="screenshots/android/mobile/MovieDetail-2-light.png" width="140" />
+  <img src="screenshots/android/mobile/SelectSeats-2-light.png" width="140" />
+  <img src="screenshots/android/mobile/Reservation-1-light.png" width="140" />
 </div>
 
 ## Designer
