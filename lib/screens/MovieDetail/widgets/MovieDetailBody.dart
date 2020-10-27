@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/screens/MovieDetail/TestKeys.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:invmovieconcept1/models/MovieObject.dart';
@@ -53,6 +54,7 @@ class _MovieDetailBodyState extends State<MovieDetailBody> {
       },
       child: ListView(
         controller: this.controller,
+        key: Key(MovieDetailTestKeys.scrollBody),
         physics: MDScrollPhysics(parent: BouncingScrollPhysics()),
         children: [
           MovieInfoCard(movie: widget.movie),

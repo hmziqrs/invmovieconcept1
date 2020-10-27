@@ -14,6 +14,12 @@ import 'package:invmovieconcept1/configs/App.dart';
 
 import '../messages/keys.dart';
 import '../Dimensions.dart';
+import '../TestKeys.dart';
+
+final testKeys = {
+  ReservationScreenMessages.ok: ReservationTestKeys.ok,
+  ReservationScreenMessages.myMovies: ReservationTestKeys.myMovies,
+};
 
 class ReservationBookNow extends StatelessWidget {
   onTap(BuildContext context) async {
@@ -84,6 +90,7 @@ class ReservationBookNow extends StatelessWidget {
                           .map(
                             (button) => Flexible(
                               child: TouchableOpacity(
+                                key: Key(testKeys[button]),
                                 onTap: () async {
                                   Navigator.popUntil(
                                     context,
@@ -145,6 +152,7 @@ class ReservationBookNow extends StatelessWidget {
         child: Hero(
           tag: "btn",
           child: GestureDetector(
+            key: Key(ReservationTestKeys.bookNow),
             onTap: () => this.onTap(context),
             child: Container(
               decoration: BoxDecoration(

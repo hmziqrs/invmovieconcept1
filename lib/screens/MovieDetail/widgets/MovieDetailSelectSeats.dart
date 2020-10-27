@@ -10,7 +10,9 @@ import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
 import '../messages/keys.dart';
+import '../TestKeys.dart';
 import '../provider.dart';
+
 import 'MDReveal.dart';
 
 class MovieDetailSelectSeats extends StatelessWidget {
@@ -35,6 +37,7 @@ class MovieDetailSelectSeats extends StatelessWidget {
             bottom: AppDimensions.padding * 2,
           ),
           child: RaisedButton(
+            key: Key(MovieDetailTestKeys.selectSeats),
             onPressed: () async {
               MovieDetailProvider.state(context).setFade(true);
               await 360.milliseconds.delay;

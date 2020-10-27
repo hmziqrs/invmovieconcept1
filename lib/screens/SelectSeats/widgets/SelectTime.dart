@@ -8,6 +8,7 @@ import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 
 import '../Dimensions.dart';
+import '../TestKeys.dart';
 import '../provider.dart';
 import 'SSReveal.dart';
 
@@ -38,6 +39,7 @@ class SelectSeatsTime extends StatelessWidget {
                 final textColor = isSelected ? Colors.white : Colors.black;
 
                 return GestureDetector(
+                  key: Key(SelectSeatsTestKeys.getTime(index)),
                   onTap: () {
                     if (this.isReserved) {
                       return;

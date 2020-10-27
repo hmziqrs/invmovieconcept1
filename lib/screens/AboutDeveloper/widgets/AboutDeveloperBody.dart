@@ -17,6 +17,7 @@ import 'package:invmovieconcept1/widgets/Buttons/Alpha.dart';
 import 'package:invmovieconcept1/widgets/Header/Header.dart';
 import 'package:invmovieconcept1/widgets/Banners/Alpha.dart';
 
+import '../TestKeys.dart';
 import 'AboutDeveloperMoreProjects.dart';
 
 import '../messages/keys.dart';
@@ -55,6 +56,7 @@ class AboutDeveloperBody extends StatelessWidget {
       child: Container(
         width: AppDimensions.containerWidth,
         child: ListView(
+          key: Key(AboutDeveloperTestKeys.rootScroll),
           padding: EdgeInsets.zero,
           children: <Widget>[
             Header(

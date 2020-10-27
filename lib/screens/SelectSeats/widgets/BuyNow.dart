@@ -11,6 +11,7 @@ import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
+import '../TestKeys.dart';
 import '../messages/keys.dart';
 import '../provider.dart';
 import 'SSReveal.dart';
@@ -77,6 +78,7 @@ class SelectSeatsBuyNow extends StatelessWidget {
                           child: Material(
                             color: Colors.transparent,
                             child: GestureDetector(
+                              key: Key(SelectSeatsTestKeys.buyNow),
                               onTap: () {
                                 if (state.selectedSeats.isEmpty) {
                                   return;

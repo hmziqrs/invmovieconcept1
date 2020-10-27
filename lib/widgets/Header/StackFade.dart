@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 
+import 'TestKeys.dart';
+
 class StackFadeHeader extends StatelessWidget {
   StackFadeHeader({
     this.children,
@@ -20,6 +22,7 @@ class StackFadeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> toRender = [
       InkResponse(
+        key: Key(HeaderWidgetKey.backButton),
         onTap: () => this.onTap(context),
         child: Padding(
           padding: EdgeInsets.all(AppDimensions.padding * 2),

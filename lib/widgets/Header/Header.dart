@@ -9,6 +9,8 @@ import 'package:invmovieconcept1/Utils.dart';
 
 import 'package:invmovieconcept1/widgets/Buttons/BackIcon.dart';
 
+import 'TestKeys.dart';
+
 class Header extends StatelessWidget {
   Header({
     this.label,
@@ -38,7 +40,10 @@ class Header extends StatelessWidget {
         color: Colors.transparent,
         child: Row(
           children: [
-            BackIconButton(),
+            Container(
+              key: Key(HeaderWidgetKey.backButton),
+              child: BackIconButton(),
+            ),
             Container(
               padding: EdgeInsets.all(AppDimensions.padding * 2),
               child: Text(

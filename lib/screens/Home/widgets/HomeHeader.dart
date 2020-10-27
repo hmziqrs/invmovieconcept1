@@ -5,6 +5,7 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/UI.dart';
 
 import '../FadeProvider.dart';
+import '../TestKeys.dart';
 
 class HomeHeader extends StatelessWidget {
   @override
@@ -16,21 +17,19 @@ class HomeHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
+              icon: Icon(Icons.menu),
+              hoverColor: Colors.transparent,
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              icon: Icon(
-                Icons.menu,
-              ),
+              key: Key(HomeTestKeys.drawerButton),
               onPressed: () => Scaffold.of(context).openDrawer(),
             ),
             IconButton(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
               hoverColor: Colors.transparent,
-              icon: Icon(
-                Icons.search_outlined,
-              ),
+              splashColor: Colors.transparent,
+              icon: Icon(Icons.search_outlined),
+              highlightColor: Colors.transparent,
+              key: Key(HomeTestKeys.searchButton),
               onPressed: () => Navigator.of(context).pushNamed("search"),
             )
           ],

@@ -49,6 +49,7 @@ class HomeDrawerButton extends StatelessWidget {
               horizontal: AppDimensions.padding * 2,
             ),
             child: RaisedButton(
+              key: Key(entry.value["key"].toString()),
               onPressed: this.onPressed,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4.0),

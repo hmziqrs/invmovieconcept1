@@ -7,6 +7,7 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 
 import '../Dimensions.dart';
+import '../TestKeys.dart';
 import '../provider.dart';
 import 'SSReveal.dart';
 
@@ -55,6 +56,9 @@ class SelectSeatsGrid extends StatelessWidget {
                         }
 
                         return GestureDetector(
+                          key: Key(
+                            SelectSeatsTestKeys.getSeat(xEntry.key, yEntry.key),
+                          ),
                           onTap: () {
                             if (isReserved || this.isReserved) {
                               return;

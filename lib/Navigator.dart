@@ -1,18 +1,18 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:invmovieconcept1/providers/Reservation.dart';
-import 'package:invmovieconcept1/screens/SelectSeats/SelectSeats.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import 'configs/Theme.dart' as theme;
 
+import 'providers/Reservation.dart';
 import 'providers/AppProvider.dart';
 
 import 'screens/AboutDeveloper/AboutDeveloper.dart';
 import 'screens/AboutDesigner/AboutDesigner.dart';
 import 'screens/MovieDetail/MovieDetail.dart';
+import 'screens/SelectSeats/SelectSeats.dart';
 import 'screens/Reservation/Reservation.dart';
 import 'screens/MyMovies/MyMovies.dart';
 import 'screens/Download/Download.dart';

@@ -8,12 +8,14 @@ class ScreenSettingsSelect extends StatelessWidget {
     @required this.isActive,
     this.text,
     this.textChild,
+    this.testKey,
   });
 
   final VoidCallback onPress;
   final bool isActive;
   final String text;
   final Widget textChild;
+  final String testKey;
 
   Color getIsActive(BuildContext context) {
     if (!this.isActive) {
@@ -25,6 +27,7 @@ class ScreenSettingsSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: testKey != null ? Key(testKey) : null,
       margin: EdgeInsets.only(
         top: AppDimensions.padding,
       ),

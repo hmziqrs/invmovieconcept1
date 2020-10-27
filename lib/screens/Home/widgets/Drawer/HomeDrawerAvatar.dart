@@ -4,6 +4,7 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
 import '../../Dimensions.dart';
+import '../../TestKeys.dart';
 import '../../Theme.dart';
 
 class HomeDrawerAvatar extends StatelessWidget {
@@ -75,6 +76,7 @@ class HomeDrawerAvatar extends StatelessWidget {
                 Flexible(child: Container()),
                 IconButton(
                   iconSize: AppDimensions.ratio * 10,
+                  key: Key(HomeTestKeys.drawerCloseButton),
                   icon: Icon(
                     Icons.close,
                     color: HomeTheme.text,

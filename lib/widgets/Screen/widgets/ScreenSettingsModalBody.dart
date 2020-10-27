@@ -36,6 +36,12 @@ final Map<String, Map<String, String>> map = {
   },
 };
 
+final themeTestKeysMap = {
+  ThemeMode.system: ScreenWidgetTestKeys.systemTheme,
+  ThemeMode.light: ScreenWidgetTestKeys.lightTheme,
+  ThemeMode.dark: ScreenWidgetTestKeys.darkTheme,
+};
+
 final Map themeModeMap = {
   ThemeMode.system: ScreenWidgetMessages.smSelectTheme,
   ThemeMode.light: ScreenWidgetMessages.smLightTheme,
@@ -68,6 +74,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
                 return true;
               },
               child: ListView(
+                key: Key(ScreenWidgetTestKeys.rootScroll),
                 children: [
                   Container(height: AppDimensions.padding * 2),
                   Row(
@@ -164,6 +171,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
                   ),
                   ...ThemeMode.values.map(
                     (themeMode) => ScreenSettingsSelect(
+                      testKey: themeTestKeysMap[themeMode],
                       onPress: () => appState.setTheme(themeMode),
                       isActive: themeMode == appState.themeMode,
                       text: App.translate(themeModeMap[themeMode], context),

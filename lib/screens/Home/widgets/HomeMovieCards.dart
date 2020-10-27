@@ -14,6 +14,7 @@ import 'package:invmovieconcept1/UI.dart';
 import '../FadeProvider.dart';
 import '../Dimensions.dart';
 import '../provider.dart';
+import '../TestKeys.dart';
 
 enum AnimationMap {
   offsetX,
@@ -101,6 +102,7 @@ class HomeMovieCards extends StatelessWidget {
         child: SizeChangedLayoutNotifier(
           child: PageView.builder(
             clipBehavior: Clip.none,
+            key: Key(HomeTestKeys.movieCardsBase),
             physics: BouncingScrollPhysics(),
             itemCount: movies.list.length,
             onPageChanged: (index) => state.activeMovieIndex != index
@@ -157,6 +159,7 @@ class HomeMovieCards extends StatelessWidget {
                             )
                             ..translate(translateX),
                           child: GestureDetector(
+                            key: Key(HomeTestKeys.getCard(index)),
                             onTap: () async {
                               if (index == state.activeMovieIndex) {
                                 fadeState.setFade(true);

@@ -71,8 +71,8 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
                     .map(
                       (entry) => HomeDrawerButton(
                         entry: entry,
-                        onPressed: () => this.buttonHandler(entry.value["key"]),
                         baseAnimation: 1.0,
+                        onPressed: () => this.buttonHandler(entry.value["key"]),
                       ),
                     )
                     .toList(),
