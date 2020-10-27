@@ -91,12 +91,14 @@ jobs:
           dart ./scripts/splitVectorIcons.dart
           flutter clean
           flutter pub get
-          flutter build apk -t lib/main.mobile.dart
+          flutter build apk
+          mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/app-release-noads.apk
           flutter build appbundle -t lib/main.mobile.dart
+          flutter build apk -t lib/main.mobile.dart
       - name: Create Android Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'app/build/app/outputs/apk/release/app-release.apk,app/build/app/outputs/bundle/release/app-release.aab'
+          artifacts: 'app/build/app/outputs/apk/release/app-release.apk,app/build/app/outputs/bundle/release/app-release.aab,app/build/app/outputs/apk/release/app-release-noads.apk'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
 
