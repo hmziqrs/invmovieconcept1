@@ -12,7 +12,7 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout e3c6979d1b
+          git checkout 4019956fc8
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - uses: actions/checkout@v2
         with:
@@ -46,7 +46,7 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout e3c6979d1b
+          git checkout 4019956fc8
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - uses: actions/checkout@v2
         with:
@@ -75,7 +75,7 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout e3c6979d1b
+          git checkout 4019956fc8
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - uses: actions/setup-java@v1
         with:
@@ -109,7 +109,7 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout e3c6979d1b
+          git checkout 4019956fc8
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - uses: actions/checkout@v2
         with:
@@ -139,7 +139,7 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout e3c6979d1b
+          git checkout 4019956fc8
       - run: echo ::add-path::"$(pwd)\flutter\bin"
       - uses: actions/checkout@v2
         with:
