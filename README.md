@@ -40,14 +40,14 @@
 
 > Just in case if you ran into errors make sure you're using correct flutter & dart version. In order to support desktop build master branch is a requirement But Master branch is not stable so breaking changes happen on daily updates.
 
-- Flutter master channel & Framework • revision `e3c6979d1b`
+- Flutter master channel & Framework • revision `4019956fc8`
 
   - Run `flutter --version` to check it
 
 - Follow these step to use correct revision version
   - Run `cd $FLUTTER_HOME` (where your flutter is installed)
   - Run `git checkout master`
-  - Run `git checkout e3c6979d1b`
+  - Run `git checkout 4019956fc8`
 - To enable desktop & web builds run the relevant command
   - Run `flutter --enable-web`
   - Run `flutter --enable-macos-desktop`
