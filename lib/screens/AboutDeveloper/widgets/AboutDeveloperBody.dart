@@ -17,12 +17,12 @@ import 'package:invmovieconcept1/widgets/Buttons/Alpha.dart';
 import 'package:invmovieconcept1/widgets/Header/Header.dart';
 import 'package:invmovieconcept1/widgets/Banners/Alpha.dart';
 
-import '../TestKeys.dart';
 import 'AboutDeveloperMoreProjects.dart';
 
 import '../messages/keys.dart';
 import '../data.dart' as data;
 import '../Dimensions.dart';
+import '../TestKeys.dart';
 
 class AboutDeveloperBody extends StatelessWidget {
   Widget mapSupportButton(
@@ -34,7 +34,7 @@ class AboutDeveloperBody extends StatelessWidget {
       left: AppDimensions.padding * 2,
       right: AppDimensions.padding * 2,
     );
-    final prefix = map["platform"];
+    final prefix = obj["platform"];
 
     String label = obj["label"].toString();
 
@@ -45,8 +45,8 @@ class AboutDeveloperBody extends StatelessWidget {
     return AlphaButton(
       icon: obj["icon"],
       margin: buttonMargin,
-      label: (App.translate(label)).toUpperCase(),
-      onTap: () => Utils.launchUrl(map["link"]),
+      label: (App.translate(label, context)).toUpperCase(),
+      onTap: () => Utils.launchUrl(obj["link"]),
     );
   }
 
