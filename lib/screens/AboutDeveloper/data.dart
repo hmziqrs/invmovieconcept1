@@ -1,5 +1,7 @@
 import 'package:flutter_icons/flutter_icons.dart';
 
+import 'package:invmovieconcept1/static/Links.dart';
+
 import 'messages/keys.dart';
 
 final devDescription = [
@@ -63,14 +65,13 @@ final showSupport = [
   {
     "label": AboutDeveloperScreenMessages.likeProject1,
     "icon": MaterialCommunityIcons.github_face,
-    "link": "https://github.com/hackerhgl/flutter-ui-designs",
+    "link": MyLinks.invmovieconcept1Github,
   },
   {
     "platform": "Play Store",
     "label": AboutDeveloperScreenMessages.likeProject2,
     "icon": MaterialCommunityIcons.google_play,
-    "link":
-        "https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges",
+    "link": MyLinks.invmovieconcept1GooglePlay,
   },
   {
     "platform": "Linkedin",
