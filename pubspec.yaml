@@ -47,6 +47,7 @@ dev_dependencies:
     sdk: flutter
   test: any
   glob: 1.2.0
+  image: 2.1.18
   path: 1.8.0-nullsafety.2
   translator: 0.1.4
   intl_translation: 0.17.10
