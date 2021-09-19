@@ -2,16 +2,26 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 import 'package:glob/glob.dart';
+import 'package:glob/list_local_fs.dart';
 import 'package:translator/translator.dart';
 
 import './utils.dart';
 
 main(List<String> args) async {
   print("\n\n\nGENERATE BUNDLED JSON FOR YOUR LOCALIZE MESSAGES");
-  final dartFile = new Glob("lib/**/**.dart");
+  final disableAutoTranslate = args.contains("--no-translate");
+  final fileIndex = args.indexOf("--file");
+  Glob filesGlob = Glob("lib/**/**.dart");
+  List<FileSystemEntity> files;
   final translator = new GoogleTranslator();
-
-  final List<FileSystemEntity> files = dartFile.listSync();
+  if (fileIndex >= 0) {
+    final path = args[fileIndex + 1];
+    final source = File(path);
+    files = [source];
+  }
+  if (fileIndex < 0) {
+    files = filesGlob.listSync();
+  }
   final Map<String, String> defaultMessages = {};
   final Map<String, Map<String, String>> defaultLocaleMessages = {};
   final JsonEncoder jsonEncoder = JsonEncoder.withIndent('  ');
@@ -21,15 +31,12 @@ main(List<String> args) async {
       ReceivePort port = new ReceivePort();
       final raw = await getMessagesViaIsolate(entity, port);
       final Map messages = raw["strings"].cast<String, String>();
+      defaultMessages.addAll(messages);
 
       final localesDirectory = new Directory(
         entity.path.replaceFirst(r'strings.dart', r'locales').toString(),
       );
-      // print("dlkasdhaskjhd $localesDirectory");
       if (localesDirectory.existsSync()) {
-        // print("$localesDirectory EXISSITS");
-
-        // await localesDirectory.list().forEach((localeFile) async {});
         for (final localeFile in localesDirectory.listSync()) {
           final localeCode =
               localeFile.path.split(normalize("/")).last.split(".").first;
@@ -37,19 +44,18 @@ main(List<String> args) async {
             localeFile,
             new ReceivePort(),
           );
-          final Map localeMessages = localeRaw.cast<String, String>();
+          final Map localeMessages =
+              localeRaw["strings"].cast<String, String>();
           if (defaultLocaleMessages[localeCode] == null) {
             defaultLocaleMessages[localeCode] = {};
           }
           defaultLocaleMessages[localeCode].addAll(localeMessages);
         }
       }
-
-      defaultMessages.addAll(messages);
     }
   }
 
-  final directory = new Directory(normalize("./assets/langs"));
+  final directory = new Directory(normalize("./assets/locales"));
 
   await directory.list().forEach((element) async {
     final file = new File(element.path);
@@ -82,7 +88,8 @@ main(List<String> args) async {
         //   print("rootVal $rootVal");
         // }
         if ((parsedVal == null || (parsedVal != null && parsedVal.isEmpty)) &&
-            rootVal.isNotEmpty) {
+            rootVal.isNotEmpty &&
+            !disableAutoTranslate) {
           newObj[key] = await translator.translate(
             newObj[key],
             from: "en",

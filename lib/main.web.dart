@@ -9,15 +9,15 @@ import 'Navigator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  FirebaseCrashlytics _firebaseCrashlytics;
+  _firebaseCrashlytics = FirebaseCrashlytics.instance;
   await Cache.init();
   final analyticsObeserver = FirebaseAnalyticsObserver(
     analytics: FirebaseAnalytics(),
   );
 
-  Crashlytics.instance.enableInDevMode = true;
-
   FlutterError.onError = (FlutterErrorDetails err) {
-    Crashlytics.instance.recordFlutterError(err);
+    _firebaseCrashlytics.recordFlutterError(err);
   };
   runApp(AppNavigator([analyticsObeserver]));
 }
