@@ -35,59 +35,61 @@ void openOrShare({
 
   showDialog(
     context: context,
-    child: AlertDialog(
-      title: Text(
-        App.translate(title, context),
-      ),
-      actions: [
-        TextButton(
-          style: style,
-          onPressed: () => Navigator.pop(context),
-          child: Text(
-            App.translate(AlertWidgetMessages.close),
-            style: textStyle,
-          ),
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(
+          App.translate(title, context),
         ),
-        TextButton(
-          style: style,
-          onPressed: () => Utils.launchUrl(actionLink),
-          child: Text(App.translate(actionLabel), style: textStyle),
-        ),
-        TextButton(
-          style: style,
-          onPressed: () async {
-            if (Utils.isMobile()) {
-              Share.share(
-                action2Link,
-                subject: shareLabel,
-              );
-
-              Navigator.pop(context);
-            } else if (Utils.isDesktop()) {
-              bool hasSnackbar = snackLabel != null;
-              await Clipboard.setData(ClipboardData(text: action2Link));
-              Navigator.pop(context);
-              if (hasSnackbar) {
-                Scaffold.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(snackLabel),
-                  ),
-                );
-                await 1600.milliseconds.delay;
-                Scaffold.of(context).hideCurrentSnackBar();
-              }
-            }
-          },
-          child: Text(
-            App.translate(
-              Utils.isMobile()
-                  ? AlertWidgetMessages.share
-                  : AlertWidgetMessages.copy,
+        actions: [
+          TextButton(
+            style: style,
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              App.translate(AlertWidgetMessages.close),
+              style: textStyle,
             ),
-            style: textStyle,
           ),
-        ),
-      ],
-    ),
+          TextButton(
+            style: style,
+            onPressed: () => Utils.launchUrl(actionLink),
+            child: Text(App.translate(actionLabel), style: textStyle),
+          ),
+          TextButton(
+            style: style,
+            onPressed: () async {
+              if (Utils.isMobile()) {
+                Share.share(
+                  action2Link,
+                  subject: shareLabel,
+                );
+
+                Navigator.pop(context);
+              } else if (Utils.isDesktop()) {
+                bool hasSnackbar = snackLabel != null;
+                await Clipboard.setData(ClipboardData(text: action2Link));
+                Navigator.pop(context);
+                if (hasSnackbar) {
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(snackLabel),
+                    ),
+                  );
+                  await 1600.milliseconds.delay;
+                  Scaffold.of(context).hideCurrentSnackBar();
+                }
+              }
+            },
+            child: Text(
+              App.translate(
+                Utils.isMobile()
+                    ? AlertWidgetMessages.share
+                    : AlertWidgetMessages.copy,
+              ),
+              style: textStyle,
+            ),
+          ),
+        ],
+      );
+    },
   );
 }

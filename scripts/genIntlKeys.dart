@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:isolate';
 import 'package:glob/glob.dart';
+import 'package:glob/list_local_fs.dart';
 
 import 'utils.dart';
 
@@ -8,8 +9,17 @@ import 'utils.dart';
 
 main(List<String> args) async {
   print("GENERATE CLASS KEYS FOR YOUR LOCALIZE MESSAGES");
-  final dartFile = new Glob("lib/**/**.dart");
-  List<FileSystemEntity> files = dartFile.listSync();
+  final fileIndex = args.indexOf("--file");
+  Glob filesGlob = new Glob("lib/**/**.dart");
+  List<FileSystemEntity> files;
+  if (fileIndex >= 0) {
+    final path = args[fileIndex + 1];
+    final source = File(path);
+    files = [source];
+  }
+  if (fileIndex < 0) {
+    files = filesGlob.listSync();
+  }
 
   for (var entity in files) {
     if (entity.path.contains(normalize("/messages/strings.dart"))) {
@@ -23,7 +33,7 @@ main(List<String> args) async {
             (str) {
               final key = str.toString();
               final parsedKey = key.split('/').last;
-              return "\tstatic String $parsedKey = '\$scope\/$parsedKey';";
+              return "\tstatic const $parsedKey = '\$scope\/$parsedKey';";
             },
           )
           .toList()
