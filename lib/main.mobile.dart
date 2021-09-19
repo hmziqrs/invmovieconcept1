@@ -19,17 +19,15 @@ void main() async {
   App.showAds = true;
 
   if (App.showAds) {
-    Admob.initialize(Ads.getAppId());
+    Admob.initialize();
   }
 
   final analyticsObserver = FirebaseAnalyticsObserver(
     analytics: FirebaseAnalytics(),
   );
 
-  Crashlytics.instance.enableInDevMode = true;
-
   FlutterError.onError = (FlutterErrorDetails err) {
-    Crashlytics.instance.recordFlutterError(err);
+    FirebaseCrashlytics.instance.recordFlutterError(err);
   };
   runApp(AppNavigator([analyticsObserver]));
 }

@@ -19,9 +19,9 @@ void _main(NavigatorObserver observer) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Cache.init();
 
-  if (Platform.isWindows || Platform.isLinux) {
-    debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
-  }
+  // if (Platform.isWindows || Platform.isLinux) {
+  //   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+  // }
   final List<NavigatorObserver> observers = [];
 
   if (observer != null) {

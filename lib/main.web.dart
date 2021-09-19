@@ -14,10 +14,8 @@ void main() async {
     analytics: FirebaseAnalytics(),
   );
 
-  Crashlytics.instance.enableInDevMode = true;
-
   FlutterError.onError = (FlutterErrorDetails err) {
-    Crashlytics.instance.recordFlutterError(err);
+    FirebaseCrashlytics.instance.recordFlutterError(err);
   };
   runApp(AppNavigator([analyticsObeserver]));
 }

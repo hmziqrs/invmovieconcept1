@@ -8,50 +8,54 @@ version: 3.0.2
 environment:
   sdk: '>=2.7.0 <3.0.0'
 
+dependency_overrides:
+  path: 1.8.0
+  intl: 0.17.0
+  xml: 5.3.0
+  image: 3.0.2
+  signature: 4.0.2
+
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
 
-  tuple: 1.0.3
-  animate_do: 1.7.3
-  supercharged: 1.10.0
+  tuple: 2.0.0
+  animate_do: 2.0.0
+  supercharged: 2.1.1
 
   emojis: 0.9.3
-  barcode: 1.17.1
+  barcode: 2.1.0
   tinycolor: 1.0.3
   flutter_icons: 1.1.0
-  dotted_border: 1.0.6
-  barcode_widget: 1.5.0
-  touchable_opacity: 1.1.2
-  page_transition: 1.1.7+2
-  simple_animations: 2.2.2
+  dotted_border: 2.0.0+1
+  barcode_widget: 2.0.1
+  touchable_opacity: 1.2.0
+  page_transition: 2.0.2
+  simple_animations: 3.2.0
 
-  share: 0.6.5
-  open_url: 1.0.1
-  provider: 4.3.2+2
-  url_launcher: 5.4.1
-  universal_io: 1.0.1
+  share: 2.0.4
+  open_url: 2.0.0
+  provider: 6.0.0
+  url_launcher: 6.0.11
+  universal_io: 2.0.4
 
-  admob_flutter: 0.3.4
-  firebase_core: 0.5.0
-  firebase_analytics: 6.0.0
-  firebase_performance: 0.4.0
-  firebase_crashlytics: 0.1.4+1
+  admob_flutter: 2.0.0-nullsafety.1
+  firebase_core: 1.6.0
+  firebase_analytics: 8.3.2
+  firebase_performance: 0.7.1+1
+  firebase_crashlytics: 2.2.1
 
-  shared_preferences: 0.5.12
+  shared_preferences: 2.0.8
 
 dev_dependencies:
-  flutter_driver:
-    sdk: flutter
-  test: any
-  glob: 1.2.0
-  image: 2.1.18
-  path: 1.8.0-nullsafety.2
-  translator: 0.1.4
-  intl_translation: 0.17.10
-  yaml: 2.2.1
+  # flutter_driver:
+  #   sdk: flutter
+  # test: any
+  io: 1.0.0
+  glob: 2.0.1
+  translator: 0.1.7
 
 flutter_icons:
   includes:
