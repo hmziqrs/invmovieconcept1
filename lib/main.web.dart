@@ -10,12 +10,12 @@ import 'Navigator.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Cache.init();
-  final analyticsObeserver = FirebaseAnalyticsObserver(
+  final analyticsObserver = FirebaseAnalyticsObserver(
     analytics: FirebaseAnalytics(),
   );
 
   FlutterError.onError = (FlutterErrorDetails err) {
     FirebaseCrashlytics.instance.recordFlutterError(err);
   };
-  runApp(AppNavigator([analyticsObeserver]));
+  runApp(AppNavigator([analyticsObserver]));
 }
