@@ -17,7 +17,7 @@ class HomeBannerAd extends StatelessWidget {
       left: 0,
       right: 0,
       top: Dimensions.bgHeight + Dimensions.ratingRadius / 2,
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         height: Dimensions.bannerAdHeight,
         child: AdmobBanner(

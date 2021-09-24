@@ -4,10 +4,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:firebase_analytics/observer.dart';
+import 'package:invmovieconcept1/Utils.dart';
 
 import 'native/Cache.dart';
 
-import 'configs/Ads.dart';
 import 'configs/App.dart';
 
 import 'Navigator.dart';
@@ -18,7 +18,7 @@ void main() async {
 
   App.showAds = true;
 
-  if (App.showAds) {
+  if (App.showAds && Utils.isMobile()) {
     Admob.initialize();
   }
 

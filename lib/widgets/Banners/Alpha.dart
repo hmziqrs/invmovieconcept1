@@ -4,7 +4,7 @@ import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 
 class AlphaBanner extends StatelessWidget {
-  AlphaBanner({
+  const AlphaBanner({
     @required this.text,
     this.margin = EdgeInsets.zero,
   });
@@ -15,7 +15,7 @@ class AlphaBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: this.margin,
+      margin: margin,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppTheme.text.withOpacity(0.65),
@@ -27,7 +27,7 @@ class AlphaBanner extends StatelessWidget {
         bottom: AppDimensions.padding * 1.5,
       ),
       child: Text(
-        this.text,
+        text,
         style: TextStyles.body17.copyWith(
           color: AppTheme.background,
           // color: Theme.of(context).scaffoldBackgroundColor,

@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'utils.dart' as utils;
 
-const List<String> desktopFilters = ['mac', 'linux', 'windows'];
-final webtype = 'web-javascript';
+const List<String> desktopFilters = ['mac', 'macOS', 'linux', 'windows'];
+const webtype = 'web-javascript';
 
 void main(List<String> args) async {
   final result = await Process.run(
@@ -67,9 +67,9 @@ void main(List<String> args) async {
   };
 
   utils.mkDir('.vscode');
-  final vsConfig = new File('.vscode/launch.json');
+  final vsConfig = File('.vscode/launch.json');
   // final encoded = json.encode(newConfig);
-  final JsonEncoder jsonEncoder = JsonEncoder.withIndent('  ');
+  const jsonEncoder = JsonEncoder.withIndent('  ');
   final newJson = jsonEncoder.convert(newConfig);
 
   vsConfig.writeAsStringSync(newJson);
