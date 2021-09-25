@@ -7,6 +7,8 @@ class UI {
   static double height;
   static double horizontal;
   static double vertical;
+  static EdgeInsets padding;
+  static EdgeInsets vi;
 
   static double _safeAreaHorizontal;
   static double _safeAreaVertical;
@@ -29,6 +31,8 @@ class UI {
     _mediaQueryData = MediaQuery.of(context);
     initChecks(_mediaQueryData);
 
+    padding = _mediaQueryData.padding;
+    vi = _mediaQueryData.viewInsets;
     width = _mediaQueryData.size.width;
     height = _mediaQueryData.size.height;
     horizontal = width / 100;
@@ -62,8 +66,7 @@ class UI {
     xxlg = size.width > 1700;
   }
 
-  static MediaQueryData mediaQuery([BuildContext ctx]) =>
-      (ctx != null ? MediaQuery.of(ctx) : _mediaQueryData);
+  static MediaQueryData mediaQuery() => _mediaQueryData;
 
-  static Size getSize([BuildContext ctx]) => mediaQuery(ctx).size;
+  static Size getSize() => _mediaQueryData.size;
 }

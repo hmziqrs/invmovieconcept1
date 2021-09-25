@@ -1,89 +1,84 @@
-import 'dart:ui' as ui;
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:supercharged/supercharged.dart';
-
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
-import 'package:invmovieconcept1/UI.dart';
-
-import 'ScreenSettingsModalBody.dart';
-import '../ScreenStateProvider.dart';
+part of '../Screen.dart';
 
 class ScreenSettingsModal extends StatefulWidget {
-  ScreenSettingsModal({
+  const ScreenSettingsModal({
     Key key,
     @required this.isSettingsOpen,
-    @required this.isSettingsMounted,
   }) : super(key: key);
 
   final bool isSettingsOpen;
-  final bool isSettingsMounted;
 
   @override
   ScreenSettingsModalState createState() => ScreenSettingsModalState();
 }
 
 class ScreenSettingsModalState extends State<ScreenSettingsModal> {
-  ScreenStateProvider getState([listen = false]) =>
-      Provider.of<ScreenStateProvider>(context, listen: listen);
+  bool isSettingsMounted = false;
 
-  void openModal() {
-    this.getState().isSettingsOpen = true;
-  }
-
-  void closeModal() {
-    this.getState().isSettingsOpen = false;
-  }
-
-  Future<bool> onWillPop() async {
-    if (widget.isSettingsOpen) {
-      this.closeModal();
+  @override
+  void didUpdateWidget(covariant ScreenSettingsModal oldWidget) {
+    if (oldWidget.isSettingsOpen && !widget.isSettingsOpen) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+        await 400.milliseconds.delay;
+        setState(() {
+          isSettingsMounted = false;
+        });
+      });
     }
-    return !widget.isSettingsOpen;
+    if (!oldWidget.isSettingsOpen && widget.isSettingsOpen) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+        setState(() {
+          isSettingsMounted = true;
+        });
+      });
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   Color getBackgroundColor(BuildContext context) {
     if (Theme.of(context).brightness == Brightness.light) {
-      return Colors.white.withOpacity(0.40);
+      return Colors.white.withOpacity(0.90);
     }
-    return Colors.black.withOpacity(0.10);
+    return Colors.black.withOpacity(0.90);
   }
 
   @override
   Widget build(BuildContext context) {
+    final state = ScreenStateProvider.state(context);
+    AppProvider.state(context, true);
+
     return Positioned.fill(
-      top: !widget.isSettingsMounted ? UI.height - 20 : 0.0,
+      top: !isSettingsMounted
+          ? UI.getSize().height - (20 + UI.padding.bottom)
+          : 0.0,
       child: GestureDetector(
-        onDoubleTap: this.openModal,
+        // onDoubleTap: ()this.openModal,
+        onDoubleTap: () => state.setSettingsOpen(true),
         child: WillPopScope(
-          onWillPop: this.onWillPop,
+          onWillPop: () async {
+            if (widget.isSettingsOpen) {
+              state.setSettingsOpen(false);
+            }
+            return !widget.isSettingsOpen;
+          },
           child: ClipRect(
-            child: Container(
-              child: BackdropFilter(
-                filter: ui.ImageFilter.blur(
-                  sigmaX: 15,
-                  sigmaY: 15,
-                ),
-                child: AnimatedOpacity(
-                  onEnd: () async {
-                    await 200.milliseconds.delay;
-                    if (!widget.isSettingsOpen) {
-                      this.getState().isSettingsMounted = false;
-                    }
-                  },
-                  duration: 400.milliseconds,
-                  opacity: widget.isSettingsOpen ? 1.0 : 0.0,
-                  child: Container(
-                    alignment: Alignment.topCenter,
-                    color: this.getBackgroundColor(context),
-                    child: Container(
-                      height: UI.height,
-                      width: AppDimensions.containerWidth,
-                      child: ScreenSettingsModalBody(
-                        onClose: this.closeModal,
-                        isModalOpen: widget.isSettingsOpen,
-                      ),
-                    ),
+            child: AnimatedOpacity(
+              onEnd: () async {
+                await 100.milliseconds.delay;
+                if (!widget.isSettingsOpen) {
+                  state.setSettingsOpen(false);
+                }
+              },
+              duration: 400.milliseconds,
+              opacity: widget.isSettingsOpen ? 1.0 : 0.0,
+              child: Container(
+                alignment: Alignment.topCenter,
+                color: this.getBackgroundColor(context),
+                child: SizedBox(
+                  height: UI.height,
+                  child: ScreenSettingsModalBody(
+                    isModalOpen: widget.isSettingsOpen,
+                    onClose: () => state.setSettingsOpen(false),
                   ),
                 ),
               ),

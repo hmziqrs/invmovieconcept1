@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/UI.dart';
+import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
 
-import 'widgets/ScreenSettingsModal.dart';
-
+import 'package:invmovieconcept1/providers/AppProvider.dart';
+import 'widgets/ScreenSettingsModalBody.dart';
 import 'ScreenStateProvider.dart';
 
+part 'widgets/ScreenSettingsModal.dart';
+
 class Screen extends StatelessWidget {
-  Screen({
+  const Screen({
     this.init,
     this.child,
     this.drawer,
@@ -28,30 +32,27 @@ class Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (this.init != null) {
-      this.init(context);
+    if (init != null) {
+      init(context);
     }
     return ChangeNotifierProvider<ScreenStateProvider>(
       create: (_) => ScreenStateProvider(),
       child: Scaffold(
-        drawer: this.drawer,
-        backgroundColor: this.scaffoldBackgroundColor ??
+        drawer: drawer,
+        backgroundColor: scaffoldBackgroundColor ??
             Theme.of(context).scaffoldBackgroundColor,
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            this.belowBuilder != null
-                ? this.belowBuilder(context)
-                : Container(),
+            belowBuilder != null ? belowBuilder(context) : Container(),
             Positioned.fill(
               child: child ?? builder(context),
             ),
-            this.renderSettings
+            renderSettings
                 ? Consumer<ScreenStateProvider>(
                     builder: (ctx, state, child) {
                       return ScreenSettingsModal(
                         isSettingsOpen: state.isSettingsOpen,
-                        isSettingsMounted: state.isSettingsMounted,
                       );
                     },
                   )

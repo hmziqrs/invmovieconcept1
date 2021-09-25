@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/widgets/Screen/ScreenStateProvider.dart';
-import 'package:provider/provider.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
@@ -35,8 +34,7 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
         Navigator.pushNamed(context, "myMovies");
         break;
       case data.NavigationKey.settings:
-        Provider.of<ScreenStateProvider>(context, listen: false)
-            .isSettingsOpen = true;
+        ScreenStateProvider.state(context).setSettingsOpen(true);
         break;
       default:
     }

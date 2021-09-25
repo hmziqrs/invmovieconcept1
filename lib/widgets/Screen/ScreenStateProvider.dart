@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ScreenStateProvider extends ChangeNotifier {
+  static ScreenStateProvider state(BuildContext context, [listen = false]) =>
+      Provider.of<ScreenStateProvider>(context, listen: listen);
+
   bool _isSettingsOpen = false;
-  bool _isSettingsMounted = false;
-
   bool get isSettingsOpen => this._isSettingsOpen;
-  bool get isSettingsMounted => this._isSettingsMounted;
 
-  set isSettingsOpen(bool flag) {
+  setSettingsOpen(bool flag) {
     if (flag == this._isSettingsOpen) {
       return;
     }
     this._isSettingsOpen = flag;
-    if (flag) {
-      this._isSettingsMounted = flag;
-    }
     notifyListeners();
   }
 
-  set isSettingsMounted(bool flag) {
-    if (flag == this._isSettingsMounted) {
+  bool _isLoading = false;
+  bool get isLoading => this._isLoading;
+
+  setLoading(bool flag) {
+    if (flag == this._isLoading) {
       return;
     }
-    this._isSettingsMounted = flag;
+    this._isLoading = flag;
     notifyListeners();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/native/Cache.dart';
+import 'package:provider/provider.dart';
 
 final themeMap = {
   "system": ThemeMode.system,
@@ -13,6 +14,9 @@ enum CacheKeys {
 }
 
 class AppProvider extends ChangeNotifier {
+  static AppProvider state(BuildContext context, [bool listen = false]) =>
+      Provider.of<AppProvider>(context, listen: listen);
+
   AppProvider() {
     this._initAsync();
   }
