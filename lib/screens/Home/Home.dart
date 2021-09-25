@@ -36,28 +36,25 @@ class HomeScreen extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => HomeFadeProvider()),
         ],
         child: SingleChildScrollView(
-          child: SizedBox(
-            height: Dimensions.containerHeight,
-            child: Align(
-              child: Container(
-                width: AppDimensions.containerWidth,
-                alignment: Alignment.bottomCenter,
+          child: Column(
+            children: [
+              Container(
+                height: Dimensions.bgHeight,
                 child: Stack(
                   children: [
-                    HomeBackgroundImage(
-                      scrollable: Dimensions.scrollable,
-                    ),
-                    HomeMovieCards(scrollable: Dimensions.scrollable),
+                    HomeBackgroundImage(scrollable: Dimensions.scrollable),
                     HomeHeader(),
                     HomeTabBar(),
+                    HomeMovieCards(scrollable: Dimensions.scrollable),
                     HomeMovieName(scrollable: Dimensions.scrollable),
-                    HomeMovieRatings(scrollable: Dimensions.scrollable),
-                    AppBannerAd(),
-                    HomeMovieTags(),
                   ],
                 ),
               ),
-            ),
+
+              // HomeMovieRatings(scrollable: Dimensions.scrollable),
+              // AppBannerAd(),
+              // HomeMovieTags(),
+            ],
           ),
         ),
       ),

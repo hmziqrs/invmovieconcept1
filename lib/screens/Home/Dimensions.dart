@@ -16,6 +16,8 @@ class Dimensions {
   static double bgHeightMin;
   static double bgClipRadius;
 
+  static double cardsBaseOffset;
+
   static double cardHeight;
   static double cardWidth;
 
@@ -67,6 +69,8 @@ class Dimensions {
     bgClipRadius = math.sqrt(a + b);
 
     scrollable = AppDimensions.containerWidth * HomeProvider.viewportFraction;
+
+    cardsBaseOffset = (bgHeight * 0.5) - cardHeight * 0.5;
   }
 
   static void initDrawer() {

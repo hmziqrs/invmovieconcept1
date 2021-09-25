@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/configs/TextStyles.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:provider/provider.dart';
 
@@ -64,9 +65,7 @@ class HomeMovieTags extends StatelessWidget {
                           ),
                           child: Text(
                             App.translate(entry.value, context),
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: TextStyles.body36,
                           ),
                         ),
                       );

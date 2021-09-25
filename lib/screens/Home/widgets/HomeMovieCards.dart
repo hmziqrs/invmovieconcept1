@@ -91,7 +91,7 @@ class HomeMovieCards extends StatelessWidget {
       left: 0,
       right: 0,
       bottom: 0,
-      top: UI.mediaQuery().padding.top + AppDimensions.padding * 20,
+      top: Dimensions.cardsBaseOffset,
       child: NotificationListener<SizeChangedLayoutNotification>(
         onNotification: (notification) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
