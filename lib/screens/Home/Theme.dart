@@ -29,7 +29,7 @@ abstract class HomeTheme {
     if (App.isDark()) {
       background = theme.darkBackground;
       text = Colors.white;
-      shadowWithBg = Colors.white.withOpacity(0.12);
+      shadowWithBg = Colors.white.withOpacity(0.16);
 
       tagsBackground = TinyColor(Colors.black).lighten(20).color;
       tagsShadow = Colors.black.withOpacity(0.4);

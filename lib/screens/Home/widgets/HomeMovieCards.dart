@@ -5,11 +5,9 @@ import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/static/movies.dart' as movies;
 
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/Utils.dart';
-import 'package:invmovieconcept1/UI.dart';
 
 import '../FadeProvider.dart';
 import '../Dimensions.dart';

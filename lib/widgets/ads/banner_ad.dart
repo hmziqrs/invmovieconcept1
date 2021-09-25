@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import 'package:invmovieconcept1/screens/Home/Dimensions.dart';
 import 'package:invmovieconcept1/configs/Ads.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
@@ -46,15 +45,10 @@ class _AppBannerAdState extends State<AppBannerAd> {
       return SizedBox();
     }
 
-    return Positioned(
-      left: 0,
-      right: 0,
-      top: Dimensions.bgHeight + Dimensions.ratingRadius * 0.7,
-      child: SizedBox(
-        height: 72.0,
-        width: 300 ?? this.ad.size.width.toDouble(),
-        child: this.isAdLoaded ? AdWidget(ad: this.ad) : SizedBox(),
-      ),
+    return SizedBox(
+      height: 72.0,
+      width: 300 ?? this.ad.size.width.toDouble(),
+      child: this.isAdLoaded ? AdWidget(ad: this.ad) : SizedBox(),
     );
   }
 }

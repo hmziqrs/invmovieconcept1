@@ -37,9 +37,10 @@ class HomeScreen extends StatelessWidget {
         ],
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                height: Dimensions.bgHeight,
+                height: Dimensions.bgHeight + Dimensions.ratingRadius,
                 child: Stack(
                   children: [
                     HomeBackgroundImage(scrollable: Dimensions.scrollable),
@@ -47,13 +48,12 @@ class HomeScreen extends StatelessWidget {
                     HomeTabBar(),
                     HomeMovieCards(scrollable: Dimensions.scrollable),
                     HomeMovieName(scrollable: Dimensions.scrollable),
+                    HomeMovieRatings(scrollable: Dimensions.scrollable),
                   ],
                 ),
               ),
-
-              // HomeMovieRatings(scrollable: Dimensions.scrollable),
-              // AppBannerAd(),
-              // HomeMovieTags(),
+              AppBannerAd(),
+              HomeMovieTags(),
             ],
           ),
         ),

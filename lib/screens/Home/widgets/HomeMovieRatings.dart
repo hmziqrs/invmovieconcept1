@@ -76,8 +76,8 @@ class HomeMovieRatings extends StatelessWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        blurRadius: 6,
-                        spreadRadius: 0,
+                        blurRadius: 5,
+                        spreadRadius: 1,
                         offset: Offset(0.0, 2.0),
                         color: HomeTheme.shadowWithBg,
                       ),
