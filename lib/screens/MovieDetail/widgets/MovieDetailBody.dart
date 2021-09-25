@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:invmovieconcept1/screens/MovieDetail/TestKeys.dart';
 import 'package:supercharged/supercharged.dart';
 
+import 'package:invmovieconcept1/screens/MovieDetail/TestKeys.dart';
+import 'package:invmovieconcept1/widgets/ads/banner_ad.dart';
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/models/MovieObject.dart';
 
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
-
-import 'MovieDetailBannerAd.dart';
 import 'MDScrollPhysics.dart';
 import 'MovieDetailCast.dart';
 import 'MovieDetailDesc.dart';
@@ -59,7 +58,7 @@ class _MovieDetailBodyState extends State<MovieDetailBody> {
         children: [
           MovieInfoCard(movie: widget.movie),
           SizedBox(height: AppDimensions.padding * 1),
-          // MovieDetailBannerAd(),
+          AppBannerAd(),
           SizedBox(height: AppDimensions.padding * 3),
           MovieDetailDesc(),
           SizedBox(height: AppDimensions.padding * 3),
