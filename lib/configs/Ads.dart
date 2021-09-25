@@ -3,11 +3,7 @@ abstract class Ads {
     return "ca-app-pub-9217632370383904~2821189635";
   }
 
-  static String getHomeBannerId() {
+  static String getBannerId() {
     return "ca-app-pub-9217632370383904/6416642104";
-  }
-
-  static String getMovieDetailBannerId() {
-    return "ca-app-pub-9217632370383904/2414751095";
   }
 }

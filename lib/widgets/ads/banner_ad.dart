@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:admob_flutter/admob_flutter.dart';
+// import 'package:admob_flutter/admob_flutter.dart';
 
 import 'package:invmovieconcept1/configs/Ads.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
-import '../Dimensions.dart';
+import '../../screens/Home/Dimensions.dart';
 
-class HomeBannerAd extends StatelessWidget {
+class AppBannerAd extends StatelessWidget {
+  const AppBannerAd({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     if (!App.showAds) {
@@ -20,10 +22,7 @@ class HomeBannerAd extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         height: Dimensions.bannerAdHeight,
-        child: AdmobBanner(
-          adSize: AdmobBannerSize.BANNER,
-          adUnitId: Ads.getHomeBannerId(),
-        ),
+        child: Text("MEnOW"),
       ),
     );
   }

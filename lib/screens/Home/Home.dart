@@ -12,7 +12,7 @@ import 'widgets/HomeMovieRatings.dart';
 import 'widgets/HomeMovieCards.dart';
 import 'widgets/HomeMovieName.dart';
 import 'widgets/HomeMovieTags.dart';
-import 'widgets/HomeBannerAd.dart';
+import '../../widgets/ads/banner_ad.dart';
 import 'widgets/HomeHeader.dart';
 import 'widgets/HomeTabBar.dart';
 
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => HomeFadeProvider()),
         ],
         child: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             height: Dimensions.containerHeight,
             child: Align(
               child: Container(
@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                     HomeTabBar(),
                     HomeMovieName(scrollable: Dimensions.scrollable),
                     HomeMovieRatings(scrollable: Dimensions.scrollable),
-                    HomeBannerAd(),
+                    AppBannerAd(),
                     HomeMovieTags(),
                   ],
                 ),

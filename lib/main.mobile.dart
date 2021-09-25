@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:admob_flutter/admob_flutter.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:firebase_analytics/observer.dart';
-import 'package:invmovieconcept1/Utils.dart';
 
+import 'Utils.dart';
 import 'native/Cache.dart';
 
 import 'configs/App.dart';
@@ -19,7 +19,7 @@ void main() async {
   App.showAds = true;
 
   if (App.showAds && Utils.isMobile()) {
-    Admob.initialize();
+    MobileAds.instance.initialize();
   }
 
   final analyticsObserver = FirebaseAnalyticsObserver(

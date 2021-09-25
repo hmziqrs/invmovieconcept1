@@ -15,7 +15,7 @@ import 'MovieInfoCard.dart';
 import '../provider.dart';
 
 class MovieDetailBody extends StatefulWidget {
-  MovieDetailBody({
+  const MovieDetailBody({
     @required this.movie,
   });
   final MovieObject movie;
@@ -30,8 +30,8 @@ class _MovieDetailBodyState extends State<MovieDetailBody> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      this.controller.addListener(() {
-        final scrollX = this.controller.offset;
+      controller.addListener(() {
+        final scrollX = controller.offset;
         MovieDetailProvider.state(context).offset = scrollX;
       });
     });
@@ -40,7 +40,7 @@ class _MovieDetailBodyState extends State<MovieDetailBody> {
 
   @override
   void dispose() {
-    this.controller.dispose();
+    controller.dispose();
     super.dispose();
   }
 
@@ -53,13 +53,13 @@ class _MovieDetailBodyState extends State<MovieDetailBody> {
         return true;
       },
       child: ListView(
-        controller: this.controller,
+        controller: controller,
         key: Key(MovieDetailTestKeys.scrollBody),
         physics: MDScrollPhysics(parent: BouncingScrollPhysics()),
         children: [
           MovieInfoCard(movie: widget.movie),
           SizedBox(height: AppDimensions.padding * 1),
-          MovieDetailBannerAd(),
+          // MovieDetailBannerAd(),
           SizedBox(height: AppDimensions.padding * 3),
           MovieDetailDesc(),
           SizedBox(height: AppDimensions.padding * 3),
