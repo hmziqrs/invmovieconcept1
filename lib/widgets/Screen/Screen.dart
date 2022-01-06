@@ -17,6 +17,7 @@ class Screen extends StatelessWidget {
     this.builder,
     this.debugLabel,
     this.belowBuilder,
+    this.overBuilders = const [],
     this.renderSettings = true,
     this.scaffoldBackgroundColor,
   });
@@ -25,6 +26,7 @@ class Screen extends StatelessWidget {
   final Widget drawer;
   final String debugLabel;
   final bool renderSettings;
+  final List<Widget> overBuilders;
   final Color scaffoldBackgroundColor;
   final void Function(BuildContext) init;
   final Widget Function(BuildContext) builder;
@@ -43,11 +45,12 @@ class Screen extends StatelessWidget {
             Theme.of(context).scaffoldBackgroundColor,
         body: Stack(
           fit: StackFit.expand,
-          children: <Widget>[
+          children: [
             belowBuilder != null ? belowBuilder(context) : Container(),
             Positioned.fill(
               child: child ?? builder(context),
             ),
+            ...overBuilders,
             renderSettings
                 ? Consumer<ScreenStateProvider>(
                     builder: (ctx, state, child) {

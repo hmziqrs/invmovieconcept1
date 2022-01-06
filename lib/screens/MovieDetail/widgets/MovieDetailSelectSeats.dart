@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/UI.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:invmovieconcept1/models/MovieObject.dart';
@@ -34,7 +35,7 @@ class MovieDetailSelectSeats extends StatelessWidget {
             top: AppDimensions.padding * 3,
             left: AppDimensions.padding * 3,
             right: AppDimensions.padding * 3,
-            bottom: AppDimensions.padding * 2,
+            bottom: (AppDimensions.padding * 2) + UI.padding.bottom,
           ),
           child: RaisedButton(
             key: Key(MovieDetailTestKeys.selectSeats),

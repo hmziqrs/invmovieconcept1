@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/UI.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
@@ -61,6 +62,10 @@ class AboutDeveloperBody extends StatelessWidget {
           children: <Widget>[
             Header(
               label: AboutDeveloperScreenMessages.title,
+              onBack: () => Navigator.popUntil(
+                context,
+                ModalRoute.withName("home"),
+              ),
             ),
             SizedBox(height: AppDimensions.padding * 1),
             AboutUserName(name: "Hamza Iqbal"),
@@ -128,6 +133,7 @@ class AboutDeveloperBody extends StatelessWidget {
             ),
             SizedBox(height: AppDimensions.padding * 1),
             AboutDeveloperMoreProjects(),
+            SizedBox(height: UI.padding.bottom),
           ],
         ),
       ),

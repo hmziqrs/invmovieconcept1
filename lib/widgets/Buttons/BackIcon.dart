@@ -14,7 +14,7 @@ class BackIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () =>
-          this.onPressed != null ? this.onPressed : Navigator.pop(context),
+          this.onPressed != null ? this.onPressed() : Navigator.pop(context),
       icon: Icon(
         App.isLtr
             ? MaterialCommunityIcons.chevron_left

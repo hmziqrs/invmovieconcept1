@@ -20,7 +20,6 @@ final accent2 = TinyColor.fromString("#2FA4FF").darken(18).color;
 
 final base = ThemeData(
   fontFamily: 'Muli',
-  accentColor: primary,
   primaryColor: primary,
   brightness: Brightness.light,
   backgroundColor: Colors.white,
@@ -30,7 +29,6 @@ final base = ThemeData(
 
 final baseDark = ThemeData(
   fontFamily: 'Muli',
-  accentColor: primary,
   primaryColor: primary,
   brightness: Brightness.dark,
   backgroundColor: darkBackground,
