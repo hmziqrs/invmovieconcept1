@@ -1,0 +1,7 @@
+{
+    "vslaunch": {
+        "mobile": {
+            "file": "lib/main.mobile.dart"
+        }
+    }
+}

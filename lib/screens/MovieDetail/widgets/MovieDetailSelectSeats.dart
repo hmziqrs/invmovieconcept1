@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/UI.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:invmovieconcept1/models/MovieObject.dart';
@@ -23,7 +24,7 @@ class MovieDetailSelectSeats extends StatelessWidget {
     return Positioned(
       left: 0,
       right: 0,
-      bottom: 0,
+      bottom: UI.padding.bottom,
       child: MDReveal(
         delay: 200,
         child: Container(

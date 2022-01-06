@@ -20,20 +20,22 @@ final accent2 = TinyColor.fromString("#2FA4FF").darken(18).color;
 
 final base = ThemeData(
   fontFamily: 'Muli',
-  accentColor: primary,
   primaryColor: primary,
   brightness: Brightness.light,
   backgroundColor: Colors.white,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: Colors.white,
+  colorScheme: ColorScheme.fromSwatch()
+      .copyWith(secondary: primary)
+      .copyWith(secondary: primary),
 );
 
 final baseDark = ThemeData(
   fontFamily: 'Muli',
-  accentColor: primary,
   primaryColor: primary,
   brightness: Brightness.dark,
   backgroundColor: darkBackground,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: darkBackground,
+  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: primary),
 );
