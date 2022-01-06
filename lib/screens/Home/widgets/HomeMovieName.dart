@@ -42,6 +42,7 @@ class HomeMovieName extends StatelessWidget {
               // Bounce scroll Patch
               final checkMin = (index == 0 && state.offset < 0.0);
               final checkMax = (index == movies.list.length - 1 &&
+                  state.controller.position != null &&
                   state.controller.position.hasPixels &&
                   state.offset > state.controller.position?.maxScrollExtent);
               if (checkMin || checkMax) {

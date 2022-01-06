@@ -37,9 +37,10 @@ class HomeScreen extends StatelessWidget {
         ],
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
+                width: AppDimensions.containerWidth,
                 height: Dimensions.bgHeight + Dimensions.ratingRadius,
                 child: Stack(
                   children: [

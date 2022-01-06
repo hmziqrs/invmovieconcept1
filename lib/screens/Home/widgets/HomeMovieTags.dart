@@ -17,6 +17,7 @@ class HomeMovieTags extends StatelessWidget {
     final state = Provider.of<HomeProvider>(context, listen: true);
 
     return Container(
+      width: AppDimensions.containerWidth,
       padding: EdgeInsets.symmetric(
         horizontal: AppDimensions.padding,
         vertical: AppDimensions.padding * 2,
