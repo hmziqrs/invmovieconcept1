@@ -43,7 +43,8 @@ abstract class CommonProps {
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [
-        AppTheme.background.withOpacity(0.001),
+        AppTheme.background.withOpacity(0.1),
+        // AppTheme.background.withOpacity(0.001),
         AppTheme.background,
       ],
     );

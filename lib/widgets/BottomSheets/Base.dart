@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/UI.dart';
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/AppTheme.dart';
 
@@ -31,6 +32,9 @@ class BottomSheetBase extends StatelessWidget {
           ),
           child: Container(
             width: AppDimensions.containerWidth,
+            padding: EdgeInsets.only(
+              bottom: UI.padding.bottom + (AppDimensions.padding * 3),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

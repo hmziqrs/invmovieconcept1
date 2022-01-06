@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/UI.dart';
 import 'package:invmovieconcept1/models/MovieTicket.dart';
 import 'package:invmovieconcept1/providers/Reservation.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
@@ -143,7 +144,7 @@ class ReservationBookNow extends StatelessWidget {
       left: 0,
       right: 0,
       duration: 300.milliseconds,
-      bottom: AppDimensions.padding * (1 > 0 ? 0 : -12),
+      bottom: UI.padding.bottom + (AppDimensions.padding * 0),
       child: Container(
         decoration: BoxDecoration(
           gradient: CommonProps.bottomBgGradient,

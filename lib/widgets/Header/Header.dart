@@ -14,11 +14,13 @@ import 'TestKeys.dart';
 class Header extends StatelessWidget {
   Header({
     this.label,
+    this.onBack,
     this.enableSafePadding = true,
   });
 
   final String label;
   final bool enableSafePadding;
+  final VoidCallback onBack;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class Header extends StatelessWidget {
           children: [
             Container(
               key: Key(HeaderWidgetKey.backButton),
-              child: BackIconButton(),
+              child: BackIconButton(onPressed: onBack),
             ),
             Container(
               padding: EdgeInsets.all(AppDimensions.padding * 2),

@@ -31,6 +31,10 @@ class AboutDesignerBody extends StatelessWidget {
           children: <Widget>[
             Header(
               label: AboutDesignerScreenMessages.title,
+              onBack: () => Navigator.popUntil(
+                context,
+                ModalRoute.withName("home"),
+              ),
             ),
             SizedBox(height: AppDimensions.padding * 1),
             AboutUserName(name: "Aneesh Raveendran"),
