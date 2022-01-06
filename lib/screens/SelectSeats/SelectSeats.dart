@@ -30,12 +30,7 @@ class SelectSeatsScreen extends StatelessWidget {
     return ChangeNotifierProvider<SelectSeatsProvider>(
       create: (_) => SelectSeatsProvider(reservation),
       child: Screen(
-        overBuilders: [
-          SelectSeatsBuyNow(
-            movie: movie,
-            isReserved: isReserved,
-          ),
-        ],
+        overBuilders: [],
         child: Align(
           alignment: Alignment.topCenter,
           child: Container(
@@ -55,6 +50,10 @@ class SelectSeatsScreen extends StatelessWidget {
                     await 360.milliseconds.delay;
                     Navigator.pop(context);
                   },
+                ),
+                SelectSeatsBuyNow(
+                  movie: movie,
+                  isReserved: isReserved,
                 ),
               ],
             ),

@@ -25,9 +25,7 @@ final base = ThemeData(
   backgroundColor: Colors.white,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: Colors.white,
-  colorScheme: ColorScheme.fromSwatch()
-      .copyWith(secondary: primary)
-      .copyWith(secondary: primary),
+  colorScheme: ThemeData.light().colorScheme.copyWith(primary: primary),
 );
 
 final baseDark = ThemeData(
@@ -37,5 +35,5 @@ final baseDark = ThemeData(
   backgroundColor: darkBackground,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: darkBackground,
-  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: primary),
+  colorScheme: ThemeData.dark().colorScheme.copyWith(primary: primary),
 );

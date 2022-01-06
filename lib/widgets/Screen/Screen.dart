@@ -50,7 +50,7 @@ class Screen extends StatelessWidget {
             Positioned.fill(
               child: child ?? builder(context),
             ),
-            ...overBuilders,
+            if (overBuilders.isNotEmpty) ...overBuilders,
             renderSettings
                 ? Consumer<ScreenStateProvider>(
                     builder: (ctx, state, child) {
