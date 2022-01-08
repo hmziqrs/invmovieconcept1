@@ -24,7 +24,7 @@ class MovieDetailSelectSeats extends StatelessWidget {
     return Positioned(
       left: 0,
       right: 0,
-      bottom: UI.padding.bottom,
+      bottom: 0,
       child: MDReveal(
         delay: 200,
         child: Container(

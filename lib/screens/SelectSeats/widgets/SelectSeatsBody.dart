@@ -1,4 +1,6 @@
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/io/io.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +29,8 @@ class SelectSeatsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = SelectSeatsProvider.state(context);
 
-    return WillPopScope(
+    return ConditionalWillPopScope(
+      shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         SelectSeatsProvider.state(context).setFade(true);
         await 360.milliseconds.delay;

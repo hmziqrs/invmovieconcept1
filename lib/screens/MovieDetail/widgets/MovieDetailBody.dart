@@ -1,4 +1,6 @@
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/io/io.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:invmovieconcept1/screens/MovieDetail/TestKeys.dart';
@@ -45,7 +47,8 @@ class _MovieDetailBodyState extends State<MovieDetailBody> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
+    return ConditionalWillPopScope(
+      shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         MovieDetailProvider.state(context).setFade(true);
         await 360.milliseconds.delay;

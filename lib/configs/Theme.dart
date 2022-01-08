@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pigment/pigment.dart';
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:tinycolor/tinycolor.dart';
+import 'package:pigment/pigment.dart';
 
 final background = Pigment.fromString('#f5eee6');
 final background2 = Pigment.fromString('#f6eee6');
@@ -26,6 +27,12 @@ final base = ThemeData(
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: Colors.white,
   colorScheme: ThemeData.light().colorScheme.copyWith(primary: primary),
+  pageTransitionsTheme: const PageTransitionsTheme(
+    builders: {
+      TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoWillPopScopePageTransionsBuilder(),
+    },
+  ),
 );
 
 final baseDark = ThemeData(
@@ -36,4 +43,10 @@ final baseDark = ThemeData(
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: darkBackground,
   colorScheme: ThemeData.dark().colorScheme.copyWith(primary: primary),
+  pageTransitionsTheme: const PageTransitionsTheme(
+    builders: {
+      TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoWillPopScopePageTransionsBuilder(),
+    },
+  ),
 );

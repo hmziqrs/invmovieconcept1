@@ -54,7 +54,8 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal> {
       child: GestureDetector(
         // onDoubleTap: ()this.openModal,
         onDoubleTap: () => state.setSettingsOpen(true),
-        child: WillPopScope(
+        child: ConditionalWillPopScope(
+          shouldAddCallback: Platform.isAndroid,
           onWillPop: () async {
             if (widget.isSettingsOpen) {
               state.setSettingsOpen(false);

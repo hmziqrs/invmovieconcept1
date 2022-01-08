@@ -1,6 +1,8 @@
 import 'dart:math' show Random;
 
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/io/io.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:intl/intl.dart';
@@ -32,7 +34,8 @@ class _MyMovieCardState extends State<MyMovieCard> {
   Widget build(BuildContext context) {
     final state = MyMoviesProvider.state(context, true);
     final movie = widget.reservation.movie;
-    return WillPopScope(
+    return ConditionalWillPopScope(
+      shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         state.setFade(true);
         await 80.milliseconds.delay;

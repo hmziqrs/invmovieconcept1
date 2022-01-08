@@ -1,4 +1,6 @@
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/io/io.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:supercharged/supercharged.dart';
@@ -19,7 +21,8 @@ class ReservationBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final MovieTicket reservation = ModalRoute.of(context).settings.arguments;
 
-    return WillPopScope(
+    return ConditionalWillPopScope(
+      shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         return true;
       },

@@ -1,8 +1,10 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/io/io.dart';
 import 'package:invmovieconcept1/UI.dart';
 
 import 'ScreenSettingsModalBody.dart';
@@ -95,7 +97,8 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal> {
         minChildSize: min,
         expand: true,
         builder: (context, controller) {
-          return WillPopScope(
+          return ConditionalWillPopScope(
+            shouldAddCallback: Platform.isAndroid,
             onWillPop: this.onWillPop,
             child: SizeChangedLayoutNotifier(
               child: ClipRect(

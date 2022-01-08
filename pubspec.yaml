@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 3.0.2
+version: 3.0.3
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
@@ -34,6 +34,7 @@ dependencies:
   touchable_opacity: 1.2.0
   page_transition: 2.0.2
   simple_animations: 3.2.0
+  cupertino_will_pop_scope: 1.2.0
 
   share: 2.0.4
   open_url: 2.0.0
