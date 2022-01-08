@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
+import 'package:flutter/services.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
 
@@ -40,30 +41,38 @@ class Screen extends StatelessWidget {
     if (init != null) {
       init(context);
     }
+
+    final brightness = Theme.of(context).brightness;
+    final statusBar = brightness != Brightness.light
+        ? SystemUiOverlayStyle.light
+        : SystemUiOverlayStyle.dark;
     return ChangeNotifierProvider<ScreenStateProvider>(
       create: (_) => ScreenStateProvider(),
-      child: Scaffold(
-        drawer: drawer,
-        backgroundColor: scaffoldBackgroundColor ??
-            Theme.of(context).scaffoldBackgroundColor,
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            belowBuilder != null ? belowBuilder(context) : Container(),
-            Positioned.fill(
-              child: child ?? builder(context),
-            ),
-            if (overBuilders.isNotEmpty) ...overBuilders,
-            renderSettings
-                ? Consumer<ScreenStateProvider>(
-                    builder: (ctx, state, child) {
-                      return ScreenSettingsModal(
-                        isSettingsOpen: state.isSettingsOpen,
-                      );
-                    },
-                  )
-                : Container(),
-          ],
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: statusBar,
+        child: Scaffold(
+          drawer: drawer,
+          backgroundColor: scaffoldBackgroundColor ??
+              Theme.of(context).scaffoldBackgroundColor,
+          body: Stack(
+            fit: StackFit.expand,
+            children: [
+              belowBuilder != null ? belowBuilder(context) : Container(),
+              Positioned.fill(
+                child: child ?? builder(context),
+              ),
+              if (overBuilders.isNotEmpty) ...overBuilders,
+              renderSettings
+                  ? Consumer<ScreenStateProvider>(
+                      builder: (ctx, state, child) {
+                        return ScreenSettingsModal(
+                          isSettingsOpen: state.isSettingsOpen,
+                        );
+                      },
+                    )
+                  : Container(),
+            ],
+          ),
         ),
       ),
     );
