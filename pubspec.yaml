@@ -42,11 +42,12 @@ dependencies:
   url_launcher: 6.0.11
   universal_io: 2.0.4
 
-  firebase_core: 1.10.6
+  firebase_core: 1.11.0
   google_mobile_ads: 1.0.1
-  firebase_analytics: 9.0.4
-  firebase_performance: 0.8.0+3
-  firebase_crashlytics: 2.4.4
+  firebase_analytics: 9.0.5
+  firebase_performance: 0.8.0+4
+  firebase_crashlytics:
+    path: ./packages/firebase_crashlytics
 
   shared_preferences: 2.0.11
 

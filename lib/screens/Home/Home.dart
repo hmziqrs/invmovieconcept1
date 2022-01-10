@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/providers/Reservation.dart';
+import 'package:invmovieconcept1/widgets/ads/banner_ad.dart';
 import 'package:provider/provider.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
@@ -12,7 +13,6 @@ import 'widgets/HomeMovieRatings.dart';
 import 'widgets/HomeMovieCards.dart';
 import 'widgets/HomeMovieName.dart';
 import 'widgets/HomeMovieTags.dart';
-import '../../widgets/ads/banner_ad.dart';
 import 'widgets/HomeHeader.dart';
 import 'widgets/HomeTabBar.dart';
 
