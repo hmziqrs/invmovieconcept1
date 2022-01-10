@@ -34,7 +34,7 @@ jobs:
         run: echo '${{ secrets.PLAYSTORE_ACCOUNT_KEY }}' > service_account.json
 
       - name: Upload to playstore
-        uses: r0adkll/upload-google-play@v1
+        uses: r0adkll/upload-google-play@v1.0.16
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
           packageName: com.onemdev.invmovieconcept1
