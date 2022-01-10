@@ -30,10 +30,13 @@ jobs:
           artifacts: 'build/app/outputs/bundle/release/app-release.aab'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
+      - name: Create service_account.json
+        run: echo '${{ secrets.PLAYSTORE_ACCOUNT_KEY }}' > service_account.json
+
       - name: Upload to playstore
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJson: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
+          serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
           packageName: com.onemdev.invmovieconcept1
           releaseFiles: build/app/outputs/bundle/release/*.aab
           track: production
