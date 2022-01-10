@@ -37,8 +37,9 @@ jobs:
 
       - name: Compress build
         run: |
-          ls -lah build
-          cd build/linux/release
+          ls -lah app/build
+          ls -lah app/build/linux
+          cd app/build/linux/x64/release/
           zip -r linux-release.zip bundle
 
       - name: Create linux Release
