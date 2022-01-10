@@ -75,7 +75,7 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
   android-aab:
-    name: Android
+    name: Android Play Store
     runs-on: ubuntu-latest
     steps:
       - name: Install Flutter SDK
@@ -160,7 +160,7 @@ jobs:
           dart scripts/mac.pub.dart
           flutter pub get
           dart ./scripts/splitVectorIcons.dart
-          flutter build macos -v --release 
+          flutter build macos --release 
           cd build/macos/Build/Products/Release
           ditto -c -k --sequesterRsrc --keepParent invmovieconcept1.app macos-release.zip
       - uses: ncipollo/release-action@v1
