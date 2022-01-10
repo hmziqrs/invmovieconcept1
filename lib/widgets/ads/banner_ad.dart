@@ -20,7 +20,7 @@ class _AppBannerAdState extends State<AppBannerAd> {
     super.initState();
 
     this.ad = BannerAd(
-      adUnitId: Ads.getTestBannerId(),
+      adUnitId: Ads.getBannerId(),
       size: AdSize.mediumRectangle,
       request: AdRequest(),
       listener: BannerAdListener(
