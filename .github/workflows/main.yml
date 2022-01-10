@@ -157,10 +157,9 @@ jobs:
           cd app
           flutter config --enable-macos-desktop
           flutter config --no-enable-android
-          dart scripts/mac.pub.dart
           flutter pub get
           dart ./scripts/splitVectorIcons.dart
-          flutter build macos --release 
+          flutter build macos -t lib/main.mobile.dart
           cd build/macos/Build/Products/Release
           ditto -c -k --sequesterRsrc --keepParent invmovieconcept1.app macos-release.zip
       - uses: ncipollo/release-action@v1
