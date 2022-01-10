@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
+import 'configs/Scroll.dart';
 import 'configs/Theme.dart' as theme;
 
 import 'providers/Reservation.dart';
@@ -76,6 +77,7 @@ class MaterialChild extends StatelessWidget {
       child: Stack(
         children: [
           MaterialApp(
+            scrollBehavior: AppScrollBehavior().copyWith(scrollbars: false),
             debugShowCheckedModeBanner: false,
             supportedLocales: AppProvider.locales,
             navigatorKey: this.navigatorKey,
