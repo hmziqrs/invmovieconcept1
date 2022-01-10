@@ -114,7 +114,7 @@ jobs:
           releaseFiles: app/build/app/outputs/bundle/release/*.aab
           track: production
           inAppUpdatePriority: 2
-          whatsNewDirectory: distribution/whatsnew
+          whatsNewDirectory: app/distribution/whatsnew
       # - name: Upload app bundle
       #   uses: actions/upload-artifact@v2
       #   with:
