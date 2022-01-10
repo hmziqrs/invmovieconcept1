@@ -13,7 +13,7 @@ jobs:
           git clone https://github.com/flutter/flutter.git
           cd flutter
           git checkout 4019956fc8
-      - run: echo ::add-path::`pwd`"/flutter/bin"
+      - run: echo `pwd`"/flutter/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -47,7 +47,7 @@ jobs:
           git clone https://github.com/flutter/flutter.git
           cd flutter
           git checkout 4019956fc8
-      - run: echo ::add-path::`pwd`"/flutter/bin"
+      - run: echo `pwd`"/flutter/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -76,7 +76,7 @@ jobs:
           git clone https://github.com/flutter/flutter.git
           cd flutter
           git checkout 4019956fc8
-      - run: echo ::add-path::`pwd`"/flutter/bin"
+      - run: echo `pwd`"/flutter/bin" >> $GITHUB_PATH
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
@@ -101,7 +101,20 @@ jobs:
           artifacts: 'app/build/app/outputs/apk/release/app-release.apk,app/build/app/outputs/bundle/release/app-release.aab,app/build/app/outputs/apk/release/app-release-noads.apk'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
-
+      - name: Upload to playstore
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJson: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
+          packageName: com.onemdev.invmovieconcept1
+          releaseFile: app/build/app/outputs/bundle/release/app-release.aab
+          track: production
+          inAppUpdatePriority: 2
+          whatsNewDirectory: distribution/whatsnew
+      # - name: Upload app bundle
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: appbundle
+      #     path: app/build/app/outputs/bundle/release/app-release.aab
   macos:
     name: MacOS
     runs-on: macos-latest
@@ -110,7 +123,7 @@ jobs:
           git clone https://github.com/flutter/flutter.git
           cd flutter
           git checkout 4019956fc8
-      - run: echo ::add-path::`pwd`"/flutter/bin"
+      - run: echo `pwd`"/flutter/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
