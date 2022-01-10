@@ -59,7 +59,7 @@ jobs:
           dart ./scripts/splitVectorIcons.dart
           flutter build web -t lib/main.web.dart --release
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@v1.3.0
+        uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
