@@ -17,9 +17,9 @@ void main() async {
   await Firebase.initializeApp();
   await Cache.init();
 
-  App.showAds = true;
+  App.showAds = Utils.isMobile();
 
-  if (App.showAds && Utils.isMobile()) {
+  if (App.showAds) {
     MobileAds.instance.initialize();
   }
 

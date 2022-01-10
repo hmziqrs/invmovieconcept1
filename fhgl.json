@@ -2,6 +2,9 @@
     "vslaunch": {
         "mobile": {
             "file": "lib/main.mobile.dart"
+        },
+        "macos": {
+            "file": "lib/main.mobile.dart"
         }
     }
 }
