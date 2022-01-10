@@ -157,7 +157,6 @@ jobs:
           cd app
           flutter config --enable-macos-desktop
           flutter config --no-enable-android
-        # dart scripts/mac.pub.dart
           flutter pub get
           dart ./scripts/splitVectorIcons.dart
           flutter build macos -t lib/main.mobile.dart
