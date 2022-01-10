@@ -57,6 +57,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   test: any
+  msix: 2.8.1
   io: 1.0.0
   yaml: 3.1.0
   glob: 2.0.1
@@ -85,3 +86,12 @@ flutter:
           weight: 600
         - asset: fonts/Muli/Muli-Bold.ttf
           weight: 700
+
+msix_config:
+  store: true
+  msix_version: 1.0.0.0
+  publisher_display_name: OneMDev
+  logo_path: ./assets/icons/app-icon.png
+  display_name: Flutter Movie Concept UI
+  identity_name: 39858OneMDev.FlutterMovieConceptUI
+  publisher: CN=309E1851-D363-4893-8248-5E01652D9CF1
