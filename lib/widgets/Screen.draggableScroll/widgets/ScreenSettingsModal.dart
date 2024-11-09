@@ -115,7 +115,7 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal> {
                         color: this.getBackgroundColor(context),
                         child: Container(
                           height: UI.height,
-                          width: AppDimensions.containerWidth,
+                          width: AppDimensions.maxContainerWidth,
                           child: ScreenSettingsModalBody(
                             onClose: this.closeModal,
                             isModalOpen: state.isSettingsOpen,

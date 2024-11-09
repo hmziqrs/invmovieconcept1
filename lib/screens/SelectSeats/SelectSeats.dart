@@ -34,7 +34,7 @@ class SelectSeatsScreen extends StatelessWidget {
         child: Align(
           alignment: Alignment.topCenter,
           child: Container(
-            width: AppDimensions.containerWidth,
+            width: AppDimensions.maxContainerWidth,
             child: Stack(
               fit: StackFit.expand,
               children: [

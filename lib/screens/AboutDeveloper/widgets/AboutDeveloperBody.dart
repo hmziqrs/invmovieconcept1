@@ -55,7 +55,7 @@ class AboutDeveloperBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       child: Container(
-        width: AppDimensions.containerWidth,
+        width: AppDimensions.maxContainerWidth,
         child: ListView(
           key: Key(AboutDeveloperTestKeys.rootScroll),
           padding: EdgeInsets.zero,

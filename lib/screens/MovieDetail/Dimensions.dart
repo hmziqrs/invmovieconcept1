@@ -19,7 +19,7 @@ class Dimensions {
     App.init(context);
 
     cardOffset = -AppDimensions.padding * 5;
-    cardWidth = AppDimensions.containerWidth;
+    cardWidth = AppDimensions.maxContainerWidth;
     cardHeight = cardWidth * 1.4;
     if (cardHeight > 550) {
       cardHeight = 550;

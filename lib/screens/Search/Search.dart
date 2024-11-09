@@ -45,7 +45,7 @@ class SearchScreen extends StatelessWidget {
       child: Align(
         alignment: Alignment.topCenter,
         child: Container(
-          width: AppDimensions.containerWidth,
+          width: AppDimensions.maxContainerWidth,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,

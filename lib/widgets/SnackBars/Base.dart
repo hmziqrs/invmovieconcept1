@@ -17,7 +17,7 @@ void showSnackBarBase({
     content: FittedBox(
       fit: BoxFit.scaleDown,
       child: Container(
-        width: AppDimensions.containerWidth,
+        width: AppDimensions.maxContainerWidth,
         margin: EdgeInsets.symmetric(
           horizontal: AppDimensions.padding * 2,
         ),

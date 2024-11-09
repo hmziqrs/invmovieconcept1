@@ -4,10 +4,10 @@ import 'package:invmovieconcept1/configs/App.dart';
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
 class Dimensions {
-  static double projectCardWidth;
-  static double projectCardHeight;
+  static late double projectCardWidth;
+  static late double projectCardHeight;
 
-  static double avatarRadius;
+  static late double avatarRadius;
 
   static init(BuildContext context) {
     App.init(context);

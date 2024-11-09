@@ -41,7 +41,7 @@ class DownloadScreen extends StatelessWidget {
       belowBuilder: this.belowBuilder,
       child: Align(
         child: Container(
-          width: AppDimensions.containerWidth,
+          width: AppDimensions.maxContainerWidth,
           child: DownloadBody(),
         ),
       ),
