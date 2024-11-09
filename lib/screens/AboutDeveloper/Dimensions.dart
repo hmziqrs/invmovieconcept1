@@ -9,7 +9,7 @@ class Dimensions {
 
   static late double avatarRadius;
 
-  static late init(BuildContext context) {
+  static init(BuildContext context) {
     App.init(context);
 
     projectCardHeight = 80 + AppDimensions.ratio * 60;

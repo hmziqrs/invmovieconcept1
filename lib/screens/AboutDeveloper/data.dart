@@ -1,4 +1,4 @@
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 import 'package:invmovieconcept1/static/Links.dart';
 
@@ -41,48 +41,48 @@ final contacts = [
   {
     "platform": "facebook",
     "label": "hackerhgl",
-    "icon": MaterialCommunityIcons.facebook,
+    "icon": TeenyIcons.facebook,
   },
   {
     "platform": "linkedin",
     "label": "hackerhgl",
-    "icon": MaterialCommunityIcons.linkedin,
+    "icon": TeenyIcons.linkedin,
   },
   {
     "platform": "skype",
     "label": "hamza.iqbal.jawaid.iqbal",
-    "icon": MaterialCommunityIcons.skype_business,
+    "icon": TeenyIcons.skype,
     "url": "https://join.skype.com/invite/XGRknTea0kKf",
   },
   {
     "platform": "whatsapp",
     "label": "+923148155304",
-    "icon": MaterialCommunityIcons.whatsapp
+    "icon": TeenyIcons.whatsapp
   },
 ];
 
 final showSupport = [
   {
     "label": AboutDeveloperScreenMessages.likeProject1,
-    "icon": MaterialCommunityIcons.github_face,
+    "icon": TeenyIcons.github,
     "link": MyLinks.invmovieconcept1Github,
   },
   {
     "platform": "Play Store",
     "label": AboutDeveloperScreenMessages.likeProject2,
-    "icon": MaterialCommunityIcons.google_play,
+    "icon": TeenyIcons.google_play_store,
     "link": MyLinks.invmovieconcept1GooglePlay,
   },
   {
     "platform": "Linkedin",
     "label": AboutDeveloperScreenMessages.likeProject3,
-    "icon": MaterialCommunityIcons.linkedin,
+    "icon": TeenyIcons.linkedin,
     "link": "https://www.linkedin.com/in/hackerhgl/",
   },
   {
     "platform": "Fiverr",
     "label": AboutDeveloperScreenMessages.likeProject4,
-    "icon": MaterialCommunityIcons.heart_outline,
+    "icon": TeenyIcons.heart,
     "link": "https://www.fiverr.com/hackerhgl",
   },
 ];
@@ -94,13 +94,13 @@ final moreProjects = [
     "links": [
       {
         "label": "Google Play",
-        "icon": MaterialCommunityIcons.google_play,
+        "icon": TeenyIcons.google_play_store,
         "url":
             "https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges",
       },
       {
         "label": "Github",
-        "icon": MaterialCommunityIcons.github_face,
+        "icon": TeenyIcons.github,
         "url": "https://github.com/hackerhgl/flutter-ui-designs"
       },
     ],
@@ -111,13 +111,13 @@ final moreProjects = [
     "links": [
       {
         "label": "Google Play",
-        "icon": MaterialCommunityIcons.google_play,
+        "icon": TeenyIcons.google_play_store,
         "url":
             "https://play.google.com/store/apps/details?id=com.onemdev.rnloop",
       },
       {
         "label": "Github",
-        "icon": MaterialCommunityIcons.github_face,
+        "icon": TeenyIcons.github,
         "url": "https://github.com/hackerhgl/react-native-loop-game"
       },
     ],
@@ -128,12 +128,12 @@ final moreProjects = [
     "links": [
       {
         "label": "Website",
-        "icon": MaterialCommunityIcons.web,
+        "icon": TeenyIcons.globe,
         "url": "http://hackerhgl-cv.web.app",
       },
       {
         "label": "Github",
-        "icon": MaterialCommunityIcons.github_face,
+        "icon": TeenyIcons.github,
         "url": "https://github.com/hackerhgl/CV"
       },
     ],
