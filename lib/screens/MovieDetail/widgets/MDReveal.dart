@@ -20,14 +20,13 @@ class MDReveal extends StatelessWidget {
     return Selector<MovieDetailProvider, bool>(
       selector: (ctx, state) => state.fadeOff,
       builder: (context, fadeOff, child) {
-        return CustomAnimation<double>(
+        return CustomAnimationBuilder<double>(
           tween: 0.0.tweenTo(1.0),
           duration: 360.milliseconds,
           delay: fadeOff ? 1.milliseconds : this.delay.milliseconds,
           control: !fadeOff
-              ? CustomAnimationControl.PLAY
-              : CustomAnimationControl.PLAY_REVERSE,
-          builder: (context, child, animation) {
+              ? Control.play : Control.playReverse,
+          builder: (context, animation, child) {
             return Transform(
               transform: Matrix4.identity()
                 ..translate(

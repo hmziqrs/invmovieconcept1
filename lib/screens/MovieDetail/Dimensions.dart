@@ -15,7 +15,7 @@ class Dimensions {
 
   static late double bannerAdHeight;
 
-  static late init(BuildContext context) {
+  static init(BuildContext context) {
     App.init(context);
 
     cardOffset = -AppDimensions.padding * 5;

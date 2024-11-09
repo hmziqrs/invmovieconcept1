@@ -19,7 +19,8 @@ class MovieDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-    final MovieObject movie = ModalRoute.of(context).settings.arguments;
+    final MovieObject movie =
+        ModalRoute.of(context)!.settings.arguments as MovieObject;
 
     return Screen(
       child: Align(

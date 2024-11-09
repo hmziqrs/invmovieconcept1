@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MDScrollPhysics extends ScrollPhysics {
-  const MDScrollPhysics({ScrollPhysics parent}) : super(parent: parent);
+  const MDScrollPhysics({required ScrollPhysics parent})
+      : super(parent: parent);
 
   @override
-  MDScrollPhysics applyTo(ScrollPhysics ancestor) {
-    return MDScrollPhysics(parent: buildParent(ancestor));
+  MDScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return MDScrollPhysics(parent: buildParent(ancestor)!);
   }
 
   @override
