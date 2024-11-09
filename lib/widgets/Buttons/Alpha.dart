@@ -17,7 +17,7 @@ class AlphaButton extends StatelessWidget {
   }) : this.borderRadius = borderRadius ?? BorderRadius.circular(8.0);
 
   final String label;
-  final IconData icon;
+  final IconData? icon;
   final EdgeInsets margin;
   final VoidCallback onTap;
   final BorderRadius borderRadius;
