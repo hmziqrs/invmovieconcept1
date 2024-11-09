@@ -24,7 +24,7 @@ class AboutUserContactButton extends StatelessWidget {
     required this.initContext,
   });
 
-  final String url;
+  final String? url;
   final String label;
   final IconData icon;
   final String platform;

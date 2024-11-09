@@ -68,11 +68,11 @@ class AboutDesignerBody extends StatelessWidget {
             ...data.contacts
                 .map(
                   (contact) => AboutUserContactButton(
-                    url: contact["url"],
-                    icon: contact["icon"],
-                    label: contact["label"],
+                    url: contact.url,
+                    icon: contact.icon,
+                    label: contact.label,
                     initContext: Dimensions.init,
-                    platform: contact["platform"],
+                    platform: contact.platform,
                   ),
                 )
                 .toList(),
