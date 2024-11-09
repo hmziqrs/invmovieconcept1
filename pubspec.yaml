@@ -48,7 +48,9 @@ dependencies:
   firebase_messaging: 15.1.2
   firebase_crashlytics: 4.1.2
   firebase_performance: 0.10.0+7
+  google_mobile_ads: 5.1.0
 
+  io: 1.0.3
   shared_preferences: 2.3.3
 
 dev_dependencies:

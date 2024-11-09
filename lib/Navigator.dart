@@ -116,7 +116,6 @@ class MaterialChild extends StatelessWidget {
                     child: SearchScreen(),
                     type: PageTransitionType.fade,
                   );
-                  break;
                 case 'movieDetail':
                   return PageTransition(
                     settings: settings,
@@ -124,7 +123,6 @@ class MaterialChild extends StatelessWidget {
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 700),
                   );
-                  break;
                 case 'selectSeats':
                   return PageTransition(
                     settings: settings,
@@ -132,7 +130,6 @@ class MaterialChild extends StatelessWidget {
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 700),
                   );
-                  break;
                 case 'reservation':
                   return PageTransition(
                     settings: settings,
@@ -140,7 +137,6 @@ class MaterialChild extends StatelessWidget {
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 700),
                   );
-                  break;
                 default:
                   return null;
               }
