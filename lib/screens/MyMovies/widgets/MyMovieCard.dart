@@ -43,16 +43,15 @@ class _MyMovieCardState extends State<MyMovieCard> {
       },
       child: Stack(
         children: [
-          CustomAnimation<Alignment>(
+          CustomAnimationBuilder<Alignment>(
             control: this.isHover || state.fadeOff
-                ? CustomAnimationControl.STOP
-                : CustomAnimationControl.MIRROR,
+                ? Control.stop : Control.mirror,
             tween: Tween(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             duration: (60 + Random().nextInt(30)).seconds,
-            builder: (context, child, animation) {
+            builder: (context, animation, child) {
               return Positioned.fill(
                 child: Container(
                   width: double.infinity,
@@ -66,13 +65,12 @@ class _MyMovieCardState extends State<MyMovieCard> {
               );
             },
           ),
-          CustomAnimation<double>(
+          CustomAnimationBuilder<double>(
             control: this.isHover
-                ? CustomAnimationControl.STOP
-                : CustomAnimationControl.MIRROR,
+                ? Control.stop : Control.mirror,
             tween: 0.0.tweenTo(1.0),
             duration: 4.seconds,
-            builder: (context, child, animation) {
+            builder: (context, animation, child) {
               return Positioned.fill(
                 child: Stack(
                   fit: StackFit.expand,
