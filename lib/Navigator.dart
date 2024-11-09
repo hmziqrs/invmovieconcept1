@@ -30,15 +30,18 @@ class AppNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RawKeyboardListener(
+    return KeyboardListener(
       autofocus: true,
       focusNode: FocusNode(),
-      onKey: (RawKeyEvent event) {
-        if (event.runtimeType == RawKeyDownEvent &&
-            event.isAltPressed &&
+      onKeyEvent: (KeyEvent event) {
+        final canPop = this.navigator.currentState?.canPop() ?? false;
+        if (event is KeyDownEvent) {
+          // if alt and backspace are pressed
+          var check = HardwareKeyboard.instance.isAltPressed &&
             event.logicalKey == LogicalKeyboardKey.backspace &&
-            this.navigator.currentState.canPop()) {
-          this.navigator.currentState.pop();
+              canPop;
+          if (!check) return;
+          this.navigator.currentState?.pop();
         }
       },
       child: MultiProvider(
