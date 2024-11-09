@@ -34,13 +34,12 @@ class HomeDrawerButton extends StatelessWidget {
           milliseconds: 200 + (15 * entry.key),
         ),
       );
-    return CustomAnimation<MultiTweenValues<AnimProp>>(
+    return CustomAnimationBuilder<MultiTweenValues<AnimProp>>(
       tween: tween,
       control: baseAnimation > 0.8
-          ? CustomAnimationControl.PLAY
-          : CustomAnimationControl.PLAY_REVERSE,
+          ? Control.play : Control.playReverse,
       duration: tween.duration,
-      builder: (context, _, button) {
+      builder: (context, button, _) {
         return Opacity(
           opacity: button.get(AnimProp.opacity),
           child: Container(
