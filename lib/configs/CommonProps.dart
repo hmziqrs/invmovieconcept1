@@ -5,22 +5,47 @@ import 'AppTheme.dart';
 
 abstract class CommonProps {
   //
-  static EdgeInsets btnPadMed;
-  static EdgeInsets btnPadSm;
+  static late EdgeInsets btnPadMed;
+  static late EdgeInsets btnPadSm;
 
   //
-  static LinearGradient gradient1;
-  static LinearGradient bottomBgGradient;
-  static List<BoxShadow> headerShadow;
-  static LinearGradient gradient1Cross;
+  static late LinearGradient gradient1;
+  static late LinearGradient bottomBgGradient;
+  static late List<BoxShadow> headerShadow;
+  static late LinearGradient gradient1Cross;
+
+  static late BorderRadius buttonRadius;
+  static late BorderRadius cardRadius;
+  static late BoxDecoration borderButton;
+  static late BoxDecoration borderButtonText;
 
   static init() {
+    initRadius();
     initButtons();
-    initGradients();
     initShadows();
+    initGradients();
+  }
+
+  static initRadius() {
+    buttonRadius = BorderRadius.circular(AppTheme.buttonRadius);
+    cardRadius = BorderRadius.circular(AppTheme.cartRadius);
   }
 
   static initButtons() {
+    borderButton = BoxDecoration(
+      borderRadius: CommonProps.buttonRadius,
+      border: Border.all(
+        width: 1.4,
+        color: AppTheme.primary,
+      ),
+    );
+    borderButtonText = BoxDecoration(
+      borderRadius: CommonProps.buttonRadius,
+      border: Border.all(
+        width: 1.4,
+        color: AppTheme.text,
+      ),
+    );
     btnPadSm = EdgeInsets.symmetric(
       horizontal: AppDimensions.padding * 2,
       vertical: AppDimensions.padding * 1.0,
@@ -43,7 +68,7 @@ abstract class CommonProps {
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [
-        AppTheme.background.withOpacity(0.0),
+        AppTheme.background.withOpacity(0.001),
         AppTheme.background,
       ],
     );

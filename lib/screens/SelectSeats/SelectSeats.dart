@@ -20,9 +20,9 @@ class SelectSeatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-    final Map arguments = ModalRoute.of(context).settings.arguments;
+    final arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
-    MovieTicket reservation = arguments["reservation"];
+    MovieTicket? reservation = arguments["reservation"];
     MovieObject movie = arguments["movie"];
 
     final isReserved = reservation != null;
@@ -34,7 +34,7 @@ class SelectSeatsScreen extends StatelessWidget {
         child: Align(
           alignment: Alignment.topCenter,
           child: Container(
-            width: AppDimensions.containerWidth,
+            width: AppDimensions.maxContainerWidth,
             child: Stack(
               fit: StackFit.expand,
               children: [

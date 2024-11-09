@@ -11,7 +11,7 @@ import '../provider.dart';
 import '../Theme.dart';
 
 class HomeMovieRatings extends StatelessWidget {
-  HomeMovieRatings({@required this.scrollable});
+  HomeMovieRatings({required this.scrollable});
   final double scrollable;
 
   @override
@@ -53,7 +53,7 @@ class HomeMovieRatings extends StatelessWidget {
               final checkMin = (index == 0 && state.offset < 0.0);
               final checkMax = (index == movies.list.length - 1 &&
                   state.controller.position.hasPixels &&
-                  state.offset > state.controller.position?.maxScrollExtent);
+                  state.offset > state.controller.position.maxScrollExtent);
               if (checkMin || checkMax) {
                 opacity = 1.0;
                 scale = 0.0;

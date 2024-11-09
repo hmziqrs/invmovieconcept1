@@ -17,17 +17,17 @@ import '../Theme.dart';
 class HomeBackgroundImage extends StatelessWidget {
   static const double SHIFT = 0.50;
 
-  HomeBackgroundImage({this.scrollable});
+  HomeBackgroundImage({required this.scrollable});
 
   final double scrollable;
 
   double getOffsetX(double parallax, [rtl = true]) {
     double x;
     if (!App.isLtr && rtl) {
-      x = 0.0 + (AppDimensions.containerWidth * parallax * SHIFT);
+      x = 0.0 + (AppDimensions.maxContainerWidth * parallax * SHIFT);
     } else {
-      x = AppDimensions.containerWidth -
-          (AppDimensions.containerWidth * parallax * SHIFT);
+      x = AppDimensions.maxContainerWidth -
+          (AppDimensions.maxContainerWidth * parallax * SHIFT);
     }
 
     return x;
@@ -49,7 +49,7 @@ class HomeBackgroundImage extends StatelessWidget {
     final x = this.getOffsetY(parallax);
     final y = this.getOffsetX(parallax, false);
     final a = math.pow(Dimensions.bgHeight - x, 2);
-    final b = math.pow(AppDimensions.containerWidth - y, 2);
+    final b = math.pow(AppDimensions.maxContainerWidth - y, 2);
     final bgClipRadius = math.sqrt(a + b);
 
     return bgClipRadius;
@@ -126,7 +126,7 @@ class HomeBackgroundImage extends StatelessWidget {
                   ),
                   child: Transform(
                     origin: Offset(
-                      AppDimensions.containerWidth / 2,
+                      AppDimensions.maxContainerWidth / 2,
                       Dimensions.bgHeight / 2,
                     ),
                     transform: Matrix4.rotationZ(scale * 0.66)

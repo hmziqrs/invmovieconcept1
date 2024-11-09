@@ -50,8 +50,8 @@ final Map themeModeMap = {
 
 class ScreenSettingsModalBody extends StatelessWidget {
   ScreenSettingsModalBody({
-    @required this.onClose,
-    @required this.isModalOpen,
+    required this.onClose,
+    required this.isModalOpen,
   });
 
   final VoidCallback onClose;
@@ -62,7 +62,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
     final appState = Provider.of<AppProvider>(context, listen: false);
 
     return Material(
-      textStyle: Theme.of(context).textTheme.bodyText1,
+      textStyle: Theme.of(context).textTheme.bodyLarge,
       color: Colors.transparent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +70,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
           Flexible(
             child: NotificationListener<OverscrollIndicatorNotification>(
               onNotification: (notification) {
-                notification.disallowGlow();
+                notification.disallowIndicator();
                 return true;
               },
               child: ListView(
@@ -117,7 +117,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
                       horizontal: AppDimensions.padding * 2,
                     ),
                     child: Text(
-                      "All the translatable messages are translated by an automated google translator script that's why you may see translation errors if you choose any language other than English And I won't improve translation since this is just an experimintal application also I work alone on this project. If you wish to improve translation do contact me, I'll mention your contribution in appllication and github repository.",
+                      "All the translatable messages are translated by an automated google translator script that's why you may see translation errors if you choose any language other than English And I won't improve translation since this is just an experimintal application also I work alone on this project. If you wish to improve translation do contact me, I'll mention your contribution in application and github repository.",
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -140,13 +140,13 @@ class ScreenSettingsModalBody extends StatelessWidget {
                               ),
                           child: Row(
                             children: [
-                              Text(map[key]["emoji"]),
+                              Text(map[key]!["emoji"]!),
                               Container(width: AppDimensions.padding),
-                              Text(map[key]["label"]),
+                              Text(map[key]!["label"]!),
                               Text(" - "),
                               Text(
                                 App.translate(
-                                  map[key]["trans"],
+                                  map[key]!["trans"]!,
                                   context,
                                 ),
                               ),
@@ -171,7 +171,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
                   ),
                   ...ThemeMode.values.map(
                     (themeMode) => ScreenSettingsSelect(
-                      testKey: themeTestKeysMap[themeMode],
+                      testKey: themeTestKeysMap[themeMode]!,
                       onPress: () => appState.setTheme(themeMode),
                       isActive: themeMode == appState.themeMode,
                       text: App.translate(themeModeMap[themeMode], context),

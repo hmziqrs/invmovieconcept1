@@ -5,7 +5,7 @@ import 'package:invmovieconcept1/configs/TextStyles.dart';
 
 class AlphaBanner extends StatelessWidget {
   const AlphaBanner({
-    @required this.text,
+    required this.text,
     this.margin = EdgeInsets.zero,
   });
 

@@ -11,7 +11,7 @@ import '../Dimensions.dart';
 import '../provider.dart';
 
 class HomeMovieName extends StatelessWidget {
-  HomeMovieName({@required this.scrollable});
+  HomeMovieName({required this.scrollable});
   final double scrollable;
 
   @override
@@ -42,9 +42,8 @@ class HomeMovieName extends StatelessWidget {
               // Bounce scroll Patch
               final checkMin = (index == 0 && state.offset < 0.0);
               final checkMax = (index == movies.list.length - 1 &&
-                  state.controller.position != null &&
                   state.controller.position.hasPixels &&
-                  state.offset > state.controller.position?.maxScrollExtent);
+                  state.offset > state.controller.position.maxScrollExtent);
               if (checkMin || checkMax) {
                 opacity = 1.0;
               }

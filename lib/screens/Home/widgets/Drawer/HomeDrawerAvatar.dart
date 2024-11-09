@@ -9,20 +9,19 @@ import '../../Theme.dart';
 
 class HomeDrawerAvatar extends StatelessWidget {
   HomeDrawerAvatar({
-    @required this.baseAnimation,
+    required this.baseAnimation,
   });
 
   final double baseAnimation;
 
   @override
   Widget build(BuildContext context) {
-    return CustomAnimation<double>(
+    return CustomAnimationBuilder<double>(
       control: baseAnimation > 0.8
-          ? CustomAnimationControl.PLAY
-          : CustomAnimationControl.PLAY_REVERSE,
+          ? Control.play : Control.playReverse,
       tween: Tween(begin: 0.0, end: 1.0),
       duration: Duration(milliseconds: 320),
-      builder: (context, _, double opacity) {
+      builder: (context, opacity, _) {
         return Opacity(
           opacity: opacity,
           child: Container(

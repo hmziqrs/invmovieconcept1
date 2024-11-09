@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:share/share.dart';
 
 import 'package:invmovieconcept1/configs/App.dart';
 
@@ -10,21 +10,21 @@ import 'package:invmovieconcept1/Utils.dart';
 import 'messages/keys.dart';
 
 void openOrShare({
-  BuildContext context,
+  required BuildContext context,
   //
-  String title,
+  required String title,
 
   // SecondButton
-  String actionLink,
-  String actionLabel,
+  required String actionLink,
+  required String actionLabel,
 
   // snackLabel
-  String action2Link,
-  String snackLabel,
-  String shareLabel,
+  String? action2Link,
+  String? snackLabel,
+  String? shareLabel,
 }) {
   final style = ButtonStyle(
-    overlayColor: MaterialStateColor.resolveWith(
+    overlayColor: WidgetStateColor.resolveWith(
       (states) => Theme.of(context).primaryColor.withOpacity(0.05),
     ),
   );
@@ -57,7 +57,7 @@ void openOrShare({
           TextButton(
             style: style,
             onPressed: () async {
-              if (Utils.isMobile()) {
+              if (Utils.isMobile() && action2Link != null) {
                 Share.share(
                   action2Link,
                   subject: shareLabel,
@@ -66,16 +66,16 @@ void openOrShare({
                 Navigator.pop(context);
               } else if (Utils.isDesktop()) {
                 bool hasSnackbar = snackLabel != null;
-                await Clipboard.setData(ClipboardData(text: action2Link));
+                await Clipboard.setData(ClipboardData(text: action2Link!));
                 Navigator.pop(context);
                 if (hasSnackbar) {
-                  Scaffold.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(snackLabel),
-                    ),
-                  );
-                  await 1600.milliseconds.delay;
-                  Scaffold.of(context).hideCurrentSnackBar();
+                  // Scaffold.of(context).showSnackBar(
+                  //   SnackBar(
+                  //     content: Text(snackLabel),
+                  //   ),
+                  // );
+                  // await 1600.milliseconds.delay;
+                  // Scaffold.of(context).hideCurrentSnackBar();
                 }
               }
             },

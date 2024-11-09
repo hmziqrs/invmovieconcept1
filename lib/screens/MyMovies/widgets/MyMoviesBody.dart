@@ -34,10 +34,12 @@ class MyMoviesBody extends StatelessWidget {
       children.add(
         Padding(
           padding: EdgeInsets.all(AppDimensions.padding * 3),
-          child: RaisedButton(
+          child: ElevatedButton(
             onPressed: () => state.clear(),
-            color: AppTheme.primary,
-            textColor: Colors.white,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primary,
+              foregroundColor: Colors.white,
+            ),
             child: Text(
               App.translate(
                 MyMoviesScreenMessages.clear,

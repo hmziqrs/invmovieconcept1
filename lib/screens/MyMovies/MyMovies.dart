@@ -20,7 +20,7 @@ class MyMoviesScreen extends StatelessWidget {
         child: ChangeNotifierProvider<MyMoviesProvider>(
           create: (_) => MyMoviesProvider(),
           child: Container(
-            width: AppDimensions.containerWidth,
+            width: AppDimensions.maxContainerWidth,
             child: MyMoviesBody(),
           ),
         ),

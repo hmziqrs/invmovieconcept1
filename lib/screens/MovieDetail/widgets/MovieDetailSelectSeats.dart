@@ -19,7 +19,7 @@ import 'MDReveal.dart';
 class MovieDetailSelectSeats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final MovieObject movie = ModalRoute.of(context).settings.arguments;
+    final movie = ModalRoute.of(context)!.settings.arguments as MovieObject;
 
     return Positioned(
       left: 0,
@@ -37,7 +37,7 @@ class MovieDetailSelectSeats extends StatelessWidget {
             right: AppDimensions.padding * 3,
             bottom: (AppDimensions.padding * 2) + UI.padding.bottom,
           ),
-          child: RaisedButton(
+          child: ElevatedButton(
             key: Key(MovieDetailTestKeys.selectSeats),
             onPressed: () async {
               MovieDetailProvider.state(context).setFade(true);
@@ -49,9 +49,11 @@ class MovieDetailSelectSeats extends StatelessWidget {
               );
               MovieDetailProvider.state(context).setFade(false);
             },
-            color: AppTheme.primary,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18.0),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0),
+              ),
             ),
             child: Text(
               App.translate(MovieDetailScreenMessages.select, context),

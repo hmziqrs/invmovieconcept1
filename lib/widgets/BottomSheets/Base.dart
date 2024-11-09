@@ -5,7 +5,7 @@ import 'package:invmovieconcept1/configs/AppTheme.dart';
 
 class BottomSheetBase extends StatelessWidget {
   BottomSheetBase({
-    @required this.children,
+    required this.children,
   });
 
   final List<Widget> children;
@@ -31,7 +31,7 @@ class BottomSheetBase extends StatelessWidget {
             ],
           ),
           child: Container(
-            width: AppDimensions.containerWidth,
+            width: AppDimensions.maxContainerWidth,
             padding: EdgeInsets.only(
               bottom: UI.padding.bottom + (AppDimensions.padding * 3),
             ),

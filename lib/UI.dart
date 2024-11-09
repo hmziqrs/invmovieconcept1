@@ -1,42 +1,47 @@
 import 'dart:math';
 import 'package:flutter/widgets.dart';
 
+import 'DeviceType.dart';
+
 class UI {
-  static MediaQueryData _mediaQueryData;
-  static double width;
-  static double height;
-  static double horizontal;
-  static double vertical;
-  static EdgeInsets padding;
-  static EdgeInsets vi;
+  static late MediaQueryData _mediaQueryData;
+  static late double width;
+  static late double height;
+  static late double horizontal;
+  static late double vertical;
 
-  static double _safeAreaHorizontal;
-  static double _safeAreaVertical;
-  static double safeWidth;
-  static double safeHeight;
+  static late double _safeAreaHorizontal;
+  static late double _safeAreaVertical;
+  static late double safeWidth;
+  static late double safeHeight;
 
-  static double diagonal;
+  static late EdgeInsets padding;
+  static late EdgeInsets vi;
 
-  static bool xxs;
-  static bool xs;
-  static bool sm;
-  static bool md;
-  static bool xmd;
-  static bool lg;
-  static bool xl;
-  static bool xlg;
-  static bool xxlg;
+  static late bool isTablet;
+  static late double diagonal;
+
+  static late bool xxs;
+  static late bool xs;
+  static late bool sm;
+  static late bool md;
+  static late bool xmd;
+  static late bool lg;
+  static late bool xl;
+  static late bool xlg;
+  static late bool xxlg;
 
   static void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
     initChecks(_mediaQueryData);
 
-    padding = _mediaQueryData.padding;
-    vi = _mediaQueryData.viewInsets;
     width = _mediaQueryData.size.width;
     height = _mediaQueryData.size.height;
     horizontal = width / 100;
     vertical = height / 100;
+
+    padding = _mediaQueryData.padding;
+    vi = _mediaQueryData.viewInsets;
 
     _safeAreaHorizontal =
         _mediaQueryData.padding.left + _mediaQueryData.padding.right;
@@ -55,6 +60,7 @@ class UI {
     //     'diagonal: $diagonal\n'
     //     'Device.get().isTablet ${Device.get().isTablet}\n'
     //     'Device.get().isIphoneX ${Device.get().isIphoneX}');
+    isTablet = diagonal > 900.0 && Device.get().isTablet;
     xxs = size.width > 300;
     xs = size.width > 360;
     sm = size.width > 480;

@@ -19,19 +19,20 @@ import '../Dimensions.dart';
 class ReservationBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final MovieTicket reservation = ModalRoute.of(context).settings.arguments;
+    final reservation =
+        ModalRoute.of(context)!.settings.arguments as MovieTicket;
 
     return ConditionalWillPopScope(
       shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         return true;
       },
-      child: PlayAnimation<double>(
+      child: PlayAnimationBuilder<double>(
         curve: Curves.easeOut,
         tween: 1.0.tweenTo(0.0),
         delay: 120.milliseconds,
         duration: 750.milliseconds,
-        builder: (context, child, animation) {
+        builder: (context, animation, child) {
           return Opacity(
             opacity: (1 - animation * 1.77).clamp(
               0.0,

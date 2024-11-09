@@ -4,22 +4,22 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
 class Dimensions {
-  static double cardWidth;
-  static double cardOffset;
-  static double cardHeight;
+  static late double cardWidth;
+  static late double cardOffset;
+  static late double cardHeight;
 
-  static double infoHeight;
-  static double infoIconRadius;
+  static late double infoHeight;
+  static late double infoIconRadius;
 
-  static double castRadius;
+  static late double castRadius;
 
-  static double bannerAdHeight;
+  static late double bannerAdHeight;
 
   static init(BuildContext context) {
     App.init(context);
 
     cardOffset = -AppDimensions.padding * 5;
-    cardWidth = AppDimensions.containerWidth;
+    cardWidth = AppDimensions.maxContainerWidth;
     cardHeight = cardWidth * 1.4;
     if (cardHeight > 550) {
       cardHeight = 550;

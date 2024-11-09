@@ -18,7 +18,7 @@ import '../provider.dart';
 
 class SelectSeatsBody extends StatelessWidget {
   SelectSeatsBody({
-    @required this.movie,
+    required this.movie,
     this.isReserved = false,
   });
 

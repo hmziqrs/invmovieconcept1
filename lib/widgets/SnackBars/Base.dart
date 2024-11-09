@@ -4,9 +4,9 @@ import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 
 void showSnackBarBase({
-  @required BuildContext context,
-  Widget child,
-  String text,
+  required BuildContext context,
+  Widget? child,
+  String? text,
 }) {
   final snackbar = SnackBar(
     elevation: 0.0,
@@ -17,7 +17,7 @@ void showSnackBarBase({
     content: FittedBox(
       fit: BoxFit.scaleDown,
       child: Container(
-        width: AppDimensions.containerWidth,
+        width: AppDimensions.maxContainerWidth,
         margin: EdgeInsets.symmetric(
           horizontal: AppDimensions.padding * 2,
         ),
@@ -38,7 +38,7 @@ void showSnackBarBase({
         ),
         child: child ??
             Text(
-              text,
+              text!,
               style: TextStyles.body26.copyWith(
                 color: AppTheme.text,
               ),
@@ -47,5 +47,5 @@ void showSnackBarBase({
     ),
   );
 
-  Scaffold.of(context).showSnackBar(snackbar);
+  // Scaffold.of(context).showSnackBar(snackbar);
 }

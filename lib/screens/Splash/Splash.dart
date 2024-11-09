@@ -6,7 +6,7 @@ import 'package:supercharged/supercharged.dart';
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen({@required this.loading});
+  SplashScreen({required this.loading});
   final bool loading;
 
   @override
@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
       return Container();
     }
 
-    final mediaQuery = MediaQueryData.fromWindow(ui.window);
+    final mediaQuery = MediaQueryData.fromView(ui.window);
     final check = (this.widget.loading && !this.play);
 
     return MediaQuery(
@@ -64,11 +64,8 @@ class _SplashScreenState extends State<SplashScreen> {
               height: mediaQuery.size.height,
               color: Colors.white.withOpacity(1.0),
               alignment: Alignment.center,
-              child: CustomAnimation<double>(
+              child: LoopAnimationBuilder<double>(
                 curve: Curves.easeIn,
-                control: check
-                    ? CustomAnimationControl.MIRROR
-                    : CustomAnimationControl.STOP,
                 tween: 0.2.tweenTo(1.0),
                 duration: 300.milliseconds,
                 child: Image.asset(
@@ -76,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: imageSize,
                   height: imageSize,
                 ),
-                builder: (context, child, animation) {
+                builder: (context, animation, child) {
                   return Transform.scale(
                     scale: 1 + animation * 0.4,
                     child: child,

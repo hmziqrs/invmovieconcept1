@@ -30,15 +30,18 @@ class AppNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RawKeyboardListener(
+    return KeyboardListener(
       autofocus: true,
       focusNode: FocusNode(),
-      onKey: (RawKeyEvent event) {
-        if (event.runtimeType == RawKeyDownEvent &&
-            event.isAltPressed &&
+      onKeyEvent: (KeyEvent event) {
+        final canPop = this.navigator.currentState?.canPop() ?? false;
+        if (event is KeyDownEvent) {
+          // if alt and backspace are pressed
+          var check = HardwareKeyboard.instance.isAltPressed &&
             event.logicalKey == LogicalKeyboardKey.backspace &&
-            this.navigator.currentState.canPop()) {
-          this.navigator.currentState.pop();
+              canPop;
+          if (!check) return;
+          this.navigator.currentState?.pop();
         }
       },
       child: MultiProvider(
@@ -62,9 +65,9 @@ class AppNavigator extends StatelessWidget {
 
 class MaterialChild extends StatelessWidget {
   MaterialChild({
-    @required this.navigatorKey,
-    @required this.observers,
-    @required this.state,
+    required this.navigatorKey,
+    required this.observers,
+    required this.state,
   });
   final List<NavigatorObserver> observers;
   final GlobalKey<NavigatorState> navigatorKey;
@@ -113,7 +116,6 @@ class MaterialChild extends StatelessWidget {
                     child: SearchScreen(),
                     type: PageTransitionType.fade,
                   );
-                  break;
                 case 'movieDetail':
                   return PageTransition(
                     settings: settings,
@@ -121,7 +123,6 @@ class MaterialChild extends StatelessWidget {
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 700),
                   );
-                  break;
                 case 'selectSeats':
                   return PageTransition(
                     settings: settings,
@@ -129,7 +130,6 @@ class MaterialChild extends StatelessWidget {
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 700),
                   );
-                  break;
                 case 'reservation':
                   return PageTransition(
                     settings: settings,
@@ -137,7 +137,6 @@ class MaterialChild extends StatelessWidget {
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 700),
                   );
-                  break;
                 default:
                   return null;
               }

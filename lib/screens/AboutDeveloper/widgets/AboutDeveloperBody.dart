@@ -24,30 +24,31 @@ import '../messages/keys.dart';
 import '../data.dart' as data;
 import '../Dimensions.dart';
 import '../TestKeys.dart';
+import '../models/Support.dart';
 
 class AboutDeveloperBody extends StatelessWidget {
   Widget mapSupportButton(
     BuildContext context,
-    Map obj,
+    Support obj,
   ) {
     final buttonMargin = EdgeInsets.only(
       top: AppDimensions.padding * 2,
       left: AppDimensions.padding * 2,
       right: AppDimensions.padding * 2,
     );
-    final prefix = obj["platform"];
+    final prefix = obj.platform;
 
-    String label = obj["label"].toString();
+    String label = obj.label;
 
     if (prefix != null) {
       label = App.translate(label) + " " + prefix;
     }
 
     return AlphaButton(
-      icon: obj["icon"],
+      icon: obj.icon,
       margin: buttonMargin,
       label: (App.translate(label, context)).toUpperCase(),
-      onTap: () => Utils.launchUrl(obj["link"]),
+      onTap: () => Utils.launchUrl(obj.link),
     );
   }
 
@@ -55,7 +56,7 @@ class AboutDeveloperBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       child: Container(
-        width: AppDimensions.containerWidth,
+        width: AppDimensions.maxContainerWidth,
         child: ListView(
           key: Key(AboutDeveloperTestKeys.rootScroll),
           padding: EdgeInsets.zero,
@@ -98,11 +99,11 @@ class AboutDeveloperBody extends StatelessWidget {
             ...data.contacts
                 .map(
                   (contact) => AboutUserContactButton(
-                    url: contact["url"],
-                    icon: contact["icon"],
-                    label: contact["label"],
+                    url: contact.url,
+                    icon: contact.icon,
+                    label: contact.label,
                     initContext: Dimensions.init,
-                    platform: contact["platform"],
+                    platform: contact.platform,
                   ),
                 )
                 .toList(),

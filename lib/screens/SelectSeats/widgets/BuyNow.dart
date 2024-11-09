@@ -19,7 +19,7 @@ import 'SSReveal.dart';
 
 class SelectSeatsBuyNow extends StatelessWidget {
   SelectSeatsBuyNow({
-    @required this.movie,
+    required this.movie,
     this.isReserved = false,
   });
   final MovieObject movie;
@@ -29,7 +29,6 @@ class SelectSeatsBuyNow extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = SelectSeatsProvider.state(context, true);
     final check = state.selectedSeats.length > 0 &&
-        state.selectedSeats != null &&
         state.selectedDay != null &&
         state.selectedTime != null &&
         !this.isReserved;
@@ -82,9 +81,9 @@ class SelectSeatsBuyNow extends StatelessWidget {
                               return;
                             }
 
-                            final time = state.selectedDay.add(
+                            final time = state.selectedDay!.add(
                               Duration(
-                                hours: state.selectedTime.hour,
+                                hours: state.selectedTime!.hour,
                               ),
                             );
                             print(time);

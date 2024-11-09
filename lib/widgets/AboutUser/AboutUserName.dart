@@ -5,7 +5,7 @@ import 'package:invmovieconcept1/configs/TextStyles.dart';
 
 class AboutUserName extends StatelessWidget {
   AboutUserName({
-    @required this.name,
+    required this.name,
   });
 
   final String name;

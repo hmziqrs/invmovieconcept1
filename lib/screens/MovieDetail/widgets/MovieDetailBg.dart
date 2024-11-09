@@ -6,7 +6,7 @@ import '../Dimensions.dart';
 
 class MovieDetailBg extends StatelessWidget {
   MovieDetailBg({
-    @required this.movie,
+    required this.movie,
   });
   final MovieObject movie;
 
