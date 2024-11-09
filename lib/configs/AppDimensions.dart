@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:invmovieconcept1/UI.dart';
 
 class AppDimensions {
-  static double containerWidth;
-  static double maxContainerWidth;
-  static double miniContainerWidth;
+  static late double maxContainerWidth;
+  static late double miniContainerWidth;
 
-  static bool isLandscape;
-  static double padding;
-  static double ratio;
+  static late bool isLandscape;
+  static late double padding;
+  static late double ratio;
 
-  static Size size;
+  static late Size size;
 
   static init(BuildContext context) {
     UI.init(context);
@@ -37,11 +37,6 @@ class AppDimensions {
     if (maxContainerWidth > UI.getSize().width) {
       maxContainerWidth = UI.getSize().width;
       miniContainerWidth = UI.getSize().width - (AppDimensions.padding * 4);
-    }
-
-    containerWidth = UI.width;
-    if (UI.width > 540) {
-      containerWidth = 540;
     }
   }
 

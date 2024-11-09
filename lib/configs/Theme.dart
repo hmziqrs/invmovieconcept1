@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
-import 'package:tinycolor/tinycolor.dart';
+import 'package:flutter/material.dart';
 import 'package:pigment/pigment.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 final background = Pigment.fromString('#f5eee6');
 final background2 = Pigment.fromString('#f6eee6');
@@ -22,31 +22,31 @@ final accent2 = TinyColor.fromString("#2FA4FF").darken(18).color;
 final base = ThemeData(
   fontFamily: 'Muli',
   primaryColor: primary,
-  brightness: Brightness.light,
-  backgroundColor: Colors.white,
+  // brightness: Brightness.light,
+  dialogBackgroundColor: Colors.white,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: Colors.white,
-  colorScheme: ThemeData.light().colorScheme.copyWith(primary: primary),
-  pageTransitionsTheme: const PageTransitionsTheme(
+  pageTransitionsTheme: PageTransitionsTheme(
     builders: {
       TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoWillPopScopePageTransionsBuilder(),
     },
   ),
+  colorScheme: ColorScheme.light().copyWith(secondary: primary),
 );
 
 final baseDark = ThemeData(
   fontFamily: 'Muli',
   primaryColor: primary,
-  brightness: Brightness.dark,
-  backgroundColor: darkBackground,
+  // brightness: Brightness.dark,
+  dialogBackgroundColor: darkBackground,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: darkBackground,
-  colorScheme: ThemeData.dark().colorScheme.copyWith(primary: primary),
-  pageTransitionsTheme: const PageTransitionsTheme(
+  pageTransitionsTheme: PageTransitionsTheme(
     builders: {
       TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoWillPopScopePageTransionsBuilder(),
     },
   ),
+  colorScheme: ColorScheme.dark().copyWith(secondary: primary),
 );
