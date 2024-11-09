@@ -27,16 +27,16 @@ class AppProvider extends ChangeNotifier {
     Locale('ar', 'SA'),
   ];
 
-  Locale _activeLocale;
+  Locale? _activeLocale;
 
   bool _loading = true;
   ThemeMode _themeMode = ThemeMode.system;
 
-  Locale get activeLocale => this._activeLocale;
+  Locale? get activeLocale => this._activeLocale;
   bool get loading => this._loading;
   ThemeMode get themeMode => this._themeMode;
 
-  set activeLocale(Locale newLocale) {
+  set activeLocale(Locale? newLocale) {
     this._activeLocale = newLocale;
     notifyListeners();
 
@@ -55,7 +55,7 @@ class AppProvider extends ChangeNotifier {
 
     final cachedTheme = Cache.ins.getString(CacheKeys.theme.toString());
     this._themeMode =
-        cachedTheme == null ? themeMap["system"] : themeMap[cachedTheme];
+        (cachedTheme == null ? themeMap["system"] : themeMap[cachedTheme])!;
 
     final cachedLocale = Cache.ins.getStringList(CacheKeys.locale.toString());
     if (cachedLocale != null && cachedLocale.isNotEmpty) {
