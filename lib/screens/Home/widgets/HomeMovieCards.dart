@@ -126,13 +126,13 @@ class HomeMovieCards extends StatelessWidget {
                 child: Consumer<HomeFadeProvider>(
                   // selector: (_, state) => state.fadeOff,
                   builder: (context, fadeState, child) {
-                    return CustomAnimation<double>(
+                    return CustomAnimationBuilder<double>(
                       duration: HomeFadeProvider.microDuration,
                       tween: Tween(begin: 0.0, end: 1.0),
                       control: fadeState.fadeOff && (isPrev || isNext)
-                          ? CustomAnimationControl.PLAY
-                          : CustomAnimationControl.PLAY_REVERSE,
-                      builder: (ctx, child, animation) {
+                          ? Control.play
+                          : Control.playReverse,
+                      builder: (ctx, animation, child) {
                         double translateX = 0.0;
                         if (isPrev) {
                           translateX = Dimensions.cardWidth * 0.69 * -animation;
@@ -143,11 +143,11 @@ class HomeMovieCards extends StatelessWidget {
 
                         return Transform(
                           origin: Offset(
-                            animations[AnimationMap.offsetX],
+                            animations[AnimationMap.offsetX]!,
                             Dimensions.cardHeight,
                           ),
                           transform: Matrix4.rotationZ(
-                            animations[AnimationMap.min2max] *
+                            animations[AnimationMap.min2max]! *
                                 0.33 *
                                 (App.isLtr ? -1 : 1),
                           )
@@ -181,7 +181,7 @@ class HomeMovieCards extends StatelessWidget {
                                       offset: Offset(0, 8),
                                       color: Colors.black.withOpacity(0.3),
                                       spreadRadius:
-                                          animations[AnimationMap.min2min] * 1,
+                                          animations[AnimationMap.min2min]! * 1,
                                     )
                                   ],
                                 ),

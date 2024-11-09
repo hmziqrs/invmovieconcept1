@@ -17,7 +17,7 @@ class HomeMovieTags extends StatelessWidget {
     final state = Provider.of<HomeProvider>(context, listen: true);
 
     return Container(
-      width: AppDimensions.containerWidth,
+      width: AppDimensions.maxContainerWidth,
       padding: EdgeInsets.symmetric(
         horizontal: AppDimensions.padding,
         vertical: AppDimensions.padding * 2,
@@ -34,12 +34,12 @@ class HomeMovieTags extends StatelessWidget {
               .asMap()
               .entries
               .map(
-                (entry) => PlayAnimation<double>(
+                (entry) => PlayAnimationBuilder<double>(
                   curve: Curves.easeInOut,
                   tween: Tween(begin: 0.0, end: 1.0),
                   duration: Duration(milliseconds: 280),
                   delay: Duration(milliseconds: 80 * entry.key),
-                  builder: (context, _, animation) {
+                  builder: (context, animation, _) {
                     return Opacity(
                       opacity: animation,
                       child: Container(

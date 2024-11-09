@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                width: AppDimensions.containerWidth,
+                width: AppDimensions.maxContainerWidth,
                 height: Dimensions.bgHeight + Dimensions.ratingRadius,
                 child: Stack(
                   children: [

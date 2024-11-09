@@ -9,25 +9,25 @@ import 'provider.dart';
 import 'Theme.dart';
 
 class Dimensions {
-  static double containerHeight;
+  static late double containerHeight;
 
-  static double bgHeight;
-  static double bgHeightMax;
-  static double bgHeightMin;
-  static double bgClipRadius;
+  static late double bgHeight;
+  static late double bgHeightMax;
+  static late double bgHeightMin;
+  static late double bgClipRadius;
 
-  static double cardsBaseOffset;
+  static late double cardsBaseOffset;
 
-  static double cardHeight;
-  static double cardWidth;
+  static late double cardHeight;
+  static late double cardWidth;
 
-  static double ratingRadius;
+  static late double ratingRadius;
 
-  static double scrollable;
+  static late double scrollable;
 
-  static double bannerAdHeight = 0.0;
+  static late double bannerAdHeight = 0.0;
 
-  static double drawerAvatarWidth;
+  static late double drawerAvatarWidth;
 
   static init(BuildContext context) {
     App.init(context);
@@ -65,10 +65,11 @@ class Dimensions {
     // I use pythagorean theorem in order to calculate
     // pixel perfect radius fir circular clipping
     final a = math.pow(bgHeight, 2);
-    final b = math.pow(AppDimensions.containerWidth, 2);
+    final b = math.pow(AppDimensions.maxContainerWidth, 2);
     bgClipRadius = math.sqrt(a + b);
 
-    scrollable = AppDimensions.containerWidth * HomeProvider.viewportFraction;
+    scrollable =
+        AppDimensions.maxContainerWidth * HomeProvider.viewportFraction;
 
     cardsBaseOffset = (bgHeight * 0.5) - cardHeight * 0.5;
   }

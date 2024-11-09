@@ -16,7 +16,7 @@ class HomeTabBar extends StatefulWidget {
 
 class _HomeTabBarState extends State<HomeTabBar>
     with SingleTickerProviderStateMixin {
-  TabController tabController;
+  late TabController tabController;
 
   @override
   void initState() {
@@ -79,14 +79,14 @@ class _HomeTabBarState extends State<HomeTabBar>
                           left: App.isLtr ? left * 1.2 : null,
                           right: !App.isLtr ? right * 1.2 : null,
                           bottom: 0,
-                          child: CustomAnimation<double>(
+                          child: CustomAnimationBuilder<double>(
                             curve: Curves.easeIn,
                             tween: Tween(begin: 0.0, end: 1.0),
                             duration: Duration(milliseconds: 220),
                             control: entry.key == state.activeTabIndex
-                                ? CustomAnimationControl.PLAY
-                                : CustomAnimationControl.PLAY_REVERSE,
-                            builder: (context, _, animation) {
+                                ? Control.play
+                                : Control.playReverse,
+                            builder: (context, animation, _) {
                               return Opacity(
                                 opacity: animation,
                                 child: Container(

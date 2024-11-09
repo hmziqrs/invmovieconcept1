@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/screens/Home/widgets/Drawer/data.dart';
 import 'package:invmovieconcept1/widgets/Screen/ScreenStateProvider.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -47,7 +48,7 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
       alignment: Alignment.topCenter,
       child: SafeArea(
         child: Container(
-          width: AppDimensions.containerWidth,
+          width: AppDimensions.maxContainerWidth,
           height: UI.height,
           child: Material(
             color: Colors.transparent,
@@ -70,7 +71,10 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
                       (entry) => HomeDrawerButton(
                         entry: entry,
                         baseAnimation: 1.0,
-                        onPressed: () => this.buttonHandler(entry.value["key"]),
+                        onPressed: () {
+                          final _key = entry.value["key"] as NavigationKey;
+                          this.buttonHandler(_key);
+                        },
                       ),
                     )
                     .toList(),

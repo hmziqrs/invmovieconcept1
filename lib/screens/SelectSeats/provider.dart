@@ -16,14 +16,14 @@ class SelectSeatsProvider extends ChangeNotifier {
   static List<Tuple2<int, int>> reserved = [];
   static List<List<Tuple2<int, int>>> seats = [];
 
-  DateTime selectedDay;
-  DateTime selectedTime;
+  DateTime? selectedDay;
+  DateTime? selectedTime;
   bool fadeOff = false;
   List<Tuple2<int, int>> selectedSeats = [];
 
   final controller = ScrollController();
 
-  SelectSeatsProvider([MovieTicket reservation]) {
+  SelectSeatsProvider([MovieTicket? reservation]) {
     final currentTime = DateTime.now();
 
     if (reservation != null) {

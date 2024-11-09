@@ -22,7 +22,7 @@ class SelectSeatsScreen extends StatelessWidget {
     Dimensions.init(context);
     final Map arguments = ModalRoute.of(context).settings.arguments;
 
-    MovieTicket reservation = arguments["reservation"];
+    MovieTicket? reservation = arguments["reservation"];
     MovieObject movie = arguments["movie"];
 
     final isReserved = reservation != null;
