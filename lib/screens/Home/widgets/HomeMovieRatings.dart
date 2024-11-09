@@ -11,7 +11,7 @@ import '../provider.dart';
 import '../Theme.dart';
 
 class HomeMovieRatings extends StatelessWidget {
-  HomeMovieRatings({@required this.scrollable});
+  HomeMovieRatings({required this.scrollable});
   final double scrollable;
 
   @override

@@ -6,7 +6,7 @@ import 'package:supercharged/supercharged.dart';
 import 'package:invmovieconcept1/widgets/Screen/Screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen({@required this.loading});
+  SplashScreen({required this.loading});
   final bool loading;
 
   @override
@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
       return Container();
     }
 
-    final mediaQuery = MediaQueryData.fromWindow(ui.window);
+    final mediaQuery = MediaQueryData.fromView(ui.window);
     final check = (this.widget.loading && !this.play);
 
     return MediaQuery(

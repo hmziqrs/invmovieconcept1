@@ -11,7 +11,7 @@ import '../Dimensions.dart';
 import '../provider.dart';
 
 class HomeMovieName extends StatelessWidget {
-  HomeMovieName({@required this.scrollable});
+  HomeMovieName({required this.scrollable});
   final double scrollable;
 
   @override

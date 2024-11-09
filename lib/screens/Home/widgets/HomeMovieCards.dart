@@ -23,7 +23,7 @@ enum AnimationMap {
 }
 
 class HomeMovieCards extends StatelessWidget {
-  HomeMovieCards({@required this.scrollable});
+  HomeMovieCards({required this.scrollable});
   final double scrollable;
 
   Map<AnimationMap, double> getAnimations(HomeProvider state, index) {
