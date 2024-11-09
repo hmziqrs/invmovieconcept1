@@ -7,6 +7,7 @@ import 'package:invmovieconcept1/configs/App.dart';
 
 import '../data.dart' as data;
 import '../Dimensions.dart';
+import '../models/Project.dart';
 
 class AboutDeveloperMoreProjects extends StatelessWidget {
   @override
@@ -23,8 +24,8 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: data.moreProjects.length,
         itemBuilder: (context, index) {
-          final project = data.moreProjects[index];
-          final List<Map> links = project["links"];
+          final Project project = data.moreProjects[index];
+          final List<ProjectLink> links = project.links;
 
           return Container(
             width: Dimensions.projectCardWidth,
@@ -49,13 +50,13 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  project["label"],
+                  project.label,
                   style: TextStyles.heading5.copyWith(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  App.translate(project["desc"], context),
+                  App.translate(project.desc, context),
                   style: TextStyles.body2.copyWith(
                     color: Colors.white.withOpacity(0.85),
                   ),
@@ -81,7 +82,7 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
                             color: Colors.transparent,
                             child: InkWell(
                               borderRadius: borderRadius,
-                              onTap: () => Utils.launchUrl(link["url"]),
+                              onTap: () => Utils.launchUrl(link.url),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
                                   vertical: AppDimensions.padding,
@@ -90,13 +91,13 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Icon(
-                                      link["icon"],
+                                      link.icon,
                                       color: Colors.white,
                                       size: TextStyles.body2.fontSize,
                                     ),
                                     SizedBox(width: AppDimensions.padding),
                                     Text(
-                                      link["label"].toString(),
+                                      link.label,
                                       style: TextStyles.body2.copyWith(
                                         color: Colors.white,
                                       ),
