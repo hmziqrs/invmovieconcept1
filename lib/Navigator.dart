@@ -65,9 +65,9 @@ class AppNavigator extends StatelessWidget {
 
 class MaterialChild extends StatelessWidget {
   MaterialChild({
-    @required this.navigatorKey,
-    @required this.observers,
-    @required this.state,
+    required this.navigatorKey,
+    required this.observers,
+    required this.state,
   });
   final List<NavigatorObserver> observers;
   final GlobalKey<NavigatorState> navigatorKey;

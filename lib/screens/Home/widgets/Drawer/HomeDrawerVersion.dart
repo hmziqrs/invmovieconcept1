@@ -9,7 +9,7 @@ import '../../Theme.dart';
 
 class HomeDrawerVersion extends StatelessWidget {
   HomeDrawerVersion({
-    @required this.baseAnimation,
+    required this.baseAnimation,
   });
 
   final double baseAnimation;

@@ -17,7 +17,7 @@ import '../provider.dart';
 
 class MovieDetailBody extends StatefulWidget {
   const MovieDetailBody({
-    @required this.movie,
+    required this.movie,
   });
   final MovieObject movie;
 

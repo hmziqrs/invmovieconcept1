@@ -44,9 +44,9 @@ final Map themeModeMap = {
 
 class ScreenSettingsModalBody extends StatelessWidget {
   ScreenSettingsModalBody({
-    @required this.onClose,
-    @required this.isModalOpen,
-    @required this.scrollController,
+    required this.onClose,
+    required this.isModalOpen,
+    required this.scrollController,
   });
 
   final VoidCallback onClose;

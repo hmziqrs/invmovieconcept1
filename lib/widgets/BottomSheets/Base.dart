@@ -5,7 +5,7 @@ import 'package:invmovieconcept1/configs/AppTheme.dart';
 
 class BottomSheetBase extends StatelessWidget {
   BottomSheetBase({
-    @required this.children,
+    required this.children,
   });
 
   final List<Widget> children;

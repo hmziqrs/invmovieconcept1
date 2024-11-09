@@ -8,8 +8,8 @@ import '../provider.dart';
 
 class SSReveal extends StatelessWidget {
   SSReveal({
-    @required this.delay,
-    @required this.child,
+    required this.delay,
+    required this.child,
   });
 
   final int delay;

@@ -10,8 +10,8 @@ import 'AvatarWithPunchHoleClipper.dart';
 
 class ScreenRevealAvatarWithPunchHole extends StatefulWidget {
   ScreenRevealAvatarWithPunchHole({
-    @required this.avatar,
-    @required this.avatarRadius,
+    required this.avatar,
+    required this.avatarRadius,
   });
 
   final String avatar;

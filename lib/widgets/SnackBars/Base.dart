@@ -4,7 +4,7 @@ import 'package:invmovieconcept1/configs/AppTheme.dart';
 import 'package:invmovieconcept1/configs/TextStyles.dart';
 
 void showSnackBarBase({
-  @required BuildContext context,
+  required BuildContext context,
   Widget child,
   String text,
 }) {

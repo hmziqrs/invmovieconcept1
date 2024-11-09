@@ -5,8 +5,8 @@ import 'package:invmovieconcept1/configs/AppTheme.dart';
 class AlphaButton extends StatelessWidget {
   AlphaButton({
     // Required
-    @required this.onTap,
-    @required this.label,
+    required this.onTap,
+    required this.label,
 
     // Not required
     this.icon,

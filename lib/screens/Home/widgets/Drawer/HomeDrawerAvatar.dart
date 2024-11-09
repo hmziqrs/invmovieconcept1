@@ -9,7 +9,7 @@ import '../../Theme.dart';
 
 class HomeDrawerAvatar extends StatelessWidget {
   HomeDrawerAvatar({
-    @required this.baseAnimation,
+    required this.baseAnimation,
   });
 
   final double baseAnimation;

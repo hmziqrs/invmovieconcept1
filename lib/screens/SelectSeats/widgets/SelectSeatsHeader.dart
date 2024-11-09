@@ -11,7 +11,7 @@ import 'SSReveal.dart';
 
 class SelectSeatsHeader extends StatelessWidget {
   SelectSeatsHeader({
-    @required this.movie,
+    required this.movie,
   });
 
   final MovieObject movie;

@@ -7,7 +7,7 @@ import 'package:invmovieconcept1/configs/App.dart';
 
 class AboutUserBio extends StatelessWidget {
   AboutUserBio({
-    @required this.points,
+    required this.points,
     this.translate = true,
   });
 

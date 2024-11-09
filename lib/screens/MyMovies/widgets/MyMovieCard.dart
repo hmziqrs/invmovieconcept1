@@ -19,7 +19,7 @@ import '../provider.dart';
 
 class MyMovieCard extends StatefulWidget {
   MyMovieCard({
-    @required this.reservation,
+    required this.reservation,
   });
   final MovieTicket reservation;
 

@@ -19,7 +19,7 @@ import 'SSReveal.dart';
 
 class SelectSeatsBuyNow extends StatelessWidget {
   SelectSeatsBuyNow({
-    @required this.movie,
+    required this.movie,
     this.isReserved = false,
   });
   final MovieObject movie;

@@ -12,7 +12,7 @@ import 'MDReveal.dart';
 
 class MovieInfoCard extends StatelessWidget {
   MovieInfoCard({
-    @required this.movie,
+    required this.movie,
   });
   final MovieObject movie;
 

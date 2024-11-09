@@ -8,9 +8,9 @@ enum AnimProp { opacity }
 
 class HomeDrawerButton extends StatelessWidget {
   HomeDrawerButton({
-    @required this.entry,
-    @required this.onPressed,
-    @required this.baseAnimation,
+    required this.entry,
+    required this.onPressed,
+    required this.baseAnimation,
   });
 
   final double baseAnimation;

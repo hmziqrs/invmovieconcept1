@@ -4,8 +4,8 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 
 class ScreenSettingsSelect extends StatelessWidget {
   ScreenSettingsSelect({
-    @required this.onPress,
-    @required this.isActive,
+    required this.onPress,
+    required this.isActive,
     this.text,
     this.textChild,
   });

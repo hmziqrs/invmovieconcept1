@@ -8,8 +8,8 @@ import '../Dimensions.dart';
 
 class MDReveal extends StatelessWidget {
   MDReveal({
-    @required this.delay,
-    @required this.child,
+    required this.delay,
+    required this.child,
   });
 
   final int delay;

@@ -12,7 +12,7 @@ class CircularRevealClipper extends CustomClipper<Path> {
   final double maxRadius;
 
   CircularRevealClipper({
-    @required this.fraction,
+    required this.fraction,
     this.centerAlignment,
     this.centerOffset,
     this.minRadius,

@@ -8,7 +8,7 @@ import 'TestKeys.dart';
 class StackFadeHeader extends StatelessWidget {
   StackFadeHeader({
     this.children,
-    @required this.onTap,
+    required this.onTap,
     this.disableStack = false,
     this.mainAxisAlignment = MainAxisAlignment.start,
   });
