@@ -25,7 +25,7 @@ class SelectSeatsTime extends StatelessWidget {
       child: SizedBox(
         height: Dimensions.timeSelectBox,
         child: Selector<SelectSeatsProvider, DateTime>(
-          selector: (_, state) => state.selectedTime,
+          selector: (_, state) => state.selectedTime!,
           builder: (context, selectedTime, child) {
             return ListView.builder(
               padding: EdgeInsets.symmetric(
@@ -35,7 +35,7 @@ class SelectSeatsTime extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (c, index) {
                 final time = SelectSeatsProvider.times[index];
-                final isSelected = selectedTime != null && selectedTime == time;
+                final isSelected = selectedTime == time;
                 final textColor = isSelected ? Colors.white : Colors.black;
 
                 return GestureDetector(

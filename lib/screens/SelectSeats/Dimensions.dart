@@ -9,7 +9,7 @@ class Dimensions {
   static late double timeSelectBox;
   static late double seatBox;
 
-  static late init(BuildContext context) {
+  static init(BuildContext context) {
     App.init(context);
 
     seatBox = AppDimensions.ratio * 7 + 16;

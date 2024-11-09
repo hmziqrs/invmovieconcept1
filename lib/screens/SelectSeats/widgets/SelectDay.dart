@@ -26,7 +26,7 @@ class SelectSeatsDay extends StatelessWidget {
       child: SizedBox(
         height: Dimensions.daySelectBox,
         child: Selector<SelectSeatsProvider, DateTime>(
-          selector: (_, state) => state.selectedDay,
+          selector: (_, state) => state.selectedDay!,
           builder: (context, selectedDay, child) {
             return ListView.builder(
               itemCount: 7,
@@ -36,7 +36,7 @@ class SelectSeatsDay extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 final date = SelectSeatsProvider.dates[index];
-                final isSelected = selectedDay != null && selectedDay == date;
+                final isSelected = selectedDay == date;
                 final textColor = isSelected ? Colors.white : Colors.black;
                 return GestureDetector(
                   key: Key(SelectSeatsTestKeys.getDay(index)),
