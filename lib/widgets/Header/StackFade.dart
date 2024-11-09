@@ -14,7 +14,7 @@ class StackFadeHeader extends StatelessWidget {
   });
 
   final bool disableStack;
-  final List<Widget> children;
+  final List<Widget>? children;
   final void Function(BuildContext) onTap;
   final MainAxisAlignment mainAxisAlignment;
 
@@ -33,7 +33,7 @@ class StackFadeHeader extends StatelessWidget {
       ),
     ];
     if (this.children != null) {
-      toRender.addAll(this.children);
+      toRender.addAll(this.children!);
     }
 
     Widget child = Material(

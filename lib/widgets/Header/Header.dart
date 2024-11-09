@@ -13,8 +13,8 @@ import 'TestKeys.dart';
 
 class Header extends StatelessWidget {
   Header({
-    this.label,
-    this.onBack,
+    required this.label,
+    required this.onBack,
     this.enableSafePadding = true,
   });
 
