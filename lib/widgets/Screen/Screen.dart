@@ -15,7 +15,7 @@ part 'widgets/ScreenSettingsModal.dart';
 
 class Screen extends StatelessWidget {
   const Screen({
-    required this.init,
+    this.init,
     this.child,
     this.drawer,
     this.builder,
@@ -30,13 +30,15 @@ class Screen extends StatelessWidget {
   final bool renderSettings;
   final List<Widget> overBuilders;
   final Color? scaffoldBackgroundColor;
-  final void Function(BuildContext) init;
+  final void Function(BuildContext)? init;
   final Widget Function(BuildContext)? builder;
   final Widget Function(BuildContext context)? belowBuilder;
 
   @override
   Widget build(BuildContext context) {
-    init(context);
+    if (init != null) {
+      init!(context);
+    }
   
     final brightness = Theme.of(context).brightness;
     final statusBar = brightness != Brightness.light
