@@ -5,7 +5,7 @@ import 'package:invmovieconcept1/configs/Ads.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
 class AppBannerAd extends StatefulWidget {
-  const AppBannerAd({Key key}) : super(key: key);
+  const AppBannerAd({Key? key}) : super(key: key);
 
   @override
   State<AppBannerAd> createState() => _AppBannerAdState();
@@ -13,14 +13,14 @@ class AppBannerAd extends StatefulWidget {
 
 class _AppBannerAdState extends State<AppBannerAd> {
   bool isAdLoaded = false;
-  BannerAd ad;
+  BannerAd? ad;
 
   @override
   void initState() {
     super.initState();
 
     this.ad = BannerAd(
-      adUnitId: Ads.getBannerId(),
+      adUnitId: Ads.bannerHome(),
       size: AdSize.mediumRectangle,
       request: AdRequest(),
       listener: BannerAdListener(
@@ -36,7 +36,7 @@ class _AppBannerAdState extends State<AppBannerAd> {
       ),
     );
 
-    this.ad.load();
+    this.ad?.load();
   }
 
   @override
@@ -47,8 +47,8 @@ class _AppBannerAdState extends State<AppBannerAd> {
 
     return SizedBox(
       height: 72.0,
-      width: 300 ?? this.ad.size.width.toDouble(),
-      child: this.isAdLoaded ? AdWidget(ad: this.ad) : SizedBox(),
+      width: this.ad?.size.width.toDouble() ?? 300,
+      child: this.isAdLoaded ? AdWidget(ad: this.ad!) : SizedBox(),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:share/share.dart';
 
 import 'package:invmovieconcept1/configs/App.dart';
 
@@ -10,7 +10,7 @@ import 'package:invmovieconcept1/Utils.dart';
 import 'messages/keys.dart';
 
 void openOrShare({
-  BuildContext context,
+  required BuildContext context,
   //
   String title,
 
@@ -24,7 +24,7 @@ void openOrShare({
   String shareLabel,
 }) {
   final style = ButtonStyle(
-    overlayColor: MaterialStateColor.resolveWith(
+    overlayColor: WidgetStateColor.resolveWith(
       (states) => Theme.of(context).primaryColor.withOpacity(0.05),
     ),
   );
