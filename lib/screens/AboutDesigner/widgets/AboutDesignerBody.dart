@@ -25,7 +25,7 @@ class AboutDesignerBody extends StatelessWidget {
 
     return Align(
       child: Container(
-        width: AppDimensions.containerWidth,
+        width: AppDimensions.maxContainerWidth,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[

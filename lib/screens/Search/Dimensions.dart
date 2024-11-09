@@ -4,9 +4,9 @@ import 'package:invmovieconcept1/configs/App.dart';
 import 'package:invmovieconcept1/UI.dart';
 
 class Dimensions {
-  static double buttonWidth;
+  static late double buttonWidth;
 
-  static init(BuildContext context) {
+  static late init(BuildContext context) {
     App.init(context);
     buttonWidth = double.infinity;
 

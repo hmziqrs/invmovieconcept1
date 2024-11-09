@@ -9,27 +9,27 @@ import 'provider.dart';
 import 'Theme.dart';
 
 class Dimensions {
-  static late double containerHeight;
+  static late late double containerHeight;
 
-  static late double bgHeight;
-  static late double bgHeightMax;
-  static late double bgHeightMin;
-  static late double bgClipRadius;
+  static late late double bgHeight;
+  static late late double bgHeightMax;
+  static late late double bgHeightMin;
+  static late late double bgClipRadius;
 
-  static late double cardsBaseOffset;
+  static late late double cardsBaseOffset;
 
-  static late double cardHeight;
-  static late double cardWidth;
+  static late late double cardHeight;
+  static late late double cardWidth;
 
-  static late double ratingRadius;
+  static late late double ratingRadius;
 
-  static late double scrollable;
+  static late late double scrollable;
 
-  static late double bannerAdHeight = 0.0;
+  static late late double bannerAdHeight = 0.0;
 
-  static late double drawerAvatarWidth;
+  static late late double drawerAvatarWidth;
 
-  static init(BuildContext context) {
+  static late init(BuildContext context) {
     App.init(context);
     HomeTheme.init();
     initDrawer();
@@ -74,7 +74,7 @@ class Dimensions {
     cardsBaseOffset = (bgHeight * 0.5) - cardHeight * 0.5;
   }
 
-  static void initDrawer() {
+  static late void initDrawer() {
     drawerAvatarWidth = (AppDimensions.ratio * 10) + 10;
   }
 }

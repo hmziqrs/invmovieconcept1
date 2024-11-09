@@ -4,12 +4,12 @@ import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
 class Dimensions {
-  static double cardHeight;
-  static double cardWidth;
+  static late double cardHeight;
+  static late double cardWidth;
 
-  static double modalWidth;
+  static late double modalWidth;
 
-  static init(BuildContext context) {
+  static late init(BuildContext context) {
     App.init(context);
 
     cardHeight = AppDimensions.ratio * 70 + 150;
