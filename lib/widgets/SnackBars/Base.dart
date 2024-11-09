@@ -5,8 +5,8 @@ import 'package:invmovieconcept1/configs/TextStyles.dart';
 
 void showSnackBarBase({
   required BuildContext context,
-  Widget child,
-  String text,
+  Widget? child,
+  String? text,
 }) {
   final snackbar = SnackBar(
     elevation: 0.0,
