@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:icons_plus/icons_plus.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:share/share.dart';
-
-import 'package:invmovieconcept1/configs/AppDimensions.dart';
-import 'package:invmovieconcept1/configs/App.dart';
 
 import 'package:invmovieconcept1/Utils.dart';
-
-import 'package:invmovieconcept1/widgets/SnackBars/snackbars.dart' as snackBars;
-import 'package:invmovieconcept1/widgets/BottomSheets/WithBoxButtons.dart';
+import 'package:invmovieconcept1/configs/App.dart';
+import 'package:invmovieconcept1/configs/AppDimensions.dart';
 import 'package:invmovieconcept1/widgets/Banners/Alpha.dart';
+import 'package:invmovieconcept1/widgets/BottomSheets/WithBoxButtons.dart';
 import 'package:invmovieconcept1/widgets/Buttons/Alpha.dart';
 import 'package:invmovieconcept1/widgets/Header/Header.dart';
+import 'package:invmovieconcept1/widgets/SnackBars/snackbars.dart' as snackBars;
 
-import 'DownloadHeading.dart';
-
-import '../messages/keys.dart';
-import '../data.dart' as data;
 import '../Dimensions.dart';
+import '../data.dart' as data;
+import '../messages/keys.dart';
+import 'DownloadHeading.dart';
 
 class DownloadBody extends StatelessWidget {
   void onTap(BuildContext context, Map map) {
@@ -39,10 +36,9 @@ class DownloadBody extends StatelessWidget {
     );
 
     final icon1 = isMobile
-        ? MaterialCommunityIcons.share_variant
-        : MaterialCommunityIcons.content_copy;
+        ? TeenyIcons.share : IonIcons.copy;
     final icon2 =
-        makeOpen ? MaterialCommunityIcons.web : MaterialCommunityIcons.download;
+        makeOpen ? TeenyIcons.globe : IonIcons.download;
 
     showBottomSheetWithBoxButtons(
       context: context,
@@ -58,9 +54,9 @@ class DownloadBody extends StatelessWidget {
           );
           Navigator.pop(bottomSheetContext);
           await 200.milliseconds.delay;
-          Scaffold.of(context).hideCurrentSnackBar(
-            reason: SnackBarClosedReason.dismiss,
-          );
+          // Scaffold.of(context).hideCurrentSnackBar(
+          //   reason: SnackBarClosedReason.dismiss,
+          // );
           snackBars.showSnackBarBase(
             context: context,
             text:
