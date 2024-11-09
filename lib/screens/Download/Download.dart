@@ -13,7 +13,7 @@ import 'Dimensions.dart';
 class DownloadScreen extends StatelessWidget {
   Widget belowBuilder(context) {
     return LoopAnimationBuilder<Color>(
-      tween: ColorTween(
+      tween: Tween<Color>(
         begin: theme.primary.withOpacity(0.15),
         end: theme.primary.withOpacity(1.0),
       ),

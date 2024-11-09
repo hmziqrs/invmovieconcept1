@@ -19,9 +19,9 @@ import '../messages/keys.dart';
 import 'DownloadHeading.dart';
 
 class DownloadBody extends StatelessWidget {
-  void onTap(BuildContext context, Map map) {
+  void onTap(BuildContext context, data.DownloadLink map) {
     final str = ["web", "github", "play store"].where(
-      (element) => element == map["name"].toString().toLowerCase(),
+      (element) => element == map.name.toString().toLowerCase(),
     );
 
     final makeOpen = str.length == 1;
@@ -45,11 +45,11 @@ class DownloadBody extends StatelessWidget {
       appinit: Dimensions.init,
       button1: (bottomSheetContext) async {
         if (isMobile) {
-          Share.share(map["url"], subject: map["name"]);
+          Share.share(map.url, subject: map.name);
         } else {
           Clipboard.setData(
             ClipboardData(
-              text: map["url"].toString(),
+              text: map.url.toString(),
             ),
           );
           Navigator.pop(bottomSheetContext);
@@ -60,12 +60,12 @@ class DownloadBody extends StatelessWidget {
           snackBars.showSnackBarBase(
             context: context,
             text:
-                "${map["name"]} ${App.translate(DownloadScreenMessages.linkCopied, context)}",
+                "${map.name} ${App.translate(DownloadScreenMessages.linkCopied, context)}",
           );
         }
       },
-      button2: (_) => Utils.launchUrl(map["url"]),
-      title: "$label2 or $label1 ${map["name"]} url",
+      button2: (_) => Utils.launchUrl(map.url),
+      title: "$label2 or $label1 ${map.name} url",
       label1: label1,
       label2: label2,
       icon1: icon1,
@@ -73,7 +73,7 @@ class DownloadBody extends StatelessWidget {
     );
   }
 
-  Widget mapButton(context, Map obj) {
+  Widget mapButton(context, data.DownloadLink obj) {
     final buttonMargin = EdgeInsets.only(
       top: AppDimensions.padding * 2,
       left: AppDimensions.padding * 2,
@@ -82,9 +82,9 @@ class DownloadBody extends StatelessWidget {
 
     return AlphaButton(
       onTap: () => this.onTap(context, obj),
-      icon: obj["icon"],
+      icon: obj.icon,
       margin: buttonMargin,
-      label: obj["name"].toString().toUpperCase(),
+      label: obj.name.toString().toUpperCase(),
     );
   }
 
