@@ -14,13 +14,13 @@ import 'TestKeys.dart';
 class Header extends StatelessWidget {
   Header({
     required this.label,
-    required this.onBack,
+    this.onBack,
     this.enableSafePadding = true,
   });
 
   final String label;
   final bool enableSafePadding;
-  final VoidCallback onBack;
+  final VoidCallback? onBack;
 
   @override
   Widget build(BuildContext context) {
