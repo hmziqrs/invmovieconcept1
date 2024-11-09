@@ -11,6 +11,8 @@ class SplashScreen extends StatelessWidget {
     AppDimensions.init(context);
     final imageSize = 300.0;
 
+    
+
     return Screen(
       renderSettings: false,
       scaffoldBackgroundColor: Colors.transparent,
@@ -26,7 +28,7 @@ class SplashScreen extends StatelessWidget {
             child: MirrorAnimationBuilder<double>(
               curve: Curves.easeIn,
               tween: 0.2.tweenTo(1.0),
-              duration: 900.milliseconds,
+              duration: 600.milliseconds,
               child: Image.asset(
                 "assets/icons/app-icon.png",
                 width: imageSize,
