@@ -24,7 +24,7 @@ final testKeys = {
 
 class ReservationBookNow extends StatelessWidget {
   onTap(BuildContext context) async {
-    final MovieTicket ticket = ModalRoute.of(context).settings.arguments;
+    final ticket = ModalRoute.of(context)!.settings.arguments as MovieTicket;
 
     ReservationProvider.state(context).add(ticket);
 
@@ -91,7 +91,7 @@ class ReservationBookNow extends StatelessWidget {
                           .map(
                             (button) => Flexible(
                               child: TouchableOpacity(
-                                key: Key(testKeys[button]),
+                                key: Key(testKeys[button]!),
                                 onTap: () async {
                                   Navigator.popUntil(
                                     context,

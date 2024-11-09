@@ -9,7 +9,7 @@ class Dimensions {
 
   static late double modalWidth;
 
-  static late init(BuildContext context) {
+  static init(BuildContext context) {
     App.init(context);
 
     cardHeight = AppDimensions.ratio * 70 + 150;
