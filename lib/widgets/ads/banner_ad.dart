@@ -19,6 +19,8 @@ class _AppBannerAdState extends State<AppBannerAd> {
   void initState() {
     super.initState();
 
+    if (!App.showAds) return;
+
     this.ad = BannerAd(
       adUnitId: Ads.bannerHome(),
       size: AdSize.mediumRectangle,

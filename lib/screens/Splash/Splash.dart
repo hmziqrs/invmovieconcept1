@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invmovieconcept1/UI.dart';
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
+import 'package:invmovieconcept1/providers/AppProvider.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -11,7 +12,14 @@ class SplashScreen extends StatelessWidget {
     AppDimensions.init(context);
     final imageSize = 300.0;
 
-    
+    final state = AppProvider.state(context, true);
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (!state.loading) {
+        Navigator.of(context).pushReplacementNamed("home");
+      }
+    });
+
 
     return Screen(
       renderSettings: false,
