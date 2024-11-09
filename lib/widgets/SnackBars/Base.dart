@@ -38,7 +38,7 @@ void showSnackBarBase({
         ),
         child: child ??
             Text(
-              text,
+              text!,
               style: TextStyles.body26.copyWith(
                 color: AppTheme.text,
               ),
@@ -47,5 +47,5 @@ void showSnackBarBase({
     ),
   );
 
-  Scaffold.of(context).showSnackBar(snackbar);
+  // Scaffold.of(context).showSnackBar(snackbar);
 }
