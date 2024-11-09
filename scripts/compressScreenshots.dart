@@ -44,7 +44,7 @@ void generate(String path) {
     if (await file.exists()) {
       if (filePath.contains(".png")) {
         final bytes = await file.readAsBytes();
-        final decoded = image.decodeImage(bytes);
+        final decoded = image.decodeImage(bytes)!;
         final newFile = File(filePath.replaceFirst(".png", ".jpg"));
         final resized = image.copyResize(decoded, width: 160);
         newFile.writeAsBytesSync(image.encodeJpg(resized));

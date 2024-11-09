@@ -1,42 +1,37 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
-import 'package:glob/glob.dart';
 import 'package:glob/list_local_fs.dart';
+import 'package:glob/glob.dart';
 import 'package:translator/translator.dart';
 
 import './utils.dart';
 
 main(List<String> args) async {
   print("\n\n\nGENERATE BUNDLED JSON FOR YOUR LOCALIZE MESSAGES");
-  final disableAutoTranslate = args.contains("--no-translate");
-  final fileIndex = args.indexOf("--file");
-  Glob filesGlob = Glob("lib/**/**.dart");
-  List<FileSystemEntity> files;
+  final dartFile = new Glob("lib/**/**.dart");
   final translator = new GoogleTranslator();
-  if (fileIndex >= 0) {
-    final path = args[fileIndex + 1];
-    final source = File(path);
-    files = [source];
-  }
-  if (fileIndex < 0) {
-    files = filesGlob.listSync();
-  }
+
+  final files = dartFile.listSync();
   final Map<String, String> defaultMessages = {};
-  final Map<String, Map<String, String>> defaultLocaleMessages = {};
-  final JsonEncoder jsonEncoder = JsonEncoder.withIndent('  ');
+  final Map<String, Map<String, String?>> defaultLocaleMessages = {};
+  final jsonEncoder = JsonEncoder.withIndent('  ');
 
   for (var entity in files) {
     if (entity.path.contains(normalize("/messages/strings.dart"))) {
       ReceivePort port = new ReceivePort();
       final raw = await getMessagesViaIsolate(entity, port);
-      final Map messages = raw["strings"].cast<String, String>();
-      defaultMessages.addAll(messages);
+      final Map<String, String> messages =
+          raw["strings"].cast<String, String>();
 
       final localesDirectory = new Directory(
         entity.path.replaceFirst(r'strings.dart', r'locales').toString(),
       );
+      // print("dlkasdhaskjhd $localesDirectory");
       if (localesDirectory.existsSync()) {
+        // print("$localesDirectory EXISSITS");
+
+        // await localesDirectory.list().forEach((localeFile) async {});
         for (final localeFile in localesDirectory.listSync()) {
           final localeCode =
               localeFile.path.split(normalize("/")).last.split(".").first;
@@ -44,23 +39,25 @@ main(List<String> args) async {
             localeFile,
             new ReceivePort(),
           );
-          final Map localeMessages =
-              localeRaw["strings"].cast<String, String>();
+          final Map<String, String> localeMessages =
+              localeRaw.cast<String, String>();
           if (defaultLocaleMessages[localeCode] == null) {
             defaultLocaleMessages[localeCode] = {};
           }
-          defaultLocaleMessages[localeCode].addAll(localeMessages);
+          defaultLocaleMessages[localeCode]!.addAll(localeMessages);
         }
       }
+
+      defaultMessages.addAll(messages);
     }
   }
 
-  final directory = new Directory(normalize("./assets/locales"));
+  final directory = new Directory(normalize("./assets/langs"));
 
   await directory.list().forEach((element) async {
     final file = new File(element.path);
-    final Map parsed =
-        json.decode(file.readAsStringSync()).cast<String, String>();
+    final Map<String, String?> parsed =
+        json.decode(file.readAsStringSync()).cast<String, String?>();
 
     if (file.path.contains('en.json')) {
       parsed.addAll(defaultMessages);
@@ -79,25 +76,27 @@ main(List<String> args) async {
           continue;
         }
 
-        final String rootVal = defaultMessages[key];
-        final String parsedVal = parsed[key];
+        final String? rootVal = defaultMessages[key];
+        final String? parsedVal = parsed[key];
         // if (langCode == "zh") {
         //   print("key $key");
         //   print(
         //       "parsedVal ${(parsedVal == null || (parsedVal != null && parsedVal.isEmpty))} $parsedVal");
         //   print("rootVal $rootVal");
         // }
-        if ((parsedVal == null || (parsedVal != null && parsedVal.isEmpty)) &&
-            rootVal.isNotEmpty &&
-            !disableAutoTranslate) {
-          newObj[key] = await translator.translate(
+        if (((parsedVal == null || parsedVal.isEmpty)) && rootVal != null) {
+          const lang_map = {
+            "zh": "zh-cn",
+          };
+          var mapped = lang_map[langCode] ?? langCode;
+          var translated = await translator.translate(
             newObj[key],
             from: "en",
-            to: langCode,
+            to: mapped,
           );
+          newObj[key] = translated.text;
         }
       }
-
       final newJson = jsonEncoder.convert(newObj);
 
       file.writeAsStringSync(newJson);
