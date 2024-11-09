@@ -15,33 +15,29 @@ part 'widgets/ScreenSettingsModal.dart';
 
 class Screen extends StatelessWidget {
   const Screen({
-    this.init,
+    required this.init,
     this.child,
     this.drawer,
     this.builder,
-    this.debugLabel,
     this.belowBuilder,
     this.overBuilders = const [],
     this.renderSettings = true,
     this.scaffoldBackgroundColor,
   });
 
-  final Widget child;
-  final Widget drawer;
-  final String debugLabel;
+  final Widget? child;
+  final Widget? drawer;
   final bool renderSettings;
   final List<Widget> overBuilders;
-  final Color scaffoldBackgroundColor;
+  final Color? scaffoldBackgroundColor;
   final void Function(BuildContext) init;
-  final Widget Function(BuildContext) builder;
-  final Widget Function(BuildContext context) belowBuilder;
+  final Widget Function(BuildContext)? builder;
+  final Widget Function(BuildContext context)? belowBuilder;
 
   @override
   Widget build(BuildContext context) {
-    if (init != null) {
-      init(context);
-    }
-
+    init(context);
+  
     final brightness = Theme.of(context).brightness;
     final statusBar = brightness != Brightness.light
         ? SystemUiOverlayStyle.light
@@ -57,9 +53,9 @@ class Screen extends StatelessWidget {
           body: Stack(
             fit: StackFit.expand,
             children: [
-              belowBuilder != null ? belowBuilder(context) : Container(),
+              if (belowBuilder != null) belowBuilder!(context),
               Positioned.fill(
-                child: child ?? builder(context),
+                child: child ?? builder!(context),
               ),
               if (overBuilders.isNotEmpty) ...overBuilders,
               renderSettings
