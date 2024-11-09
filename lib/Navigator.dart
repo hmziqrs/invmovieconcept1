@@ -107,7 +107,7 @@ class MaterialChild extends StatelessWidget {
             darkTheme: theme.baseDark,
             themeMode: this.state.themeMode,
             // Routes
-            initialRoute: "home",
+            initialRoute: "splash",
             onGenerateRoute: (settings) {
               switch (settings.name) {
                 case 'search':
@@ -142,6 +142,7 @@ class MaterialChild extends StatelessWidget {
               }
             },
             routes: <String, WidgetBuilder>{
+              "splash": (ctx) => SplashScreen(),
               "home": (ctx) => HomeScreen(),
               "download": (ctx) => DownloadScreen(),
               "myMovies": (ctx) => MyMoviesScreen(),
@@ -149,7 +150,6 @@ class MaterialChild extends StatelessWidget {
               "aboutDeveloper": (ctx) => AboutDeveloperScreen(),
             },
           ),
-          SplashScreen(loading: this.state.loading),
         ],
       ),
     );
