@@ -11,15 +11,15 @@ class MovieTicket {
   final List<Tuple2<int, int>> seats;
 
   MovieTicket({
-    this.movie,
-    this.time,
-    this.seats,
+    required this.movie,
+    required this.time,
+    required this.seats,
   });
 
   MovieTicket copyWith({
-    MovieObject movie,
-    DateTime time,
-    List<Tuple2<int, int>> seats,
+    MovieObject? movie,
+    DateTime? time,
+    List<Tuple2<int, int>>? seats,
   }) {
     return MovieTicket(
       movie: movie ?? this.movie,
@@ -30,15 +30,13 @@ class MovieTicket {
 
   Map<String, dynamic> toMap() {
     return {
-      'movie': movie?.toMap(),
-      'time': time?.millisecondsSinceEpoch,
-      'seats': seats?.map((x) => x?.toList())?.toList(),
+      'movie': movie.toMap(),
+      'time': time.millisecondsSinceEpoch,
+      'seats': seats.map((x) => x.toList()).toList(),
     };
   }
 
   factory MovieTicket.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
     return MovieTicket(
       movie: MovieObject.fromMap(map['movie']),
       time: DateTime.fromMillisecondsSinceEpoch(map['time']),

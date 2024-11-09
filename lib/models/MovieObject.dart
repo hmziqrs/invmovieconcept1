@@ -10,19 +10,19 @@ class MovieObject {
   final List<String> tags;
 
   MovieObject({
-    this.name,
-    this.desc,
-    this.image,
-    this.ratings,
-    this.tags,
+    required this.name,
+    required this.desc,
+    required this.image,
+    required this.ratings,
+    required this.tags,
   });
 
   MovieObject copyWith({
-    String name,
-    String desc,
-    String image,
-    double ratings,
-    List<String> tags,
+    String? name,
+    String? desc,
+    String? image,
+    double? ratings,
+    List<String>? tags,
   }) {
     return MovieObject(
       name: name ?? this.name,
@@ -44,8 +44,6 @@ class MovieObject {
   }
 
   factory MovieObject.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
     return MovieObject(
       name: map['name'],
       desc: map['desc'],
