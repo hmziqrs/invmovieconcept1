@@ -21,7 +21,7 @@ class AboutDesignerScreen extends StatelessWidget {
           ),
           Positioned.fill(
             child: ScreenRevealAvatarWithPunchHole(
-              avatar: "assets/avatars/rick.jpg",
+              avatar: "assets/avatars/goku.png",
               avatarRadius: Dimensions.avatarRadius,
             ),
           ),

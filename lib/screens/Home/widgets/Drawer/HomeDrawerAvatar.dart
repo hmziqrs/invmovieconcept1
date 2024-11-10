@@ -42,7 +42,7 @@ class HomeDrawerAvatar extends StatelessWidget {
                   child: CircleAvatar(
                     child: ClipOval(
                       child: Image.asset(
-                        "assets/avatars/rick.jpg",
+                        "assets/avatars/goku.png",
                       ),
                     ),
                     radius: Dimensions.drawerAvatarWidth,
