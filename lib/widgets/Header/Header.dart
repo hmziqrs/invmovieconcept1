@@ -40,20 +40,26 @@ class Header extends StatelessWidget {
       ),
       child: Material(
         color: Colors.transparent,
-        child: Row(
-          children: [
-            Container(
-              key: Key(HeaderWidgetKey.backButton),
-              child: BackIconButton(onPressed: onBack),
+        child: Align(
+          alignment: Alignment.center,
+          child: SizedBox(
+            width: AppDimensions.maxContainerWidth,
+            child: Row(
+              children: [
+                Container(
+                  key: Key(HeaderWidgetKey.backButton),
+                  child: BackIconButton(onPressed: onBack),
+                ),
+                Container(
+                  padding: EdgeInsets.all(AppDimensions.padding * 2),
+                  child: Text(
+                    App.translate(this.label, context),
+                    style: TextStyles.heading46,
+                  ),
+                ),
+              ],
             ),
-            Container(
-              padding: EdgeInsets.all(AppDimensions.padding * 2),
-              child: Text(
-                App.translate(this.label, context),
-                style: TextStyles.heading46,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
