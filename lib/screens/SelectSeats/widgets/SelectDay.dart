@@ -25,8 +25,8 @@ class SelectSeatsDay extends StatelessWidget {
       delay: 150,
       child: SizedBox(
         height: Dimensions.daySelectBox,
-        child: Selector<SelectSeatsProvider, DateTime>(
-          selector: (_, state) => state.selectedDay!,
+        child: Selector<SelectSeatsProvider, DateTime?>(
+          selector: (_, state) => state.selectedDay,
           builder: (context, selectedDay, child) {
             return ListView.builder(
               itemCount: 7,

@@ -44,7 +44,7 @@ class SelectSeatsBody extends StatelessWidget {
           SizedBox(height: AppDimensions.padding * 3),
           SelectSeatsDay(isReserved: isReserved),
           SizedBox(height: AppDimensions.padding * 5),
-          SelectSeatsTime(isReserved: isReserved),
+          // SelectSeatsTime(isReserved: isReserved),
           SizedBox(height: AppDimensions.padding * 5),
           ScreenArt(),
           SizedBox(height: AppDimensions.padding * 7),
@@ -52,7 +52,6 @@ class SelectSeatsBody extends StatelessWidget {
           Consumer<SelectSeatsProvider>(
             builder: (context, state, child) {
               final isVerified = state.selectedSeats.length > 0 &&
-                  state.selectedSeats != null &&
                   state.selectedTime != null &&
                   state.selectedDay != null &&
                   !this.isReserved;
