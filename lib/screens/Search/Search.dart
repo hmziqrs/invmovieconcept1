@@ -16,19 +16,20 @@ import 'Dimensions.dart';
 
 class SearchScreen extends StatelessWidget {
   Widget belowBuilder(context) {
-    return CustomAnimationBuilder<Color>(
-      tween: Tween<Color>(
+    final tween = ColorTween(
         begin: theme.primary.withOpacity(0.15),
         end: theme.primary.withOpacity(1.0),
-      ),
+    );
+
+    return MirrorAnimationBuilder<Color?>(
+      tween: tween,  
       duration: Duration(milliseconds: 2400),
-      control: Control.mirror,
       builder: (context, animation, child) {
         return Positioned(
           bottom: AppDimensions.ratio * -10,
           right: AppDimensions.ratio * 5,
           child: Icon(
-            TeenyIcons.search,
+            IonIcons.search,
             size: AppDimensions.ratio * 100,
             color: animation,
           ),
