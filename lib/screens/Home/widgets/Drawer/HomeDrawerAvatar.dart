@@ -55,7 +55,7 @@ class HomeDrawerAvatar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hamza Iqbal",
+                      "@hmziqrs",
                       style: TextStyle(
                         color: HomeTheme.text,
                         fontWeight: FontWeight.w700,
@@ -63,7 +63,7 @@ class HomeDrawerAvatar extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "hamza.iqdev@gmail.com",
+                      "hmziqrs@gmail.com",
                       style: TextStyle(
                         color: HomeTheme.text,
                         fontWeight: FontWeight.w600,

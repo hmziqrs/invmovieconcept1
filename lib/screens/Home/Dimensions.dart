@@ -75,6 +75,6 @@ class Dimensions {
   }
 
   static void initDrawer() {
-    drawerAvatarWidth = (AppDimensions.ratio * 10) + 10;
+    drawerAvatarWidth = (AppDimensions.ratio * 9.5) + 10;
   }
 }
