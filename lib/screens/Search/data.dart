@@ -9,7 +9,7 @@ final mobileLinks = [
   },
   {
     "url":
-        "https://github.com/hackerhgl/invmovieconcept1/releases/latest/download/app-release.apk",
+        "https://github.com/hmziqrs/invmovieconcept1/releases/latest/download/app-release.apk",
     "name": "Apk",
     "icon": IonIcons.logo_android,
   }
@@ -18,19 +18,19 @@ final mobileLinks = [
 final desktopLinks = [
   {
     "url":
-        "https://github.com/hackerhgl/invmovieconcept1/releases/latest/download/macos-release.zip",
+        "https://github.com/hmziqrs/invmovieconcept1/releases/latest/download/macos-release.zip",
     "name": "Mac",
     "icon": TeenyIcons.apple,
   },
   {
     "url":
-        "https://github.com/hackerhgl/invmovieconcept1/releases/latest/download/linux-release.zip",
+        "https://github.com/hmziqrs/invmovieconcept1/releases/latest/download/linux-release.zip",
     "name": "Linux",
     "icon": TeenyIcons.linux_alt,
   },
   {
     "url":
-        "https://github.com/hackerhgl/invmovieconcept1/releases/latest/download/windows-release.zip",
+        "https://github.com/hmziqrs/invmovieconcept1/releases/latest/download/windows-release.zip",
     "name": "Windows",
     "icon": TeenyIcons.windows,
   },
@@ -44,7 +44,7 @@ final webLinks = [
   },
   {
     "name": "Github",
-    "url": "https://github.com/hackerhgl/invmovieconcept1",
+    "url": "https://github.com/hmziqrs/invmovieconcept1",
     "icon": TeenyIcons.github,
   },
 ];

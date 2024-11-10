@@ -50,7 +50,7 @@ class MovieDetailCast extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                         child: Image.asset(
-                          "assets/avatars/rick.jpg",
+                          "assets/avatars/goku.png",
                         ),
                       ),
                       SizedBox(height: AppDimensions.padding),

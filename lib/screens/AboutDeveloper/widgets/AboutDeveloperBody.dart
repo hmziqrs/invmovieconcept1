@@ -79,9 +79,27 @@ class AboutDeveloperBody extends StatelessWidget {
                       children: [
                         AboutUserName(name: "Hamza Iqbal"),
                         AboutUserJobTitle(
-                          label: "Full Stack, React Native & Flutter Developer",
+                          label:
+                              "Full Stack Engineer | Rust, Flutter, React Native",
                         ),
-                        AboutUserBio(points: data.devDescription),
+                        SizedBox(height: AppDimensions.padding * 1),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: AppDimensions.padding * 2,
+                          ),
+                          child: Text(
+                            "A self-taught engineer with 7+ years of experience, I've built different types of software solutions like travel booking platforms, social networks, online stores, and business applications. I mostly use Rust, Flutter, NextJS, NodeJS, and React Native.",
+                          ),
+                        ),
+                        SizedBox(height: AppDimensions.padding * 0.5),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: AppDimensions.padding * 2,
+                          ),
+                          child: Text(
+                            "Outside of coding, I enjoy flying drones and playing story-rich video games like Detroit: Become Human and Cyber punk 2077.",
+                          ),
+                        ),
                       ],
                     ),
                   ),
