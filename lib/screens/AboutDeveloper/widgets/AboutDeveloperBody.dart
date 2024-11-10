@@ -79,7 +79,8 @@ class AboutDeveloperBody extends StatelessWidget {
                       children: [
                         AboutUserName(name: "Hamza Iqbal"),
                         AboutUserJobTitle(
-                          label: "Full Stack, React Native & Flutter Developer",
+                          label:
+                              "Full Stack Engineer | Rust, Flutter, React Native",
                         ),
                         AboutUserBio(points: data.devDescription),
                       ],

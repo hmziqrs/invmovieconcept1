@@ -110,5 +110,6 @@
   "MyMoviesScreen/myMovies": "My Movies",
   "MyMoviesScreen/seats": "SEATS",
   "MyMoviesScreen/notFound": "No Movies Found",
-  "MyMoviesScreen/clear": "Clear All movies"
+  "MyMoviesScreen/clear": "Clear All movies",
+  "AboutDeveloperScreen/intro": "Hi, I am a full-stack developer with over 7 years of experience in developing software. I have expertise in multiple languages and frameworks and am passionate about creating open-source apps. I enjoy watching anime in my free time, with Dragon Ball Z being my all-time favorite. I also play games, and some of my favorites include Cyberpunk 2077, Horizon Forbidden West, and Detroit: Become Human."
 }

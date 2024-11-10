@@ -8,59 +8,41 @@ import 'models/Support.dart';
 import 'models/Project.dart';
 
 final devDescription = [
-  AboutDeveloperScreenMessages.desc1,
-  AboutDeveloperScreenMessages.desc2,
-  AboutDeveloperScreenMessages.desc3,
-  AboutDeveloperScreenMessages.desc4,
+  AboutDeveloperScreenMessages.intro,
 ];
 
 final skills = [
-  "HTML/CSS",
-  "Pug(Jade)",
-  "Sass/Less",
-  "Javascript",
-  "JQuery",
-  "React JS",
-  "React SSR",
-  "Redux",
-  "Redux Saga",
-  "React Native",
-  "Dart",
+  "Rust",
   "Flutter",
+  "React Native",
+  "NextJS",
+  "Typescript",
   "Firebase",
-  "Photoshop",
-  "Basic UI designs",
-  "Node JS",
-  "Express JS",
-  "MYSQL",
-  "Mongo DB",
-  "Socket.IO",
-  "Go lang",
-  "Dart Server",
-  "Automation Scripting",
+  "NodeJS",
+  "PostgresSQL",
 ];
+
+const username = "hmziqrs";
+const email = "hmziqrs@gmail.com";
 
 final contacts = [
   Contact(
-    platform: "facebook",
-    label: "hmziqrs",
-    icon: TeenyIcons.facebook,
+    platform: "twitter",
+    label: "@$username",
+    icon: IonIcons.logo_twitter,
+    url: "https://x.com/$username",
   ),
   Contact(
     platform: "linkedin",
-    label: "hmziqrs",
-    icon: TeenyIcons.linkedin,
+    label: "/in/$username",
+    icon: IonIcons.logo_linkedin,
+    url: "https://linkedin.com/in/$username",
   ),
   Contact(
-    platform: "skype",
-    label: "hamza.iqbal.jawaid.iqbal",
-    icon: TeenyIcons.skype,
-    url: "https://join.skype.com/invite/XGRknTea0kKf",
-  ),
-  Contact(
-    platform: "whatsapp",
-    label: "+923148155304",
-    icon: TeenyIcons.whatsapp,
+    platform: "gmail",
+    label: "$email",
+    icon: IonIcons.mail,
+    url: "mailto:$email",
   ),
 ];
 
@@ -75,18 +57,6 @@ final showSupport = [
     label: AboutDeveloperScreenMessages.likeProject2,
     icon: TeenyIcons.google_play_store,
     link: MyLinks.invmovieconcept1GooglePlay,
-  ),
-  Support(
-    platform: "Linkedin",
-    label: AboutDeveloperScreenMessages.likeProject3,
-    icon: TeenyIcons.linkedin,
-    link: "https://www.linkedin.com/in/hmziqrs/",
-  ),
-  Support(
-    platform: "Fiverr",
-    label: AboutDeveloperScreenMessages.likeProject4,
-    icon: TeenyIcons.heart,
-    link: "https://www.fiverr.com/hmziqrs",
   ),
 ];
 
@@ -132,12 +102,12 @@ final moreProjects = [
       ProjectLink(
         label: "Website",
         icon: TeenyIcons.globe,
-        url: "http://hmziqrs-cv.web.app",
+        url: "http://cv.hmziq.rs",
       ),
       ProjectLink(
         label: "Github",
         icon: TeenyIcons.github,
-        url: "https://github.com/hmziqrs/CV",
+        url: "https://github.com/hmziqrs/cv",
       ),
     ],
   ),

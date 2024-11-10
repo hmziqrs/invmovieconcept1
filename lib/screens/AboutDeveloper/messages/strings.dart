@@ -6,14 +6,8 @@ const Map strings = {
   // Title
   '$scope/title': 'About Developer',
 
-  '$scope/desc1':
-      "Hi, I am full stack developer who has been developing end to end smart solutions for more than three years.",
-  '$scope/desc2':
-      "I am a committed individual who is highly efficient and has excellent organizational skills to develop applications.",
-  '$scope/desc3':
-      "I help throughout the life cycle of an assigned project with my experience and ensure quality solutions that meet objectives.",
-  '$scope/desc4':
-      "With all that being said, I am very proud of the work I do, and will stop at nothing to make sure the job is done to 100% satisfaction.",
+  '$scope/intro':
+      "Hi, I am a full-stack developer with over 7 years of experience in developing software. I have expertise in multiple languages and frameworks and am passionate about creating open-source apps. I enjoy watching anime in my free time, with Dragon Ball Z being my all-time favorite. I also play games, and some of my favorites include Cyberpunk 2077, Horizon Forbidden West, and Detroit: Become Human.",
 
   '$scope/skillSet': 'My Skill Set',
   '$scope/contacts': 'My Contacts',
