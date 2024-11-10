@@ -17,11 +17,7 @@ class MyMoviesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = ReservationProvider.state(context, true);
 
-    final List<Widget> children = [
-      Header(
-        label: App.translate(MyMoviesScreenMessages.myMovies, context),
-      ),
-    ];
+    final List<Widget> children = [];
 
     if (state.list.isNotEmpty) {
       children.addAll(
@@ -71,9 +67,22 @@ class MyMoviesBody extends StatelessWidget {
       );
     }
 
-    return ListView(
-      padding: EdgeInsets.zero,
-      children: children,
+    return Column(
+      children: [
+        Header(
+          label: App.translate(MyMoviesScreenMessages.myMovies, context),
+        ),
+        SizedBox(height: AppDimensions.padding * 2),
+        Expanded(
+          child: SizedBox(
+            width: AppDimensions.maxContainerWidth,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: children,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

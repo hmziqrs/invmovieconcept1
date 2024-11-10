@@ -48,15 +48,20 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
       alignment: Alignment.topCenter,
       child: SafeArea(
         child: Container(
-          width: AppDimensions.maxContainerWidth,
           height: UI.height,
           child: Material(
             color: Colors.transparent,
             child: ListView(
               children: [
                 // Avatar Started
-                HomeDrawerAvatar(
-                  baseAnimation: 1.0,
+                Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: AppDimensions.maxContainerWidth,
+                    child: HomeDrawerAvatar(
+                      baseAnimation: 1.0,
+                    ),
+                  ),
                 ),
                 // Avatar Finished
                 Container(
@@ -68,13 +73,19 @@ class _HomeDrawerState extends State<HomeDrawer> with AnimationMixin {
                     .asMap()
                     .entries
                     .map(
-                      (entry) => HomeDrawerButton(
-                        entry: entry,
-                        baseAnimation: 1.0,
-                        onPressed: () {
-                          final _key = entry.value["key"] as NavigationKey;
-                          this.buttonHandler(_key);
-                        },
+                      (entry) => Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          width: AppDimensions.maxContainerWidth,
+                          child: HomeDrawerButton(
+                            entry: entry,
+                            baseAnimation: 1.0,
+                            onPressed: () {
+                              final _key = entry.value["key"] as NavigationKey;
+                              this.buttonHandler(_key);
+                            },
+                          ),
+                        ),
                       ),
                     )
                     .toList(),

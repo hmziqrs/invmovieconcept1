@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:invmovieconcept1/configs/App.dart';
+import 'package:invmovieconcept1/screens/Download/messages/keys.dart';
+import 'package:invmovieconcept1/widgets/Header/Header.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/Theme.dart' as theme;
@@ -12,8 +15,8 @@ import 'Dimensions.dart';
 
 class DownloadScreen extends StatelessWidget {
   Widget belowBuilder(context) {
-    return LoopAnimationBuilder<Color>(
-      tween: Tween<Color>(
+    return MirrorAnimationBuilder<Color?>(
+      tween: ColorTween(
         begin: theme.primary.withOpacity(0.15),
         end: theme.primary.withOpacity(1.0),
       ),
@@ -39,11 +42,22 @@ class DownloadScreen extends StatelessWidget {
 
     return Screen(
       belowBuilder: this.belowBuilder,
-      child: Align(
-        child: Container(
-          width: AppDimensions.maxContainerWidth,
-          child: DownloadBody(),
-        ),
+      child: Column(
+        children: [
+          Header(
+            label: App.translate(DownloadScreenMessages.title),
+            onBack: () => Navigator.popUntil(
+              context,
+              ModalRoute.withName("home"),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              width: AppDimensions.maxContainerWidth,
+              child: DownloadBody(),
+            ),
+          ),
+        ],
       ),
     );
   }

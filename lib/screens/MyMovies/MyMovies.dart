@@ -19,10 +19,7 @@ class MyMoviesScreen extends StatelessWidget {
       child: Align(
         child: ChangeNotifierProvider<MyMoviesProvider>(
           create: (_) => MyMoviesProvider(),
-          child: Container(
-            width: AppDimensions.maxContainerWidth,
-            child: MyMoviesBody(),
-          ),
+          child: MyMoviesBody(),
         ),
       ),
     );

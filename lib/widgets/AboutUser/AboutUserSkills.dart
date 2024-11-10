@@ -13,11 +13,14 @@ class AboutUserSkills extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
+    return Padding(
+      padding: EdgeInsets.symmetric(
         horizontal: AppDimensions.padding * 1,
       ),
       child: Wrap(
+        alignment: WrapAlignment.start,
+        runAlignment: WrapAlignment.start,
+        crossAxisAlignment: WrapCrossAlignment.start,
         children: this
             .skills
             .map(
