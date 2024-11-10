@@ -42,12 +42,12 @@ class _HomeTabBarState extends State<HomeTabBar>
           duration: Duration(milliseconds: 280),
           opacity: !fadeState.fadeOff ? 1.0 : 0.0,
           child: TabBar(
-            indicator: null,
-            isScrollable: true,
             controller: this.tabController,
             physics: BouncingScrollPhysics(),
-            labelPadding: EdgeInsets.all(0.0),
-            indicatorColor: Colors.transparent,
+            dividerHeight: 0.0,
+            isScrollable: true,
+            indicatorWeight: 0.0,
+            indicator: BoxDecoration(),
             onTap: (index) => state.activeTabIndex = index,
             tabs: HomeProvider.tabs.asMap().entries.map(
               (entry) {
