@@ -93,13 +93,7 @@ class DownloadBody extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
-        Header(
-          label: App.translate(DownloadScreenMessages.title),
-          onBack: () => Navigator.popUntil(
-            context,
-            ModalRoute.withName("home"),
-          ),
-        ),
+
         // Content
 
         AlphaBanner(text: App.translate(DownloadScreenMessages.desc)),
