@@ -23,7 +23,7 @@ final mobileLinks = [
   DownloadLink(
     name: "Apk",
     url:
-        "https://github.com/hackerhgl/invmovieconcept1/releases/latest/download/app-release.apk",
+        "https://github.com/hmziqrs/invmovieconcept1/releases/latest/download/app-release.apk",
     icon: TeenyIcons.android,
   ),
 ];
@@ -32,19 +32,19 @@ final desktopLinks = [
   DownloadLink(
     name: "Mac",
     url:
-        "https://github.com/hackerhgl/invmovieconcept1/releases/latest/download/macos-release.zip",
+        "https://github.com/hmziqrs/invmovieconcept1/releases/latest/download/macos-release.zip",
     icon: TeenyIcons.apple,
   ),
   DownloadLink(
     name: "Linux",
     url:
-        "https://github.com/hackerhgl/invmovieconcept1/releases/latest/download/linux-release.zip",
+        "https://github.com/hmziqrs/invmovieconcept1/releases/latest/download/linux-release.zip",
     icon: TeenyIcons.linux_alt,
   ),
   DownloadLink(
     name: "Windows",
     url:
-        "https://github.com/hackerhgl/invmovieconcept1/releases/latest/download/windows-release.zip",
+        "https://github.com/hmziqrs/invmovieconcept1/releases/latest/download/windows-release.zip",
     icon: TeenyIcons.windows,
   ),
 ];
@@ -57,7 +57,7 @@ final webLinks = [
   ),
   DownloadLink(
     name: "Github",
-    url: "https://github.com/hackerhgl/invmovieconcept1",
+    url: "https://github.com/hmziqrs/invmovieconcept1",
     icon: TeenyIcons.github,
   ),
 ];

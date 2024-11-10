@@ -43,12 +43,12 @@ final skills = [
 final contacts = [
   Contact(
     platform: "facebook",
-    label: "hackerhgl",
+    label: "hmziqrs",
     icon: TeenyIcons.facebook,
   ),
   Contact(
     platform: "linkedin",
-    label: "hackerhgl",
+    label: "hmziqrs",
     icon: TeenyIcons.linkedin,
   ),
   Contact(
@@ -80,13 +80,13 @@ final showSupport = [
     platform: "Linkedin",
     label: AboutDeveloperScreenMessages.likeProject3,
     icon: TeenyIcons.linkedin,
-    link: "https://www.linkedin.com/in/hackerhgl/",
+    link: "https://www.linkedin.com/in/hmziqrs/",
   ),
   Support(
     platform: "Fiverr",
     label: AboutDeveloperScreenMessages.likeProject4,
     icon: TeenyIcons.heart,
-    link: "https://www.fiverr.com/hackerhgl",
+    link: "https://www.fiverr.com/hmziqrs",
   ),
 ];
 
@@ -104,7 +104,7 @@ final moreProjects = [
       ProjectLink(
         label: "Github",
         icon: TeenyIcons.github,
-        url: "https://github.com/hackerhgl/flutter-ui-designs",
+        url: "https://github.com/hmziqrs/flutter-ui-designs",
       ),
     ],
   ),
@@ -121,23 +121,23 @@ final moreProjects = [
       ProjectLink(
         label: "Github",
         icon: TeenyIcons.github,
-        url: "https://github.com/hackerhgl/react-native-loop-game",
+        url: "https://github.com/hmziqrs/react-native-loop-game",
       ),
     ],
   ),
   Project(
-    label: "Hackerhgl CV",
+    label: "hmziqrs CV",
     desc: AboutDeveloperScreenMessages.projectHCV,
     links: [
       ProjectLink(
         label: "Website",
         icon: TeenyIcons.globe,
-        url: "http://hackerhgl-cv.web.app",
+        url: "http://hmziqrs-cv.web.app",
       ),
       ProjectLink(
         label: "Github",
         icon: TeenyIcons.github,
-        url: "https://github.com/hackerhgl/CV",
+        url: "https://github.com/hmziqrs/CV",
       ),
     ],
   ),
