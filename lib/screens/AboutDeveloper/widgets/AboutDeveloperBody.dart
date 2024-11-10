@@ -110,53 +110,82 @@ class AboutDeveloperBody extends StatelessWidget {
                 SizedBox(height: AppDimensions.padding * 2),
                 Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
                 SizedBox(height: AppDimensions.padding * 2),
-                AboutUserHeading(label: "contacts"),
-                SizedBox(height: AppDimensions.padding * 2),
-                AlphaBanner(
-                  text: App.translate(
-                    AboutDeveloperScreenMessages.contactsDesc,
-                    context,
+                Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: AppDimensions.maxContainerWidth,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        AboutUserHeading(label: "contacts"),
+                        SizedBox(height: AppDimensions.padding * 1),
+                        ...data.contacts
+                            .map(
+                              (contact) => AboutUserContactButton(
+                                url: contact.url,
+                                icon: contact.icon,
+                                label: contact.label,
+                                initContext: Dimensions.init,
+                                platform: contact.platform,
+                              ),
+                            )
+                            .toList()
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(height: AppDimensions.padding * 1),
-                ...data.contacts
-                    .map(
-                      (contact) => AboutUserContactButton(
-                        url: contact.url,
-                        icon: contact.icon,
-                        label: contact.label,
-                        initContext: Dimensions.init,
-                        platform: contact.platform,
-                      ),
-                    )
-                    .toList(),
                 SizedBox(height: AppDimensions.padding * 3),
                 Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
                 SizedBox(height: AppDimensions.padding * 2),
-                AboutUserHeading(
-                  label: "likeProject",
-                ),
-                SizedBox(height: AppDimensions.padding * 2),
-                AlphaBanner(
-                  text: App.translate(
-                    AboutDeveloperScreenMessages.likeProjectDesc,
-                    context,
+                Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: AppDimensions.maxContainerWidth,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        AboutUserHeading(
+                          label: "likeProject",
+                        ),
+                        SizedBox(height: AppDimensions.padding * 2),
+                        AlphaBanner(
+                          text: App.translate(
+                            AboutDeveloperScreenMessages.likeProjectDesc,
+                            context,
+                          ),
+                        ),
+                        SizedBox(height: AppDimensions.padding * 1),
+                        ...data.showSupport
+                            .map(
+                              (obj) => this.mapSupportButton(context, obj),
+                            )
+                            .toList(),
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(height: AppDimensions.padding * 1),
-                ...data.showSupport
-                    .map(
-                      (obj) => this.mapSupportButton(context, obj),
-                    )
-                    .toList(),
+
+
                 SizedBox(height: AppDimensions.padding * 3),
                 Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
                 SizedBox(height: AppDimensions.padding * 2),
-                AboutUserHeading(
-                  label: "moreProjects",
+
+                Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: AppDimensions.maxContainerWidth,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        AboutUserHeading(
+                          label: "moreProjects",
+                        ),
+                        SizedBox(height: AppDimensions.padding * 1),
+                        AboutDeveloperMoreProjects(),
+                      ],
+                    ),
+                  ),
                 ),
-                SizedBox(height: AppDimensions.padding * 1),
-                AboutDeveloperMoreProjects(),
                 SizedBox(height: UI.padding.bottom),
               ],
             ),
