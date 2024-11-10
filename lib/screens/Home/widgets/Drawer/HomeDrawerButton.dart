@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invmovieconcept1/configs/App.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:invmovieconcept1/configs/AppDimensions.dart';
@@ -31,19 +32,20 @@ class HomeDrawerButton extends StatelessWidget {
           Tween(begin: 0.0, end: 1.0),
           duration: (200 + (15 * entry.key)).milliseconds,
         );
-
+    final label = entry.value["label"] as String;
     return CustomAnimationBuilder<Movie>(
       tween: tween2,
-      control: baseAnimation > 0.8
-          ? Control.play : Control.playReverse,
+      control: baseAnimation > 0.8 ? Control.play : Control.playReverse,
       duration: tween2.duration,
       builder: (context, button, _) {
         return Opacity(
-          opacity: button.get(AnimProp.opacity),
+          opacity: button.get(AnimProp.opacity.toString()),
           child: Container(
+            
             width: double.infinity,
             margin: EdgeInsets.symmetric(
               horizontal: AppDimensions.padding * 2,
+                vertical: AppDimensions.padding * 1
             ),
             child: ElevatedButton(
               key: Key(entry.value["key"].toString()),
@@ -55,8 +57,7 @@ class HomeDrawerButton extends StatelessWidget {
                 ),
               ),
               child: Text(
-                "Yooo", // TODO
-                // App.translate(entry.value["label"]!, context),
+                App.translate(label, context),
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
