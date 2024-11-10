@@ -24,8 +24,8 @@ class SelectSeatsTime extends StatelessWidget {
       delay: 300,
       child: SizedBox(
         height: Dimensions.timeSelectBox,
-        child: Selector<SelectSeatsProvider, DateTime>(
-          selector: (_, state) => state.selectedTime!,
+        child: Selector<SelectSeatsProvider, DateTime?>(
+          selector: (_, state) => state.selectedTime,
           builder: (context, selectedTime, child) {
             return ListView.builder(
               padding: EdgeInsets.symmetric(

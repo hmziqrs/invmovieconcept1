@@ -52,7 +52,6 @@ class SelectSeatsBody extends StatelessWidget {
           Consumer<SelectSeatsProvider>(
             builder: (context, state, child) {
               final isVerified = state.selectedSeats.length > 0 &&
-                  state.selectedSeats != null &&
                   state.selectedTime != null &&
                   state.selectedDay != null &&
                   !this.isReserved;
