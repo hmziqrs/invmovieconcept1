@@ -23,63 +23,99 @@ class AboutDesignerBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Dimensions.init(context);
 
-    return Align(
-      child: Container(
-        width: AppDimensions.maxContainerWidth,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Header(
-              label: AboutDesignerScreenMessages.title,
-              onBack: () => Navigator.popUntil(
-                context,
-                ModalRoute.withName("home"),
-              ),
-            ),
-            SizedBox(height: AppDimensions.padding * 1),
-            AboutUserName(name: "Aneesh Raveendran"),
-            AboutUserJobTitle(
-              label: "Sr. User Interface Designer, Interaction designer",
-            ),
-            AboutUserBio(
-              points: data.devDescription,
-            ),
-            SizedBox(height: AppDimensions.padding * 3),
-            Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
-            SizedBox(height: AppDimensions.padding * 2),
-            AboutUserHeading(
-              label: "skills",
-            ),
-            SizedBox(height: AppDimensions.padding * 1),
-            AboutUserSkills(skills: data.skills),
-            SizedBox(height: AppDimensions.padding * 2),
-            Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
-            SizedBox(height: AppDimensions.padding * 2),
-            AboutUserHeading(
-              label: "contacts",
-            ),
-            SizedBox(height: AppDimensions.padding * 2),
-            AlphaBanner(
-              text: App.translate(
-                AboutDesignerScreenMessages.contactsDesc,
-                context,
-              ),
-            ),
-            ...data.contacts
-                .map(
-                  (contact) => AboutUserContactButton(
-                    url: contact.url,
-                    icon: contact.icon,
-                    label: contact.label,
-                    initContext: Dimensions.init,
-                    platform: contact.platform,
-                  ),
-                )
-                .toList(),
-            SizedBox(height: AppDimensions.padding * 2),
-          ],
+    return Column(
+      children: [
+        Header(
+          label: AboutDesignerScreenMessages.title,
+          onBack: () => Navigator.popUntil(
+            context,
+            ModalRoute.withName("home"),
+          ),
         ),
-      ),
+        Expanded(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              SizedBox(height: AppDimensions.padding * 1),
+              Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: AppDimensions.maxContainerWidth,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      AboutUserName(name: "Aneesh Raveendran"),
+                      AboutUserJobTitle(
+                        label:
+                            "Sr. User Interface Designer, Interaction designer",
+                      ),
+                      AboutUserBio(
+                        points: data.devDescription,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: AppDimensions.padding * 3),
+              Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
+              SizedBox(height: AppDimensions.padding * 2),
+              Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: AppDimensions.maxContainerWidth,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      AboutUserHeading(
+                        label: "skills",
+                      ),
+                      AboutUserSkills(
+                        skills: data.skills,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: AppDimensions.padding * 2),
+              Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
+              SizedBox(height: AppDimensions.padding * 2),
+              Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: AppDimensions.maxContainerWidth,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      AboutUserHeading(
+                        label: "contacts",
+                      ),
+                      SizedBox(height: AppDimensions.padding * 2),
+                      AlphaBanner(
+                        text: App.translate(
+                          AboutDesignerScreenMessages.contactsDesc,
+                          context,
+                        ),
+                      ),
+                      ...data.contacts
+                          .map(
+                            (contact) => AboutUserContactButton(
+                              url: contact.url,
+                              icon: contact.icon,
+                              label: contact.label,
+                              initContext: Dimensions.init,
+                              platform: contact.platform,
+                            ),
+                          )
+                          .toList(),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: AppDimensions.padding * 2),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
