@@ -1,26 +1,11 @@
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
-}
-
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-}
-
-def flutterVersionCode = '8'
-def flutterVersionName = '3.1.2'
-
-
 plugins {
     id "com.android.application"
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
 }
+
+
 def keystoreProperties = new Properties()
 def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
@@ -30,7 +15,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "com.onemdev.invmovieconcept1"
     compileSdk = 35
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -47,8 +32,8 @@ android {
         minSdk 21
         targetSdk 35
         buildToolsVersion '35.0.0'
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        versionCode = 10
+        versionName = "3.2.1"
         multiDexEnabled true
     }
     signingConfigs {
@@ -74,9 +59,9 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
 }
 
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.firebase-perf'
-apply plugin: 'com.google.firebase.crashlytics'
+// apply plugin: 'com.google.gms.google-services'
+// apply plugin: 'com.google.firebase.firebase-perf'
+// apply plugin: 'com.google.firebase.crashlytics'
