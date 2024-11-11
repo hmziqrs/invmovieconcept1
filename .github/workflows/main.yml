@@ -62,10 +62,10 @@ jobs:
           flutter pub get
           flutter build web -t lib/main.web.dart --release --wasm
 
-      - name: Copy privacy policy
-        run: |
-          cd app
-          cp privacy-policy/index.html build/web/privacy-policy.html
+      # - name: Copy privacy policy
+      #   run: |
+      #     cd app
+      #     cp privacy-policy/index.html build/web/privacy-policy.html
 
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
