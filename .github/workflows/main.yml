@@ -1,7 +1,7 @@
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 name: Release Builds
 jobs:
@@ -9,40 +9,35 @@ jobs:
     name: Linux
     runs-on: ubuntu-latest
     steps:
-      - name: Install Flutter SDK
-        uses: subosito/flutter-action@v1
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.8.1'
-      - uses: actions/checkout@v2
+          flutter-version: "3.24.4"
+          channel: "stable"
+
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          ref: ${{ github.event.release.tag_name }}
-          path: 'app'
+          path: "app"
+
       - name: Install required build tools for linux
-        run: sudo apt-get update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev
-      - name: Configure flutter linux configs
         run: |
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+          sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa
+          sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
+
+      - run: |
+          cd app
           flutter config --enable-linux-desktop
-          flutter config --no-enable-android
-      - name: Trim vector icons
-        run: |
-          cd app
           flutter pub get
-          dart ./scripts/splitVectorIcons.dart
-        # flutter clean
-      - name: Build linux release
-        run: |
-          cd app
           flutter build linux --release
-      - name: Compress build
-        run: |
-          cd app/build/linux/x64/release/
+          cd build/linux/x64/release
           zip -r linux-release.zip bundle
 
       - name: Create linux Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'app/build/linux/x64/release/linux-release.zip'
+          artifacts: "app/build/linux/x64/release/linux-release.zip"
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
 
@@ -50,121 +45,92 @@ jobs:
     name: Web
     runs-on: ubuntu-latest
     steps:
-      - name: Install Flutter SDK
-        uses: subosito/flutter-action@v1
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.8.1'
-      - uses: actions/checkout@v2
+          flutter-version: "3.24.4"
+          channel: "stable"
+
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          ref: ${{ github.event.release.tag_name }}
-          path: 'app'
-      - run: |
+          path: "app"
+
+      - name: Build web release
+        run: |
           cd app
           flutter config --enable-web
-          flutter config --no-enable-android
           flutter pub get
-          dart ./scripts/splitVectorIcons.dart
-          flutter build web -t lib/main.web.dart --release
+          flutter build web -t lib/main.web.dart --release --wasm
+
+      - name: Copy privacy policy
+        run: |
+          cd app
+          cp privacy-policy/index.html build/web/privacy-policy.html
+
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
-          PROJECT_PATH: 'app'
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
-  android-aab:
-    name: Android Play Store
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install Flutter SDK
-        uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '2.8.1'
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.release.tag_name }}
-      - run: |
-          flutter pub get
-          dart ./scripts/splitVectorIcons.dart
-          flutter build appbundle -t lib/main.mobile.dart
-      - name: Create Android Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: 'build/app/outputs/bundle/release/app-release.aab'
-          token: ${{ secrets.TOKEN }}
-          allowUpdates: true
-      - name: Create service_account.json
-        run: echo '${{ secrets.PLAYSTORE_ACCOUNT_KEY }}' > service_account.json
-
-      - name: Upload to playstore
-        uses: r0adkll/upload-google-play@v1.0.15
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
-          packageName: com.onemdev.invmovieconcept1
-          releaseFiles: build/app/outputs/bundle/release/*.aab
-          track: production
-          inAppUpdatePriority: 2
-          whatsNewDirectory: distribution/whatsnew
+          PROJECT_PATH: "app"
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
   android:
     name: Android
     runs-on: ubuntu-latest
     steps:
-      - name: Install Flutter SDK
-        uses: subosito/flutter-action@v1
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.8.1'
-      - uses: actions/setup-java@v1
+          flutter-version: "3.24.4"
+          channel: "stable"
+
+      - uses: actions/setup-java@v4
         with:
-          java-version: '12.x'
-      - uses: actions/checkout@v2
+          java-version: "17"
+          distribution: "oracle"
+
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          ref: ${{ github.event.release.tag_name }}
+          path: "app"
       - run: |
+          cd app
           flutter pub get
-          dart ./scripts/splitVectorIcons.dart
-          flutter build apk
-          mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/app-release-noads.apk
-          flutter build apk -t lib/main.mobile.dart
+          flutter build apk -t lib/main.firebase.dart --release
+
       - name: Create Android Release
         uses: ncipollo/release-action@v1
         with:
-          allowUpdates: true
+          artifacts: "app/build/app/outputs/apk/release/app-release.apk"
           token: ${{ secrets.TOKEN }}
-          artifacts: 'build/app/outputs/apk/release/app-release.apk,build/app/outputs/apk/release/app-release-noads.apk'
+          allowUpdates: true
 
   macos:
     name: MacOS
     runs-on: macos-latest
     steps:
-      - name: Install Flutter SDK
-        uses: subosito/flutter-action@v1
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.8.1'
-      - uses: actions/checkout@v2
+          flutter-version: "3.24.4"
+          channel: "stable"
+
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          ref: ${{ github.event.release.tag_name }}
-          path: 'app'
+          path: "app"
+
       - run: |
           cd app
           flutter config --enable-macos-desktop
-          flutter config --no-enable-android
+          flutter pub global activate flutterfire_cli
           flutter pub get
-          dart ./scripts/splitVectorIcons.dart
-          flutter build macos -t lib/main.mobile.dart
+          flutter build macos -t lib/main.firebase.dart --release
           cd build/macos/Build/Products/Release
-          ditto -c -k --sequesterRsrc --keepParent invmovieconcept1.app macos-release.zip
+          ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
+
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: 'app/build/macOS/Build/Products/Release/macos-release.zip'
+          artifacts: "app/build/macOS/Build/Products/Release/macos-release.zip"
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
 
@@ -172,27 +138,27 @@ jobs:
     name: Windows
     runs-on: windows-latest
     steps:
-      - name: Install Flutter SDK
-        uses: subosito/flutter-action@v1
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.8.1'
-      - uses: actions/checkout@v2
+          flutter-version: "3.24.4"
+          channel: "stable"
+
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          ref: ${{ github.event.release.tag_name }}
-          path: 'app'
+          path: "app"
+
       - run: |
           cd app
           flutter config --enable-windows-desktop
-          flutter config --no-enable-android
           flutter pub get
-          dart .\scripts\splitVectorIcons.dart
           flutter build windows --release
-          cd build\windows\runner
+          cd build\windows\x64\runner
           Compress-Archive -Path Release -DestinationPath windows-release.zip
+
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'app\build\windows\runner\windows-release.zip'
+          artifacts: 'app\build\windows\x64\runner\windows-release.zip'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
