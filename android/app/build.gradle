@@ -11,14 +11,16 @@ if (flutterRoot == null) {
     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
-def flutterVersionCode = '7'
+def flutterVersionCode = '8'
 def flutterVersionName = '3.1.2'
 
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
 def keystoreProperties = new Properties()
 def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
@@ -26,23 +28,28 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 31
+    namespace = "com.onemdev.invmovieconcept1"
+    compileSdk = 35
+    ndkVersion = flutter.ndkVersion
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     defaultConfig {
         applicationId "com.onemdev.invmovieconcept1"
         multiDexEnabled true
-        minSdkVersion 19
-        targetSdkVersion 31
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        minSdk 21
+        targetSdk 35
+        buildToolsVersion '35.0.0'
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        multiDexEnabled true
     }
     signingConfigs {
         release {
@@ -56,6 +63,7 @@ android {
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
