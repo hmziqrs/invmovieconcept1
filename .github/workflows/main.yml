@@ -60,7 +60,7 @@ jobs:
           cd app
           flutter config --enable-web
           flutter pub get
-          flutter build web -t lib/main.web.dart --release --wasm
+          flutter build web -t lib/main.mobile.dart --release --wasm
 
       # - name: Copy privacy policy
       #   run: |
@@ -73,7 +73,8 @@ jobs:
           args: deploy --only hosting
         env:
           PROJECT_PATH: "app"
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          # GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
   android:
     name: Android
@@ -126,7 +127,7 @@ jobs:
           flutter pub get
           flutter build macos -t lib/main.mobile.dart --release
           cd build/macos/Build/Products/Release
-          ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
+          ditto -c -k --sequesterRsrc --keepParent invmovieconcept1.app macos-release.zip
 
       - uses: ncipollo/release-action@v1
         with:
