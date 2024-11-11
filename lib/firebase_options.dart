@@ -94,4 +94,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'invmovieconcept1.firebasestorage.app',
     measurementId: 'G-YGTRKLLNJB',
   );
+
 }
