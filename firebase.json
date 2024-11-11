@@ -1,20 +1,63 @@
 {
-  "hosting": {
-    "public": "build/web",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [
-      {
-        "source": "privacy",
-        "destination": "/privacy-policy.html"
-      },
-      {
-        "source": "terms",
-        "destination": "/terms-and-conditions.html"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "invmovieconcept1",
+                    "appId": "1:952791941209:android:f775bcd53b6db601613148",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "ios": {
+                "default": {
+                    "projectId": "invmovieconcept1",
+                    "appId": "1:952791941209:ios:98e58b72907ec4fe613148",
+                    "uploadDebugSymbols": true,
+                    "fileOutput": "ios/Runner/GoogleService-Info.plist"
+                }
+            },
+            "macos": {
+                "default": {
+                    "projectId": "invmovieconcept1",
+                    "appId": "1:952791941209:ios:98e58b72907ec4fe613148",
+                    "uploadDebugSymbols": true,
+                    "fileOutput": "macos/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "invmovieconcept1",
+                    "configurations": {
+                        "android": "1:952791941209:android:f775bcd53b6db601613148",
+                        "ios": "1:952791941209:ios:98e58b72907ec4fe613148",
+                        "macos": "1:952791941209:ios:98e58b72907ec4fe613148",
+                        "web": "1:952791941209:web:5c52a387279347da613148",
+                        "windows": "1:952791941209:web:91999739b94ac425613148"
+                    }
+                }
+            }
+        }
+    },
+    "hosting": {
+        "public": "build/web",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ],
+        "rewrites": [
+            {
+                "source": "privacy",
+                "destination": "/privacy-policy.html"
+            },
+            {
+                "source": "terms",
+                "destination": "/terms-and-conditions.html"
+            },
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    }
 }
