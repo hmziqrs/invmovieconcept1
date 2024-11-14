@@ -54,6 +54,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: "app"
+      - uses: oven-sh/setup-bun@v2
 
       - name: Build web release
         run: |
@@ -66,6 +67,13 @@ jobs:
       #   run: |
       #     cd app
       #     cp privacy-policy/index.html build/web/privacy-policy.html
+      - name: Deploy cloudflare pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: "bun"
+          command: pages deploy ./app/build/web --project-name=movieui --branch=main
 
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
