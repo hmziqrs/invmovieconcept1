@@ -1,15 +1,23 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+
+    id "com.google.gms.google-services"
+    id "com.google.firebase.crashlytics"
+    id "com.google.firebase.firebase-perf"
 }
 
+def debugStore = new Properties()
+def debugStoreFile = rootProject.file('key.properties')
+if (debugStoreFile.exists()) {
+    debugStore.load(new FileInputStream(debugStoreFile))
+}
 
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+def prodStore = new Properties()
+def prodStoreFile = rootProject.file('prod.properties')
+if (prodStoreFile.exists()) {
+    prodStore.load(new FileInputStream(prodStoreFile))
 }
 
 android {
@@ -32,19 +40,27 @@ android {
         minSdk 21
         targetSdk 35
         buildToolsVersion '35.0.0'
-        versionCode = 10
-        versionName = "3.2.1"
-        multiDexEnabled true
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
     signingConfigs {
+        debug {
+            keyAlias debugStore['keyAlias']
+            keyPassword debugStore['keyPassword']
+            storeFile file(debugStore['storeFile'])
+            storePassword debugStore['storePassword']
+        }
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            keyAlias prodStore['keyAlias']
+            keyPassword prodStore['keyPassword']
+            storeFile file(prodStore['storeFile'])
+            storePassword prodStore['storePassword']
         }
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
@@ -61,7 +77,3 @@ flutter {
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
 }
-
-// apply plugin: 'com.google.gms.google-services'
-// apply plugin: 'com.google.firebase.firebase-perf'
-// apply plugin: 'com.google.firebase.crashlytics'
