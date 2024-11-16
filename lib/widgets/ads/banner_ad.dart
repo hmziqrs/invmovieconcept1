@@ -48,8 +48,8 @@ class _AppBannerAdState extends State<AppBannerAd> {
     }
 
     return SizedBox(
-      height: 72.0,
-      width: this.ad?.size.width.toDouble() ?? 300,
+      height: this.ad!.size.height.toDouble(),
+      width: this.ad?.size.width.toDouble(),
       child: this.isAdLoaded ? AdWidget(ad: this.ad!) : SizedBox(),
     );
   }
