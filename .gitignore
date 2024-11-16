@@ -43,3 +43,6 @@ app.*.map.json
 .firebase
 .vscode/launch.json
 pubspec.tmp
+
+.keys-n-stuff/
+service-account.json
