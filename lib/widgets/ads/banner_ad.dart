@@ -23,7 +23,7 @@ class _AppBannerAdState extends State<AppBannerAd> {
 
     this.ad = BannerAd(
       adUnitId: Ads.bannerHome(),
-      size: AdSize.mediumRectangle,
+      size: AdSize.largeBanner,
       request: AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (_) {
