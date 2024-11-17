@@ -13,25 +13,29 @@ import 'configs/App.dart';
 
 import 'Navigator.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // AppFCM.init();
   await Cache.init();
 
   App.showAds = Utils.isMobile();
-
   if (App.showAds) {
-    MobileAds.instance.initialize();
+    await MobileAds.instance.initialize();
   }
 
-  final analyticsObserver = FirebaseAnalyticsObserver(
-    analytics: FirebaseAnalytics.instance,
-  );
+  final List<NavigatorObserver> observers = [
+    FirebaseAnalyticsObserver(
+      analytics: FirebaseAnalytics.instance,
+    )
+  ];
 
   FlutterError.onError = (FlutterErrorDetails err) {
     FirebaseCrashlytics.instance.recordFlutterError(err);
   };
-  runApp(AppNavigator([analyticsObserver]));
+
+  runApp(AppNavigator(observers));
 }

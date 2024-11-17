@@ -19,9 +19,6 @@ void _main(NavigatorObserver? observer) async {
   await Cache.init();
   App.showAds = false;
 
-  // if (Platform.isWindows || Platform.isLinux) {
-  //   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
-  // }
   final List<NavigatorObserver> observers = [];
 
   if (observer != null) observers.add(observer);

@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'utils.dart' as utils;
 
-const List<String> desktopFilters = ['mac', 'macOS', 'linux', 'windows'];
-const webtype = 'web-javascript';
+const List<String> desktopFilters = ['linux', 'windows'];
+final webtype = 'web-javascript';
 
 void main(List<String> args) async {
   final result = await Process.run(
@@ -40,9 +40,9 @@ void main(List<String> args) async {
     );
 
     if (desktopCheck == -1) {
-      obj["args"] = ['-t', 'lib/main.mobile.dart'];
+      obj["args"] = ['-t', 'lib/main.firebase.dart'];
       if (deviceType == webtype) {
-        obj["args"] = ['-t', 'lib/main.web.dart'];
+        obj["args"] = ['-t', 'lib/main.firebase.dart'];
       }
     }
     return obj;
@@ -67,9 +67,9 @@ void main(List<String> args) async {
   };
 
   utils.mkDir('.vscode');
-  final vsConfig = File('.vscode/launch.json');
+  final vsConfig = new File('.vscode/launch.json');
   // final encoded = json.encode(newConfig);
-  const jsonEncoder = JsonEncoder.withIndent('  ');
+  final JsonEncoder jsonEncoder = JsonEncoder.withIndent('  ');
   final newJson = jsonEncoder.convert(newConfig);
 
   vsConfig.writeAsStringSync(newJson);
