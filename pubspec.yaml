@@ -48,6 +48,7 @@ dependencies:
   google_mobile_ads: 5.1.0
 
   shared_preferences: 2.3.3
+  flutter_native_splash: 2.4.2
 
 dev_dependencies:
   flutter_driver:
@@ -98,3 +99,11 @@ msix_config:
   display_name: Flutter Movie Concept UI
   identity_name: 39858OneMDev.FlutterMovieConceptUI
   publisher: CN=309E1851-D363-4893-8248-5E01652D9CF1
+
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#000000"
+  image: "assets/icons/logo-alpha.png"
+  android: true
+  ios: true
+  web: true
