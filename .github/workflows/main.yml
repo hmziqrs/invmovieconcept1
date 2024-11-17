@@ -61,7 +61,7 @@ jobs:
           cd app
           flutter config --enable-web
           flutter pub get
-          flutter build web -t lib/main.mobile.dart --release --wasm
+          flutter build web -t lib/main.web.dart --release --wasm
 
       # - name: Copy privacy policy
       #   run: |
@@ -104,7 +104,7 @@ jobs:
       - run: |
           cd app
           flutter pub get
-          flutter build apk -t lib/main.mobile.dart --release
+          flutter build apk -t lib/main.firebase.dart --release
 
       - name: Create Android Release
         uses: ncipollo/release-action@v1
@@ -132,7 +132,7 @@ jobs:
           flutter config --enable-macos-desktop
           flutter pub global activate flutterfire_cli
           flutter pub get
-          flutter build macos -t lib/main.mobile.dart --release
+          flutter build macos -t lib/main.firebase.dart --release
           cd build/macos/Build/Products/Release
           ditto -c -k --sequesterRsrc --keepParent invmovieconcept1.app macos-release.zip
 
