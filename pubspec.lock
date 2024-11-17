@@ -420,6 +420,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  icons_launcher:
+    dependency: "direct dev"
+    description:
+      name: icons_launcher
+      sha256: a7c83fbc837dc6f81944ef35c3756f533bb2aba32fcca5cbcdb2dbcd877d5ae9
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   icons_plus:
     dependency: "direct main"
     description:

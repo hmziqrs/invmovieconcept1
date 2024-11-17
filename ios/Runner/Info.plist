@@ -50,5 +50,9 @@
 		<string>cstr6suwn9.skadnetwork</string>
 		</dict>
 	</array>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 </dict>
 </plist>

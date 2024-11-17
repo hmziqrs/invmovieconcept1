@@ -63,6 +63,7 @@ dev_dependencies:
   glob: 2.1.2
   xml: 6.5.0 
   image: 4.3.0
+  icons_launcher: 3.0.0 
 
 
 flutter_icons:
@@ -93,7 +94,7 @@ msix_config:
   store: true
   msix_version: 1.0.0.0
   publisher_display_name: OneMDev
-  logo_path: ./assets/icons/app-icon.png
+  logo_path: ./assets/icons/logo-light.png
   display_name: Flutter Movie Concept UI
   identity_name: 39858OneMDev.FlutterMovieConceptUI
   publisher: CN=309E1851-D363-4893-8248-5E01652D9CF1
