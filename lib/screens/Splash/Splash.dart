@@ -38,7 +38,7 @@ class SplashScreen extends StatelessWidget {
               tween: 0.2.tweenTo(1.0),
               duration: 600.milliseconds,
               child: Image.asset(
-                "assets/icons/app-icon.png",
+                "assets/icons/logo-alpha.png",
                 width: imageSize,
                 height: imageSize,
               ),
