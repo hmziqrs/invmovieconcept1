@@ -61,7 +61,7 @@ class _MovieDetailBodyState extends State<MovieDetailBody> {
         children: [
           MovieInfoCard(movie: widget.movie),
           SizedBox(height: AppDimensions.padding * 1),
-          AppBannerAd(),
+          AppBannerAd(adKey: AppBannerAdKey.movieDetail),
           SizedBox(height: AppDimensions.padding * 3),
           MovieDetailDesc(),
           SizedBox(height: AppDimensions.padding * 3),
