@@ -4,8 +4,23 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:invmovieconcept1/configs/Ads.dart';
 import 'package:invmovieconcept1/configs/App.dart';
 
+enum AppBannerAdKey {
+  home,
+  movieDetail,
+}
+
+final mapAdKeyMap = {
+  AppBannerAdKey.home: Ads.bannerHome(),
+  AppBannerAdKey.movieDetail: Ads.bannerMovieDetail(),
+};
+
 class AppBannerAd extends StatefulWidget {
-  const AppBannerAd({Key? key}) : super(key: key);
+  AppBannerAd({
+    Key? key,
+    this.adKey = AppBannerAdKey.home,
+  }) : super(key: key);
+
+  final AppBannerAdKey adKey;
 
   @override
   State<AppBannerAd> createState() => _AppBannerAdState();
@@ -21,8 +36,10 @@ class _AppBannerAdState extends State<AppBannerAd> {
 
     if (!App.showAds) return;
 
+    final adUnitId = mapAdKeyMap[widget.adKey]!;
+
     this.ad = BannerAd(
-      adUnitId: Ads.bannerHome(),
+      adUnitId: adUnitId,
       size: AdSize.largeBanner,
       request: AdRequest(),
       listener: BannerAdListener(

@@ -28,21 +28,11 @@ abstract class Ads {
 
   static String bannerHome() {
     if (_test) return _testBanner();
-    return "ca-app-pub-9217632370383904/2314759267";
+    return "ca-app-pub-9217632370383904/6416642104";
   }
 
-  static String bannerDownload() {
+  static String bannerMovieDetail() {
     if (_test) return _testBanner();
-    return "ca-app-pub-9217632370383904/9583307904";
-  }
-
-  static String bannerExploreUIs() {
-    if (_test) return _testBanner();
-    return "ca-app-pub-9217632370383904/3396006216";
-  }
-
-  static String interstitialUIDetail() {
-    if (_test) return _testInterstitial();
-    return "ca-app-pub-9217632370383904/3620102073";
+    return "ca-app-pub-9217632370383904/7084652287";
   }
 }
