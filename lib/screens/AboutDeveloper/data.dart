@@ -33,16 +33,22 @@ final contacts = [
     url: "https://x.com/$username",
   ),
   Contact(
-    platform: "linkedin",
-    label: "/in/$username",
-    icon: IonIcons.logo_linkedin,
-    url: "https://linkedin.com/in/$username",
-  ),
-  Contact(
     platform: "gmail",
     label: "$email",
     icon: IonIcons.mail,
     url: "mailto:$email",
+  ),
+  Contact(
+    platform: "telegram",
+    label: "@$username",
+    icon: IonIcons.paper_plane,
+    url: "https://t.me/$email",
+  ),
+  Contact(
+    platform: "web",
+    label: "hmziq.rs",
+    icon: IonIcons.globe,
+    url: "https://hmziq.rs",
   ),
 ];
 
@@ -76,6 +82,33 @@ final moreProjects = [
         icon: TeenyIcons.github,
         url: "https://github.com/hmziqrs/flutter-ui-designs",
       ),
+      ProjectLink(
+        label: "Web",
+        icon: TeenyIcons.globe,
+        url: "https://flutter-uis.hmziq.xyz",
+      ),
+    ],
+  ),
+  Project(
+    label: "Epic Gandalf Sax Infinite",
+    desc: AboutDeveloperScreenMessages.projectRNL,
+    links: [
+      ProjectLink(
+        label: "Google Play",
+        icon: TeenyIcons.google_play_store,
+        url:
+            "https://play.google.com/store/apps/details?id=com.onemdev.gandalf",
+      ),
+      ProjectLink(
+        label: "Github",
+        icon: TeenyIcons.github,
+        url: "https://github.com/hmziqrs/gandalf-sax",
+      ),
+      ProjectLink(
+        label: "web",
+        icon: IonIcons.globe,
+        url: "https://gandalf.hmziq.xyz",
+      ),
     ],
   ),
   Project(
@@ -92,6 +125,11 @@ final moreProjects = [
         label: "Github",
         icon: TeenyIcons.github,
         url: "https://github.com/hmziqrs/react-native-loop-game",
+      ),
+      ProjectLink(
+        label: "Web",
+        icon: TeenyIcons.globe,
+        url: "https://rnloop.hmziq.xyz",
       ),
     ],
   ),

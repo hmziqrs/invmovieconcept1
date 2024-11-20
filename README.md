@@ -76,7 +76,6 @@
 
 - Star this repository.
 - Rate the app on <a href="https://play.google.com/store/apps/details?id=com.onemdev.invmovieconcept1" target="playstore">Play Store</a>.
-- Endorse my skills on my <a href="https://www.linkedin.com/in/hmziqrs" target="linkedin">Linkedin Profile</a>.
 - Favorite my gigs on <a href="https://www.fiverr.com/hmziqrs" target="fiver">Fiverr</a>.
 - Give a recommendation on <a href="https://www.freelancer.com/u/hmziqrs" target="freelance">Freelancer</a>.
 
