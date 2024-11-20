@@ -42,7 +42,7 @@ final contacts = [
     platform: "telegram",
     label: "@$username",
     icon: IonIcons.paper_plane,
-    url: "https://t.me/$email",
+    url: "https://t.me/$username",
   ),
   Contact(
     platform: "web",

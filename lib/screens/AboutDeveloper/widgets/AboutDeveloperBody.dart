@@ -77,7 +77,7 @@ class AboutDeveloperBody extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        AboutUserName(name: "Hamza Iqbal"),
+                        AboutUserName(name: "Hmziq"),
                         AboutUserJobTitle(
                           label:
                               "Full Stack Engineer | Rust, Flutter, React Native",
